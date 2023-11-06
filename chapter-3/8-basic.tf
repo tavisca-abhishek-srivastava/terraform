@@ -11,3 +11,8 @@ variable "mymap" {
         sir_name = "Srivastava"
     }
 }
+variable "myList" {
+    type = list
+    default = [1,2,3]
+  
+}
