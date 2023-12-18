@@ -8,7 +8,6 @@ resource "aws_key_pair" mykey {
 
 }
 
-
 resource "aws_instance" "example1" {
         ami = "ami-08d01bf321ad0777e"
         availability_zone = "us-east-1a"
@@ -51,7 +50,6 @@ provisioner "remote-exec" {
        ]
       }
 
-
 connection {
     type        = "ssh"
     user        = "ec2-user"
@@ -60,5 +58,3 @@ connection {
     host        = self.private_ip
   }
 }
-
-

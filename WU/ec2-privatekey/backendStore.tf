@@ -1,8 +1,6 @@
 resource "aws_s3_bucket" "S3_For_RSS_feed" {
-
 bucket = "tapoc-ec2-privatekey-1"
-
- tags = {
+tags = {
             DataClassification: "restricted"
             Environment: "poc"
             AppName:  "as-testing-client-1-s33"
@@ -12,5 +10,4 @@ bucket = "tapoc-ec2-privatekey-1"
             Product: "poap"
             Name: "as-testing-client-1-s3"
   }
-
  }
