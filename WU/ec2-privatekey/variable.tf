@@ -34,14 +34,14 @@ variable "sg_ingress_rules" {
           from_port   = 22
           to_port     = 22
           protocol    = "tcp"
-          cidr_block  = "10.0.0.0/0"
+          cidr_block  = "10.0.0.0/8"
           description = "SSH"
         },
         {
           from_port   = 80
           to_port     = 80
           protocol    = "tcp"
-          cidr_block  = "10.0.0.0/0"
+          cidr_block  = "10.0.0.0/8"
           description = "HTTP"
         },
         {
