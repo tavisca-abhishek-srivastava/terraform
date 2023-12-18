@@ -1,3 +1,7 @@
+provider "aws" {
+  region = us-east-1
+}
+
 variable "myvar" {
     type = string
     description = "(optional) describe your variable"

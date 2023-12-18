@@ -15,13 +15,7 @@ allocated_storage    = 11
   availability_zone = "us-west-2a"
   identifier  = "jpmc-ro"
   apply_immediately = true
-  replicate_source_db  = "arn:aws:rds:us-east-1:928814396842:db:jpmc"
-  #db_subnet_group_name = "default"
-  
-  	  tags = {
-		Name = "MasterMySQL"
-		Owner = "DR-Testing"
-		tool = "Terraform"
-	  }
+  replicate_source_db  = aws_db_instance.default.arn
+  db_subnet_group_name = "default"
 
 }
