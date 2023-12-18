@@ -51,6 +51,13 @@ variable "sg_ingress_rules" {
           cidr_block  = "10.0.0.0/8"
           description = "Citrix"
         },
+                {
+          from_port   = 18091
+          to_port     = 18091
+          protocol    = "tcp"
+          cidr_block  = "10.0.0.0/8"
+          description = "Couchbase"
+        },
     ]
 }
 variable "sg_egress_rules" {
