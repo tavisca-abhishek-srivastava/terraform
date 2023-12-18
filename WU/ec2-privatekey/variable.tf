@@ -12,7 +12,7 @@ variable "publickeyPath" {
 }
 
 variable "name_security_groups" {
-   default = "Citrix-SG-Nginx"
+   default = "Citrix-SG-Nginx-1"
 }
 variable "sg_ingress_rules" {
     type = list(object({
