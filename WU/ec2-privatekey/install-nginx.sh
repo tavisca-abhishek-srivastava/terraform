@@ -1,2 +1,2 @@
-sudo amazon-linux-extras install nginx1.12  -y
-sudo systemctl start  nginx
+sudo yum install httpd   -y
+sudo systemctl start  httpd
