@@ -5,13 +5,16 @@ region="us-east-1"
 resource "aws_key_pair" mykey {
     key_name = "mykey_test"
     public_key = "${file("${var.publickeyPath}")}"
+}
 
+data "aws_ssm_parameter" "instance_type_citrix" {
+  name = "pocInstanceType"
 }
 
 resource "aws_instance" "example1" {
         ami = "ami-08d01bf321ad0777e"
         availability_zone = "us-east-1a"
-        instance_type = "t2.small"
+        instance_type = data.aws_ssm_parameter.instance_type_citrix.value
         key_name = "${var.keyName}"
         vpc_security_group_ids =  [aws_security_group.ec2_security_groups.id]
         subnet_id = "subnet-04c8a1cce0a80f526"
@@ -36,7 +39,6 @@ resource "aws_instance" "example1" {
               Product: "poap"
               Name: "as-testing-client-1"
                }
-
 
 provisioner "file" {
     source      = "install-nginx.sh"
