@@ -11,8 +11,13 @@ data "aws_ssm_parameter" "instance_type_citrix" {
   name = "pocInstanceType"
 }
 
+data "aws_ssm_parameter" "latest_linux_ami" {
+  name = "tapoc-latest-ami"
+}
+
+
 resource "aws_instance" "example1" {
-        ami = "ami-08d01bf321ad0777e"
+        ami = data.aws_ssm_parameter.latest_linux_ami.value
         availability_zone = "us-east-1a"
         instance_type = data.aws_ssm_parameter.instance_type_citrix.value
         key_name = "${var.keyName}"
