@@ -12,7 +12,7 @@ data "aws_ssm_parameter" "instance_type_citrix" {
 }
 
 data "aws_ssm_parameter" "latest_linux_ami" {
-  name = "tapoc-latest-ami"
+  name = "tapoc-latest-ami"    #https://stackoverflow.com/questions/57776524/terraform-get-a-value-from-parameter-store-and-pass-to-resource
 }
 
 
@@ -64,4 +64,10 @@ connection {
     private_key = file(var.privatekeyPath)
     host        = self.private_ip
   }
+}
+
+resource "time_sleep" "wait_for_server" {
+  create_duration = "300s"
+
+  depends_on = [aws_instance.example1]
 }
