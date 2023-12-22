@@ -11,6 +11,9 @@ variable "publickeyPath" {
    default = "/home/ec2-user/terraform/tf1-ec2/mykey_test.pub"
 }
 
+variable "INSTANCE_DEVICE_NAME" {
+  default = "/dev/xvdh"
+}
 variable "name_security_groups" {
    default = "Citrix-SG-Nginx-1"
 }

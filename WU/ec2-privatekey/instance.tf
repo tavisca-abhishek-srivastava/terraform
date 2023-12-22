@@ -34,7 +34,7 @@ resource "aws_ebs_volume" "ebs-volume-1" {
 }
 
 resource "aws_volume_attachment" "ebs_att" {
-  device_name = "/dev/xvdh"
+  device_name = "${var.INSTANCE_DEVICE_NAME}"
   volume_id   = "${aws_ebs_volume.ebs-volume-1.id}"
   instance_id = "${aws_instance.example1.id}"
 }
@@ -67,12 +67,12 @@ resource "aws_instance" "example1" {
         tags = {
               DataClassification: "restricted"
               Environment: "poc"
-              AppName:  "as-testing-client-1"
+              AppName:  "tapoc-testing-client-1"
               InfraOwner: "sre-cloud-reliability@tavisca.com"
               BusinessUnit: "travel.app"
               Backup: "no"
               Product: "poap"
-              Name: "as-testing-client-1"
+              Name: "tapoc-testing-client-1"
                }
 
 provisioner "file" {
