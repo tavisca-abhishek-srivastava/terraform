@@ -21,6 +21,16 @@ resource "aws_ebs_volume" "ebs-volume-1" {
   size = 20
   type = "io2"
   iops = 2000
+  tags =    {           
+              DataClassification: "restricted"
+              Environment: "poc"
+              AppName:  "tapoc-testing-client-1-ebs"
+              InfraOwner: "sre-cloud-reliability@tavisca.com"
+              BusinessUnit: "travel.app"
+              Backup: "no"
+              Product: "poap"
+              Name: "tapoc-testing-client-1-ebs"
+               }
 }
 
 resource "aws_volume_attachment" "ebs_att" {
