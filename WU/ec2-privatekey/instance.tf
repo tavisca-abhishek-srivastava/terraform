@@ -40,7 +40,7 @@ resource "aws_instance" "example1" {
         iam_instance_profile = "tf-role-testing"
         root_block_device {
           volume_size = 50
-          volume_type = gp3
+          volume_type = "gp3"
           delete_on_termination = true
         }
         volume_tags = {
