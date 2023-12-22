@@ -20,6 +20,7 @@ resource "aws_ebs_volume" "ebs-volume-1" {
   availability_zone = "us-east-1a"
   size = 20
   type = "io2"
+  iops = 2000
 }
 
 resource "aws_volume_attachment" "ebs_att" {
