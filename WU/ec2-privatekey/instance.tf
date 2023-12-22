@@ -15,6 +15,20 @@ data "aws_ssm_parameter" "latest_linux_ami" {
   name = "tapoc-latest-ami"    #https://stackoverflow.com/questions/57776524/terraform-get-a-value-from-parameter-store-and-pass-to-resource
 }
 
+resource "aws_ebs_volume" "ebs-volume-1" {
+  
+  availability_zone = "us-east-1a"
+  size = 20
+  type = "io2"
+}
+
+resource "aws_volume_attachment" "ebs_att" {
+  device_name = "/dev/sdh"
+  volume_id   = "${aws_ebs_volume.ebs-volume-1.id}"
+  instance_id = "${aws_instance.example1.id}"
+}
+
+
 
 resource "aws_instance" "example1" {
         ami = data.aws_ssm_parameter.latest_linux_ami.value
