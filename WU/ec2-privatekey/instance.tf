@@ -24,15 +24,20 @@ resource "aws_instance" "example1" {
         vpc_security_group_ids =  [aws_security_group.ec2_security_groups.id]
         subnet_id = "subnet-04c8a1cce0a80f526"
         iam_instance_profile = "tf-role-testing"
+        root_block_device {
+          volume_size = 50
+          volume_type = gp3
+          delete_on_termination = true
+        }
         volume_tags = {
               DataClassification: "restricted"
               Environment: "poc"
-              AppName:  "as-testing-client-1-ebs"
+              AppName:  "tapoc-testing-client-1-ebs"
               InfraOwner: "sre-cloud-reliability@tavisca.com"
               BusinessUnit: "travel.app"
               Backup: "no"
               Product: "poap"
-              Name: "as-testing-client-1-ebs"
+              Name: "tapoc-testing-client-1-ebs"
                }
         tags = {
               DataClassification: "restricted"
