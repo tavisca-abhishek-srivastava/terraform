@@ -16,6 +16,8 @@ resource "aws_db_instance" "tapoc-mysql-rds" {
 	  identifier  = "jpmc-master"
 	  apply_immediately = true
 	  backup_retention_period = 1
+	  multi_az = false
+	  vpc_security_group_ids = ["${aws_security_group.ec2_security_groups.id}"]
 	  tags = {           
               DataClassification: "restricted"
               Environment: "poc"
