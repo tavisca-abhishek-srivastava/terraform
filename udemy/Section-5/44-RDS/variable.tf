@@ -1,3 +1,7 @@
+variable "mysql_subnet_group" {
+  default = "cxl-rds-subnet-group"
+}
+
 variable "name_of_security_groups" {
    default = "tapoc-mysql"
 }
