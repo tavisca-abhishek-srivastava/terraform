@@ -11,7 +11,7 @@ resource "aws_db_instance" "tapoc-mysql-rds" {
 	  username             = "dbadmin"
 	  password             = "welcome$123"
 	  parameter_group_name = "default.mysql5.7"
-	  db_subnet_group_name = "{var.mysql_subnet_group}"
+	  db_subnet_group_name = "${var.mysql_subnet_group}"
 	  skip_final_snapshot  = true
 	  availability_zone = "us-east-1a"
 	  identifier  = "jpmc-master"
