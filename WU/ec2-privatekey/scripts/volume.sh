@@ -1,8 +1,7 @@
 #!/bin/bash
+sudo mkdir /cbdata
 
-mkdir /data
+#sudo mkfs -t ext4 /dev/xvdh
 
-sudo mkfs -t ext4 /dev/xvdh
-
-/dev/xvdh /new_data ext4 defaults 0 0 >> /etc/fstab
-mount -a
+sudo /dev/xvdh1 /cbdata ext4 defaults 0 0 >> /etc/fstab
+sudo mount -a
