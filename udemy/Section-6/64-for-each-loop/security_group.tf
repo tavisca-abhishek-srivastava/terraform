@@ -12,7 +12,7 @@ terraform {
 
 }
 
-resource "aws_security_group" "my_sg_for_each_loop" {
+resource "aws_security_group" "my_sg_for_each_loop_sf" {
   name = "tapoc-sg_test_for_loop"
   vpc_id = var.vpc_id
    dynamic "ingress" {
