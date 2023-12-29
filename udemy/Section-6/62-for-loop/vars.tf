@@ -13,6 +13,7 @@ variable "project_tags" {
               "BusinessUnit": "travel.app"
               "Backup": "no"
               "Product": "poap"
+              "url": "https://github.com/tavisca-abhishek-srivastava/terraform/tree/main/udemy/Section-6/62-for-loop"
 
     }
   
