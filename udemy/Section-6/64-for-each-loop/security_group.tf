@@ -1,5 +1,15 @@
-provider "aws" {
-  region = var.aws_region
+# provider "aws" {
+#   region = var.aws_region
+  
+# }
+terraform {
+  required_providers {
+    aws = {
+        version = "5.30.0"
+        region = var.aws_region
+    }
+  }
+
 }
 
 resource "aws_security_group" "my_sg_for_each" {
