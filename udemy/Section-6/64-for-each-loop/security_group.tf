@@ -5,12 +5,12 @@ provider "aws" {
 resource "aws_security_group" "my_sg_for_each" {
   name = "tapoc-sg_test_for_loop"
   vpc_id = var.vpc_id
-   dynamic "_foreach_ingress_rule" {
+   dynamic "ingress" {
     for_each = var.ingress_ports
     content {
-        from_port = ingress_rule.key
-        to_port = ingress_rule.key
-        cidr_block = ingress_rule.value
+        from_port = ingress.key
+        to_port = ingress.key
+        cidr_blocks = ingress.value
         protocol = "tcp"
     }
 
