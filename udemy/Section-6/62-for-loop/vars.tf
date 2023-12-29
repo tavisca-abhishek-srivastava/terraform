@@ -18,3 +18,7 @@ variable "project_tags" {
     }
   
 }
+output "arn" {
+    value = "${aws_ebs_volume.ebs_test_for_loop.volume_id}"
+    description = "The private IP address of the web server"
+}
