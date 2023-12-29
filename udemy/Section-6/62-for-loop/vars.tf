@@ -6,7 +6,7 @@ variable "aws_region" {
 variable "project_tags" {
     type = map(string)
     default = {
-              "DataClassification" = "restricted"
+              "DataClassification" : "restricted"
               "Environment": "poc"
               "AppName":  "tapoc-ebs_test_for_loop"
               "InfraOwner": "sre-cloud-reliability@tavisca.com"
