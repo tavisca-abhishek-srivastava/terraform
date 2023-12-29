@@ -29,8 +29,8 @@ resource "aws_security_group" "my_sg_for_each_loop" {
   tags = {
               "DataClassification" : "restricted"
               "Environment": "poc"
-              "AppName":  "tapoc-sg_test_for_loop"
-              "Name":  "tapoc-sg_test_for_loop"
+              "AppName":  "tapoc-sg_test_foreach_loop"
+              "Name":  "tapoc-sg_test_foreach_loop"
               "InfraOwner": "sre-cloud-reliability@tavisca.com"
               "BusinessUnit": "travel.app"
               "Backup": "no"
