@@ -19,6 +19,6 @@ variable "project_tags" {
   
 }
 output "arn" {
-    value = "${aws_ebs_volume.ebs_test_for_loop.volume_id}"
+    value = "${aws_ebs_volume.ebs_test_for_loop.id}"
     description = "The private IP address of the web server"
 }
