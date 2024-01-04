@@ -86,6 +86,12 @@ variable "sg_egress_rules" {
                 ]
 }
 
+variable "ec2_conf" {
+  type = map(map)
+  description = "(optional) describe your variable"
+}
+
+
 variable "vpc_id" {
    default = "vpc-07b12bcec12a4cd9b"
 }
