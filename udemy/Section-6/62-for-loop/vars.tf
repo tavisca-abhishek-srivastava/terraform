@@ -3,7 +3,7 @@ variable "aws_region" {
   default = "us-east-1"
 }
 
-variable "project_tags" {
+variable "common_project_tags" {
     type = map(string)
     default = {
               "DataClassification" : "restricted"
