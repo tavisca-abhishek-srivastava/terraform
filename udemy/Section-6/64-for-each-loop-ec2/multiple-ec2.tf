@@ -29,11 +29,11 @@ resource "aws_instance" "example1" {
 
       for_each = {
  
-            "vm1" = { vm_size = "e2-small", zone = "us-east-1a" }
+            "vm1" = { vm_size = "e2-small", zone = "us-east-1a",subnet = "subnet-04c8a1cce0a80f526" }
  
-            "vm2" = { vm_size = "e2-medium", zone = "us-east-1b" }
+            "vm2" = { vm_size = "e2-medium", zone = "us-east-1b" ,subnet = "subnet-08792a1a703950fe7"}
  
-            "vm3" = { vm_size = "f1-micro", zone = "us-east-1c" }
+            "vm3" = { vm_size = "f1-micro", zone = "us-east-1c" ,subnet = "subnet-001023c820ce7e35c"}
  
                 }
 
@@ -43,7 +43,7 @@ resource "aws_instance" "example1" {
         instance_type = data.aws_ssm_parameter.instance_type_citrix.value
         key_name = "${var.keyName}"
         vpc_security_group_ids =  [aws_security_group.ec2_security_groups_for_each.id]
-        subnet_id = "subnet-04c8a1cce0a80f526"
+        subnet_id = each.value.subnet
         iam_instance_profile = "tf-role-testing"
         root_block_device {
           volume_size = 50
