@@ -88,7 +88,17 @@ variable "sg_egress_rules" {
 
 variable "ec2_conf" {
   type = map(object)
-  description = "(optional) describe your variable"
+  default = {
+    
+ 
+            "vm1" = { vm_size = "e2-small", zone = "us-east-1a",subnet = "subnet-04c8a1cce0a80f526" },
+ 
+            "vm2" = { vm_size = "e2-medium", zone = "us-east-1b" ,subnet = "subnet-08792a1a703950fe7"},
+ 
+            "vm3" = { vm_size = "f1-micro", zone = "us-east-1c" ,subnet = "subnet-001023c820ce7e35c"},
+ 
+           
+  }
 }
 
 
