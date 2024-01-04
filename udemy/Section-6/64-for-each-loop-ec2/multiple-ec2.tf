@@ -42,7 +42,7 @@ resource "aws_instance" "example1" {
         availability_zone = each.value.zone
         instance_type = data.aws_ssm_parameter.instance_type_citrix.value
         key_name = "${var.keyName}"
-        vpc_security_group_ids =  [aws_security_group.ec2_security_groups.id]
+        vpc_security_group_ids =  [aws_security_group.ec2_security_groups_for_each.id]
         subnet_id = "subnet-04c8a1cce0a80f526"
         iam_instance_profile = "tf-role-testing"
         root_block_device {
