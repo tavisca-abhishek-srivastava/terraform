@@ -87,7 +87,7 @@ variable "sg_egress_rules" {
 }
 
 variable "ec2_conf" {
-  type = map(map)
+  type = map(object)
   description = "(optional) describe your variable"
 }
 
