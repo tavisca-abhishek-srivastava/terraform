@@ -88,8 +88,8 @@ variable "sg_egress_rules" {
 
 variable "ec2_conf" {
   type = map(object({
-      vm_size   = number
-      zone     = number
+      vm_size   = string
+      zone     = string
       subnet    = string
      
         }))
