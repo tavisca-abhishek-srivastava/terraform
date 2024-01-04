@@ -11,7 +11,7 @@ resource "aws_security_group_rule" "ingress_rule_for_each" {
   protocol          = var.sg_ingress_rules[count.index].protocol
   cidr_blocks       = [var.sg_ingress_rules[count.index].cidr_block]
   description       = var.sg_ingress_rules[count.index].description
-  security_group_id = aws_security_group.ec2_security_groups.id
+  security_group_id = aws_security_group.ec2_security_groups_for_each.id
 }
 resource "aws_security_group_rule" "egress_rule_for_each" {
   count = length(var.sg_egress_rules)
@@ -21,5 +21,5 @@ resource "aws_security_group_rule" "egress_rule_for_each" {
   protocol          = var.sg_egress_rules[count.index].protocol
   cidr_blocks       = [var.sg_egress_rules[count.index].cidr_block]
   
-  security_group_id = aws_security_group.ec2_security_groups.id
+  security_group_id = aws_security_group.ec2_security_groups_for_each.id
 }

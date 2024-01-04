@@ -91,6 +91,6 @@ variable "vpc_id" {
 }
 
 output "private_ip" {
-value = aws_instance.example1.private_ip
+value = aws_instance.example1
 description = "The private IP address of the web server"
  }
