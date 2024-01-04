@@ -18,6 +18,13 @@ variable "ingress_ports_udp" {
     "23" = ["10.0.0.0/8"]
   }
 }
+
+variable "egress_ports" {
+    type = map(list(string))
+  default = {
+    "0" = [ "0.0.0.0/0" ]
+  }
+}
 variable "vpc_id" {
    default = "vpc-07b12bcec12a4cd9b"
 }

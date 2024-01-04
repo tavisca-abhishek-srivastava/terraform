@@ -36,6 +36,17 @@ resource "aws_security_group" "my_sg_for_each_loop_sf" {
 
   }
 
+      dynamic "egress" {
+      for_each = var.egress_ports
+      content {
+        from_port = egress.key
+        to_port = egress.key
+        cidr_blocks = egress.value
+        protocol = "-1"
+    }
+
+  }
+
   tags = {
               "DataClassification" : "restricted"
               "Environment": "poc"
