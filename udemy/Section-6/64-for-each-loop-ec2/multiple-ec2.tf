@@ -12,7 +12,7 @@ terraform {
           }
 
 resource "aws_key_pair" mykey {
-    key_name = "mykey_test"
+    key_name = "mykey_test_fe_ec2"
     public_key = "${file("${var.publickeyPath}")}"
 }
 

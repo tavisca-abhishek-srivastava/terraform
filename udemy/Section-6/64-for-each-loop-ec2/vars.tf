@@ -4,16 +4,16 @@ variable "aws_region" {
 }
 
 variable "keyName" {
-   default = "mykey_test"
+   default = "mykey_test_fe_ec2"
 }
 variable "privatekeyPath" {
-   default = "/home/ec2-user/terraform/keys/mykey_test.pem"
+   default = "/home/ec2-user/terraform/keys/mykey_test_fe_ec2.pem"
 }
 variable "publickeyName" {
-   default = "mykey_test.pub"
+   default = "mykey_test_fe_ec2.pub"
 }
 variable "publickeyPath" {
-   default = "/home/ec2-user/terraform/keys/mykey_test.pub"
+   default = "/home/ec2-user/terraform/keys/mykey_test_fe_ec2.pub"
 }
 
 variable "INSTANCE_DEVICE_NAME" {
