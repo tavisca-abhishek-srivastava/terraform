@@ -38,28 +38,22 @@ variable "sg_ingress_rules" {
           cidr_block  = "10.0.0.0/8"
           description = "SSH"
         },
-        rule2 =        {
-          from_port   = 22
-          to_port     = 22
-          protocol    = "tcp"
-          cidr_block  = "10.0.0.0/8"
-          description = "SSH"
-        },
-        rule3 =         {
+
+        rule2 =         {
           from_port   = 80
           to_port     = 80
           protocol    = "tcp"
           cidr_block  = "10.0.0.0/8"
           description = "HTTP"
         },
-        rule4 =        {
+        rule3 =        {
           from_port   = 1494
           to_port     = 1494
           protocol    = "tcp"
           cidr_block  = "10.0.0.0/8"
           description = "Citrix"
         },
-        rule5 =        {
+        rule4 =        {
           from_port   = 18091
           to_port     = 18091
           protocol    = "tcp"

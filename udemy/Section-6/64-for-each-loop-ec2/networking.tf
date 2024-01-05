@@ -21,6 +21,5 @@ resource "aws_security_group_rule" "egress_rule_for_each" {
       protocol          = each.value.protocol
       cidr_blocks       = [each.value.cidr_block]
       
-  
   security_group_id = aws_security_group.ec2_security_groups_for_each.id
 }
