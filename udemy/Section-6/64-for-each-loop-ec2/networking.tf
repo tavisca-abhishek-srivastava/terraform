@@ -20,7 +20,7 @@ resource "aws_security_group_rule" "egress_rule_for_each" {
       to_port           = each.value.to_port  
       protocol          = each.value.protocol
       cidr_blocks       = [each.value.cidr_block]
-      description       = each.value.description
+      
   
   security_group_id = aws_security_group.ec2_security_groups_for_each.id
 }
