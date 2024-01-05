@@ -69,21 +69,21 @@ variable "sg_ingress_rules" {
     }
 }
 variable "sg_egress_rules" {
-    type = list(object({
+    type = map(object({
       from_port   = number
       to_port     = number
       protocol    = string
       cidr_block  = string
         }))
-    default     = [
-        {
+    default     = {
+        rule1 = {
           from_port   = 0
           to_port     = 0
           protocol    = "-1"
           cidr_block  = "0.0.0.0/0"
          },
         
-                ]
+          }
 }
 
 variable "ec2_conf" {
