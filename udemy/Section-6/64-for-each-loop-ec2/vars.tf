@@ -92,7 +92,7 @@ variable "ec2_conf" {
  
             "vm2" = { vm_size = "e2-medium", zone = "us-east-1b" ,subnet = "subnet-08792a1a703950fe7"},
  
-            "vm3" = { vm_size = "f1-micro", zone = "us-east-1c" ,subnet = "subnet-001023c820ce7e35c"},
+            "vm4" = { vm_size = "f1-micro", zone = "us-east-1c" ,subnet = "subnet-001023c820ce7e35c"},
   }
 }
 
