@@ -44,7 +44,7 @@ resource "aws_instance" "example1" {
         volume_tags = {
               DataClassification: "restricted"
               Environment: "poc"
-              AppName:  "tapoc-testing-client--${each.value.zone}-ebs"
+              AppName:  "tapoc-testing-client-${each.value.zone}-ebs"
               InfraOwner: "sre-cloud-reliability@tavisca.com"
               BusinessUnit: "travel.app"
               Backup: "no"
