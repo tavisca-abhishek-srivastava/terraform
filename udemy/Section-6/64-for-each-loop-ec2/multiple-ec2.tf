@@ -1,15 +1,15 @@
-provider "aws" {
-  region = var.aws_region
-}
-
 terraform {
   required_providers {
     aws = {
-        version = "5.30.0"
+        version = "5.32.0"
           }
                      }
 
           }
+
+provider "aws" {
+  region = var.aws_region
+}
 
 resource "aws_key_pair" mykey {
     key_name = "mykey_test_fe_ec2"
