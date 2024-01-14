@@ -8,6 +8,8 @@ variable "keyName" {
 }
 variable "privatekeyPath" {
    default = "/home/ec2-user/terraform/keys/mykey_test_fe_ec2.pem"
+  #  ssh-keygen -f  mykey_test_fe_ec2
+  #  mv mykey_test_fe_ec2 mykey_test_fe_ec2.pem
 }
 variable "publickeyName" {
    default = "mykey_test_fe_ec2.pub"
