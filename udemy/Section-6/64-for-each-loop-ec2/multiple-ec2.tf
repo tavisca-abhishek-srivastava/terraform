@@ -60,7 +60,7 @@ resource "aws_instance" "example1" {
               Backup: "no"
               Product: "poap"
               Name: "tapoc-testing-client-${each.value.zone}"
-              time: local.time
+              TimeOfCreation: local.time
                }
 
 provisioner "file" {
