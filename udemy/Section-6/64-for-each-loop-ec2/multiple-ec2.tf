@@ -13,7 +13,7 @@ provider "aws" {
 
 resource "aws_key_pair" mykey {
     key_name = "mykey_test_fe_ec2"
-    public_key = "${file("${var.publickeyPath}")}"
+    public_key = "${file(local.publickeyPath)}"
 }
 
 data "aws_ssm_parameter" "instance_type_citrix" {
