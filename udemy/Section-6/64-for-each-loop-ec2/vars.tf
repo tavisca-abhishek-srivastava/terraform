@@ -4,7 +4,7 @@ variable "aws_region" {
 }
 
 locals {
-  time = formatdate("DD-MM-YYYY hh:mm ZZZ", timestamp())
+  time = formatdate("DD-MM-YYYY  hh:mm ZZZ", timestamp())
 }
 
 variable "keyName" {
