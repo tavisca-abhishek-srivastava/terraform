@@ -4,9 +4,9 @@ resource "aws_security_group" "ec2_security_groups_for_each" {
 }
 
 resource "aws_security_group_rule" "ingress_rule_for_each" {
-  type              = "ingress"
+  type = "ingress"
   for_each = var.sg_ingress_rules
-    from_port = each.value.from_port
+    from_port         = each.value.from_port
     to_port           = each.value.to_port  
     protocol          = each.value.protocol
     cidr_blocks       = [each.value.cidr_block]
@@ -14,9 +14,9 @@ resource "aws_security_group_rule" "ingress_rule_for_each" {
   security_group_id = aws_security_group.ec2_security_groups_for_each.id
 }
 resource "aws_security_group_rule" "egress_rule_for_each" {
-    type =            "egress"
+    type = "egress"
     for_each = var.sg_egress_rules
-      from_port = each.value.from_port
+      from_port         = each.value.from_port
       to_port           = each.value.to_port  
       protocol          = each.value.protocol
       cidr_blocks       = [each.value.cidr_block]

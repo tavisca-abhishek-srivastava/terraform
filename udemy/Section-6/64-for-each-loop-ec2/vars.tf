@@ -3,6 +3,10 @@ variable "aws_region" {
     default = "us-east-1"
 }
 
+locals {
+  time = formatdate("DD MM YYYY hh:mm ZZZ", timestamp())
+}
+
 variable "keyName" {
    default = "mykey_test_fe_ec2"
 }
@@ -15,7 +19,8 @@ variable "publickeyName" {
    default = "mykey_test_fe_ec2.pub"
 }
 variable "publickeyPath" {
-   default = "/home/ec2-user/terraform/keys/mykey_test_fe_ec2.pub"
+  #  default = "/home/ec2-user/terraform/keys/mykey_test_fe_ec2.pub"
+  default = "/home/ec2-user/terraform/keys/${var.publickeyName}"
 }
 
 variable "INSTANCE_DEVICE_NAME" {
