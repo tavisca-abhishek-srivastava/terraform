@@ -18,9 +18,12 @@ variable "privatekeyPath" {
 variable "publickeyName" {
    default = "mykey_test_fe_ec2.pub"
 }
-variable "publickeyPath" {
-  #  default = "/home/ec2-user/terraform/keys/mykey_test_fe_ec2.pub"
-  default = "/home/ec2-user/terraform/keys/${var.publickeyName}"
+# variable "publickeyPath" {
+#   #  default = "/home/ec2-user/terraform/keys/mykey_test_fe_ec2.pub"
+#   default = "/home/ec2-user/terraform/keys/${var.publickeyName}"
+# }
+locals {
+ publickeyPath =  "/home/ec2-user/terraform/keys/${var.publickeyName}"
 }
 
 variable "INSTANCE_DEVICE_NAME" {
