@@ -40,9 +40,7 @@ resource "aws_instance" "example1" {
     volume_type           = "gp3"
     delete_on_termination = true
 
-  lifecycle {
-    ignore_changes = [tags]
-  }
+  
 
 
   }
