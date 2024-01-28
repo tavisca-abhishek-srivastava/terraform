@@ -41,7 +41,7 @@ resource "aws_instance" "example1" {
     delete_on_termination = true
 
   }
-  lifecycle {
+  lifecycle {    # lifecycle meta-argument
     ignore_changes = [ tags ]
   }
   volume_tags = {
