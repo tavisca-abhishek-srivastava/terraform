@@ -40,9 +40,9 @@ resource "aws_instance" "example1" {
     volume_type           = "gp3"
     delete_on_termination = true
 
-  
-
-
+  }
+  lifecycle {
+    ignore_changes = [ tags ]
   }
   volume_tags = {
     DataClassification : "restricted"
@@ -85,4 +85,5 @@ resource "aws_instance" "example1" {
     private_key = file(var.privatekeyPath)
     host        = self.private_ip
   }
+
 }
