@@ -11,7 +11,7 @@ provider "aws" {
 }
 
 resource "aws_key_pair" "mykey" {
-  key_name   = "mykey_test_fe_ec2"
+  key_name   = "${var.keyName}"
   public_key = file(local.publickeyPath)
 }
 
