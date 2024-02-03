@@ -8,18 +8,20 @@ locals {
 }
 
 variable "keyName" {
-  default = "mykey_test_fe_ec2"
+  default = "mykey_module_ec2"
 }
 variable "privatekeyPath" {
-  default = "/home/ec2-user/terraform/keys/mykey_test_fe_ec2.pem"
-  #  ssh-keygen -f  mykey_test_fe_ec2
-  #  mv mykey_test_fe_ec2 mykey_test_fe_ec2.pem
+  default = "/home/ec2-user/terraform/keys/mykey_module_ec2.pem"
+  # mkdir -p /home/ec2-user/terraform/keys/
+  # cd /home/ec2-user/terraform/keys/
+  #  ssh-keygen -f  mykey_module_ec2
+  #  mv mykey_module_ec2 mykey_module_fe_ec2.pem
 }
 variable "publickeyName" {
-  default = "mykey_test_fe_ec2.pub"
+  default = "mykey_module_ec2.pub"
 }
 # variable "publickeyPath" {
-#   #  default = "/home/ec2-user/terraform/keys/mykey_test_fe_ec2.pub"
+#   #  default = "/home/ec2-user/terraform/keys/mykey_module_ec2.pub"
 #   default = "/home/ec2-user/terraform/keys/${var.publickeyName}"
 # }
 locals {
@@ -30,7 +32,7 @@ variable "INSTANCE_DEVICE_NAME" {
   default = "/dev/xvdh"
 }
 variable "name_security_groups" {
-  default = "cb-citrix-sg"
+  default = "cb-citrix-module-sg"
 }
 variable "sg_ingress_rules" {
   type = map(object({
