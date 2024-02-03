@@ -15,9 +15,6 @@ resource "aws_key_pair" "mykey" {
   public_key = file(local.publickeyPath)
 }
 
-data "aws_ssm_parameter" "instance_type_citrix" {
-  name = "pocInstanceType"
-}
 
 data "aws_ssm_parameter" "latest_linux_ami" {
   name = "tapoc-latest-ami" #https://stackoverflow.com/questions/57776524/terraform-get-a-value-from-parameter-store-and-pass-to-resource
@@ -30,7 +27,7 @@ resource "aws_instance" "example1" {
 
   ami                    = data.aws_ssm_parameter.latest_linux_ami.value
   availability_zone      = "${each.value.zone}"
-  instance_type          = data.aws_ssm_parameter.instance_type_citrix.value
+  instance_type          = "${var.instance_type}"
   key_name               = var.keyName
   vpc_security_group_ids = [aws_security_group.ec2_security_groups_for_each.id]
   subnet_id              = each.value.subnet
