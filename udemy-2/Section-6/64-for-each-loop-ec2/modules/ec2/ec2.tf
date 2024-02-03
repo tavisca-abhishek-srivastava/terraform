@@ -11,7 +11,7 @@ provider "aws" {
 }
 
 resource "aws_key_pair" "mykey" {
-  key_name   = "mykey_test_fe_ec2"
+  key_name   = "${var.keyName}"
   public_key = file(local.publickeyPath)
 }
 
@@ -29,7 +29,7 @@ resource "aws_instance" "example1" {
   for_each = var.ec2_conf
 
   ami                    = data.aws_ssm_parameter.latest_linux_ami.value
-  availability_zone      = each.value.zone
+  availability_zone      = "${each.value.zone}"
   instance_type          = data.aws_ssm_parameter.instance_type_citrix.value
   key_name               = var.keyName
   vpc_security_group_ids = [aws_security_group.ec2_security_groups_for_each.id]
