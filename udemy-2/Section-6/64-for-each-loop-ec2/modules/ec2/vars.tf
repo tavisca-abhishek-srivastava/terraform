@@ -7,9 +7,8 @@ data "aws_ssm_parameter" "instance_type_citrix" {
   name = "pocInstanceType"
 }
 
-variable "instance_type" {
-  type = string
-  default = data.aws_ssm_parameter.instance_type_citrix.value
+locals {
+ instance_type = data.aws_ssm_parameter.instance_type_citrix.value
 }
 
 locals {
