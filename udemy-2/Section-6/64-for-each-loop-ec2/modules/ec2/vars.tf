@@ -23,7 +23,7 @@ variable "privatekeyPath" {
   # mkdir -p /home/ec2-user/terraform/keys/
   # cd /home/ec2-user/terraform/keys/
   #  ssh-keygen -f  mykey_module_ec2
-  #  mv mykey_module_ec2 mykey_module_fe_ec2.pem
+  #  mv mykey_module_ec2 mykey_module_ec2.pem
 }
 variable "publickeyName" {
   default = "mykey_module_ec2.pub"
