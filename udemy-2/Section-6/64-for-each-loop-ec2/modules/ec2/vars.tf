@@ -3,6 +3,15 @@ variable "aws_region" {
   default = "us-east-1"
 }
 
+data "aws_ssm_parameter" "instance_type_citrix" {
+  name = "pocInstanceType"
+}
+
+variable "instance_type" {
+  type = string
+  default = data.aws_ssm_parameter.instance_type_citrix.value
+}
+
 locals {
   time = formatdate("DD-MM-YYYY  hh:mm ZZZ", timestamp())
 }
