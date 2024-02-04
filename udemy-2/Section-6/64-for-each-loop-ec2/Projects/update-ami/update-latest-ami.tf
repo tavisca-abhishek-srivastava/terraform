@@ -3,3 +3,4 @@ resource "null_resource" "update_latest_ami" {
     command = "python3 ./get-latest-ami-put-ssm-parameter.py"
   
   }
+}
