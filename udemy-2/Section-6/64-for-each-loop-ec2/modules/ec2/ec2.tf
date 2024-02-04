@@ -15,6 +15,13 @@ resource "aws_key_pair" "mykey" {
   public_key = file(local.publickeyPath)
 }
 
+resource "null_resource" "update_latest_ami" {
+    provisioner "local-exec" {
+    command = "sudo sh ./install-nginx.sh"
+  
+  }
+  
+}
 
 data "aws_ssm_parameter" "latest_linux_ami" {
   name = "tapoc-latest-ami" #https://stackoverflow.com/questions/57776524/terraform-get-a-value-from-parameter-store-and-pass-to-resource
@@ -23,6 +30,8 @@ data "aws_ssm_parameter" "latest_linux_ami" {
 
 resource "aws_instance" "example1" {
 
+  depends_on = [ null_resource.update_latest_ami ]
+  
   for_each = var.ec2_conf
 
   ami                    = data.aws_ssm_parameter.latest_linux_ami.value
@@ -70,6 +79,8 @@ resource "aws_instance" "example1" {
       "sudo sh /tmp/install-nginx.sh",
     ]
   }
+
+
 
   connection {
     type        = "ssh"
