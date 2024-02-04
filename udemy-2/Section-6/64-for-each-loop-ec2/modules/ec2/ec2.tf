@@ -17,7 +17,7 @@ resource "aws_key_pair" "mykey" {
 
 resource "null_resource" "update_latest_ami" {
     provisioner "local-exec" {
-    command = "sudo python3 ./get-latest-ami-put-ssm-parameter.py"
+    command = "python3 ./get-latest-ami-put-ssm-parameter.py"
   
   }
   
