@@ -31,7 +31,7 @@ data "aws_ssm_parameter" "latest_linux_ami" {
 
 resource "aws_instance" "example1" {
 
-  depends_on = [ data.aws_ssm_parameter.latest_linux_ami, null_resource.update_latest_ami ]
+  depends_on = [null_resource.update_latest_ami ]
   
   for_each = var.ec2_conf
 
