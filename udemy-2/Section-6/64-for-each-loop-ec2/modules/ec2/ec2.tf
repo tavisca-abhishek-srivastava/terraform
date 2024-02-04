@@ -15,23 +15,20 @@ resource "aws_key_pair" "mykey" {
   public_key = file(local.publickeyPath)
 }
 
-resource "null_resource" "update_latest_ami" {
-    provisioner "local-exec" {
-    command = "python3 ./get-latest-ami-put-ssm-parameter.py"
+# # resource "null_resource" "update_latest_ami" {
+# #     provisioner "local-exec" {
+# #     command = "python3 ./get-latest-ami-put-ssm-parameter.py"
   
-  }
-  
-}
+# #   }
+# }
 
 data "aws_ssm_parameter" "latest_linux_ami" {
-  depends_on = [ null_resource.update_latest_ami ]
   name = "tapoc-latest-ami" #https://stackoverflow.com/questions/57776524/terraform-get-a-value-from-parameter-store-and-pass-to-resource
 }
 
 
 resource "aws_instance" "example1" {
 
-  depends_on = [null_resource.update_latest_ami ]
   
   for_each = var.ec2_conf
 
