@@ -24,6 +24,7 @@ resource "null_resource" "update_latest_ami" {
 }
 
 data "aws_ssm_parameter" "latest_linux_ami" {
+  depends_on = [ null_resource.update_latest_ami ]
   name = "tapoc-latest-ami" #https://stackoverflow.com/questions/57776524/terraform-get-a-value-from-parameter-store-and-pass-to-resource
 }
 
