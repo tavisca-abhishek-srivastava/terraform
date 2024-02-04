@@ -5,8 +5,8 @@ module "update-ami" {
 }
 
 
-module "ec2module" {
+# module "ec2module" {
     
-    source = "../../modules/ec2"
+#     source = "../../modules/ec2"
     
-}
+# }
