@@ -17,10 +17,14 @@ resource "aws_dynamodb_table" "ddtable_plain" {
 #   }
 
 
-  for_each = var.other_attr
+ 
     attribute {
-      name = each.value.name
-      type = each.value.type
+      name = user_id
+      type = "S"
+    }
+    attribute {
+      name = product_id
+      type = "S"
     }
     
 
