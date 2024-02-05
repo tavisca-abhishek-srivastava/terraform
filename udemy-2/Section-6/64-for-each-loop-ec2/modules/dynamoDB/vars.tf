@@ -19,7 +19,7 @@ variable "gsi" {
   default = {
     "attr1" = { name = "user_id", type = "S" },
     "attr2" = { name = "product_id", type = "S" },
-    # "attr3" = { name = "product_name", type = "S" },
+    "attr3" = { name = "road_id", type = "S" },
     # "attr4" = { name = "product_desc", type = "S" },
   }
 }

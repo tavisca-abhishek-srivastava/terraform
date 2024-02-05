@@ -25,18 +25,25 @@ resource "aws_dynamodb_table" "ddtable_plain" {
         
   }
 
-    attribute {
-      name = var.hash_key
-      type = "S"
-    }
-    attribute {
-      name = var.range_key
-      type = "S"
-    }
-    attribute {
-      name = "road_id"
-      type = "S"
-    }
+
+    for_each = var.gsi
+       attribute {
+         name = each.value.name
+        type = each.value.type
+   }
+
+    # attribute {
+    #   name = var.hash_key
+    #   type = "S"
+    # }
+    # attribute {
+    #   name = var.range_key
+    #   type = "S"
+    # }
+    # attribute {
+    #   name = "road_id"
+    #   type = "S"
+    # }
 
 
 
