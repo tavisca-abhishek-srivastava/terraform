@@ -4,13 +4,6 @@ resource "aws_dynamodb_table" "ddtable_plain" {
   read_capacity  = 30
   write_capacity = 30
   
-  for_each = var.other_attr
-    attribute {
-      name = each.value.name
-      type = each.value.type
-    }
-    
-
     global_secondary_index {
         name               = "product_id-user_id-index"
         hash_key           = "product_id"
@@ -20,6 +13,16 @@ resource "aws_dynamodb_table" "ddtable_plain" {
         projection_type    = "ALL"
         
   }
+
+
+  for_each = var.other_attr
+    attribute {
+      name = each.value.name
+      type = each.value.type
+    }
+    
+
+
 
   tags =   {
     DataClassification : "restricted"
