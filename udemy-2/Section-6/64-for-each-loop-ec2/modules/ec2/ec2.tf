@@ -1,14 +1,14 @@
-terraform {
-  required_providers {
-    aws = {
-      version = "5.32.0"
-    }
-  }
-}
+# terraform {
+#   required_providers {
+#     aws = {
+#       version = "5.32.0"
+#     }
+#   }
+# }
 
-provider "aws" {
-  region = var.aws_region
-}
+# provider "aws" {
+#   region = var.aws_region
+# }
 
 resource "aws_key_pair" "mykey" {
   key_name   = "${var.keyName}"
