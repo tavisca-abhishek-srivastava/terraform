@@ -11,7 +11,7 @@ variable "range_key" {
   default = "product_id"
 }
 
-variable "other_attr" { 
+variable "gsi" { 
     type = map(object({
       name = string
       type = string

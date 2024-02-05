@@ -15,6 +15,15 @@ resource "aws_dynamodb_table" "ddtable_plain" {
         projection_type    = "ALL"
         
   }
+      global_secondary_index {
+        name               = "road_id-user_id-index"
+        hash_key           = "road_id"
+        range_key          = "user_id"
+        write_capacity     = 10
+        read_capacity      = 10
+        projection_type    = "ALL"
+        
+  }
 
     attribute {
       name = var.hash_key
