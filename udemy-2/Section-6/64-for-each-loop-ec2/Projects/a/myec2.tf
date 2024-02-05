@@ -18,7 +18,7 @@ module "update-ami" {
 
 module "ec2module" {
 
-    depends_on = [ module .module.update-ami]
+    depends_on = [ module.update-ami]
 
     source = "../../modules/ec2"
     name_security_groups = "cb-citrix-module-nrt-sg"  # name_security_groups is getting overridden
