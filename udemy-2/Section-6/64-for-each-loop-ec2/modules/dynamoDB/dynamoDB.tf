@@ -11,7 +11,15 @@ resource "aws_dynamodb_table" "ddtable_plain" {
     }
     
 
-
+    global_secondary_index {
+        name               = "product_id-user_id-index"
+        hash_key           = "product_id"
+        range_key          = "user_id"
+        write_capacity     = 10
+        read_capacity      = 10
+        projection_type    = "ALL"
+        
+  }
 
   tags =   {
     DataClassification : "restricted"
