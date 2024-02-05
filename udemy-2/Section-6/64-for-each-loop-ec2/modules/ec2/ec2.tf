@@ -34,7 +34,7 @@ resource "aws_instance" "example1" {
 
   ami                    = data.aws_ssm_parameter.latest_linux_ami.value
   availability_zone      = "${each.value.zone}"
-  instance_type          = local.instance_type
+  instance_type          = local.instance_type   # local variable in module can't be overridden by user
   key_name               = "${var.keyName}"
   vpc_security_group_ids = [aws_security_group.ec2_security_groups_for_each.id]
   subnet_id              = each.value.subnet
