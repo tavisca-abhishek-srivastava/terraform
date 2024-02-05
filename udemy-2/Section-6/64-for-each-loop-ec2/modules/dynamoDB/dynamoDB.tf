@@ -33,7 +33,10 @@ resource "aws_dynamodb_table" "ddtable_plain" {
       name = var.range_key
       type = "S"
     }
-    
+    attribute {
+      name = "road_id"
+      type = "S"
+    }
 
 
 
