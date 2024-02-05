@@ -26,6 +26,15 @@ resource "aws_dynamodb_table" "ddtable_plain" {
       name = "product_id"
       type = "S"
     }
+        attribute {
+      name = "product_name"
+      type = "S"
+    }
+        attribute {
+      name = "product_desc"
+      type = "S"
+      
+    }
     
 
 
