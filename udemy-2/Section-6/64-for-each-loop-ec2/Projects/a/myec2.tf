@@ -6,7 +6,7 @@ module "update-ami" {
 module "ec2module" {
     
     source = "../../modules/ec2"
-    keyName = "mykey_test_fe_ec2"    #keyName is getting overridden
+    # keyName = "mykey_test_fe_ec2"    #keyName is getting overridden
     sg_egress_rules = {
 
     rule1 = {
