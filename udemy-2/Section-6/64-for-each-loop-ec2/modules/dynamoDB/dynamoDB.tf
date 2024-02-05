@@ -16,25 +16,19 @@ resource "aws_dynamodb_table" "ddtable_plain" {
         
   }
 
-
- 
-    attribute {
-      name = "user_id"
-      type = "S"
-    }
-    attribute {
-      name = "product_id"
-      type = "S"
-    }
+    for_each = var.other_attr
         attribute {
-      name = "product_name"
-      type = "S"
-    }
-        attribute {
-      name = "product_desc"
-      type = "S"
-      
-    }
+        name = each.value.name
+        type = each.value.type
+        }
+    # attribute {
+    #   name = "user_id"
+    #   type = "S"
+    # }
+    # attribute {
+    #   name = "product_id"
+    #   type = "S"
+    # }
     
 
 
