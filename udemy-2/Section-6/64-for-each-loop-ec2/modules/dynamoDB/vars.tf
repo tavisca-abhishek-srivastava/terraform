@@ -13,8 +13,8 @@ variable "range_key" {
 
 variable "other_attr" { 
     type = map(object({
-      "name" = string
-      "type" = string
+      name = string
+      type = string
     }))
   default = {
     "attr1" = { name = "user_id", type = "S" },
