@@ -4,9 +4,11 @@ module "update-ami" {
 
 
 module "ec2module" {
-    
+
+    depends_on = [ module .module.update-ami]
+
     source = "../../modules/ec2"
-    # keyName = "mykey_test_fe_ec2"    #keyName is getting overridden
+    name_security_groups = "cb-citrix-module-nrt-sg"  # name_security_groups is getting overridden
     sg_egress_rules = {
 
     rule1 = {
