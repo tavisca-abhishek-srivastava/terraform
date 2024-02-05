@@ -4,6 +4,12 @@ resource "aws_dynamodb_table" "ddtable_plain" {
   read_capacity  = 30
   write_capacity = 30
   
+  for_each = var.other_attr
+    attribute {
+      name = each.value.name
+      type = each.value.type
+    }
+    
 
 
 
