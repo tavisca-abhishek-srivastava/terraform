@@ -3,6 +3,8 @@ resource "aws_dynamodb_table" "ddtable_plain" {
   billing_mode   = "PROVISIONED"
   read_capacity  = 30
   write_capacity = 30
+  hash_key = var.hash_key
+  range_key = var.range_key
   
     global_secondary_index {
         name               = "product_id-user_id-index"
