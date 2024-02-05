@@ -19,11 +19,11 @@ resource "aws_dynamodb_table" "ddtable_plain" {
 
  
     attribute {
-      name = user_id
+      name = "user_id"
       type = "S"
     }
     attribute {
-      name = product_id
+      name = "product_id"
       type = "S"
     }
     
