@@ -17,10 +17,13 @@ resource "aws_dynamodb_table" "ddtable_plain" {
       projection_type = "ALL"
     }
   }
-   attribute {
-    # for_each = var
-      name = var.hash_key
-      type = "S"
+   dynamic "attribute" {
+    for_each = var.attributes
+    content {
+      name = attribute.value.name
+      type = attribute.value.type
+    }
+      
     }
     attribute {
       name = var.range_key
