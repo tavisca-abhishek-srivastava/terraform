@@ -21,6 +21,7 @@ variable "attributes" {
     "attr2" = { name = "product_id", type = "S" },
     "attr3" = { name = "product_name", type = "S" },
     "attr4" = { name = "product_desc", type = "S" },
+    "attr5" = { name = "age", type = "N" },
   }
 }
 locals {
@@ -34,7 +35,12 @@ locals {
       write_capacity = 5 
       read_capacity  = 5
       range_key      = "product_id"
-    }
+    },
+       "age" = { 
+      write_capacity = 15 
+      read_capacity  = 15
+      range_key      = "user_id"
+    },
    
   }
 }
