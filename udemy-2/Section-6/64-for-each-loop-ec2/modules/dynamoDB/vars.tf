@@ -11,18 +11,18 @@ variable "range_key" {
   default = "product_id"
 }
 
-variable "gsi" { 
-    type = map(object({
-      name = string
-      type = string
-    }))
-  default = {
-    "attr1" = { name = "user_id", type = "S" },
-    "attr2" = { name = "product_id", type = "S" },
-    "attr3" = { name = "road_id", type = "S" },
-    # "attr4" = { name = "product_desc", type = "S" },
-  }
-}
+# variable "gsi" { 
+#     type = map(object({
+#       name = string
+#       type = string
+#     }))
+#   default = {
+#     "attr1" = { name = "user_id", type = "S" },
+#     "attr2" = { name = "product_id", type = "S" },
+#     "attr3" = { name = "road_id", type = "S" },
+#     # "attr4" = { name = "product_desc", type = "S" },
+#   }
+# }
 locals {
   indices = {
     "road_id" = {
