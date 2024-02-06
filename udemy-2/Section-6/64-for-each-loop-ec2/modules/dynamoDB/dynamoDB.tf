@@ -30,7 +30,10 @@ resource "aws_dynamodb_table" "ddtable_plain" {
       name = "product_name"
       type = "S"
     }
-
+    attribute {
+      name = "product_desc"
+      type = "S"
+    }
 
   tags =   {
     DataClassification : "restricted"
