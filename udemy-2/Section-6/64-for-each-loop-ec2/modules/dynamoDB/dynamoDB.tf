@@ -23,20 +23,20 @@ resource "aws_dynamodb_table" "ddtable_plain" {
       name = attribute.value.name
       type = attribute.value.type
     }
-      
-    }
-    attribute {
-      name = var.range_key
-      type = "S"
-    }
-    attribute {
-      name = "product_name"
-      type = "S"
-    }
-    attribute {
-      name = "product_desc"
-      type = "S"
-    }
+   }
+  
+    # attribute {
+    #   name = var.range_key
+    #   type = "S"
+    # }
+    # attribute {
+    #   name = "product_name"
+    #   type = "S"
+    # }
+    # attribute {
+    #   name = "product_desc"
+    #   type = "S"
+    # }
 
   tags =   {
     DataClassification : "restricted"
