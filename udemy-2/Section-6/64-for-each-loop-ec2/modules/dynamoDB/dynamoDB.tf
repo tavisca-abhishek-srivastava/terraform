@@ -7,7 +7,7 @@ resource "aws_dynamodb_table" "ddtable_plain" {
   range_key = var.range_key
   
    dynamic "global_secondary_index" {
-   for_each = local.indices
+   for_each = local.gsi_indices
     content {
       name            = global_secondary_index.key
       write_capacity  = global_secondary_index.value.write_capacity
@@ -17,7 +17,8 @@ resource "aws_dynamodb_table" "ddtable_plain" {
       projection_type = "ALL"
     }
   }
-    attribute {
+   attribute {
+    # for_each = var
       name = var.hash_key
       type = "S"
     }
@@ -26,7 +27,7 @@ resource "aws_dynamodb_table" "ddtable_plain" {
       type = "S"
     }
     attribute {
-      name = "road_id"
+      name = "product_name"
       type = "S"
     }
 
