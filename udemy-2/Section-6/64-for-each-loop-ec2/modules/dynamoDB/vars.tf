@@ -23,3 +23,12 @@ variable "gsi" {
     # "attr4" = { name = "product_desc", type = "S" },
   }
 }
+locals {
+  indices = {
+    "road_id" = {
+      write_capacity = 5
+      read_capacity  = 5
+      range_key      = "product_id"
+    }
+  }
+}
