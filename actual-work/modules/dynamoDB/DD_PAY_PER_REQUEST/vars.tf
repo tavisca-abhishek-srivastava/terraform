@@ -45,7 +45,6 @@ variable   "gsi_indices"  {
 
 variable   "lsi_indices"  {
   type = map(object({
-   
     range_key = string
 
   }))
