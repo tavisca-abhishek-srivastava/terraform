@@ -2,7 +2,7 @@
 
 resource "aws_dynamodb_table" "ddtable_DD_PAY_PER_REQUEST" {
   name = "${var.aws_dynamodb_table_name}"
-  billing_mode   = "DD_PAY_PER_REQUEST"
+  billing_mode   = "PAY_PER_REQUEST"
   read_capacity  = 30
   write_capacity = 30
   hash_key = var.table_hash_key
