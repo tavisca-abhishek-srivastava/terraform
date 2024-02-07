@@ -6,7 +6,7 @@ resource "aws_dynamodb_table" "ddtable_DD_PAY_PER_REQUEST" {
   hash_key = var.table_hash_key
   range_key = var.range_key
   server_side_encryption {
-    enabled = true
+    enabled = false
     kms_key_arn = "arn:aws:kms:us-east-1:928814396842:key/bb8d50d3-6d96-4b26-8e3e-eb9e3026be18"
   }
   
