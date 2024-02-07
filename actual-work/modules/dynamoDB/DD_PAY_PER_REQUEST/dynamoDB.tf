@@ -1,12 +1,16 @@
 
 
-resource "aws_dynamodb_table" "ddtable_plain" {
+resource "aws_dynamodb_table" "ddtable_DD_PAY_PER_REQUEST" {
   name = "${var.aws_dynamodb_table_name}"
-  billing_mode   = "PROVISIONED"
+  billing_mode   = "DD_PAY_PER_REQUEST"
   read_capacity  = 30
   write_capacity = 30
   hash_key = var.table_hash_key
   range_key = var.range_key
+  server_side_encryption {
+    enabled = true
+    kms_key_arn = "arn:aws:kms:us-east-1:928814396842:key/bb8d50d3-6d96-4b26-8e3e-eb9e3026be18"
+  }
   
    dynamic "global_secondary_index" {
    for_each = var.gsi_indices

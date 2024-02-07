@@ -56,3 +56,4 @@ variable   "lsi_indices"  {
    "age" = { write_capacity = 15, read_capacity  = 15, range_key      = "user_id"},
   }
   }
+  
