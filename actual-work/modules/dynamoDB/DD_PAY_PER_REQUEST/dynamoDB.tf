@@ -21,10 +21,13 @@ resource "aws_dynamodb_table" "ddtable_DD_PAY_PER_REQUEST" {
       projection_type = "ALL"
     }
   }
-  local_secondary_index {
-    name = "by_age"
-    range_key = "age"
+  dynamic "local_secondary_index" {
+    for_each = var.lsi_indices
+    content {
+    name = local_secondary_index.key
+    range_key = local_secondary_index.range_key
     projection_type = "ALL"
+  }
   }
    dynamic "attribute" {
     for_each = var.attributes
