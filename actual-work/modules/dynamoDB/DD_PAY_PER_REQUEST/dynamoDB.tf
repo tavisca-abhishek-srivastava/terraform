@@ -25,7 +25,7 @@ resource "aws_dynamodb_table" "ddtable_DD_PAY_PER_REQUEST" {
     for_each = var.lsi_indices
     content {
     name = local_secondary_index.key
-    range_key = local_secondary_index.range_key
+    range_key = local_secondary_index.value.range_key
     projection_type = "ALL"
   }
   }
