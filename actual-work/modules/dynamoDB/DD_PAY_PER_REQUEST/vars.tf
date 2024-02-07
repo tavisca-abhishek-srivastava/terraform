@@ -45,15 +45,11 @@ variable   "gsi_indices"  {
 
 variable   "lsi_indices"  {
   type = map(object({
-    write_capacity = number
-    read_capacity  =number
+   
     range_key = string
 
   }))
   default = { 
-   "product_name" = { write_capacity = 5 , read_capacity  = 5, range_key      = "product_id"},
-   "product_desc" = { write_capacity = 5 ,read_capacity  = 5,range_key      = "product_id"},
-   "age" = { write_capacity = 15, read_capacity  = 15, range_key      = "user_id"},
+   "by_age" = {range_key = "age"},
   }
-  }
-  
+}
