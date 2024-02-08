@@ -12,7 +12,8 @@ variable "table_hash_key" {
     }
 }
 
-variable "range_key" {
+variable "table_range_key" {
+  type = string
   default = "product_id"
 }
 
@@ -22,8 +23,8 @@ variable "attributes" {
       type = string
     }))
   default = {
-    "attr1" = { name = "user_id", type = "S" },
-    "attr2" = { name = "product_id", type = "S" },
+    "attr1" = { name = var.table_hash_key, type = "S" },
+    "attr2" = { name = var.table_range_key, type = "S" },
     "attr3" = { name = "product_name", type = "S" },
     "attr4" = { name = "product_desc", type = "S" },
     "attr5" = { name = "age", type = "N" },
@@ -37,6 +38,7 @@ variable   "gsi_indices"  {
 
   }))
   default = { 
+    # in key-value pair, key will be index hash_key
    "product_name" = { write_capacity = 5 , read_capacity  = 5, range_key      = "product_id"},
    "product_desc" = { write_capacity = 5 ,read_capacity  = 5,range_key      = "product_id"},
    "age" = { write_capacity = 15, read_capacity  = 15, range_key      = "user_id"},
@@ -51,4 +53,14 @@ variable   "lsi_indices"  {
   default = { 
    "by_age" = {range_key = "age"},
   }
+}
+
+variable "kms_key_arn" {
+  type = string
+  default = "arn:aws:kms:us-east-1:928814396842:key/bb8d50d3-6d96-4b26-8e3e-eb9e3026be18"
+}
+
+variable "enable_deletion_protection" {
+  type = bool
+  default = false
 }
