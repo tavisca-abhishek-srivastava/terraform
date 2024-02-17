@@ -6,3 +6,7 @@ terraform {
     dynamodb_table = "tsl-pulsar-poc"
   }
 }
+resource "time_sleep" "sleep_150" {
+  
+  create_duration = "150s"
+}
