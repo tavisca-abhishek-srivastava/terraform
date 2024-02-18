@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     aws = {
-      version = "5.33.0"
+      version = "5.32.0"
     }
   }
 }
