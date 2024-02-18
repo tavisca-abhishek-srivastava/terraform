@@ -1,6 +1,6 @@
 variable "aws_dynamodb_table_name" {
   type = string
-  default = "tf_bnr_testing"
+  default = "tf_bnr_testing_provisioned"
 }
 
 variable "table_hash_key" {
