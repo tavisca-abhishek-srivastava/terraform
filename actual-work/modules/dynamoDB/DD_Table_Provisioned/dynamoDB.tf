@@ -10,6 +10,8 @@ resource "aws_dynamodb_table" "ddtable_DD_PAY_PER_REQUEST" {
   hash_key = var.table_hash_key
   range_key = var.table_range_key
   deletion_protection_enabled = var.enable_deletion_protection
+  read_capacity = 5
+  write_capacity = 5
   point_in_time_recovery {
     enabled = true
   }
