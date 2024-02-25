@@ -8,6 +8,7 @@ terraform {
 
 provider "aws" {
   region = var.aws_region
+
 }
 
 resource "null_resource" "update_latest_ami" {
