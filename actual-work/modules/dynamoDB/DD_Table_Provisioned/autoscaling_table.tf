@@ -1,8 +1,8 @@
 
 resource "aws_appautoscaling_target" "Provisioned_table_read_target" {
-  max_capacity       = 20
-  min_capacity       = 5
-  resource_id        = "table/${aws_dynamodb_table.ddtable_DD_PAY_PER_REQUEST.name}"
+  max_capacity       = 200
+  min_capacity       = 50
+  resource_id        = "table/${aws_dynamodb_table.DD_Table_Provisioned.name}"
   scalable_dimension = "dynamodb:table:ReadCapacityUnits"
   service_namespace  = "dynamodb"
 }
@@ -24,9 +24,9 @@ resource "aws_appautoscaling_policy" "Provisioned_table_read_policy" {
 }
 
 resource "aws_appautoscaling_target" "Provisioned_table_write_target" {
-  max_capacity       = 10
-  min_capacity       = 5
-  resource_id        = "table/${aws_dynamodb_table.ddtable_DD_PAY_PER_REQUEST.name}"
+  max_capacity       = 300
+  min_capacity       = 50
+  resource_id        = "table/${aws_dynamodb_table.DD_Table_Provisioned.name}"
   scalable_dimension = "dynamodb:table:WriteCapacityUnits"
   service_namespace  = "dynamodb"
 }
@@ -43,6 +43,6 @@ resource "aws_appautoscaling_policy" "Provisioned_table_write_policy" {
       predefined_metric_type = "DynamoDBWriteCapacityUtilization"
     }
 
-    target_value = 70.0
+    target_value = 80.0
   }
 }
