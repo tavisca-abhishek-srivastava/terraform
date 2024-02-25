@@ -108,11 +108,11 @@ variable "ec2_conf" {
 
   }))
   default = {
-    "vm1" = { vm_size = "e2-small", zone = "us-east-1a", subnet = "subnet-04c8a1cce0a80f526" },
+    "vm1" = { vm_size = "e2-small", zone = "us-east-1a", subnet = "subnet-04c8a1cce0a80f526"},
 
-    "vm2" = { vm_size = "e2-medium", zone = "us-east-1b", subnet = "subnet-08792a1a703950fe7" },
+    "vm2" = { vm_size = "e2-medium", zone = "us-east-1b", subnet = "subnet-08792a1a703950fe7"},
 
-    "vm4" = { vm_size = "f1-micro", zone = "us-east-1c", subnet = "subnet-001023c820ce7e35c" },
+    "vm4" = { vm_size = "f1-micro", zone = "us-east-1c", subnet = "subnet-001023c820ce7e35c"},
   }
 }
 
@@ -122,7 +122,9 @@ variable "vpc_id" {
 }
 
 output "private_ip" {
-  value       = aws_instance.example1
+  value = [ for x in aws_instance.example1:
+                x.private_ip
+          ]
   sensitive   = true
   description = "The private IP address of the web server"
 }
