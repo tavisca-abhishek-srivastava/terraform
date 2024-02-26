@@ -59,7 +59,7 @@ variable "enable_deletion_protection" {
   type = bool
   # default = false
   validation {
-      condition = var.enable_deletion_protection == false
+      condition = var.enable_deletion_protection == false || var.enable_deletion_protection == true
       error_message = "enable_deletion_protection should be either true or false"
   }
 }
@@ -79,4 +79,29 @@ variable "table_class" {
       condition = length(var.table_class) != 0
       error_message = "table_class should not be empty"
   }
+ }
+
+  variable "table_read_capacity_unit" {
+    type = number
+  validation {
+      condition = table_read_capacity_unit > 0
+      error_message = "table_read_capacity_unit should  be > 0"
+  }
+ }
+
+  variable "table_write_capacity_unit" {
+    type = number
+  validation {
+      condition = table_write_capacity_unit > 0
+      error_message = "table_write_capacity_unit should  be > 0"
+  }
+ }
+
+   variable "table_autoscaling_min_read_capacity_unit" {
+    type = number
+    validation {
+      condition = table_autoscaling_min_read_capacity_unit > 0
+      error_message = "table_autoscaling_min_read_capacity_unit should  be > 0"
+  }
+  
  }

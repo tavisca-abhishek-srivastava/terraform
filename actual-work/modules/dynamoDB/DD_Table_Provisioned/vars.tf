@@ -33,7 +33,7 @@ variable   "gsi_indices"  {
 
   }))
   default = { 
-    # in key-value pair, key will be index hash_key
+    # in key-value pair, key will be GSI hash_key
    "product_name" = { write_capacity = 60 , read_capacity  = 60, range_key      = "product_id"},
    "product_desc" = { write_capacity = 60 ,read_capacity  = 60 ,range_key      = "product_id"},
    "age" = { write_capacity = 65, read_capacity  = 65, range_key      = "user_id"},
@@ -46,9 +46,11 @@ variable   "lsi_indices"  {
 
   }))
   default = { 
+    # in key-value pair, key will be LSI range_key
    "by_age" = {range_key = "age"},
   }
 }
+
 
 variable "kms_key_arn" {
   type = string
@@ -59,13 +61,12 @@ variable "enable_deletion_protection" {
   type = bool
   # default = false
   validation {
-      condition = var.enable_deletion_protection == false
+      condition = var.enable_deletion_protection == false || var.enable_deletion_protection == true
       error_message = "enable_deletion_protection should be either true or false"
   }
 }
 variable "aws_dynamodb_table_name" {
   type = string
-  # default = "tf_bnr_testing_provisioned"
   validation {
       condition = lower(var.aws_dynamodb_table_name) == var.aws_dynamodb_table_name
       error_message = "table_name should be in lower case"
@@ -73,9 +74,32 @@ variable "aws_dynamodb_table_name" {
 }
 variable "table_class" {
     type = string
-  # default = "tf_bnr_testing_provisioned"
-  validation {
+    validation {
       condition = length(var.table_class) != 0
       error_message = "table_class should not be empty"
   }
+ }
+ variable "table_read_capacity_unit" {
+    type = number
+    validation {
+      condition = table_read_capacity_unit > 0
+      error_message = "table_read_capacity_unit should  be > 0"
+  }
+ }
+
+  variable "table_write_capacity_unit" {
+    type = number
+    validation {
+      condition = table_write_capacity_unit > 0
+      error_message = "table_write_capacity_unit should  be > 0"
+  }
+ }
+
+  variable "table_autoscaling_min_read_capacity_unit" {
+    type = number
+    validation {
+      condition = table_autoscaling_min_read_capacity_unit > 0
+      error_message = "table_autoscaling_min_read_capacity_unit should  be > 0"
+  }
+  
  }

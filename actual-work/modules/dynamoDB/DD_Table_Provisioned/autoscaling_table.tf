@@ -1,7 +1,7 @@
 
 resource "aws_appautoscaling_target" "Provisioned_table_read_target" {
   max_capacity       = 200
-  min_capacity       = 50
+  min_capacity       = var.table_autoscaling_min_read_capacity_unit
   resource_id        = "table/${aws_dynamodb_table.DD_Table_Provisioned.name}"
   scalable_dimension = "dynamodb:table:ReadCapacityUnits"
   service_namespace  = "dynamodb"
