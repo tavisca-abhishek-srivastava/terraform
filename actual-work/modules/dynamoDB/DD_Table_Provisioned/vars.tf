@@ -1,8 +1,3 @@
-variable "aws_dynamodb_table_name" {
-  type = string
-  default = "tf_bnr_testing_provisioned"
-}
-
 variable "table_hash_key" {
     type = string
     # default = "user_id"
@@ -62,5 +57,25 @@ variable "kms_key_arn" {
 
 variable "enable_deletion_protection" {
   type = bool
-  default = false
+  # default = false
+  validation {
+      condition = lower(var.enable_deletion_protection) == var.aws_dynamodb_table_name
+      error_message = "enable_deletion_protection should be either true or false"
+  }
 }
+variable "aws_dynamodb_table_name" {
+  type = string
+  # default = "tf_bnr_testing_provisioned"
+  validation {
+      condition = lower(var.aws_dynamodb_table_name) == var.aws_dynamodb_table_name
+      error_message = "table_name should be in lower case"
+  }
+}
+variable "table_class" {
+    type = string
+  # default = "tf_bnr_testing_provisioned"
+  validation {
+      condition = lower(var.table_class) == var.table_class
+      error_message = "table_name should be in lower case"
+  }
+ }
