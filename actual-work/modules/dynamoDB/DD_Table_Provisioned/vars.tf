@@ -34,9 +34,9 @@ variable   "gsi_indices"  {
   }))
   default = { 
     # in key-value pair, key will be index hash_key
-   "product_name" = { write_capacity = 5 , read_capacity  = 5, range_key      = "product_id"},
-   "product_desc" = { write_capacity = 5 ,read_capacity  = 5,range_key      = "product_id"},
-   "age" = { write_capacity = 15, read_capacity  = 15, range_key      = "user_id"},
+   "product_name" = { write_capacity = 60 , read_capacity  = 60, range_key      = "product_id"},
+   "product_desc" = { write_capacity = 60 ,read_capacity  = 60 ,range_key      = "product_id"},
+   "age" = { write_capacity = 65, read_capacity  = 65, range_key      = "user_id"},
   }
   }
 
