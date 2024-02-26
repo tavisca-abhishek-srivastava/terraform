@@ -76,7 +76,7 @@ variable "table_class" {
     type = string
   # default = "tf_bnr_testing_provisioned"
   validation {
-      condition = lower(var.table_class) == var.table_class
-      error_message = "table_name should be in lower case"
+      condition = length(var.table_class) != 0
+      error_message = "table_class should not be empty"
   }
  }
