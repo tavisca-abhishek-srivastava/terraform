@@ -4,5 +4,4 @@ module "nrt-dynamoDB" {
     aws_dynamodb_table_name = var.aws_dynamodb_table_name
     table_class = var.table_class
     enable_deletion_protection = var.enable_deletion_protection
-
 }
