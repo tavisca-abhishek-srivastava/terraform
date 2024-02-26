@@ -5,13 +5,13 @@
 
 resource "aws_dynamodb_table" "DD_Table_Provisioned" {
   name = "${var.aws_dynamodb_table_name}"
-  table_class = "STANDARD_INFREQUENT_ACCESS"
+  table_class = var.table_class
   billing_mode   = "PROVISIONED"
   hash_key = var.table_hash_key
   range_key = var.table_range_key
   deletion_protection_enabled = var.enable_deletion_protection
-  read_capacity = 60
-  write_capacity = 60
+  read_capacity = var.table_read_capacity_unit
+  write_capacity = var.table_write_capacity_unit
   point_in_time_recovery {
     enabled = true
   }
@@ -19,7 +19,8 @@ resource "aws_dynamodb_table" "DD_Table_Provisioned" {
     enabled = true   # true -> "Managed by customer" , false -> "Managed by DynamoDB "
     kms_key_arn = var.kms_key_arn
   }
-  
+  # runtime Generation of GSIs from user input
+
    dynamic "global_secondary_index" {
    for_each = var.gsi_indices
     content {
@@ -31,6 +32,8 @@ resource "aws_dynamodb_table" "DD_Table_Provisioned" {
       projection_type = "ALL"
     }
   }
+  # runtime Generation of LSI from user input
+
   dynamic "local_secondary_index" {
     for_each = var.lsi_indices
     content {
@@ -39,6 +42,8 @@ resource "aws_dynamodb_table" "DD_Table_Provisioned" {
     projection_type = "ALL"
   }
   }
+  # runtime defenition of Table attribute from user input
+
    dynamic "attribute" {
     for_each = var.attributes
     content {
@@ -59,5 +64,11 @@ resource "aws_dynamodb_table" "DD_Table_Provisioned" {
     Name : "tf-${var.aws_dynamodb_table_name}"
   }
   
+  lifecycle {
+    precondition {
+      condition = var.table_autoscaling_min_read_capacity_unit > var.table_read_capacity_unit
+      error_message = "table_autoscaling_min_read_capacity_unit is less than table_read_capacity_unit"
+    }
+  }
 }
 
