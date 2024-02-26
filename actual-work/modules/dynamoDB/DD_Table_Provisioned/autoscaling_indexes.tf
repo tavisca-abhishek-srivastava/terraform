@@ -34,6 +34,7 @@ resource "aws_appautoscaling_target" "environment_table_by_geo_location_write_ta
 }
 
 resource "aws_appautoscaling_policy" "environment_table_by_geo_location_write_policy" {
+  for_each = var.gsi_indices
   name               = "DynamoDBWriteCapacityUtilization:${aws_appautoscaling_target.environment_table_by_geo_location_write_target[each.key].resource_id}"
   policy_type        = "TargetTrackingScaling"
   resource_id        = aws_appautoscaling_target.environment_table_by_geo_location_write_target[each.key].resource_id
