@@ -59,7 +59,7 @@ variable "enable_deletion_protection" {
   type = bool
   # default = false
   validation {
-      condition = lower(var.enable_deletion_protection) == var.aws_dynamodb_table_name
+      condition = var.enable_deletion_protection == false
       error_message = "enable_deletion_protection should be either true or false"
   }
 }
