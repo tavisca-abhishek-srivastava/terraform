@@ -8,7 +8,8 @@ resource "aws_appautoscaling_target" "environment_table_by_geo_location_read_tar
 }
 
 resource "aws_appautoscaling_policy" "environment_table_by_geo_location_read_policy" {
-  name               = "DynamoDBReadCapacityUtilization:${aws_appautoscaling_target.environment_table_by_geo_location_read_target.resource_id}"
+  for_each = var.gsi_indices
+  name               = "DynamoDBReadCapacityUtilization:${aws_appautoscaling_target.environment_table_by_geo_location_read_target[each.key].resource_id}"
   policy_type        = "TargetTrackingScaling"
   resource_id        = aws_appautoscaling_target.environment_table_by_geo_location_read_target.resource_id
   scalable_dimension = aws_appautoscaling_target.environment_table_by_geo_location_read_target.scalable_dimension
