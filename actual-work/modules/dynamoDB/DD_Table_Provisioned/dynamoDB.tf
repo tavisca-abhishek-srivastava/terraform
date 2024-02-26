@@ -1,4 +1,3 @@
-
 #--------------------------------------------------------------------------------#
 #                                                                                #
 #                                                                                #
@@ -6,6 +5,7 @@
 
 resource "aws_dynamodb_table" "DD_Table_Provisioned" {
   name = "${var.aws_dynamodb_table_name}"
+  table_class = "STANDARD_INFREQUENT_ACCESS"
   billing_mode   = "PROVISIONED"
   hash_key = var.table_hash_key
   range_key = var.table_range_key
@@ -46,6 +46,7 @@ resource "aws_dynamodb_table" "DD_Table_Provisioned" {
       type = attribute.value.type
     }
    }
+  # tags = var.fixed_tags 
 
   tags =   {
     DataClassification : "restricted"
@@ -57,5 +58,6 @@ resource "aws_dynamodb_table" "DD_Table_Provisioned" {
     Product : "poap"
     Name : "tf-${var.aws_dynamodb_table_name}"
   }
+  
 }
 
