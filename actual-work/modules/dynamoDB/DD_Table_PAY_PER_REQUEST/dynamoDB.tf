@@ -4,7 +4,7 @@
 #                                                                                #
 #--------------------------------------------------------------------------------#
 
-resource "aws_dynamodb_table" "ddtable_DD_PROVISIONED" {
+resource "aws_dynamodb_table" "DD_Table_PAY_PER_REQUEST" {
   name = "${var.aws_dynamodb_table_name}"
   billing_mode   = "PROVISIONED"
   read_capacity = 10
