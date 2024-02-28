@@ -9,5 +9,8 @@ table_autoscaling_min_read_capacity_unit = 90
 table_autoscaling_max_read_capacity_unit = 300
 table_read_target_percent = 80
 table_write_target_percent = 80
+table_autoscaling_max_write_capacity_unit = 300
+table_autoscaling_min_write_capacity_unit = 50
+
 
 
