@@ -1,7 +1,7 @@
 # Optional variable (need not to define in caller ) and value is set to default
 variable "is_stream_enabled" {
   type = bool
-  default = true
+  default = false
 }
 variable "stream_view_type" {
   type = string
