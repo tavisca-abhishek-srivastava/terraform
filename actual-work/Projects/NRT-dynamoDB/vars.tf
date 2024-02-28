@@ -116,8 +116,8 @@ variable "table_class" {
 variable "table_autoscaling_min_write_capacity_unit" {
   type = number
   validation {
-    condition     = var.table_autoscaling_min_read_capacity_unit > 0
-    error_message = "table_autoscaling_min_read_capacity_unit should  be > 0"
+    condition     = var.table_autoscaling_min_write_capacity_unit > 0
+    error_message = "table_autoscaling_min_write_capacity_unit should  be > 0"
   }
 
 }
