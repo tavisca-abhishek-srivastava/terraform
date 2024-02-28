@@ -1,6 +1,6 @@
 
 resource "aws_appautoscaling_target" "Provisioned_table_read_target" {
-  max_capacity       = 200
+  max_capacity       = var.table_autoscaling_max_read_capacity_unit
   min_capacity       = var.table_autoscaling_min_read_capacity_unit
   resource_id        = "table/${aws_dynamodb_table.DD_Table_Provisioned.name}"
   scalable_dimension = "dynamodb:table:ReadCapacityUnits"
@@ -19,7 +19,7 @@ resource "aws_appautoscaling_policy" "Provisioned_table_read_policy" {
       predefined_metric_type = "DynamoDBReadCapacityUtilization"
     }
 
-    target_value = 80.0
+    target_value = var.table_read_target_percent
   }
 }
 
@@ -43,6 +43,6 @@ resource "aws_appautoscaling_policy" "Provisioned_table_write_policy" {
       predefined_metric_type = "DynamoDBWriteCapacityUtilization"
     }
 
-    target_value = 80.0
+    target_value = var.table_write_target_percent
   }
 }

@@ -7,4 +7,9 @@ module "nrt-dynamoDB" {
     table_read_capacity_unit = var.table_read_capacity_unit
     table_write_capacity_unit = var.table_write_capacity_unit
     table_autoscaling_min_read_capacity_unit = var.table_autoscaling_min_read_capacity_unit
+    table_autoscaling_max_read_capacity_unit = var.table_autoscaling_max_read_capacity_unit
+    table_read_target_percent = var.table_read_target_percent
+    table_write_target_percent = var.table_write_target_percent
+    table_range_key = var.table_range_key
+    
 }

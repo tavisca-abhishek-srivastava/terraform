@@ -8,8 +8,12 @@ variable "table_hash_key" {
 }
 
 variable "table_range_key" {
-  type = string
-  default = "product_id"
+  type    = string
+  #default = "product_id"
+  validation {
+    condition     = lower(var.table_range_key) == var.table_range_key
+    error_message = "table_range_key should be in lower case"
+}
 }
 
 variable "attributes" { 
@@ -104,4 +108,21 @@ variable "table_class" {
       error_message = "table_autoscaling_min_read_capacity_unit should  be > 0"
   }
   
+ }
+  variable "table_autoscaling_max_read_capacity_unit" {
+    type = number
+ }
+  variable "table_write_target_percent" {
+    type = number
+    validation {
+      condition = var.table_write_target_percent > 0
+      error_message = "table_write_target_percent should  be > 0"
+  }
+ }
+  variable "table_read_target_percent" {
+    type = number
+    validation {
+      condition = var.table_read_target_percent > 0
+      error_message = "table_read_target_percent should  be > 0"
+  }
  }
