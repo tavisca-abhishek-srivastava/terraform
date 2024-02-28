@@ -25,7 +25,7 @@ resource "aws_appautoscaling_policy" "Provisioned_table_read_policy" {
 
 resource "aws_appautoscaling_target" "Provisioned_table_write_target" {
   max_capacity       =  var.table_autoscaling_max_write_capacity_unit
-  min_capacity       = var.table_autoscaling_max_write_capacity_unit
+  min_capacity       = var.table_autoscaling_min_write_capacity_unit
   resource_id        = "table/${aws_dynamodb_table.DD_Table_Provisioned.name}"
   scalable_dimension = "dynamodb:table:WriteCapacityUnits"
   service_namespace  = "dynamodb"
