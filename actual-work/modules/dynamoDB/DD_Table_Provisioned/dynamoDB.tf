@@ -12,6 +12,10 @@ resource "aws_dynamodb_table" "DD_Table_Provisioned" {
   deletion_protection_enabled = var.enable_deletion_protection
   read_capacity               = var.table_read_capacity_unit
   write_capacity              = var.table_write_capacity_unit
+  ttl {
+    enabled = var.ttl_enabled
+    attribute_name = (var.ttl_enabled == false ? null:var.attribute_for_ttl)
+  }
   stream_enabled = var.is_stream_enabled
   stream_view_type = (var.is_stream_enabled == false ? null: var.stream_view_type)
 
@@ -68,11 +72,4 @@ resource "aws_dynamodb_table" "DD_Table_Provisioned" {
     Name : "tf-${var.aws_dynamodb_table_name}"
   }
 
-  # lifecycle {
-  #   precondition {
-  #     condition     = var.table_autoscaling_min_read_capacity_unit >= var.table_read_capacity_unit
-  #     error_message = "table_autoscaling_min_read_capacity_unit is less than table_read_capacity_unit"
-  #   }
-
-  # }
 }

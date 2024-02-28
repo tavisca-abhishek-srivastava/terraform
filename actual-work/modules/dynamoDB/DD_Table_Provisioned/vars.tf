@@ -1,13 +1,24 @@
 # Optional variable (need not to define in caller ) and value is set to default
 variable "is_stream_enabled" {
   type = bool
-  default = true
+  default = false
 }
 variable "stream_view_type" {
   type = string
   default = "NEW_IMAGE"
 }
-
+variable "ttl_enabled" {
+  type = bool
+  default = true
+}
+variable "attribute_for_ttl" {
+type = string
+default = "timetolive"
+validation {
+  condition = length(var.attribute_for_ttl) >1 && length(var.attribute_for_ttl) < 255
+  error_message = "ttl attribute name must be between 1 and 255 characters"
+}
+}
 
 ###########################################################################################
 # Mandatory variables
@@ -121,6 +132,19 @@ variable "table_autoscaling_min_read_capacity_unit" {
 variable "table_autoscaling_max_read_capacity_unit" {
   type = number
 }
+
+variable "table_autoscaling_min_write_capacity_unit" {
+  type = number
+  validation {
+    condition     = var.table_autoscaling_min_read_capacity_unit > 0
+    error_message = "table_autoscaling_min_read_capacity_unit should  be > 0"
+  }
+
+}
+variable "table_autoscaling_max_write_capacity_unit" {
+  type = number
+}
+
 
 variable "table_write_target_percent" {
   type = number
