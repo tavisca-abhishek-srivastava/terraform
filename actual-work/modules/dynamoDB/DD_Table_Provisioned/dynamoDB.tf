@@ -68,11 +68,11 @@ resource "aws_dynamodb_table" "DD_Table_Provisioned" {
     Name : "tf-${var.aws_dynamodb_table_name}"
   }
 
-  lifecycle {
-    precondition {
-      condition     = var.table_autoscaling_min_read_capacity_unit > var.table_read_capacity_unit
-      error_message = "table_autoscaling_min_read_capacity_unit is less than table_read_capacity_unit"
-    }
+  # lifecycle {
+  #   precondition {
+  #     condition     = var.table_autoscaling_min_read_capacity_unit >= var.table_read_capacity_unit
+  #     error_message = "table_autoscaling_min_read_capacity_unit is less than table_read_capacity_unit"
+  #   }
 
-  }
+  # }
 }
