@@ -5,6 +5,17 @@ resource "aws_kms_key" "dynamodb_encryption_key" {
     customer_master_key_spec = "SYMMETRIC_DEFAULT"
     enable_key_rotation = true
     multi_region = true
+tags = {
+    DataClassification : "restricted"
+    Environment : "poc"
+    AppName : "tf-nrt-kms-app"
+    InfraOwner : "sre-cloud-reliability@tavisca.com"
+    BusinessUnit : "travel.app"
+    Backup : "no"
+    Product : "poap"
+    Name : "tf-nrt-kms"
+  }
+
 }
 resource "aws_kms_grant" "a" {
   name              = "my-grant"
