@@ -112,6 +112,20 @@ variable "table_class" {
   variable "table_autoscaling_max_read_capacity_unit" {
     type = number
  }
+
+variable "table_autoscaling_min_write_capacity_unit" {
+  type = number
+  validation {
+    condition     = var.table_autoscaling_min_read_capacity_unit > 0
+    error_message = "table_autoscaling_min_read_capacity_unit should  be > 0"
+  }
+
+}
+variable "table_autoscaling_max_write_capacity_unit" {
+  type = number
+}
+
+
   variable "table_write_target_percent" {
     type = number
     validation {
