@@ -20,7 +20,6 @@ module "nrt-dynamoDB" {
     attributes = var.attributes
     gsi_indices = var.gsi_indices
     lsi_indices = var.lsi_indices
-    kms_key_arn = module.nrt_dd_kms.mrk_cms_arn
 
     
 }

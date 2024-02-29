@@ -2,6 +2,11 @@
 #                                                                                #
 #                                                                                #
 #--------------------------------------------------------------------------------#
+module "nrt_dd_kms" {
+  source = "../../KMS"
+}
+
+
 resource "aws_dynamodb_table" "dd_table_provisioned" {
   name                        = var.table_name
   table_class                 = var.table_class
@@ -24,7 +29,7 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   }
   server_side_encryption {
     enabled     = true # true -> "Managed by customer" , false -> "Managed by DynamoDB "
-    kms_key_arn = var.kms_key_arn
+    kms_key_arn = module.nrt_dd_kms.mrk_cms_arn
   }
   # runtime Generation of GSIs from user input
 
