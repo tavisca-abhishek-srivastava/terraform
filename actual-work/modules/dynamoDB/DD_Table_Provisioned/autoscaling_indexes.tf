@@ -2,7 +2,7 @@ resource "aws_appautoscaling_target" "environment_table_by_geo_location_read_tar
   max_capacity       = var.table_autoscaling_max_read_capacity_unit
   min_capacity       = var.table_autoscaling_min_read_capacity_unit
   for_each           = var.gsi_indices
-  resource_id        = "table/${aws_dynamodb_table.DD_Table_Provisioned.name}/index/${each.key}"
+  resource_id        = "table/${aws_dynamodb_table.dd_table_provisioned.name}/index/${each.key}"
   scalable_dimension = "dynamodb:index:ReadCapacityUnits"
   service_namespace  = "dynamodb"
 }
@@ -28,7 +28,7 @@ resource "aws_appautoscaling_target" "environment_table_by_geo_location_write_ta
   max_capacity       = var.table_autoscaling_max_write_capacity_unit
   min_capacity       = var.table_autoscaling_min_write_capacity_unit
   for_each           = var.gsi_indices
-  resource_id        = "table/${aws_dynamodb_table.DD_Table_Provisioned.name}/index/${each.key}"
+  resource_id        = "table/${aws_dynamodb_table.dd_table_provisioned.name}/index/${each.key}"
   scalable_dimension = "dynamodb:index:WriteCapacityUnits"
   service_namespace  = "dynamodb"
 }
