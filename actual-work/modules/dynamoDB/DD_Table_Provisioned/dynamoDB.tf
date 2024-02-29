@@ -4,8 +4,8 @@
 #--------------------------------------------------------------------------------#
 module "nrt_dd_kms" {
   source = "../../KMS"
+  kms_alias = "alias/nrt_encryption_key"
 }
-
 
 resource "aws_dynamodb_table" "dd_table_provisioned" {
   name                        = var.table_name

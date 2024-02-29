@@ -106,6 +106,7 @@ resource "aws_kms_key_policy" "dd_table_key_policy" {
 
 }
 resource "aws_kms_alias" "key_alias" {
-  name          = "alias/nrt_encryption_key"
-  target_key_id = aws_kms_key.dynamodb_encryption_key.key_id
+#   name          = "alias/nrt_encryption_key"
+    name = var.kms_alias
+    target_key_id = aws_kms_key.dynamodb_encryption_key.key_id
 }
