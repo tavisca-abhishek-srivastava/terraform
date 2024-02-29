@@ -1,3 +1,7 @@
+module "nrt_dd_kms" {
+  source = "../../modules/KMS"
+}
+
 module "nrt-dynamoDB" {
     source = "../../modules/dynamoDB/DD_Table_Provisioned"
     table_hash_key = var.table_hash_key
@@ -16,6 +20,7 @@ module "nrt-dynamoDB" {
     attributes = var.attributes
     gsi_indices = var.gsi_indices
     lsi_indices = var.lsi_indices
+    kms_key_arn = module.nrt_dd_kms.mrk_cms_arn
 
     
 }
