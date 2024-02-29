@@ -25,16 +25,16 @@ validation {
 variable "table_hash_key" {
   type = string
   validation {
-    condition     = lower(var.table_hash_key) == var.table_hash_key
-    error_message = "table_hash_key should be in lower case"
+    condition     = lower(var.table_hash_key) == var.table_hash_key && lenght(var.table_hash_key) != 0
+    error_message = "table_hash_key should be in lower case and should be defined"
   }
 }
 
 variable "table_range_key" {
   type    = string
   validation {
-    condition     = lower(var.table_range_key) == var.table_range_key
-    error_message = "table_range_key should be in lower case"
+    condition     = lower(var.table_range_key) == var.table_range_key && lenght(var.table_range_key) != 0
+    error_message = "table_range_key should be in lower case and should be defined"
 }
 }
 

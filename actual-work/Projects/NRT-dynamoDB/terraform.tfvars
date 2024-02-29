@@ -12,5 +12,3 @@ table_write_target_percent = 80
 table_autoscaling_max_write_capacity_unit = 300
 table_autoscaling_min_write_capacity_unit = 50
 
-
-

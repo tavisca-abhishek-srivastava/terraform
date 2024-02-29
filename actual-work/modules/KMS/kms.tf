@@ -17,7 +17,7 @@ tags = {
   }
 
 }
-resource "aws_kms_grant" "a" {
+resource "aws_kms_grant" "kms_key_access" {
   name              = "my-grant"
   key_id            = aws_kms_key.dynamodb_encryption_key.key_id
   grantee_principal = "arn:aws:iam::928814396842:user/cloud-dr-user"
