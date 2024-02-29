@@ -77,8 +77,8 @@ variable "enable_deletion_protection" {
 variable "table_name" {
   type = string
   validation {
-    condition     = lower(var.table_name) == var.table_name
-    error_message = "table_name should be in lower case"
+    condition     = length(var.table_name) !=0
+    error_message = "table_name should not be empty"
   }
 }
 variable "table_class" {
