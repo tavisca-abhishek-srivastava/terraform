@@ -27,3 +27,4 @@ gsi_indices = {
   lsi_indices = { 
    "by_age" = {range_key = "age"},
   }
+  
