@@ -1,5 +1,6 @@
 # Optional variable (need not to define in caller ) and value is set to default
 variable "is_stream_enabled" {
+  description = "This field is to enable streaming"
   type = bool
   default = false
 }
@@ -23,6 +24,7 @@ validation {
 ###########################################################################################
 # Mandatory variables
 variable "table_hash_key" {
+  description = "This will be hash key for dynamoDB table"
   type = string
   validation {
     condition     = lower(var.table_hash_key) == var.table_hash_key && lenght(var.table_hash_key) != 0
@@ -31,6 +33,7 @@ variable "table_hash_key" {
 }
 
 variable "table_range_key" {
+  description = "This will be range key for dynamoDB table"
   type    = string
   validation {
     condition     = lower(var.table_range_key) == var.table_range_key && lenght(var.table_range_key) != 0
@@ -39,17 +42,22 @@ variable "table_range_key" {
 }
 
 variable "attributes" {
+  description = "These will be attributes for dynamoDB table"
   type = map(object({
     name = string
     type = string
   }))
-  default = {
-    "attr1" = { name = "user_id", type = "S" },
-    "attr2" = { name = "product_id", type = "S" },
-    "attr3" = { name = "product_name", type = "S" },
-    "attr4" = { name = "product_desc", type = "S" },
-    "attr5" = { name = "age", type = "N" },
-  }
+  validation {
+    condition     =  lenght(var.attributes) > 2
+    error_message = "Attribute should have hash key and range key at minimum"
+}
+  # default = {
+  #   "attr1" = { name = "user_id", type = "S" },
+  #   "attr2" = { name = "product_id", type = "S" },
+  #   "attr3" = { name = "product_name", type = "S" },
+  #   "attr4" = { name = "product_desc", type = "S" },
+  #   "attr5" = { name = "age", type = "N" },
+  # }
 }
 variable "gsi_indices" {
   type = map(object({
@@ -58,12 +66,12 @@ variable "gsi_indices" {
     range_key      = string
 
   }))
-  default = {
-    # in key-value pair, key will be GSI hash_key
-    "product_name" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" },
-    "product_desc" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" },
-    "age"          = { write_capacity = 65, read_capacity = 65, range_key = "user_id" },
-  }
+  # default = {
+  #   # in key-value pair, key will be GSI hash_key
+  #   "product_name" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" },
+  #   "product_desc" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" },
+  #   "age"          = { write_capacity = 65, read_capacity = 65, range_key = "user_id" },
+  # }
 }
 
 variable "lsi_indices" {
@@ -71,10 +79,10 @@ variable "lsi_indices" {
     range_key = string
 
   }))
-  default = {
-    # in key-value pair, key will be LSI range_key
-    "by_age" = { range_key = "age" },
-  }
+  # default = {
+  #   # in key-value pair, key will be LSI range_key
+  #   "by_age" = { range_key = "age" },
+  # }
 }
 
 
@@ -91,10 +99,10 @@ variable "enable_deletion_protection" {
     error_message = "enable_deletion_protection should be either true or false"
   }
 }
-variable "aws_dynamodb_table_name" {
+variable "table_name" {
   type = string
   validation {
-    condition     = lower(var.aws_dynamodb_table_name) == var.aws_dynamodb_table_name
+    condition     = lower(var.table_name) == var.table_name
     error_message = "table_name should be in lower case"
   }
 }

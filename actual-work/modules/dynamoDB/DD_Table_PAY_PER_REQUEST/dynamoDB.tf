@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------------------#
 
 resource "aws_dynamodb_table" "DD_Table_PAY_PER_REQUEST" {
-  name = "${var.aws_dynamodb_table_name}"
+  name = "${var.table_name}"
   billing_mode   = "PROVISIONED"
   read_capacity = 10
   write_capacity = 10
@@ -50,11 +50,11 @@ resource "aws_dynamodb_table" "DD_Table_PAY_PER_REQUEST" {
   tags =   {
     DataClassification : "restricted"
     Environment : "poc"
-    AppName : "tf-nrt-${var.aws_dynamodb_table_name}"
+    AppName : "tf-nrt-${var.table_name}"
     InfraOwner : "sre-cloud-reliability@tavisca.com"
     BusinessUnit : "travel.app"
     Backup : "no"
     Product : "poap"
-    Name : "tf-${var.aws_dynamodb_table_name}"
+    Name : "tf-${var.table_name}"
   }
 }

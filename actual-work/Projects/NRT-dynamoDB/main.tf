@@ -1,7 +1,7 @@
 module "nrt-dynamoDB" {
     source = "../../modules/dynamoDB/DD_Table_Provisioned"
     table_hash_key = var.table_hash_key
-    aws_dynamodb_table_name = var.aws_dynamodb_table_name
+    table_name = var.table_name
     table_class = var.table_class
     enable_deletion_protection = var.enable_deletion_protection
     table_read_capacity_unit = var.table_read_capacity_unit
@@ -13,5 +13,9 @@ module "nrt-dynamoDB" {
     table_range_key = var.table_range_key
     table_autoscaling_min_write_capacity_unit = var.table_autoscaling_min_write_capacity_unit
     table_autoscaling_max_write_capacity_unit = var.table_autoscaling_max_write_capacity_unit
+    attributes = var.attributes
+    gsi_indices = var.gsi_indices
+    lsi_indices = var.lsi_indices
+
     
 }

@@ -2,9 +2,8 @@
 #                                                                                #
 #                                                                                #
 #--------------------------------------------------------------------------------#
-
-resource "aws_dynamodb_table" "DD_Table_Provisioned" {
-  name                        = var.aws_dynamodb_table_name
+resource "aws_dynamodb_table" "dd_table_provisioned" {
+  name                        = var.table_name
   table_class                 = var.table_class
   billing_mode                = "PROVISIONED"
   hash_key                    = var.table_hash_key
@@ -64,12 +63,12 @@ resource "aws_dynamodb_table" "DD_Table_Provisioned" {
   tags = {
     DataClassification : "restricted"
     Environment : "poc"
-    AppName : "tf-nrt-${var.aws_dynamodb_table_name}"
+    AppName : "tf-nrt-${var.table_name}"
     InfraOwner : "sre-cloud-reliability@tavisca.com"
     BusinessUnit : "travel.app"
     Backup : "no"
     Product : "poap"
-    Name : "tf-${var.aws_dynamodb_table_name}"
+    Name : "tf-${var.table_name}"
   }
 
 }
