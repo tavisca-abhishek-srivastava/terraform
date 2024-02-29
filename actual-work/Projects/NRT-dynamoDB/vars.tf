@@ -60,7 +60,7 @@ variable   "lsi_indices"  {
 
 variable "kms_key_arn" {
   type = string
-  default = "arn:aws:kms:us-east-1:928814396842:key/bb8d50d3-6d96-4b26-8e3e-eb9e3026be18"
+  # default = "arn:aws:kms:us-east-1:928814396842:key/bb8d50d3-6d96-4b26-8e3e-eb9e3026be18"
 }
 
 variable "enable_deletion_protection" {
