@@ -1,6 +1,6 @@
 table_hash_key = "user_id"
 table_range_key = "product_id"
-table_name = "tf_bnr_testing_provisioned"
+table_name = "DynamoDB-GSI-LSI"
 table_class = "STANDARD_INFREQUENT_ACCESS"
 enable_deletion_protection = false
 table_read_capacity_unit = 90
