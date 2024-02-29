@@ -27,7 +27,7 @@ variable "table_hash_key" {
   description = "This will be hash key for dynamoDB table"
   type = string
   validation {
-    condition     = lower(var.table_hash_key) == var.table_hash_key && lenght(var.table_hash_key) != 0
+    condition     = lower(var.table_hash_key) == var.table_hash_key && length(var.table_hash_key) != 0
     error_message = "table_hash_key should be in lower case and should be defined"
   }
 }
@@ -36,7 +36,7 @@ variable "table_range_key" {
   description = "This will be range key for dynamoDB table"
   type    = string
   validation {
-    condition     = lower(var.table_range_key) == var.table_range_key && lenght(var.table_range_key) != 0
+    condition     = lower(var.table_range_key) == var.table_range_key && length(var.table_range_key) != 0
     error_message = "table_range_key should be in lower case and should be defined"
 }
 }
@@ -48,7 +48,7 @@ variable "attributes" {
     type = string
   }))
   validation {
-    condition     =  lenght(var.attributes) > 2
+    condition     =  length(var.attributes) > 2
     error_message = "Attribute should have hash key and range key at minimum"
 }
   # default = {
