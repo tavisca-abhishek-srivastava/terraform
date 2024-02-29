@@ -23,6 +23,7 @@ gsi_indices = {
     "product_name" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" },
     "product_desc" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" },
     "age"          = { write_capacity = 65, read_capacity = 65, range_key = "user_id" },
+    "product_id" = { write_capacity = 60, read_capacity = 60, range_key = "user_id" },
   }
   lsi_indices = { 
    "by_age" = {range_key = "age"},
