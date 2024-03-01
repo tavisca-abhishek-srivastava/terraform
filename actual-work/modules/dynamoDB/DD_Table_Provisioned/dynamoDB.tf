@@ -2,10 +2,18 @@
 #                                                                                #
 #                                                                                #
 #--------------------------------------------------------------------------------#
-module "nrt_dd_kms" {
+
+# This module will take user input and will create CMK which will be used by DynamoDB module
+
+module "dd_cmk" {
   source = "../../KMS"
   kms_alias = "alias/nrt_encryption_key"
+  delete_after_days = var.delete_after_days
+  description = var.description
+  key_policy_map = var.key_policy_map
 }
+
+# This module is for DynamoDB
 
 resource "aws_dynamodb_table" "dd_table_provisioned" {
   name                        = var.table_name
@@ -29,7 +37,7 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   }
   server_side_encryption {
     enabled     = true # true -> "Managed by customer" , false -> "Managed by DynamoDB "
-    kms_key_arn = module.nrt_dd_kms.mrk_cms_arn
+    kms_key_arn = module.dd_cmk.mrk_cms_arn
   }
   # runtime Generation of GSIs from user input
 
@@ -77,3 +85,4 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   }
 
 }
+
