@@ -16,6 +16,7 @@ variable "table_range_key" {
 }
 }
 
+
 variable "attributes" {
   description = "These will be attributes for dynamoDB table"
   type = map(object({
