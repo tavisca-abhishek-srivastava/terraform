@@ -25,7 +25,7 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   read_capacity               = var.table_read_capacity_unit
   write_capacity              = var.table_write_capacity_unit
   dynamic "ttl" {
-    for_each = (var.ttl_enabled == false ? 0: 1)
+    for_each = (var.ttl_enabled == false ? []: [1])
     content {
       enabled = var.ttl_enabled
       attribute_name = (var.ttl_enabled == false ? null: var.attribute_for_ttl)
