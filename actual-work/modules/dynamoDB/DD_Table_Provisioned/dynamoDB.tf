@@ -26,7 +26,7 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   write_capacity              = var.table_write_capacity_unit
   ttl {
     enabled = var.ttl_enabled
-    attribute_name = (var.ttl_enabled == false ? null:var.attribute_for_ttl)
+    attribute_name = (var.ttl_enabled == false ? null: var.attribute_for_ttl)
   }
   stream_enabled = var.is_stream_enabled
   stream_view_type = (var.is_stream_enabled == false ? null: var.stream_view_type)
