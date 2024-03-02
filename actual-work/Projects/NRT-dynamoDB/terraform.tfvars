@@ -11,7 +11,7 @@ table_read_target_percent = 80
 table_write_target_percent = 80
 table_autoscaling_max_write_capacity_unit = 3000
 table_autoscaling_min_write_capacity_unit = 500
-ttl_enabled = false
+ttl_enabled = true 
 attribute_for_ttl = "otpttl"
 attributes = {
     "attr1" = { name = "user_id", type = "S" },
