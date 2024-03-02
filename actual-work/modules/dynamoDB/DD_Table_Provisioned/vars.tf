@@ -190,7 +190,7 @@ variable "description" {
   default = "key_for_dynamoDB"
 }
 variable "key_policy_map" {
-  type = map(string)
+  type = any
   default = {
     "Id" : "key-consolepolicy-3",
     "Version" : "2012-10-17",
