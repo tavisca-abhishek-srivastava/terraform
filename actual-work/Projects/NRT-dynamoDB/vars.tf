@@ -1,15 +1,15 @@
-variable "ttl_enabled" {
-  type = bool
-  #default = false
-}
-variable "attribute_for_ttl" {
-type = string
-#default = "timetolive"
-validation {
-  condition = length(var.attribute_for_ttl) >1 && length(var.attribute_for_ttl) < 255
-  error_message = "ttl attribute name must be between 1 and 255 characters"
-}
-}
+# variable "ttl_enabled" {
+#   type = bool
+#   #default = false
+# }
+# variable "attribute_for_ttl" {
+# type = string
+# #default = "timetolive"
+# validation {
+#   condition = length(var.attribute_for_ttl) >1 && length(var.attribute_for_ttl) < 255
+#   error_message = "ttl attribute name must be between 1 and 255 characters"
+# }
+# }
 
 #########
 variable "table_hash_key" {
