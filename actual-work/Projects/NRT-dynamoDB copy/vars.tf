@@ -1,28 +1,17 @@
-# Optional variable (need not to define in caller ) and value is set to default
-variable "is_stream_enabled" {
-  description = "This field is to enable streaming"
-  type = bool
-  default = false
-}
-variable "stream_view_type" {
-  type = string
-  default = "NEW_IMAGE"
-}
 variable "ttl_enabled" {
   type = bool
-  default = false
+  #default = false
 }
 variable "attribute_for_ttl" {
 type = string
-default = "timetolive"
+#default = "timetolive"
 validation {
   condition = length(var.attribute_for_ttl) >1 && length(var.attribute_for_ttl) < 255
   error_message = "ttl attribute name must be between 1 and 255 characters"
 }
 }
 
-###########################################################################################
-# Mandatory variables
+#########
 variable "table_hash_key" {
   description = "This will be hash key for dynamoDB table"
   type = string
@@ -40,6 +29,7 @@ variable "table_range_key" {
     error_message = "table_range_key should be in lower case and should be defined"
 }
 }
+
 
 variable "attributes" {
   description = "These will be attributes for dynamoDB table"
@@ -166,112 +156,5 @@ variable "table_read_target_percent" {
   validation {
     condition     = var.table_read_target_percent > 0
     error_message = "table_read_target_percent should  be > 0"
-  }
-}
-
-########################################################################################################
-##                                                                                                    ##
-##                     KMS module related variables                                                   ##
-##                                                                                                    ##
-########################################################################################################
-
-variable "kms_alias" {
-  type = string
-  default = "alias/nrt_encryption_key-dest"
-}
-
-variable "delete_after_days" {
-  type = number
-  default = 10
-}
-
-variable "description" {
-  type = string
-  default = "key_for_dynamoDB-dest"
-}
-variable "key_policy_map" {
-  type = any
-  default = {
-    "Id" : "key-consolepolicy-3",
-    "Version" : "2012-10-17",
-    "Statement" : [
-      {
-        "Sid" : "Enable IAM User Permissions",
-        "Effect" : "Allow",
-        "Principal" : {
-          "AWS" : "arn:aws:iam::928814396842:root"
-        },
-        "Action" : "kms:*",
-        "Resource" : "*"
-      },
-      {
-        "Sid" : "Allow access for Key Administrators",
-        "Effect" : "Allow",
-        "Principal" : {
-          "AWS" : [
-            "arn:aws:iam::928814396842:role/adfs-devops",
-            "arn:aws:iam::928814396842:role/adfs-governance"
-          ]
-        },
-        "Action" : [
-          "kms:Create*",
-          "kms:Describe*",
-          "kms:Enable*",
-          "kms:List*",
-          "kms:Put*",
-          "kms:Update*",
-          "kms:Revoke*",
-          "kms:Disable*",
-          "kms:Get*",
-          "kms:Delete*",
-          "kms:TagResource",
-          "kms:UntagResource",
-          "kms:ScheduleKeyDeletion",
-          "kms:CancelKeyDeletion"
-        ],
-        "Resource" : "*"
-      },
-      {
-        "Sid" : "Allow use of the key",
-        "Effect" : "Allow",
-        "Principal" : {
-          "AWS" : [
-            "arn:aws:iam::928814396842:role/adfs-devops",
-            "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka",
-            "arn:aws:iam::928814396842:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_Travel-NonProd-DevOps_58cf51ef9bc19c74"
-          ]
-        },
-        "Action" : [
-          "kms:Encrypt",
-          "kms:Decrypt",
-          "kms:ReEncrypt*",
-          "kms:GenerateDataKey*",
-          "kms:DescribeKey"
-        ],
-        "Resource" : "*"
-      },
-      {
-        "Sid" : "Allow attachment of persistent resources",
-        "Effect" : "Allow",
-        "Principal" : {
-          "AWS" : [
-            "arn:aws:iam::928814396842:role/adfs-devops",
-            "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka",
-            "arn:aws:iam::928814396842:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_Travel-NonProd-DevOps_58cf51ef9bc19c74"
-          ]
-        },
-        "Action" : [
-          "kms:CreateGrant",
-          "kms:ListGrants",
-          "kms:RevokeGrant"
-        ],
-        "Resource" : "*",
-        "Condition" : {
-          "Bool" : {
-            "kms:GrantIsForAWSResource" : "true"
-          }
-        }
-      }
-    ]
   }
 }
