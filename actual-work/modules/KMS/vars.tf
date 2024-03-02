@@ -10,6 +10,6 @@ variable "description" {
   type = string
 }
 variable "key_policy_map" {
-  type = map(string)
+  type = any
  
 }
