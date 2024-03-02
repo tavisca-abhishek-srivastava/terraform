@@ -10,7 +10,7 @@ variable "stream_view_type" {
 }
 variable "ttl_enabled" {
   type = bool
-  default = flase
+  default = false
 }
 variable "attribute_for_ttl" {
 type = string
