@@ -89,4 +89,3 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   }
 
 }
-

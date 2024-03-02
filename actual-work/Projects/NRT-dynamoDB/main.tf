@@ -16,6 +16,8 @@ module "nrt-dynamoDB" {
     attributes = var.attributes
     gsi_indices = var.gsi_indices
     lsi_indices = var.lsi_indices
+    ttl_enabled = var.ttl_enabled
+    attribute_for_ttl = var.attribute_for_ttl
 
     
 }
