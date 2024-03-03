@@ -26,9 +26,10 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   write_capacity              = var.table_write_capacity_unit
   import_table {
     input_format = "DYNAMODB_JSON"
-    input_compression_type = "NONE"
+    input_compression_type = "GZIP"
     s3_bucket_source {
-      bucket = "dynamodb-export-bnr/AWSDynamoDB/01709454326412-6fb4bf52/data/l2anfo7m6a2l5mcehw23bceolm.json.gz"
+      bucket = "dynamodb-export-bnr"
+      key_prefix = "AWSDynamoDB/01709454326412-6fb4bf52/data/l2anfo7m6a2l5mcehw23bceolm.json.gz"
     }
   }
   # dynamic "ttl" {
