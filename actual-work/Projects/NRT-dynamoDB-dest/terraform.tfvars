@@ -1,7 +1,7 @@
 table_hash_key = "user_id"
 table_range_key = "product_id"
 table_name = "DynamoDB-GSI-LSI-dest"
-table_class = "STANDARD_INFREQUENT_ACCESS"
+table_class = "STANDARD"
 enable_deletion_protection = false
 table_read_capacity_unit = 90
 table_write_capacity_unit = 50

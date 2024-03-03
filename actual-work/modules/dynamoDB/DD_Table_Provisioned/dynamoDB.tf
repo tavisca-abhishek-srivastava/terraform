@@ -28,7 +28,7 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
     input_format = "DYNAMODB_JSON"
     input_compression_type = "NONE"
     s3_bucket_source {
-      bucket = "dynamodb-export-bnr"
+      bucket = "s3://dynamodb-export-bnr/AWSDynamoDB/01709454326412-6fb4bf52/data/l2anfo7m6a2l5mcehw23bceolm.json.gz"
     }
   }
   # dynamic "ttl" {
