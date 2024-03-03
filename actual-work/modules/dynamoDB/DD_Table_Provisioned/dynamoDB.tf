@@ -7,7 +7,7 @@
 
 module "dd_cmk" {
   source = "../../KMS"
-  kms_alias = "alias/nrt_encryption_key"
+  kms_alias = var.kms_alias
   delete_after_days = var.delete_after_days
   description = var.description
   key_policy_map = var.key_policy_map
