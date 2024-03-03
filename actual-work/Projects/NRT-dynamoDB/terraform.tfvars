@@ -32,6 +32,7 @@ gsi_indices = {
   }
   
   kms_alias = "alias/nrt_encryption_key"
+  delete_after_days = 10
   key_description = "key_for_dynamoDB"
   key_policy_map = {
     "Id" : "key-consolepolicy-3",

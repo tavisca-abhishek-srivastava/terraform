@@ -21,7 +21,8 @@ module "nrt-dynamoDB" {
     kms_alias = var.kms_alias
     key_policy_map = var.key_policy_map
     key_description = var.key_description
-      
+    delete_after_days = var.delete_after_days
+
 }
     
     
