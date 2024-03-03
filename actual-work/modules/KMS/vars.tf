@@ -6,7 +6,7 @@ variable "delete_after_days" {
   type = number
 }
 
-variable "description" {
+variable "key_description" {
   type = string
 }
 variable "key_policy_map" {
