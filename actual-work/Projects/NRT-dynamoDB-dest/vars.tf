@@ -11,7 +11,7 @@ validation {
 }
 }
 
-#########
+###################################################
 variable "table_hash_key" {
   description = "This will be hash key for dynamoDB table"
   type = string
