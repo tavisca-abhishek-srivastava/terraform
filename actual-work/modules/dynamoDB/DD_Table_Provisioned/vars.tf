@@ -1,31 +1,31 @@
 # Optional variable (need not to define in caller ) and value is set to default
 variable "is_stream_enabled" {
   description = "This field is to enable streaming"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 variable "stream_view_type" {
-  type = string
+  type    = string
   default = "NEW_IMAGE"
 }
 variable "ttl_enabled" {
-  type = bool
+  type    = bool
   default = false
 }
 variable "attribute_for_ttl" {
-type = string
-default = "timetolive"
-validation {
-  condition = length(var.attribute_for_ttl) >1 && length(var.attribute_for_ttl) < 255
-  error_message = "ttl attribute name must be between 1 and 255 characters"
-}
+  type    = string
+  default = "timetolive"
+  validation {
+    condition     = length(var.attribute_for_ttl) > 1 && length(var.attribute_for_ttl) < 255
+    error_message = "ttl attribute name must be between 1 and 255 characters"
+  }
 }
 
 ###########################################################################################
 # Mandatory variables
 variable "table_hash_key" {
   description = "This will be hash key for dynamoDB table"
-  type = string
+  type        = string
   validation {
     condition     = lower(var.table_hash_key) == var.table_hash_key && length(var.table_hash_key) != 0
     error_message = "table_hash_key should be in lower case and should be defined"
@@ -34,11 +34,11 @@ variable "table_hash_key" {
 
 variable "table_range_key" {
   description = "This will be range key for dynamoDB table"
-  type    = string
+  type        = string
   validation {
     condition     = lower(var.table_range_key) == var.table_range_key && length(var.table_range_key) != 0
     error_message = "table_range_key should be in lower case and should be defined"
-}
+  }
 }
 
 variable "attributes" {
@@ -48,9 +48,9 @@ variable "attributes" {
     type = string
   }))
   validation {
-    condition     =  length(var.attributes) > 2
+    condition     = length(var.attributes) > 2
     error_message = "Attribute should have hash key and range key at minimum"
-}
+  }
   # default = {
   #   "attr1" = { name = "user_id", type = "S" },
   #   "attr2" = { name = "product_id", type = "S" },
@@ -102,7 +102,7 @@ variable "enable_deletion_protection" {
 variable "table_name" {
   type = string
   validation {
-    condition     = length(var.table_name) !=0
+    condition     = length(var.table_name) != 0
     error_message = "table_name should not be empty"
   }
 }
@@ -147,12 +147,10 @@ variable "table_autoscaling_min_write_capacity_unit" {
     condition     = var.table_autoscaling_min_write_capacity_unit > 0
     error_message = "table_autoscaling_min_write_capacity_unit should  be > 0"
   }
-
 }
 variable "table_autoscaling_max_write_capacity_unit" {
   type = number
 }
-
 
 variable "table_write_target_percent" {
   type = number
@@ -176,17 +174,17 @@ variable "table_read_target_percent" {
 ########################################################################################################
 
 variable "kms_alias" {
-  type = string
-  default = "alias/nrt_encryption_key_dest"
+  type    = string
+  default = "alias/nrt_encryption_key"
 }
 
 variable "delete_after_days" {
-  type = number
+  type    = number
   default = 10
 }
 
-variable "description" {
-  type = string
+variable "key_description" {
+  type    = string
   default = "key_for_dynamoDB-dest"
 }
 variable "key_policy_map" {
@@ -274,4 +272,27 @@ variable "key_policy_map" {
       }
     ]
   }
+}
+
+########################################################################################################
+##                                                                                                    ##
+##                     table data import from source dynamoDB table                                   ##
+##                                                                                                    ##
+########################################################################################################
+
+variable "is_data_imported" {
+type = bool
+default = false
+}
+
+variable "bucket_name_to_import_data" {
+  type = string
+  description = "while exporting data from source bucket, make sure to select DYNAMODB_JSON and compression type as GZIP"
+  default = "abc"
+}
+
+variable "import_data_key_prefix" {
+  type = string
+  description = "path of .gz file in the S3"
+  default = "abc"
 }

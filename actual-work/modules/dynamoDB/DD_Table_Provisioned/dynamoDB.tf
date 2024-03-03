@@ -6,11 +6,11 @@
 # This module will take user input and will create CMK which will be used by DynamoDB module
 
 module "dd_cmk" {
-  source = "../../KMS"
-  kms_alias = var.kms_alias
+  source            = "../../KMS"
+  kms_alias         = var.kms_alias
   delete_after_days = var.delete_after_days
-  description = var.description
-  key_policy_map = var.key_policy_map
+  key_description   = var.key_description
+  key_policy_map    = var.key_policy_map
 }
 
 # This module is for DynamoDB
@@ -24,12 +24,16 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   deletion_protection_enabled = var.enable_deletion_protection
   read_capacity               = var.table_read_capacity_unit
   write_capacity              = var.table_write_capacity_unit
-  import_table {
-    input_format = "DYNAMODB_JSON"
-    input_compression_type = "GZIP"
-    s3_bucket_source {
-      bucket = "dynamodb-export-bnr"
-      key_prefix = "AWSDynamoDB/01709454326412-6fb4bf52/data/l2anfo7m6a2l5mcehw23bceolm.json.gz"
+  
+  dynamic "import_table" {
+    for_each = (var.is_data_imported == false ? [] : [1])
+    content {
+      input_format           = "DYNAMODB_JSON"
+      input_compression_type = "GZIP"
+      s3_bucket_source {
+        bucket     = var.bucket_name_to_import_data #"dynamodb-export-bnr"
+        key_prefix = var.import_data_key_prefix   #"AWSDynamoDB/01709454326412-6fb4bf52/data/l2anfo7m6a2l5mcehw23bceolm.json.gz"
+      }
     }
   }
   # dynamic "ttl" {
@@ -39,13 +43,13 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   #     attribute_name = (var.ttl_enabled == false ? null: var.attribute_for_ttl)
   #   }   
   # }
-  
+
   ttl {
-    enabled = var.ttl_enabled
+    enabled        = var.ttl_enabled
     attribute_name = var.attribute_for_ttl
   }
-  stream_enabled = var.is_stream_enabled
-  stream_view_type = (var.is_stream_enabled == false ? null: var.stream_view_type)
+  stream_enabled   = var.is_stream_enabled
+  stream_view_type = (var.is_stream_enabled == false ? null : var.stream_view_type)
 
 
   point_in_time_recovery {

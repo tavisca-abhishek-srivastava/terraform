@@ -18,6 +18,10 @@ module "nrt-dynamoDB" {
     lsi_indices = var.lsi_indices
     ttl_enabled = var.ttl_enabled
     attribute_for_ttl = var.attribute_for_ttl
-
-    
+    kms_alias = var.kms_alias
+    key_policy_map = var.key_policy_map
+    key_description = var.key_description
+      
 }
+    
+    
