@@ -177,7 +177,7 @@ variable "table_read_target_percent" {
 
 variable "kms_alias" {
   type = string
-  default = "alias/nrt_encryption_key-dest"
+  default = "alias/nrt_encryption_key_dest"
 }
 
 variable "delete_after_days" {
