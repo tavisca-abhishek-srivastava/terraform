@@ -91,8 +91,6 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
       type = attribute.value.type
     }
   }
-  # tags = var.fixed_tags 
-
   tags = {
     DataClassification : "restricted"
     Environment : "poc"
