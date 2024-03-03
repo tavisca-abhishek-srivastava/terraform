@@ -26,6 +26,7 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   write_capacity              = var.table_write_capacity_unit
   import_table {
     input_format = "DYNAMODB_JSON"
+    input_compression_type = "NONE"
     s3_bucket_source {
       bucket = "dynamodb-export-bnr"
     }
