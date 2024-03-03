@@ -24,7 +24,7 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   deletion_protection_enabled = var.enable_deletion_protection
   read_capacity               = var.table_read_capacity_unit
   write_capacity              = var.table_write_capacity_unit
-  
+
   dynamic "import_table" {
     for_each = (var.is_data_imported == false ? [] : [1])
     content {
@@ -65,8 +65,8 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
     for_each = var.gsi_indices
     content {
       name            = global_secondary_index.key
-      write_capacity  = global_secondary_index.value.write_capacity
-      read_capacity   = global_secondary_index.value.read_capacity
+      # write_capacity  = global_secondary_index.value.write_capacity
+      # read_capacity   = global_secondary_index.value.read_capacity
       range_key       = global_secondary_index.value.range_key
       hash_key        = global_secondary_index.key
       projection_type = "ALL"
