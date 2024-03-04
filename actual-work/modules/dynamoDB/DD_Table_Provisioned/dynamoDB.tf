@@ -95,6 +95,9 @@ lifecycle {
   ignore_changes = [ read_capacity,write_capacity,import_table ]
 }
 
+timeouts {
+  create = "360m"  
+}
 
 
   tags = {
