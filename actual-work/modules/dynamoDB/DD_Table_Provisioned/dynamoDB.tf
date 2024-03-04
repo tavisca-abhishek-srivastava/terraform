@@ -92,7 +92,7 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
     }
   }
 lifecycle {
-  ignore_changes = [ read_capacity,write_capacity ]
+  ignore_changes = [ read_capacity,write_capacity,import_table ]
 }
 
 
