@@ -91,6 +91,12 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
       type = attribute.value.type
     }
   }
+lifecycle {
+  ignore_changes = [ read_capacity,write_capacity ]
+}
+
+
+
   tags = {
     DataClassification : "restricted"
     Environment : "poc"
