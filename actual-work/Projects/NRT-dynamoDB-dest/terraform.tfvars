@@ -117,6 +117,6 @@ gsi_indices = {
       }
     ]
   }
-is_data_imported = true
+is_data_imported = false
 bucket_name_to_import_data = "dynamodb-export-bnr"
 import_data_key_prefix = "AWSDynamoDB/01709489228626-8f8ba787/data"
