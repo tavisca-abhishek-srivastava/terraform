@@ -31,9 +31,9 @@ gsi_indices = {
    "by_age" = {range_key = "age"},
   }
   
-  kms_alias = "alias/nrt_encryption_key-dest"
+  kms_alias = "alias/nrt_encryption_key-import"
   delete_after_days = 10
-  key_description = "key_for_dynamoDB-dest"
+  key_description = "key_for_dynamoDB-import"
   key_policy_map = {
     "Id" : "key-consolepolicy-3",
     "Version" : "2012-10-17",
