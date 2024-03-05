@@ -150,7 +150,7 @@ variable "table_read_target_percent" {
 
 variable "encryption_key_details" {
   type = object({
-    key_type = Optional(string,"dynamoDB_managed")  
+    key_type = optional(string,"dynamoDB_managed")  
   })
   description = "for key_type possible values are 'dynamoDB_managed' , 'aws_managed', 'customer_managed' "
   
