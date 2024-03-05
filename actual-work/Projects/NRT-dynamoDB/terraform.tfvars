@@ -118,5 +118,5 @@ gsi_indices = {
 #     ]
 #   }
 encryption_key_details = {
-  key_type = "aws_managed"
+  key_type = "dynamoDB_managed"
 }
