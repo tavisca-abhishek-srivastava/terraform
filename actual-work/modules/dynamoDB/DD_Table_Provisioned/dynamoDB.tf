@@ -43,7 +43,8 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   }
   server_side_encryption {
     enabled     = (var.encryption_key_details.key_type == "dynamoDB_managed" ? false : true) # true -> "customer_managed/aws_managed" , false -> "dynamoDB_managed"
-    kms_key_arn = (var.encryption_key_details.key_type == "aws_managed" ? data.aws_kms_alias.aws_managed_key_for_dd.arn : (module.dd_cmk[*].mrk_cms_arn == [] ? "" : module.dd_cmk[*].mrk_cms_arn ))
+    #kms_key_arn = (var.encryption_key_details.key_type == "aws_managed" ? data.aws_kms_alias.aws_managed_key_for_dd.arn : (module.dd_cmk[*].mrk_cms_arn == [] ? "" : module.dd_cmk[*].mrk_cms_arn ))
+    kms_key_arn = (var.encryption_key_details.key_type == "aws_managed" ? data.aws_kms_alias.aws_managed_key_for_dd.arn : module.dd_cmk[*].mrk_cms_arn )
     
   }
   
