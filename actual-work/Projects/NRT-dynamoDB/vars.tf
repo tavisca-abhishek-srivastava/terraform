@@ -257,23 +257,3 @@ variable "encryption_key_details" {
 #   # }
 # }
 
-########################################################################################################
-##                                                                                                    ##
-##                     table data import from source dynamoDB table                                   ##
-##                                                                                                    ##
-########################################################################################################
-
-# variable "is_data_imported" {
-# type = bool
-# description = "enter true if you want to import data from another DynamoDB table else false"
-# }
-
-# variable "bucket_name_to_import_data" {
-#   type = string
-#   description = "while exporting data from source bucket, make sure to select DYNAMODB_JSON and compression type as GZIP"
-# }
-
-# variable "import_data_key_prefix" {
-#   type = string
-#   description = "path of .gz file in the S3"
-# }

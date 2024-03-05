@@ -18,13 +18,14 @@ module "nrt-dynamoDB" {
     lsi_indices = var.lsi_indices
     ttl_enabled = var.ttl_enabled
     attribute_for_ttl = var.attribute_for_ttl
-    kms_alias = var.kms_alias
-    key_policy_map = var.key_policy_map
-    key_description = var.key_description
-    delete_after_days = var.delete_after_days
+    # kms_alias = var.kms_alias
+    # key_policy_map = var.key_policy_map
+    # key_description = var.key_description
+    # delete_after_days = var.delete_after_days
     is_data_imported = var.is_data_imported
     bucket_name_to_import_data = var.bucket_name_to_import_data
     import_data_key_prefix = var.import_data_key_prefix
+    encryption_key_details = var.encryption_key_details
 
     
 }

@@ -171,8 +171,6 @@ variable "encryption_key_details" {
   type = object({
     key_type = optional(string,"dynamoDB_managed")  
   })
- 
-  
 }
 
 variable "kms_alias" {
