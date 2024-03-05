@@ -15,10 +15,9 @@ module "dd_cmk" {
 }
 
 data "aws_kms_alias" "customer_managed_key_for_dd" {
+  depends_on = [ module.dd_cmk ]
   name = var.kms_alias
 }
-
-
 
 # This module is for DynamoDB
 
