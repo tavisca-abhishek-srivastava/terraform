@@ -14,7 +14,7 @@ module "dd_cmk" {
 }
 
 data "aws_kms_alias" "aws_managed_key_for_dd" {
-  name = "aws/dynamodb"
+  name = "alias/aws/dynamodb"
 }
 
 # This module is for DynamoDB
