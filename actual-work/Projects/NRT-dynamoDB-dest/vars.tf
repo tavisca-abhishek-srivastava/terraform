@@ -56,12 +56,7 @@ variable "gsi_indices" {
     range_key      = string
 
   }))
-  # default = {
-  #   # in key-value pair, key will be GSI hash_key
-  #   "product_name" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" },
-  #   "product_desc" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" },
-  #   "age"          = { write_capacity = 65, read_capacity = 65, range_key = "user_id" },
-  # }
+
 }
 
 variable "lsi_indices" {
@@ -69,17 +64,9 @@ variable "lsi_indices" {
     range_key = string
 
   }))
-  # default = {
-  #   # in key-value pair, key will be LSI range_key
-  #   "by_age" = { range_key = "age" },
-  # }
+
 }
 
-
-# variable "kms_key_arn" {
-#   type    = string
-#   # default = "arn:aws:kms:us-east-1:928814396842:key/bb8d50d3-6d96-4b26-8e3e-eb9e3026be18"
-# }
 
 variable "enable_deletion_protection" {
   type = bool

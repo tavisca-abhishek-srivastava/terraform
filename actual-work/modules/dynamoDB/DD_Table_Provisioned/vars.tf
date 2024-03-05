@@ -51,13 +51,6 @@ variable "attributes" {
     condition     = length(var.attributes) > 2
     error_message = "Attribute should have hash key and range key at minimum"
   }
-  # default = {
-  #   "attr1" = { name = "user_id", type = "S" },
-  #   "attr2" = { name = "product_id", type = "S" },
-  #   "attr3" = { name = "product_name", type = "S" },
-  #   "attr4" = { name = "product_desc", type = "S" },
-  #   "attr5" = { name = "age", type = "N" },
-  # }
 }
 variable "gsi_indices" {
   type = map(object({
@@ -66,12 +59,6 @@ variable "gsi_indices" {
     range_key      = string
 
   }))
-  # default = {
-  #   # in key-value pair, key will be GSI hash_key
-  #   "product_name" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" },
-  #   "product_desc" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" },
-  #   "age"          = { write_capacity = 65, read_capacity = 65, range_key = "user_id" },
-  # }
 }
 
 variable "lsi_indices" {
@@ -79,17 +66,7 @@ variable "lsi_indices" {
     range_key = string
 
   }))
-  # default = {
-  #   # in key-value pair, key will be LSI range_key
-  #   "by_age" = { range_key = "age" },
-  # }
 }
-
-
-# variable "kms_key_arn" {
-#   type    = string
-#   # default = "arn:aws:kms:us-east-1:928814396842:key/bb8d50d3-6d96-4b26-8e3e-eb9e3026be18"
-# }
 
 variable "enable_deletion_protection" {
   type = bool
@@ -173,9 +150,18 @@ variable "table_read_target_percent" {
 ##                                                                                                    ##
 ########################################################################################################
 
+variable "encryption_key_details" {
+  type = object({
+    key_type = Optional(string,"dynamoDB_managed")  
+  })
+  description = "for key_type possible values are 'dynamoDB_managed' , 'aws_managed', 'customer_managed' "
+  
+}
+
 variable "kms_alias" {
   type    = string
   default = "alias/nrt_encryption_key"
+  description = "define in the form of 'alias/unique_key_name'"
 }
 
 variable "delete_after_days" {
@@ -283,6 +269,7 @@ variable "key_policy_map" {
 variable "is_data_imported" {
 type = bool
 default = false
+description = "enable this if you want to import data from another dynamoDB table using s3"
 }
 
 variable "bucket_name_to_import_data" {

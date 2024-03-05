@@ -25,25 +25,6 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   read_capacity               = var.table_read_capacity_unit
   write_capacity              = var.table_write_capacity_unit
 
-  dynamic "import_table" {
-    for_each = (var.is_data_imported == false ? [] : [1])
-    content {
-      input_format           = "DYNAMODB_JSON"
-      input_compression_type = "GZIP"
-      s3_bucket_source {
-        bucket     = var.bucket_name_to_import_data #"dynamodb-export-bnr"
-        key_prefix = var.import_data_key_prefix   #"AWSDynamoDB/01709454326412-6fb4bf52/data/l2anfo7m6a2l5mcehw23bceolm.json.gz"
-      }
-    }
-  }
-  # dynamic "ttl" {
-  #   for_each = (var.ttl_enabled == false ? []: [1])
-  #   content {
-  #     enabled = var.ttl_enabled
-  #     attribute_name = (var.ttl_enabled == false ? null: var.attribute_for_ttl)
-  #   }   
-  # }
-
   ttl {
     enabled        = var.ttl_enabled
     attribute_name = var.attribute_for_ttl
@@ -56,9 +37,10 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
     enabled = true
   }
   server_side_encryption {
-    enabled     = true # true -> "Managed by customer" , false -> "Managed by DynamoDB "
+    enabled     = (var.encryption_key_details.key_type == "dynamoDB_managed" ? false : true) # true -> "customer_managed/aws_managed" , false -> "dynamoDB_managed"
     kms_key_arn = module.dd_cmk.mrk_cms_arn
   }
+  
   # runtime Generation of GSIs from user input
 
   dynamic "global_secondary_index" {
@@ -91,6 +73,19 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
       type = attribute.value.type
     }
   }
+
+dynamic "import_table" {
+    for_each = (var.is_data_imported == false ? [] : [1])
+    content {
+      input_format           = "DYNAMODB_JSON"
+      input_compression_type = "GZIP"
+      s3_bucket_source {
+        bucket     = var.bucket_name_to_import_data #"dynamodb-export-bnr"
+        key_prefix = var.import_data_key_prefix   #"AWSDynamoDB/01709454326412-6fb4bf52/data/l2anfo7m6a2l5mcehw23bceolm.json.gz"
+      }
+    }
+  }
+
 lifecycle {
   ignore_changes = [ read_capacity,write_capacity,import_table,local_secondary_index ]
 }
@@ -98,7 +93,6 @@ lifecycle {
 timeouts {
   create = "360m"  
 }
-
 
   tags = {
     DataClassification : "restricted"
