@@ -118,7 +118,7 @@ gsi_indices = {
   #   ]
   # }
   encryption_key_details = {
-  key_type = "customer_managed"
+  key_type = "aws_managed"
 }
 
 is_data_imported = false
