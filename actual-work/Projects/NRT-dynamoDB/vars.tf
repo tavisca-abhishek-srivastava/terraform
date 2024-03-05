@@ -41,13 +41,7 @@ variable "attributes" {
     condition     =  length(var.attributes) > 2
     error_message = "Attribute should have hash key and range key at minimum"
 }
-  # default = {
-  #   "attr1" = { name = "user_id", type = "S" },
-  #   "attr2" = { name = "product_id", type = "S" },
-  #   "attr3" = { name = "product_name", type = "S" },
-  #   "attr4" = { name = "product_desc", type = "S" },
-  #   "attr5" = { name = "age", type = "N" },
-  # }
+
 }
 variable "gsi_indices" {
   type = map(object({
@@ -56,12 +50,7 @@ variable "gsi_indices" {
     range_key      = string
 
   }))
-  # default = {
-  #   # in key-value pair, key will be GSI hash_key
-  #   "product_name" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" },
-  #   "product_desc" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" },
-  #   "age"          = { write_capacity = 65, read_capacity = 65, range_key = "user_id" },
-  # }
+
 }
 
 variable "lsi_indices" {
@@ -74,12 +63,6 @@ variable "lsi_indices" {
   #   "by_age" = { range_key = "age" },
   # }
 }
-
-
-# variable "kms_key_arn" {
-#   type    = string
-#   # default = "arn:aws:kms:us-east-1:928814396842:key/bb8d50d3-6d96-4b26-8e3e-eb9e3026be18"
-# }
 
 variable "enable_deletion_protection" {
   type = bool
@@ -165,106 +148,114 @@ variable "table_read_target_percent" {
 ##                                                                                                    ##
 ########################################################################################################
 
-variable "kms_alias" {
-  type = string
-  #default = "alias/nrt_encryption_key"
+variable "encryption_key_details" {
+  type = object({
+    key_type = Optional(string,"dynamoDB_managed")  
+  })
+  description = "for key_type possible values are 'dynamoDB_managed' , 'aws_managed', 'customer_managed' "
+  
 }
 
-variable "delete_after_days" {
-  type = number
-  #default = 10
-}
+# variable "kms_alias" {
+#   type = string
+#   #default = "alias/nrt_encryption_key"
+# }
 
-variable "key_description" {
-  type = string
-  #default = "key_for_dynamoDB"
-}
-variable "key_policy_map" {
-  type = any
-  # default = {
-  #   "Id" : "key-consolepolicy-3",
-  #   "Version" : "2012-10-17",
-  #   "Statement" : [
-  #     {
-  #       "Sid" : "Enable IAM User Permissions",
-  #       "Effect" : "Allow",
-  #       "Principal" : {
-  #         "AWS" : "arn:aws:iam::928814396842:root"
-  #       },
-  #       "Action" : "kms:*",
-  #       "Resource" : "*"
-  #     },
-  #     {
-  #       "Sid" : "Allow access for Key Administrators",
-  #       "Effect" : "Allow",
-  #       "Principal" : {
-  #         "AWS" : [
-  #           "arn:aws:iam::928814396842:role/adfs-devops",
-  #           "arn:aws:iam::928814396842:role/adfs-governance"
-  #         ]
-  #       },
-  #       "Action" : [
-  #         "kms:Create*",
-  #         "kms:Describe*",
-  #         "kms:Enable*",
-  #         "kms:List*",
-  #         "kms:Put*",
-  #         "kms:Update*",
-  #         "kms:Revoke*",
-  #         "kms:Disable*",
-  #         "kms:Get*",
-  #         "kms:Delete*",
-  #         "kms:TagResource",
-  #         "kms:UntagResource",
-  #         "kms:ScheduleKeyDeletion",
-  #         "kms:CancelKeyDeletion"
-  #       ],
-  #       "Resource" : "*"
-  #     },
-  #     {
-  #       "Sid" : "Allow use of the key",
-  #       "Effect" : "Allow",
-  #       "Principal" : {
-  #         "AWS" : [
-  #           "arn:aws:iam::928814396842:role/adfs-devops",
-  #           "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka",
-  #           "arn:aws:iam::928814396842:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_Travel-NonProd-DevOps_58cf51ef9bc19c74"
-  #         ]
-  #       },
-  #       "Action" : [
-  #         "kms:Encrypt",
-  #         "kms:Decrypt",
-  #         "kms:ReEncrypt*",
-  #         "kms:GenerateDataKey*",
-  #         "kms:DescribeKey"
-  #       ],
-  #       "Resource" : "*"
-  #     },
-  #     {
-  #       "Sid" : "Allow attachment of persistent resources",
-  #       "Effect" : "Allow",
-  #       "Principal" : {
-  #         "AWS" : [
-  #           "arn:aws:iam::928814396842:role/adfs-devops",
-  #           "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka",
-  #           "arn:aws:iam::928814396842:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_Travel-NonProd-DevOps_58cf51ef9bc19c74"
-  #         ]
-  #       },
-  #       "Action" : [
-  #         "kms:CreateGrant",
-  #         "kms:ListGrants",
-  #         "kms:RevokeGrant"
-  #       ],
-  #       "Resource" : "*",
-  #       "Condition" : {
-  #         "Bool" : {
-  #           "kms:GrantIsForAWSResource" : "true"
-  #         }
-  #       }
-  #     }
-  #   ]
-  # }
-}
+# variable "delete_after_days" {
+#   type = number
+#   #default = 10
+# }
+
+# variable "key_description" {
+#   type = string
+#   #default = "key_for_dynamoDB"
+# }
+# variable "key_policy_map" {
+#   type = any
+#   # default = {
+#   #   "Id" : "key-consolepolicy-3",
+#   #   "Version" : "2012-10-17",
+#   #   "Statement" : [
+#   #     {
+#   #       "Sid" : "Enable IAM User Permissions",
+#   #       "Effect" : "Allow",
+#   #       "Principal" : {
+#   #         "AWS" : "arn:aws:iam::928814396842:root"
+#   #       },
+#   #       "Action" : "kms:*",
+#   #       "Resource" : "*"
+#   #     },
+#   #     {
+#   #       "Sid" : "Allow access for Key Administrators",
+#   #       "Effect" : "Allow",
+#   #       "Principal" : {
+#   #         "AWS" : [
+#   #           "arn:aws:iam::928814396842:role/adfs-devops",
+#   #           "arn:aws:iam::928814396842:role/adfs-governance"
+#   #         ]
+#   #       },
+#   #       "Action" : [
+#   #         "kms:Create*",
+#   #         "kms:Describe*",
+#   #         "kms:Enable*",
+#   #         "kms:List*",
+#   #         "kms:Put*",
+#   #         "kms:Update*",
+#   #         "kms:Revoke*",
+#   #         "kms:Disable*",
+#   #         "kms:Get*",
+#   #         "kms:Delete*",
+#   #         "kms:TagResource",
+#   #         "kms:UntagResource",
+#   #         "kms:ScheduleKeyDeletion",
+#   #         "kms:CancelKeyDeletion"
+#   #       ],
+#   #       "Resource" : "*"
+#   #     },
+#   #     {
+#   #       "Sid" : "Allow use of the key",
+#   #       "Effect" : "Allow",
+#   #       "Principal" : {
+#   #         "AWS" : [
+#   #           "arn:aws:iam::928814396842:role/adfs-devops",
+#   #           "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka",
+#   #           "arn:aws:iam::928814396842:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_Travel-NonProd-DevOps_58cf51ef9bc19c74"
+#   #         ]
+#   #       },
+#   #       "Action" : [
+#   #         "kms:Encrypt",
+#   #         "kms:Decrypt",
+#   #         "kms:ReEncrypt*",
+#   #         "kms:GenerateDataKey*",
+#   #         "kms:DescribeKey"
+#   #       ],
+#   #       "Resource" : "*"
+#   #     },
+#   #     {
+#   #       "Sid" : "Allow attachment of persistent resources",
+#   #       "Effect" : "Allow",
+#   #       "Principal" : {
+#   #         "AWS" : [
+#   #           "arn:aws:iam::928814396842:role/adfs-devops",
+#   #           "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka",
+#   #           "arn:aws:iam::928814396842:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_Travel-NonProd-DevOps_58cf51ef9bc19c74"
+#   #         ]
+#   #       },
+#   #       "Action" : [
+#   #         "kms:CreateGrant",
+#   #         "kms:ListGrants",
+#   #         "kms:RevokeGrant"
+#   #       ],
+#   #       "Resource" : "*",
+#   #       "Condition" : {
+#   #         "Bool" : {
+#   #           "kms:GrantIsForAWSResource" : "true"
+#   #         }
+#   #       }
+#   #     }
+#   #   ]
+#   # }
+# }
 
 ########################################################################################################
 ##                                                                                                    ##
