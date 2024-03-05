@@ -1,3 +1,8 @@
+
+variable "need_cmk" {
+  type = bool
+}
+
 variable "kms_alias" {
   type = string
 }
