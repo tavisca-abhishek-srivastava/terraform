@@ -50,7 +50,6 @@ variable "gsi_indices" {
     range_key      = string
 
   }))
-
 }
 
 variable "lsi_indices" {
@@ -58,10 +57,6 @@ variable "lsi_indices" {
     range_key = string
 
   }))
-  # default = {
-  #   # in key-value pair, key will be LSI range_key
-  #   "by_age" = { range_key = "age" },
-  # }
 }
 
 variable "enable_deletion_protection" {
