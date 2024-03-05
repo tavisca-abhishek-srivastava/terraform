@@ -10,7 +10,14 @@ validation {
   error_message = "ttl attribute name must be between 1 and 255 characters"
 }
 }
-
+variable "is_stream_enabled" {
+  description = "This field is to enable dyanmoDB streaming"
+  type        = bool
+}
+variable "stream_view_type" {
+  description = "This determines what information is written to the table's stream. Valid values are KEYS_ONLY, NEW_IMAGE, OLD_IMAGE, NEW_AND_OLD_IMAGES"
+  type    = string
+}
 ###################################################
 variable "table_hash_key" {
   description = "This will be hash key for dynamoDB table"

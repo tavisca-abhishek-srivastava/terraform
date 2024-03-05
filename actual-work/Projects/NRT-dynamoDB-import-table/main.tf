@@ -26,6 +26,8 @@ module "nrt-dynamoDB" {
     is_data_imported = var.is_data_imported
     bucket_name_to_import_data = var.bucket_name_to_import_data
     import_data_key_prefix = var.import_data_key_prefix
+    is_stream_enabled = var.is_stream_enabled
+    stream_view_type = var.stream_view_type
     
 
     
