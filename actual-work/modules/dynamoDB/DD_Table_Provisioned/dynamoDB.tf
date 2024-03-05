@@ -23,6 +23,7 @@ data "aws_kms_alias" "customer_managed_key_for_dd" {
 # This module is for DynamoDB
 
 resource "aws_dynamodb_table" "dd_table_provisioned" {
+  depends_on = [ module.dd_cmk ]
   name                        = var.table_name
   table_class                 = var.table_class
   billing_mode                = "PROVISIONED"
@@ -44,7 +45,7 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   }
   server_side_encryption {
     enabled = (var.encryption_key_details.key_type == "dynamoDB_managed" ? false : true)
-    kms_key_arn = var.kms_alias
+    kms_key_arn = data.aws_kms_alias.customer_managed_key_for_dd.arn
     
   }
   
