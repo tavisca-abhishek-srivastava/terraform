@@ -21,7 +21,7 @@ attributes = {
     "attr5" = { name = "age", type = "N" },
   }
 gsi_indices = {
-    # in key-value pair, key will be GSI hash_key
+    # in key-value pair, key will be GSI hash_key and same will be index name
     "product_name" = { write_capacity = 500, read_capacity = 200, range_key = "product_id" },
     "product_desc" = { write_capacity = 500, read_capacity = 200, range_key = "product_id" },
     "age"          = { write_capacity = 500, read_capacity = 200, range_key = "user_id" },
@@ -118,5 +118,5 @@ gsi_indices = {
 #     ]
 #   }
 encryption_key_details = {
-  key_type = "dynamoDB_managed"
+  key_type = "aws_managed"
 }
