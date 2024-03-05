@@ -29,6 +29,7 @@ gsi_indices = {
   }
   lsi_indices = { 
    "by_age" = {range_key = "age"},
+   "product_id" = {range_key = "product_id"},
   }
   
   kms_alias = "alias/nrt_encryption_key-import"
