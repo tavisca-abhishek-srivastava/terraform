@@ -11,7 +11,7 @@ module "dd_cmk" {
   delete_after_days = var.delete_after_days
   key_description   = var.key_description
   key_policy_map    = var.key_policy_map
-  need_cmk = (var.encryption_key_details == "customer_managed" ? true : false)
+  # need_cmk = (var.encryption_key_details == "customer_managed" ? true : false)
 }
 
 data "aws_kms_alias" "aws_managed_key_for_dd" {
