@@ -6,7 +6,6 @@
 # This module will take user input and will create CMK which will be used by DynamoDB module
 
 module "dd_cmk" {
-  count = (var.encryption_key_details.key_type == "customer_managed" ? 1 : 0)
   source            = "../../KMS"
   kms_alias         = var.kms_alias
   delete_after_days = var.delete_after_days
@@ -15,9 +14,11 @@ module "dd_cmk" {
   # need_cmk = (var.encryption_key_details.key_type == "customer_managed" ? true : false)
 }
 
-data "aws_kms_alias" "aws_managed_key_for_dd" {
-  name = "alias/aws/dynamodb"
+data "aws_kms_alias" "customer_managed_key_for_dd" {
+  name = var.kms_alias
 }
+
+
 
 # This module is for DynamoDB
 
@@ -42,9 +43,8 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
     enabled = true
   }
   server_side_encryption {
-    enabled     = (var.encryption_key_details.key_type == "dynamoDB_managed" ? false : true) # true -> "customer_managed/aws_managed" , false -> "dynamoDB_managed"
-    #kms_key_arn = (var.encryption_key_details.key_type == "aws_managed" ? data.aws_kms_alias.aws_managed_key_for_dd.arn : (module.dd_cmk[*].mrk_cms_arn == [] ? "" : module.dd_cmk[*].mrk_cms_arn ))
-    kms_key_arn = (var.encryption_key_details.key_type == "aws_managed" ? data.aws_kms_alias.aws_managed_key_for_dd.arn : module.dd_cmk[*].mrk_cms_arn )
+    enabled = (var.encryption_key_details.key_type == "dynamoDB_managed" ? false : true)
+    kms_key_arn = var.kms_alias
     
   }
   
