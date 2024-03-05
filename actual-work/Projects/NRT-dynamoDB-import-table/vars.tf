@@ -41,13 +41,7 @@ variable "attributes" {
     condition     =  length(var.attributes) > 2
     error_message = "Attribute should have hash key and range key at minimum"
 }
-  # default = {
-  #   "attr1" = { name = "user_id", type = "S" },
-  #   "attr2" = { name = "product_id", type = "S" },
-  #   "attr3" = { name = "product_name", type = "S" },
-  #   "attr4" = { name = "product_desc", type = "S" },
-  #   "attr5" = { name = "age", type = "N" },
-  # }
+
 }
 variable "gsi_indices" {
   type = map(object({
