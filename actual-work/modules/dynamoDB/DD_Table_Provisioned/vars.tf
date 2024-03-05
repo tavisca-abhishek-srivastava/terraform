@@ -1,21 +1,26 @@
+######################################################################################
 # Optional variable (need not to define in caller ) and value is set to default
+
 variable "is_stream_enabled" {
-  description = "This field is to enable streaming"
+  description = "This field is to enable dyanmoDB streaming"
   type        = bool
   default     = false
 }
 variable "stream_view_type" {
+  description = "This determines what information is written to the table's stream. Valid values are KEYS_ONLY, NEW_IMAGE, OLD_IMAGE, NEW_AND_OLD_IMAGES"
   type    = string
-  default = "NEW_IMAGE"
+  default = "NEW_IMAGE"  
 }
 variable "ttl_enabled" {
+  description = "Whether TTL is enabled Valid values 'true' or 'false'"
   type    = bool
-  default = false
+  default = false  
 }
 variable "attribute_for_ttl" {
+  description = "Name of the table attribute to store the TTL timestamp in"
   type    = string
   default = "timetolive"
-  validation {
+    validation {
     condition     = length(var.attribute_for_ttl) > 1 && length(var.attribute_for_ttl) < 255
     error_message = "ttl attribute name must be between 1 and 255 characters"
   }
@@ -42,7 +47,7 @@ variable "table_range_key" {
 }
 
 variable "attributes" {
-  description = "These will be attributes for dynamoDB table"
+  description = "These will be attributes for dynamoDB table including hash and range key"
   type = map(object({
     name = string
     type = string
@@ -53,6 +58,7 @@ variable "attributes" {
   }
 }
 variable "gsi_indices" {
+  description = "Map of GSI Index/s in key-value pair, key will be GSI hash_key and same will be index name"
   type = map(object({
     write_capacity = number
     read_capacity  = number
@@ -62,6 +68,7 @@ variable "gsi_indices" {
 }
 
 variable "lsi_indices" {
+  description = "Map of LSI Index in key-value pair, key will be LSI hash_key and same will be index name"
   type = map(object({
     range_key = string
 
@@ -69,14 +76,16 @@ variable "lsi_indices" {
 }
 
 variable "enable_deletion_protection" {
+  description = "Enables deletion protection for table. it must be true for all tables"
   type = bool
-  # default = false
+  default = true
   validation {
     condition     = var.enable_deletion_protection == false || var.enable_deletion_protection == true
     error_message = "enable_deletion_protection should be either true or false"
   }
 }
 variable "table_name" {
+  description = "Name of DynamoDB table unique in account"
   type = string
   validation {
     condition     = length(var.table_name) != 0
@@ -84,6 +93,7 @@ variable "table_name" {
   }
 }
 variable "table_class" {
+  description = "Storage class of the table. Valid values are 'STANDARD' and 'STANDARD_INFREQUENT_ACCESS'"
   type = string
   validation {
     condition     = length(var.table_class) != 0
@@ -91,6 +101,7 @@ variable "table_class" {
   }
 }
 variable "table_read_capacity_unit" {
+  description = "Number of read units for this table. Must be set if billing_mode is set to PROVISIONED"
   type = number
   validation {
     condition     = var.table_read_capacity_unit > 0
@@ -99,6 +110,7 @@ variable "table_read_capacity_unit" {
 }
 
 variable "table_write_capacity_unit" {
+  description = "Number of write units for this table. Must be set if billing_mode is set to PROVISIONED"
   type = number
   validation {
     condition     = var.table_write_capacity_unit > 0
@@ -107,6 +119,7 @@ variable "table_write_capacity_unit" {
 }
 
 variable "table_autoscaling_min_read_capacity_unit" {
+  description = "Min number of read units for this table and Index autoscaling."
   type = number
   validation {
     condition     = var.table_autoscaling_min_read_capacity_unit > 0
@@ -115,10 +128,12 @@ variable "table_autoscaling_min_read_capacity_unit" {
 
 }
 variable "table_autoscaling_max_read_capacity_unit" {
+  description = "Max number of read units for this table and Index autoscaling."
   type = number
 }
 
 variable "table_autoscaling_min_write_capacity_unit" {
+  description = "Min number of write units for this table and Index autoscaling."
   type = number
   validation {
     condition     = var.table_autoscaling_min_write_capacity_unit > 0
@@ -126,6 +141,7 @@ variable "table_autoscaling_min_write_capacity_unit" {
   }
 }
 variable "table_autoscaling_max_write_capacity_unit" {
+  description = "Max number of write units for this table and Index autoscaling."
   type = number
 }
 
@@ -151,10 +167,11 @@ variable "table_read_target_percent" {
 ########################################################################################################
 
 variable "encryption_key_details" {
+  description = "for key_type possible values are 'dynamoDB_managed' , 'aws_managed', 'customer_managed' "
   type = object({
     key_type = optional(string,"dynamoDB_managed")  
   })
-  description = "for key_type possible values are 'dynamoDB_managed' , 'aws_managed', 'customer_managed' "
+ 
   
 }
 
@@ -162,18 +179,22 @@ variable "kms_alias" {
   type    = string
   default = "alias/nrt_encryption_key"
   description = "define in the form of 'alias/unique_key_name'"
+   
 }
 
 variable "delete_after_days" {
+  description = " The waiting period, specified in number of days. After the waiting period ends, AWS KMS deletes the KMS key.it must be between 7 and 30, inclusive"
   type    = number
-  default = 10
+  default = 30
 }
 
 variable "key_description" {
+  description = "The description of the key as visible in AWS console"
   type    = string
   default = "key_for_dynamoDB-dest"
 }
 variable "key_policy_map" {
+  description = "A valid policy JSON document"
   type = any
   default = {
     "Id" : "key-consolepolicy-3",
@@ -267,19 +288,20 @@ variable "key_policy_map" {
 ########################################################################################################
 
 variable "is_data_imported" {
+description = "enable this if you want to import data from another dynamoDB table using s3"
 type = bool
 default = false
-description = "enable this if you want to import data from another dynamoDB table using s3"
+
 }
 
 variable "bucket_name_to_import_data" {
-  type = string
   description = "while exporting data from source bucket, make sure to select DYNAMODB_JSON and compression type as GZIP"
+  type = string
   default = "abc"
 }
 
 variable "import_data_key_prefix" {
-  type = string
   description = "path of .gz file in the S3"
+  type = string
   default = "abc"
 }

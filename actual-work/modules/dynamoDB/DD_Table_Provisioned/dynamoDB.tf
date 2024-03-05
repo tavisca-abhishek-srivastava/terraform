@@ -13,6 +13,10 @@ module "dd_cmk" {
   key_policy_map    = var.key_policy_map
 }
 
+data "aws_kms_alias" "aws_managed_key_for_dd" {
+  name = "aws/dynamodb"
+}
+
 # This module is for DynamoDB
 
 resource "aws_dynamodb_table" "dd_table_provisioned" {
@@ -32,13 +36,12 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   stream_enabled   = var.is_stream_enabled
   stream_view_type = (var.is_stream_enabled == false ? null : var.stream_view_type)
 
-
   point_in_time_recovery {
     enabled = true
   }
   server_side_encryption {
     enabled     = (var.encryption_key_details.key_type == "dynamoDB_managed" ? false : true) # true -> "customer_managed/aws_managed" , false -> "dynamoDB_managed"
-    kms_key_arn = module.dd_cmk.mrk_cms_arn
+    kms_key_arn = (var.encryption_key_details.key_type == "aws_managed" ? data.aws_kms_alias.aws_managed_key_for_dd.arn : module.dd_cmk.mrk_cms_arn)
   }
   
   # runtime Generation of GSIs from user input
