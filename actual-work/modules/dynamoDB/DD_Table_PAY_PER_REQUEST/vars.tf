@@ -1,5 +1,5 @@
 ######################################################################################
-# Optional variable (need not to define in caller ) and value is set to default
+# Optional variable and value is set to default
 
 variable "is_stream_enabled" {
   description = "This field is to enable dyanmoDB streaming"
