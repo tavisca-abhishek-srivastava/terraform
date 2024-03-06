@@ -11,11 +11,7 @@ module "dd_cmk" {
   delete_after_days = var.delete_after_days
   key_description   = var.key_description
   key_policy_map    = var.key_policy_map
-  # need_cmk = (var.encryption_key_details == "customer_managed" ? true : false)
-}
-
-data "aws_kms_alias" "aws_managed_key_for_dd" {
-  name = "alias/aws/dynamodb"
+  # need_cmk = (var.encryption_key_details.key_type == "customer_managed" ? true : false)
 }
 
 # This module is for DynamoDB
@@ -23,12 +19,10 @@ data "aws_kms_alias" "aws_managed_key_for_dd" {
 resource "aws_dynamodb_table" "dd_table_provisioned" {
   name                        = var.table_name
   table_class                 = var.table_class
-  billing_mode                = "PAY_PER_REQUEST"
+  billing_mode                = "PROVISIONED"
   hash_key                    = var.table_hash_key
   range_key                   = var.table_range_key
   deletion_protection_enabled = var.enable_deletion_protection
-
-
   ttl {
     enabled        = var.ttl_enabled
     attribute_name = var.attribute_for_ttl
@@ -40,8 +34,9 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
     enabled = true
   }
   server_side_encryption {
-    enabled     = (var.encryption_key_details.key_type == "dynamoDB_managed" ? false : true) # true -> "customer_managed/aws_managed" , false -> "dynamoDB_managed"
-    kms_key_arn = (var.encryption_key_details.key_type == "aws_managed" ? data.aws_kms_alias.aws_managed_key_for_dd.arn : (module.dd_cmk.mrk_cms_arn == [] ? "" : module.dd_cmk.mrk_cms_arn ))
+    enabled = (var.encryption_key_details.key_type == "dynamoDB_managed" ? false : true)
+    kms_key_arn = module.dd_cmk.mrk_cms_arn
+    
   }
   
   # runtime Generation of GSIs from user input
@@ -62,7 +57,7 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   dynamic "local_secondary_index" {
     for_each = var.lsi_indices
     content {
-      name            = local_secondary_index.key
+      name            = "${local_secondary_index.key}_LSI"
       range_key       = local_secondary_index.value.range_key
       projection_type = "ALL"
     }
