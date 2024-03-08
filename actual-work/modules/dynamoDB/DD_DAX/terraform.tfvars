@@ -1,0 +1,9 @@
+cluster_name = "iac_dax"
+iam_role_arn = "arn:aws:iam::928814396842:role/service-role/dynamoDBRole"
+node_type = "dax.t2.medium"
+replication_factor = 3
+cluster_endpoint_encryption_type = "TLS"
+cluster_description = "DAX" 
+parameter_group_name = "default.dax1.0"
+security_group_ids =    "sg-0a9f8788cc8e7dbaf"
+subnet_group = "daxsubnetgroup"
