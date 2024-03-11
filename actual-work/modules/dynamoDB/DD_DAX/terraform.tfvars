@@ -13,3 +13,15 @@ subnet_group_details = {
   "subnet_id_2" = "subnet-00519af74d280b068"
   "subnet_id_3" = "subnet-001023c820ce7e35c"
 }
+
+tags = {
+    DataClassification : "restricted"
+    Environment : "poc"
+    AppName : "tf-nrt-${var.table_name}"
+    InfraOwner : "sre-cloud-reliability@tavisca.com"
+    BusinessUnit : "travel.app"
+    Backup : "no"
+    Product : "poap"
+    Name : "tf-${var.table_name}"
+  
+}
