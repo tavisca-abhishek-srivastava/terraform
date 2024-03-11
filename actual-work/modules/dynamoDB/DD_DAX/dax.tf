@@ -3,8 +3,6 @@ resource "aws_db_subnet_group" "dax_subnet_group" {
   subnet_ids = [subnet_group_details.value.subnet_id_1,subnet_group_details.value.subnet_id_2,subnet_group_details.value.subnet_id_3]
 }
 
-
-
 resource "aws_dax_cluster" "bar" {
     cluster_name       = var.cluster_name
     description = var.cluster_description
