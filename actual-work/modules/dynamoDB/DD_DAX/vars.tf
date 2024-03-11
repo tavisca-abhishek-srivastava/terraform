@@ -55,11 +55,11 @@ variable "aws_dax_parameter_group_description" {
   type        = string
 }
 variable "query_ttl_millis" {
-    description = "value in milliSecond for query timeout"
+    description = "value in milliSecond for query time to live"
     type = string
 }
 variable "record_ttl_millis" {
-    description = "value in milliSecond for record fetching timeout"
+    description = "value in milliSecond for record/item time to live"
     type = string
 }
 
