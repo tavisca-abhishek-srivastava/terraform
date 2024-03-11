@@ -1,4 +1,4 @@
-cluster_name = "iac-dax"
+cluster_name = "nrt-iac-dax"
 iam_role_arn = "arn:aws:iam::928814396842:role/service-role/dynamoDBRole"
 node_type = "dax.t2.medium"
 replication_factor = 3
