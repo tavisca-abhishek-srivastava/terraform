@@ -49,3 +49,17 @@ variable "subnet_group_details" {
     }
   
 }
+
+variable "tags" {
+    type = object({
+    "DataClassification" = string
+    "Environment" = string
+    "AppName" = string
+    "InfraOwner" = string
+    "BusinessUnit" = string
+    "Backup" = string
+    "Product" = string
+    "Name" = string
+    })
+
+  }

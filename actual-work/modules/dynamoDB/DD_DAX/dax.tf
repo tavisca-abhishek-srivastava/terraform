@@ -12,9 +12,9 @@ resource "aws_dax_cluster" "bar" {
     replication_factor = var.replication_factor
     parameter_group_name = var.parameter_group_name
     subnet_group_name = aws_db_subnet_group.dax_subnet_group.name
-
-  server_side_encryption {
-    enabled = true
-  }
+    server_side_encryption {
+      enabled = true
+                            }
+    tags = var.tags
 
 }
