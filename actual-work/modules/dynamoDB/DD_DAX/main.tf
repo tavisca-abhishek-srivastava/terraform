@@ -8,7 +8,7 @@ resource "aws_dax_parameter_group" "new_cluster_paraameter_group" {
   }
 
   parameters {
-    name  = "record_ttl_millis"
+    name  = "record-ttl-millis"
     value = var.record_ttl_millis
   }
 }
