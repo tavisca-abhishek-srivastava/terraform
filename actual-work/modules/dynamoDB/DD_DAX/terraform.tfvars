@@ -10,6 +10,6 @@ security_group_ids =    "sg-0a9f8788cc8e7dbaf"
 subnet_group_details = {
   "name" = "nrt-dax-cluster",
   "subnet_id_1" = "subnet-0140e03481c775864"
-  "subnet_id_1" = "subnet-00519af74d280b068"
-  "subnet_id_1" = "subnet-001023c820ce7e35c"
+  "subnet_id_2" = "subnet-00519af74d280b068"
+  "subnet_id_3" = "subnet-001023c820ce7e35c"
 }
