@@ -17,11 +17,11 @@ subnet_group_details = {
 tags = {
     DataClassification : "restricted"
     Environment : "poc"
-    AppName : "tf-nrt-${var.table_name}"
+    AppName : "tf-nrt-${var.cluster_name}"
     InfraOwner : "sre-cloud-reliability@tavisca.com"
     BusinessUnit : "travel.app"
     Backup : "no"
     Product : "poap"
-    Name : "tf-${var.table_name}"
+    Name : "tf-${var.cluster_name}"
   
 }
