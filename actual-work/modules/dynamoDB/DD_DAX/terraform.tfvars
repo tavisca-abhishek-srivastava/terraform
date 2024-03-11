@@ -4,7 +4,6 @@ node_type                        = "dax.t2.medium"
 replication_factor               = 3
 cluster_endpoint_encryption_type = "TLS"
 cluster_description              = "DAX"
-aws_dax_parameter_group_name     = "default.dax1.0"
 security_group_ids               = "sg-0a9f8788cc8e7dbaf"
 tags = {
   DataClassification : "restricted"
@@ -24,5 +23,6 @@ subnet_group_details = {
   "subnet_id_3" = "subnet-001023c820ce7e35c"
 }
 
+aws_dax_parameter_group_name     = "nrt-dax-parameter-group"
 query_ttl_millis = "100000"
 record_ttl_millis = "100000"
