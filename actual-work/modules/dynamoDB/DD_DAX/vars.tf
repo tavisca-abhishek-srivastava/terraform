@@ -44,7 +44,7 @@ variable "subnet_group_details" {
     })
 
     validation {
-      condition = length(var.subnet_group_details) != 4
+      condition = length(var.subnet_group_details.subnet_id_1) != 0
       error_message = "please specify subnet group name and atleast 3 subnet ids"
     }
   
