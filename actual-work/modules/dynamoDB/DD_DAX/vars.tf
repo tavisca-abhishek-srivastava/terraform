@@ -46,20 +46,19 @@ variable "subnet_group_details" {
     validation {
       condition = length(var.subnet_group_details.subnet_id_1) != 0
       error_message = "please specify subnet group name and atleast 3 subnet ids"
-    }
-  
+    } 
 }
 
 variable "tags" {
     type = object({
-    "DataClassification" = string
-    "Environment" = string
-    "AppName" = string
-    "InfraOwner" = string
-    "BusinessUnit" = string
-    "Backup" = string
-    "Product" = string
-    "Name" = string
+    DataClassification = string
+    Environment = string
+    AppName = string
+    InfraOwner = string
+    BusinessUnit = string
+    Backup = string
+    Product = string
+    Name = string
     })
 
   }
