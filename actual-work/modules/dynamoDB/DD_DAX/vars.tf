@@ -36,12 +36,12 @@ variable "security_group_ids" {
 
 variable "subnet_group_details" {
     description = "enter subnet group details"
-    type = map(object({
+    type = object({
       name = string
       subnet_id_1 = string
       subnet_id_2 = string
       subnet_id_3 = string
-    }))
+    })
 
     validation {
       condition = length(var.subnet_group_details) != 4
