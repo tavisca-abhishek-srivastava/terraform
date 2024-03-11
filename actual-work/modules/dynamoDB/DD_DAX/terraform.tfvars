@@ -24,5 +24,6 @@ subnet_group_details = {
 }
 
 aws_dax_parameter_group_name     = "nrt-dax-parameter-group"
+aws_dax_parameter_group_description = "nrt dax parameter group"
 query_ttl_millis = "100000"
 record_ttl_millis = "100000"
