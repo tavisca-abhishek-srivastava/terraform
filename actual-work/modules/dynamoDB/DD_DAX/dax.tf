@@ -5,7 +5,6 @@ resource "aws_dax_subnet_group" "dax_subnet_group" {
 }
 
 resource "aws_dax_cluster" "bar" {
-    depends_on = [ aws_db_subnet_group.dax_subnet_group ]
     cluster_name       = var.cluster_name
     description = var.cluster_description
     iam_role_arn       = var.iam_role_arn
