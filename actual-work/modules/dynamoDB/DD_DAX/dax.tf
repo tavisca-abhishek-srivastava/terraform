@@ -6,6 +6,7 @@ resource "aws_db_subnet_group" "dax_subnet_group" {
 }
 
 resource "aws_dax_cluster" "bar" {
+    depends_on = [ aws_db_subnet_group.dax_subnet_group ]
     cluster_name       = var.cluster_name
     description = var.cluster_description
     iam_role_arn       = var.iam_role_arn
@@ -13,7 +14,7 @@ resource "aws_dax_cluster" "bar" {
     cluster_endpoint_encryption_type = var.cluster_endpoint_encryption_type
     replication_factor = var.replication_factor
     parameter_group_name = var.parameter_group_name
-    subnet_group_name = aws_db_subnet_group.dax_subnet_group.name
+    subnet_group_name = aws_db_subnet_group.dax_subnet_group.id
     server_side_encryption {
       enabled = true
                             }
