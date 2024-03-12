@@ -4,7 +4,7 @@ node_type                        = "dax.t2.medium"
 replication_factor               = 3
 cluster_endpoint_encryption_type = "TLS"
 cluster_description              = "DAX"
-security_group_ids               = "sg-0a9f8788cc8e7dbaf"
+security_group_ids               = ["sg-0a9f8788cc8e7dbaf"]
 tags = {
   DataClassification : "restricted"
   Environment : "poc"

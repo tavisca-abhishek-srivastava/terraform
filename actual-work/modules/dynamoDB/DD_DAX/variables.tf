@@ -27,14 +27,14 @@ variable "cluster_description" {
 
 variable "security_group_ids" {
   description = "enter existing security group"
-  type        = list(string)
+  type        = list
 }
 
 variable "subnet_group_details" {
   description = "enter subnet group details name as string and subnet_id as list"
   type = object({
     name        = string
-    subnet_id = list(string)
+    subnet_id = list
   })
 
   validation {

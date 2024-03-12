@@ -25,20 +25,21 @@ variable "cluster_description" {
   type        = string
 }
 
+
 variable "security_group_ids" {
   description = "enter existing security group"
-  type        = string
+  type = list
 }
 
 variable "subnet_group_details" {
-  description = "enter subnet group details"
+  description = "enter subnet group details name as string and subnet_id as list"
   type = object({
     name        = string
-    subnet_id = list(string)
+    subnet_id = list
   })
 
   validation {
-    condition     = length(var.subnet_group_details.subnet_id_1) != 0
+    condition     = length(var.subnet_group_details.subnet_id) >= 3
     error_message = "please specify subnet group name and atleast 3 subnet ids"
   }
 }
