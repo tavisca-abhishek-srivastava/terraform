@@ -18,9 +18,7 @@ tags = {
 
 subnet_group_details = {
   "name"        = "nrtdaxcluster-1",
-  "subnet_id_1" = "subnet-0140e03481c775864"
-  "subnet_id_2" = "subnet-00519af74d280b068"
-  "subnet_id_3" = "subnet-001023c820ce7e35c"
+  "subnet_id" = ["subnet-0140e03481c775864" ,"subnet-00519af74d280b068","subnet-001023c820ce7e35c"]
 }
 
 aws_dax_parameter_group_name     = "nrt-dax-parameter-group"
