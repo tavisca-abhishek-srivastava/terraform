@@ -22,7 +22,7 @@ resource "aws_dax_cluster" "new_dax_cluster" {
   replication_factor               = var.replication_factor
   parameter_group_name             = aws_dax_parameter_group.new_cluster_paraameter_group.id
   subnet_group_name                = aws_dax_subnet_group.dax_subnet_group.id
-  security_group_ids = var.security_group_ids
+  security_group_ids               = var.security_group_ids
   server_side_encryption {
     enabled = true
   }
