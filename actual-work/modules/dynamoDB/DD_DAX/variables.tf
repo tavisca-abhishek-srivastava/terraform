@@ -34,7 +34,7 @@ variable "subnet_group_details" {
   description = "enter subnet group details name as string and subnet_id as list"
   type = object({
     name        = string
-    subnet_id = list
+    subnet_id = list(string)
   })
 
   validation {
