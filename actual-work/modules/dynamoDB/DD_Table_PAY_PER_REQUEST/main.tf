@@ -19,7 +19,7 @@ module "dd_cmk" {
 resource "aws_dynamodb_table" "dd_table_provisioned" {
   name                        = var.table_name
   table_class                 = var.table_class
-  billing_mode                = "PROVISIONED"
+  billing_mode                = "PAY_PER_REQUEST"
   hash_key                    = var.table_hash_key
   range_key                   = var.table_range_key
   deletion_protection_enabled = var.enable_deletion_protection
@@ -44,11 +44,11 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   dynamic "global_secondary_index" {
     for_each = var.gsi_indices
     content {
-      name            = global_secondary_index.key
+      name            = global_secondary_index.value.key
       write_capacity  = global_secondary_index.value.write_capacity
       read_capacity   = global_secondary_index.value.read_capacity
       range_key       = global_secondary_index.value.range_key
-      hash_key        = global_secondary_index.key
+      hash_key        = global_secondary_index.value.hash_key
       projection_type = "ALL"
     }
   }
@@ -57,7 +57,7 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   dynamic "local_secondary_index" {
     for_each = var.lsi_indices
     content {
-      name            = "${local_secondary_index.key}_LSI"
+      name            = "${local_secondary_index.key}"
       range_key       = local_secondary_index.value.range_key
       projection_type = "ALL"
     }
@@ -85,7 +85,7 @@ dynamic "import_table" {
   }
 
 lifecycle {
-  ignore_changes = [ read_capacity,write_capacity,import_table,local_secondary_index ]
+  ignore_changes = [import_table,local_secondary_index ]
 }
 
 timeouts {
