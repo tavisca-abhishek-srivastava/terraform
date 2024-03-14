@@ -1,3 +1,6 @@
+variable "aws_region" {
+  default = "us-east-1"
+}
 variable "cluster_name" {
   description = "Provide a meaningful name that uniquely identifies your DAX cluster"
   type        = string

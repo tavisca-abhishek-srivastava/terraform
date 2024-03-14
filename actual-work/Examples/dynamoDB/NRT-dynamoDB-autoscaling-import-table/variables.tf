@@ -19,6 +19,9 @@ variable "stream_view_type" {
   type    = string
 }
 ###################################################
+variable "aws_region" {
+  default = "us-east-1"
+}
 variable "table_hash_key" {
   description = "This will be hash key for dynamoDB table"
   type = string
@@ -51,21 +54,22 @@ variable "attributes" {
 
 }
 variable "gsi_indices" {
+  description = "Map of GSI Index/s in key-value pair, key will be GSI index name"
   type = map(object({
     write_capacity = number
     read_capacity  = number
     range_key      = string
+    hash_key       = string
 
   }))
-
 }
 
 variable "lsi_indices" {
+  description = "Map of LSI Index in key-value pair, key will be LSI index name"
   type = map(object({
     range_key = string
 
   }))
-
 }
 
 

@@ -58,17 +58,18 @@ variable "attributes" {
   }
 }
 variable "gsi_indices" {
-  description = "Map of GSI Index/s in key-value pair, key will be GSI hash_key and same will be index name"
+  description = "Map of GSI Index/s in key-value pair, key will be GSI index name"
   type = map(object({
     write_capacity = number
     read_capacity  = number
     range_key      = string
+    hash_key       = string
 
   }))
 }
 
 variable "lsi_indices" {
-  description = "Map of LSI Index in key-value pair, key will be LSI hash_key and same will be index name"
+  description = "Map of LSI Index in key-value pair, key will be LSI index name"
   type = map(object({
     range_key = string
 

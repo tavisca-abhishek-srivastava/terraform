@@ -47,11 +47,11 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   dynamic "global_secondary_index" {
     for_each = var.gsi_indices
     content {
-      name            = global_secondary_index.key
+      name            = global_secondary_index.value.key
       write_capacity  = global_secondary_index.value.write_capacity
       read_capacity   = global_secondary_index.value.read_capacity
       range_key       = global_secondary_index.value.range_key
-      hash_key        = global_secondary_index.key
+      hash_key        = global_secondary_index.value.hash_key
       projection_type = "ALL"
     }
   }
@@ -60,7 +60,7 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   dynamic "local_secondary_index" {
     for_each = var.lsi_indices
     content {
-      name            = "${local_secondary_index.key}_LSI"
+      name            = "${local_secondary_index.key}"
       range_key       = local_secondary_index.value.range_key
       projection_type = "ALL"
     }
