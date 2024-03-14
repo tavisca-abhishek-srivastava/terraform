@@ -1,5 +1,5 @@
 module "nrt-dynamoDB" {
-    source = "../../modules/dynamoDB/DD_Table_Provisioned"
+    source = "../../../..modules/database/dynamoDB/dd_table_provisioned"
     table_hash_key = var.table_hash_key
     table_name = var.table_name
     table_class = var.table_class
@@ -23,12 +23,7 @@ module "nrt-dynamoDB" {
     key_description = var.key_description
     delete_after_days = var.delete_after_days
     encryption_key_details = var.encryption_key_details
-    is_data_imported = var.is_data_imported
-    bucket_name_to_import_data = var.bucket_name_to_import_data
-    import_data_key_prefix = var.import_data_key_prefix
-    is_stream_enabled = var.is_stream_enabled
-    stream_view_type = var.stream_view_type
-    
 
-    
 }
+    
+    

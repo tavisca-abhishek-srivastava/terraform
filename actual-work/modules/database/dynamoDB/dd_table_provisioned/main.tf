@@ -6,7 +6,7 @@
 # This module will take user input and will create CMK which will be used by DynamoDB module
 
 module "dd_cmk" {
-  source            = "../../KMS"
+  source            = "../../../security/kms"
   kms_alias         = var.kms_alias
   delete_after_days = var.delete_after_days
   key_description   = var.key_description
@@ -19,10 +19,13 @@ module "dd_cmk" {
 resource "aws_dynamodb_table" "dd_table_provisioned" {
   name                        = var.table_name
   table_class                 = var.table_class
-  billing_mode                = "PAY_PER_REQUEST"
+  billing_mode                = "PROVISIONED"
   hash_key                    = var.table_hash_key
   range_key                   = var.table_range_key
   deletion_protection_enabled = var.enable_deletion_protection
+  read_capacity               = var.table_read_capacity_unit
+  write_capacity              = var.table_write_capacity_unit
+
   ttl {
     enabled        = var.ttl_enabled
     attribute_name = var.attribute_for_ttl
@@ -85,7 +88,7 @@ dynamic "import_table" {
   }
 
 lifecycle {
-  ignore_changes = [import_table,local_secondary_index ]
+  ignore_changes = [ read_capacity,write_capacity,import_table,local_secondary_index ]
 }
 
 timeouts {
