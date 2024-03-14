@@ -44,7 +44,7 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
   dynamic "global_secondary_index" {
     for_each = var.gsi_indices
     content {
-      name            = global_secondary_index.value.key
+      name            = global_secondary_index.key
       write_capacity  = global_secondary_index.value.write_capacity
       read_capacity   = global_secondary_index.value.read_capacity
       range_key       = global_secondary_index.value.range_key
