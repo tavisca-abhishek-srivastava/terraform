@@ -22,15 +22,15 @@ attributes = {
   }
 gsi_indices = {
     # in key-value pair, key will be GSI index name
-    "product_name" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" ,hash_key = "product_name"},
-    "product_desc" = { write_capacity = 60, read_capacity = 60, range_key = "product_id",hash_key = "product_desc" },
-    "age"          = { write_capacity = 65, read_capacity = 65, range_key = "user_id" ,hash_key = "age"},
-    "product_id" = { write_capacity = 60, read_capacity = 60, range_key = "user_id" ,hash_key = "product_id" },
+    "product_name_gsi" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" ,hash_key = "product_name"},
+    "product_desc_gsi" = { write_capacity = 60, read_capacity = 60, range_key = "product_id",hash_key = "product_desc" },
+    "age_gsi"          = { write_capacity = 65, read_capacity = 65, range_key = "user_id" ,hash_key = "age"},
+    "product_id_gsi" = { write_capacity = 60, read_capacity = 60, range_key = "user_id" ,hash_key = "product_id" },
   }
   lsi_indices = { 
     # in key-value pair, key will be LSI index name
-   "by_age" = {range_key = "age"},
-   "by_product_id" = {range_key = "product_id"},
+   "by_age_LSI" = {range_key = "age"},
+   "by_product_id_LSI" = {range_key = "product_id"},
   }
   
   kms_alias = "alias/nrt_encryption_key-import"
