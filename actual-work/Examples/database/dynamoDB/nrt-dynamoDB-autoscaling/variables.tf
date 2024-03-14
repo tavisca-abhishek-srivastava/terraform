@@ -10,8 +10,7 @@ validation {
   error_message = "ttl attribute name must be between 1 and 255 characters"
 }
 }
-
-#########
+###################################################
 variable "aws_region" {
   default = "us-east-1"
 }
