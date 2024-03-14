@@ -129,3 +129,5 @@ import_data_key_prefix = "AWSDynamoDB/01709576156860-fd8a7a0c/data"
 
 is_stream_enabled = true
 stream_view_type = "NEW_IMAGE"
+
+terrform_operation_timeout = "420m"

@@ -92,7 +92,9 @@ lifecycle {
 }
 
 timeouts {
-  create = "360m"  
+  create = var.terrform_operation_timeout
+  delete = var.terrform_operation_timeout
+  update = var.terrform_operation_timeout
 }
 
   tags = {
