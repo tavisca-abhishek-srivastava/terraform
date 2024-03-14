@@ -123,7 +123,7 @@ gsi_indices = {
   key_type = "customer_managed"
 }
 
-is_data_imported = false
+is_data_imported = true
 bucket_name_to_import_data = "dynamodb-export-bnr"
 import_data_key_prefix = "AWSDynamoDB/01709576156860-fd8a7a0c/data"
 

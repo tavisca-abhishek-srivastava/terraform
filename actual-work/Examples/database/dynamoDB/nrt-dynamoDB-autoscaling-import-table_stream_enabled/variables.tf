@@ -199,10 +199,12 @@ description = "enter true if you want to import data from another DynamoDB table
 
 variable "bucket_name_to_import_data" {
   type = string
-  description = "while exporting data from source bucket, make sure to select DYNAMODB_JSON and compression type as GZIP"
+  default = "xyz"
+  description = "while exporting data from source bucket, make sure to select DYNAMODB_JSON and compression type as GZIP.set this value only if 'is_data_imported' is true"
 }
 
 variable "import_data_key_prefix" {
   type = string
-  description = "path of .gz file in the S3"
+  default = "xyz"
+  description = "path of .gz file in the S3.set this value only if 'is_data_imported' is true"
 }
