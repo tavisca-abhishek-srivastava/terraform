@@ -208,3 +208,9 @@ variable "import_data_key_prefix" {
   default = "xyz"
   description = "path of .gz file in the S3.set this value only if 'is_data_imported' is true"
 }
+variable "terrform_operation_timeout" {
+  description = "provide a value in minute with 'm' appended if any operation takes more than default 360 minutes"
+  type = string
+  default = "360m"
+
+}

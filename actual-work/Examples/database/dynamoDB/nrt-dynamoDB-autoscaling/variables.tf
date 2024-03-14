@@ -174,3 +174,9 @@ variable "key_policy_map" {
     type = any
  
 }
+variable "terrform_operation_timeout" {
+  description = "provide a value in minute with 'm' appended if any operation takes more than default 360 minutes"
+  type = string
+  default = "360m"
+
+}

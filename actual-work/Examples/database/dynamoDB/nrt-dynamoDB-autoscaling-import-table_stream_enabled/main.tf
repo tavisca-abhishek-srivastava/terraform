@@ -28,6 +28,7 @@ module "nrt-dynamoDB" {
     import_data_key_prefix = var.import_data_key_prefix
     is_stream_enabled = var.is_stream_enabled
     stream_view_type = var.stream_view_type
+    terrform_operation_timeout = var.terrform_operation_timeout
     
 
     
