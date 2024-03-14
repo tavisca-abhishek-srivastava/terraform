@@ -1,5 +1,5 @@
 module "nrt-dynamoDB" {
-    source = "../../../..modules/database/dynamoDB/dd_table_provisioned"
+    source = "../../../../modules/database/dynamoDB/dd_table_provisioned"
     table_hash_key = var.table_hash_key
     table_name = var.table_name
     table_class = var.table_class
