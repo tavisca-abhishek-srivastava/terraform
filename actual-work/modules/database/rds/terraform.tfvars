@@ -5,6 +5,9 @@ storage_type = "gp3"
 db_instance_class = "db.t3.micro"
 rds_engine = "mysql"
 rds_engine_version = "5.7"
+enable_storage_autoscaling = true
+max_allocated_storage = 401
+storage_iops = 20
 
 tags = {
   DataClassification : "restricted"
