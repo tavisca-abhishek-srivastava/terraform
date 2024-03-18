@@ -11,7 +11,7 @@ validation {
 }
 }
 variable "is_stream_enabled" {
-  description = "This field is to enable dyanmoDB streaming"
+  description = "This field is to enable dyanmoDB streaming. run terrform apply 2 times incase of import from table is true"
   type        = bool
 }
 variable "stream_view_type" {
