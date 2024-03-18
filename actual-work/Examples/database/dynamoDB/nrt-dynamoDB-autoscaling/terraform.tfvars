@@ -36,6 +36,16 @@ gsi_indices = {
   kms_alias = "alias/nrt_encryption_key"
   delete_after_days = 10
   key_description = "key_for_dynamoDB"
+  kms_tags = {
+    DataClassification : "restricted"
+    Environment : "poc"
+    AppName : "tf-nrt-nrt-iac-dd-autoscaling-kms"
+    InfraOwner : "sre-cloud-reliability@tavisca.com"
+    BusinessUnit : "travel.app"
+    Backup : "no"
+    Product : "poap"
+    Name : "tf-nrt-iac-dd-autoscaling-kms"
+  }
   key_policy_map = {
     "Id" : "key-consolepolicy-3",
     "Version" : "2012-10-17",

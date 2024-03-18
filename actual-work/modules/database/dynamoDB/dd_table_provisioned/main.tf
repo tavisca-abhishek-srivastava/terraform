@@ -11,6 +11,7 @@ module "dd_cmk" {
   delete_after_days = var.delete_after_days
   key_description   = var.key_description
   key_policy_map    = var.key_policy_map
+  kms_tags = var.kms_tags
   # need_cmk = (var.encryption_key_details.key_type == "customer_managed" ? true : false)
 }
 

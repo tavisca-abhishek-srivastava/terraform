@@ -6,23 +6,12 @@ resource "aws_kms_key" "dynamodb_encryption_key" {
   enable_key_rotation      = true
   multi_region             = true
   
-  tags = {
-    DataClassification : "restricted"
-    Environment : "poc"
-    AppName : "tf-nrt-kms-app"
-    InfraOwner : "sre-cloud-reliability@tavisca.com"
-    BusinessUnit : "travel.app"
-    Backup : "no"
-    Product : "poap"
-    Name : "tf-nrt-kms"
-  }
+  tags = var.kms_tags
 }
 
 resource "aws_kms_key_policy" "dd_table_key_policy" {
   key_id = aws_kms_key.dynamodb_encryption_key.key_id
   policy = jsonencode(var.key_policy_map)
-
-
 }
 resource "aws_kms_alias" "key_alias" {
 #   name          = "alias/nrt_encryption_key"

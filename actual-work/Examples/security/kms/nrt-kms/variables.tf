@@ -31,10 +31,9 @@ variable "key_description" {
 variable "key_policy_map" {
     description = "A valid policy JSON document"
     type = any
- 
 }
 
-variable "tags" {
+variable "kms_tags" {
   type = object({
     DataClassification = string
     Environment        = string
