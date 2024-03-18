@@ -6,8 +6,8 @@ variable "rds_engine" {
   description = "The database engine to use. e.g. 'mysql', 'postgres','mariadb','sqlserver-ee' etc"
   type = string
   validation {
-    condition = var.rds_engine
-    error_message = "engine must be of type "
+    condition = length(var.rds_engine) != 0
+    error_message = "database engine to use. e.g. 'mysql', 'postgres','mariadb','sqlserver-ee' etc "
     }
 }
 
