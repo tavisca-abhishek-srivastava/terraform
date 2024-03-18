@@ -1,7 +1,7 @@
 kms_alias = "alias/nrt_encryption_key_kms"
 delete_after_days = 8
 key_description = "key_for_kms"
-  key_policy_map = {
+key_policy_map = {
     "Id" : "key-consolepolicy-3",
     "Version" : "2012-10-17",
     "Statement" : [

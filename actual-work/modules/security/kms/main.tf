@@ -4,8 +4,7 @@ resource "aws_kms_key" "dynamodb_encryption_key" {
   deletion_window_in_days  = var.delete_after_days
   customer_master_key_spec = "SYMMETRIC_DEFAULT"
   enable_key_rotation      = true
-  multi_region             = true
-  
+  multi_region             = true 
   tags = var.kms_tags
 }
 
