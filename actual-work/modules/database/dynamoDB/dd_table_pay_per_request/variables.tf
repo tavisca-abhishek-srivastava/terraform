@@ -133,6 +133,19 @@ variable "key_description" {
   type    = string
   default = "key_for_dynamoDB-dest"
 }
+variable "kms_tags" {
+  type = object({
+    DataClassification = string
+    Environment        = string
+    AppName            = string
+    InfraOwner         = string
+    BusinessUnit       = string
+    Backup             = string
+    Product            = string
+    Name               = string
+  })
+
+}
 variable "key_policy_map" {
   description = "A valid policy JSON document"
   type = any

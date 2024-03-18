@@ -179,6 +179,18 @@ variable "key_description" {
     description = "The description of the key as visible in AWS console"
     type = string
 }
+variable "kms_tags" {
+  type = object({
+    DataClassification = string
+    Environment        = string
+    AppName            = string
+    InfraOwner         = string
+    BusinessUnit       = string
+    Backup             = string
+    Product            = string
+    Name               = string
+  })
+}
 variable "key_policy_map" {
     description = "A valid policy JSON document"
     type = any

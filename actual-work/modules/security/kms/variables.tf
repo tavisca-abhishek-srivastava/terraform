@@ -17,3 +17,16 @@ variable "key_policy_map" {
     type = any
  
 }
+variable "kms_tags" {
+  type = object({
+    DataClassification = string
+    Environment        = string
+    AppName            = string
+    InfraOwner         = string
+    BusinessUnit       = string
+    Backup             = string
+    Product            = string
+    Name               = string
+  })
+
+}

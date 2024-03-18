@@ -86,7 +86,7 @@ key_description = "key_for_kms"
   }
 
 
-tags = {
+kms_tags = {
   DataClassification : "restricted"
   Environment : "poc"
   AppName : "tf-nrt-nrt-iac-kms"
