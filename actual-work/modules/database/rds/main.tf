@@ -10,12 +10,13 @@
 	resource "aws_db_instance" "default" {
 		identifier  				= var.rds_instance_name
 		db_name              		= var.db_name
-		engine              	 	= "mysql"
-		engine_version      	 	= "5.7"
+		engine              	 	= var.rds_engine
+		engine_version      	 	= var.rds_engine_version
 	  	instance_class       		= var.db_instance_class
 	  	storage_encrypted 			= true
 		storage_type 				= var.storage_type
 		allocated_storage   	 	= var.allocated_storage
+		iops 						= ((var.storage_type == "gp3" && var.allocated_storage > 400) || var.storage_type == "io1" || var.storage_type == "io2") ? storage_iops : null
 		kms_key_id 					= module.rds_storage_cmk.arn
 	  	username             		= "dbadmin"
 	  	password             		= "welcome$123"
@@ -30,6 +31,7 @@
 			delete = var.terrform_operation_timeout
 			update = var.terrform_operation_timeout
   }
+
 	  tags = var.tags
 
 	}

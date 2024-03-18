@@ -3,12 +3,16 @@ variable "aws_region" {
   default = "us-east-1"
 }
 variable "rds_engine" {
-  description = "value"
+  description = "The database engine to use. e.g. 'mysql', 'postgres','mariadb','sqlserver-ee' etc"
   type = string
   validation {
-    condition = var.rds_engine > 30
-    error_message = "Storage should be greater than 30"
+    condition = var.rds_engine
+    error_message = "engine must be of type "
     }
+}
+
+variable "rds_engine_version" {
+  type = string
 }
 variable "allocated_storage" {
   description = "value"
@@ -17,6 +21,18 @@ variable "allocated_storage" {
     condition = var.allocated_storage > 30
     error_message = "Storage should be greater than 30"
   }
+}
+variable "storage_type" {
+  description = "value"
+  type = string
+  validation {
+    condition = var.storage_type == "gp3"
+    error_message = "storage type should be of type gp3"
+  }
+}
+variable "storage_iops" {
+  type = num
+
 }
 variable "db_name" {
   description = "value"
@@ -49,15 +65,6 @@ variable "terrform_operation_timeout" {
   default = "360m"
 }
 		
-variable "storage_type" {
-  description = "value"
-  type = string
-  validation {
-    condition = var.storage_type == "gp3"
-    error_message = "storage type should be of type gp3"
-  }
-}
-
 variable "tags" {
   type = object({
     DataClassification = string
