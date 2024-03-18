@@ -84,8 +84,6 @@ key_description = "key_for_kms"
       }
     ]
   }
-
-
 kms_tags = {
   DataClassification : "restricted"
   Environment : "poc"
