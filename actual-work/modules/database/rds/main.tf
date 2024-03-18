@@ -17,7 +17,7 @@
 		storage_type 				= var.storage_type
 		allocated_storage   	 	= var.allocated_storage
 		iops 						= ((var.storage_type == "gp3" && var.allocated_storage > 400) || var.storage_type == "io1" || var.storage_type == "io2") ? var.storage_iops:null
-		kms_key_id 					= module.rds_storage_cmk.arn
+		kms_key_id 					= module.rds_storage_cmk.mrk_cms_arn
 	  	username             		= "dbadmin"
 	  	password             		= "welcome$123"
 	  	parameter_group_name 		= "default.mysql5.7"
