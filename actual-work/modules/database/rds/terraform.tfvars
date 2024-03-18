@@ -3,6 +3,8 @@ db_name = "mysql-db"
 allocated_storage = 50
 storage_type = "gp3"
 db_instance_class = "db.t3.micro"
+rds_engine = "mysql"
+rds_engine_version = "5.7"
 
 tags = {
   DataClassification : "restricted"
