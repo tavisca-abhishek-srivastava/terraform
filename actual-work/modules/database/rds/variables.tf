@@ -31,7 +31,8 @@ variable "storage_type" {
   }
 }
 variable "storage_iops" {
-  type = num
+  type = number
+  default = 0
 
 }
 variable "db_name" {
