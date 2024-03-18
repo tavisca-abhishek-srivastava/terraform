@@ -2,7 +2,7 @@
 # Optional var and value is set to default
 
 variable "is_stream_enabled" {
-  description = "This field is to enable dyanmoDB streaming"
+  description = "This field is to enable dyanmoDB streaming. run terrform apply 2 times incase of import from table is true"
   type        = bool
   default     = false
 }

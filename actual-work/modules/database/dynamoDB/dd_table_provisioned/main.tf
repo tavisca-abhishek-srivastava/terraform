@@ -30,7 +30,7 @@ resource "aws_dynamodb_table" "dd_table_provisioned" {
     enabled        = var.ttl_enabled
     attribute_name = var.attribute_for_ttl
   }
-  stream_enabled   = var.is_stream_enabled
+  stream_enabled   = var.is_stream_enabled   # run terrform apply 2 times incase of import from table is true
   stream_view_type = (var.is_stream_enabled == false ? null : var.stream_view_type)
 
   point_in_time_recovery {
