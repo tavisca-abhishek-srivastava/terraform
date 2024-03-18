@@ -26,14 +26,24 @@ variable "storage_type" {
   description = "value"
   type = string
   validation {
-    condition = var.storage_type == "gp3"
+    condition = var.storage_type == "gp3" || var.storage_type == "io1" || var.storage_type == "io2"
     error_message = "storage type should be of type gp3"
   }
 }
 variable "storage_iops" {
   type = number
   default = 0
+}
+variable "enable_storage_autoscaling" {
+  description = "to enable storage autoscaling"
+  type = bool
+  default = false
+}
 
+variable "max_allocated_storage" {
+  description = "set this value if 'enable_storage_autoscaling' is set to true"
+  type = number
+  default = 0
 }
 variable "db_name" {
   description = "value"

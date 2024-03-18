@@ -17,6 +17,7 @@
 		storage_type 				= var.storage_type
 		allocated_storage   	 	= var.allocated_storage
 		iops 						= ((var.storage_type == "gp3" && var.allocated_storage > 400) || var.storage_type == "io1" || var.storage_type == "io2") ? var.storage_iops:null
+		max_allocated_storage 		= (var.enable_storage_autoscaling == true) ? var.max_allocated_storage:0
 		kms_key_id 					= module.rds_storage_cmk.mrk_cms_arn
 	  	username             		= "dbadmin"
 	  	password             		= "welcome$123"
@@ -30,6 +31,12 @@
 			create = var.terrform_operation_timeout
 			delete = var.terrform_operation_timeout
 			update = var.terrform_operation_timeout
+  }
+  lifecycle {
+	precondition {
+	  condition = (var.storage_type == "gp3" && var.allocated_storage > 400) ? (var.storage_iops >=12000 ? true:false):((var.storage_type == "io1" || var.storage_type == "io2") ? (var.storage_iops >=1000):false)
+	  error_message = "for disk type GP3 and allocated_storage >400, iops must be greater than 12000 "
+	}
   }
 
 	  tags = var.tags
