@@ -1,30 +1,35 @@
 rds_instance_name = "jpmc-master"
 db_name = "mysql-db"
 allocated_storage = 50
+storage_type = "gp3"
 db_instance_class = "db.t3.micro"
-
-
-
 
 tags = {
   DataClassification : "restricted"
   Environment : "poc"
-  AppName : "tf-nrt-nrt-iac-dax-1"
+  AppName : "tf-nrt-nrt-iac-rds-1"
   InfraOwner : "sre-cloud-reliability@tavisca.com"
   BusinessUnit : "travel.app"
   Backup : "no"
   Product : "poap"
-  Name : "tf-nrt-iac-dax-1"
+  Name : "tf-nrt-iac-rds-1"
 }
 
 
-# subnet_group_details = {
-#   "name"        = "nrtdaxcluster-1",
-#   "subnet_id" = ["subnet-0140e03481c775864" ,"subnet-00519af74d280b068","subnet-001023c820ce7e35c"]
-# }
+## KMS input
 kms_alias = "alias/nrt_rds_encryption_key"
-  delete_after_days = 10
-  key_description = "key_for_rds_encryption"
+delete_after_days = 10
+key_description = "key_for_rds_encryption"
+kms_tags = {
+  DataClassification : "restricted"
+  Environment : "poc"
+  AppName : "tf-nrt-nrt-iac-rds-kms"
+  InfraOwner : "sre-cloud-reliability@tavisca.com"
+  BusinessUnit : "travel.app"
+  Backup : "no"
+  Product : "poap"
+  Name : "tf-nrt-iac-rds-kms"
+  }
   key_policy_map = {
     "Id" : "key-consolepolicy-3",
     "Version" : "2012-10-17",

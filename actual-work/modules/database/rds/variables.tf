@@ -2,23 +2,60 @@
 variable "aws_region" {
   default = "us-east-1"
 }
+variable "rds_engine" {
+  description = "value"
+  type = string
+  validation {
+    condition = var.rds_engine > 30
+    error_message = "Storage should be greater than 30"
+    }
+}
 variable "allocated_storage" {
+  description = "value"
   default = 30
+  validation {
+    condition = var.allocated_storage > 30
+    error_message = "Storage should be greater than 30"
+  }
 }
 variable "db_name" {
+  description = "value"
   type = string
+  validation {
+    condition = length(var.db_name) != 0
+    error_message = "please provide db name"
+  }
 }
 variable "rds_instance_name" {
+  description = "value"
   type = string
+  validation {
+    condition = length(var.rds_instance_name) != 0
+    error_message = "please provide rds instance name"
+  }
 }
 
 variable "db_instance_class" {
+  description = "value"
   type = string
+  validation {
+    condition = length(var.db_instance_class) != 0
+    error_message = "please provide db instance class"
+  }
 }
 variable "terrform_operation_timeout" {
   description = "provide a value in minute with 'm' appended if any operation takes more than default 360 minutes"
   type = string
   default = "360m"
+}
+		
+variable "storage_type" {
+  description = "value"
+  type = string
+  validation {
+    condition = var.storage_type == "gp3"
+    error_message = "storage type should be of type gp3"
+  }
 }
 
 variable "tags" {
@@ -66,4 +103,16 @@ variable "key_policy_map" {
     description = "A valid policy JSON document"
     type = any
  
+}
+variable "kms_tags" {
+  type = object({
+    DataClassification = string
+    Environment        = string
+    AppName            = string
+    InfraOwner         = string
+    BusinessUnit       = string
+    Backup             = string
+    Product            = string
+    Name               = string
+  })
 }
