@@ -4,7 +4,7 @@ resource "aws_db_instance" "read-only-cross-region" {
 
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
-  availability_zone = "us-east-1a"
+  availability_zone = "us-east-1b"
   identifier  = "jpmc-ro"
   apply_immediately = true
   replicate_source_db  = aws_db_instance.rds_instance.arn
