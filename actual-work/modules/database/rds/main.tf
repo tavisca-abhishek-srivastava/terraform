@@ -34,7 +34,8 @@
   }
   lifecycle {
 	precondition {
-	  condition = (var.storage_type == "gp3" && var.allocated_storage > 400) ? (var.storage_iops >=12000 ? true:false):((var.storage_type == "io1" || var.storage_type == "io2") ? (var.storage_iops >=1000):false)
+	  #condition = (var.storage_type == "gp3" && var.allocated_storage >= 400) ? (var.storage_iops >=12000 ? true:false):((var.storage_type == "io1" || var.storage_type == "io2") ? (var.storage_iops >=1000):false)
+	  condition = (var.storage_type == "gp3" ? (var.allocated_storage > 400 ? (var.storage_iops >=12000 ? true :false ):true): true)
 	  error_message = "for disk type GP3 and allocated_storage >400, iops must be greater than 12000 "
 	}
   }
