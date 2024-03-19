@@ -9,6 +9,7 @@ enable_storage_autoscaling = true
 max_allocated_storage = 601
 storage_iops = 1021
 backup_retention_period = 1
+multi_az = true
 
 tags = {
   DataClassification : "restricted"
