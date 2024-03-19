@@ -97,6 +97,7 @@ variable "db_instance_class" {
 variable "availability_zone" {
   description = "The AZ for the RDS instance"
   type = string
+  default = "us-east-1a"
 }
 variable "backup_retention_period" {
   description = "The days to retain backups for. Must be between 0 and 35"
