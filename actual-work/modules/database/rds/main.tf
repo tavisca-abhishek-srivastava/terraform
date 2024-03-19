@@ -38,6 +38,10 @@
 	  condition = (var.storage_type == "gp3" ? (var.allocated_storage > 400 ? (var.storage_iops >=12000 ? true :false ):true): true)
 	  error_message = "for disk type GP3 and allocated_storage >400, iops must be greater than 12000 "
 	}
+	precondition {
+	  condition = (var.storage_type == "io1" ? (var.storage_iops >=1000 ? true :false ):true)
+	  error_message = "for disk type io1 , iops must be greater than 1000"
+	}
   }
 
 	  tags = var.tags
