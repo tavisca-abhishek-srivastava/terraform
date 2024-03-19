@@ -26,9 +26,9 @@
 	    allow_major_version_upgrade = var.allow_major_version_upgrade
 		apply_immediately 			= var.apply_immediately
 		auto_minor_version_upgrade = var.auto_minor_version_upgrade
-		availability_zone = var.availability_zone
+		availability_zone = var.multi_az == false ? var.availability_zone: null
 		backup_retention_period 	= var.backup_retention_period
-	  	multi_az = true
+	  	multi_az = var.multi_az
 		
 		timeouts {
 			create = var.terrform_operation_timeout

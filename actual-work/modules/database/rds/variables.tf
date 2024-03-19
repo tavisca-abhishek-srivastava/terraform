@@ -103,6 +103,10 @@ variable "backup_retention_period" {
   description = "The days to retain backups for. Must be between 0 and 35"
   type = number
 }
+variable "multi_az" {
+  type = bool
+  default = false
+}
 variable "tags" {
   type = object({
     DataClassification = string
