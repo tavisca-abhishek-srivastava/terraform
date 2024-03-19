@@ -7,7 +7,7 @@
 	kms_tags = var.kms_tags
 
 }
-	resource "aws_db_instance" "default" {
+	resource "aws_db_instance" "rds_instance" {
 		identifier  				= var.rds_instance_name
 		db_name              		= var.db_name
 		engine              	 	= var.rds_engine
@@ -23,8 +23,11 @@
 	  	password             		= "welcome$123"
 	  	parameter_group_name 		= "default.mysql5.7"
 	  	skip_final_snapshot  		= true
-	    apply_immediately 			= true
-	  	backup_retention_period 	= 1
+	    allow_major_version_upgrade = var.allow_major_version_upgrade
+		apply_immediately 			= var.apply_immediately
+		auto_minor_version_upgrade = var.auto_minor_version_upgrade
+		availability_zone = var.availability_zone
+		backup_retention_period 	= var.backup_retention_period
 	  	multi_az = true
 		
 		timeouts {
@@ -39,7 +42,7 @@
 	  error_message = "for disk type GP3 and allocated_storage >400, iops must be greater than 12000 "
 	}
 	precondition {
-	  condition = (var.storage_type == "io1" ? (var.storage_iops >=1000 ? true :false ):true)
+	  condition = (var.storage_type == "io1" || var.storage_type == "io2" ? (var.storage_iops >=1000 ? true :false ):true)
 	  error_message = "for disk type io1 , iops must be greater than 1000"
 	}
   }
