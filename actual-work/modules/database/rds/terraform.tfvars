@@ -1,6 +1,6 @@
 rds_instance_name = "jpmc-master"
 db_name = "mysql_db"
-allocated_storage = 50
+allocated_storage = 100
 storage_type = "io1"
 db_instance_class = "db.t3.micro"
 rds_engine = "mysql"
