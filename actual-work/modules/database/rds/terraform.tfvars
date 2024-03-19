@@ -7,7 +7,7 @@ rds_engine = "mysql"
 rds_engine_version = "5.7"
 enable_storage_autoscaling = true
 max_allocated_storage = 601
-storage_iops = 20
+storage_iops = 1021
 backup_retention_period = 1
 
 tags = {
