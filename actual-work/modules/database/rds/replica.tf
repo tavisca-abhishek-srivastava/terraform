@@ -8,7 +8,7 @@ resource "aws_db_instance" "read-only-cross-region" {
   availability_zone = "us-east-1b"
   identifier  = "jpmc-ro-${count.index}"
   apply_immediately = true
-  replicate_source_db  = aws_db_instance.rds_instance.arn
+  replicate_source_db  = aws_db_instance.rds_instance.identifier
   storage_encrypted = true
   kms_key_id = module.rds_storage_cmk.mrk_cms_arn
   #db_subnet_group_name = "default"
