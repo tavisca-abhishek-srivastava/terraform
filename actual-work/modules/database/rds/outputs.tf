@@ -1,4 +1,4 @@
-	output "arn" {
-	value = aws_db_instance.default.arn
+	output "rds_arn" {
+	value = aws_db_instance.rds_instance.arn
 	description = "ARN of DB"
 	 }

@@ -1,4 +1,27 @@
+#Optional variable
 
+variable "terrform_operation_timeout" {
+  description = "provide a value in minute with 'm' appended if any operation takes more than default 360 minutes"
+  type = string
+  default = "360m"
+}
+variable "allow_major_version_upgrade" {
+  description = "Indicates that major version upgrades are allowed"
+  type = bool
+  default = false
+}
+variable "apply_immediately" {
+  description = "Specifies whether any database modifications are applied immediately, or during the next maintenance window"
+  type = bool
+  default = false
+}
+variable "auto_minor_version_upgrade" {
+  description = "Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window"
+  type = bool
+  default = false
+}
+
+##############################
 variable "aws_region" {
   default = "us-east-1"
 }
@@ -70,12 +93,15 @@ variable "db_instance_class" {
     error_message = "please provide db instance class"
   }
 }
-variable "terrform_operation_timeout" {
-  description = "provide a value in minute with 'm' appended if any operation takes more than default 360 minutes"
+
+variable "availability_zone" {
+  description = "The AZ for the RDS instance"
   type = string
-  default = "360m"
 }
-		
+variable "backup_retention_period" {
+  description = "The days to retain backups for. Must be between 0 and 35"
+  type = number
+}
 variable "tags" {
   type = object({
     DataClassification = string
