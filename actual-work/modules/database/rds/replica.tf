@@ -1,5 +1,5 @@
 resource "aws_db_instance" "read-only-cross-region" {
-  count = 2
+  count = var.number_of_read_replica
   #allocated_storage    = var.allocated_storage
   instance_class       = var.db_instance_class
 

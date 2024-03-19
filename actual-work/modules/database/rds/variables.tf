@@ -107,6 +107,11 @@ variable "multi_az" {
   type = bool
   default = false
 }
+variable "number_of_read_replica" {
+  description = "number of read replica for better read performance"
+  type = number
+  default = 0
+}
 variable "tags" {
   type = object({
     DataClassification = string
