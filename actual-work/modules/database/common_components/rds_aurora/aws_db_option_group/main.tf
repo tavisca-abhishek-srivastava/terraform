@@ -10,11 +10,8 @@ resource "aws_db_option_group" "option_group_for_db" {
       option_settings {
         name  = option.value.option_settings_name
         value = option.value.option_settings_value
-      }
+    }
     }
   }
-
-
-
   tags = var.tags
 }

@@ -26,6 +26,9 @@ variable "option_settings" {
     option_name           = string
     option_settings_name  = string
     option_settings_value = any
+    db_security_group_memberships   = Optional(string,null)
+    vpc_security_group_memberships  = Optional(string,null)
+    port = Optional(string,null)
   }))
 }
 
