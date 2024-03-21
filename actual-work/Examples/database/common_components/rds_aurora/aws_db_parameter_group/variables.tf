@@ -1,3 +1,9 @@
+# this is for provider
+variable "aws_region" {
+  type = string
+}
+
+# variables for parameter group module
 variable "rds_parameter_group_name" {
   description = "name of rds/aurora parameter group"
   type = string
@@ -12,6 +18,10 @@ variable "family" {
   type = string
 }
 
+variable "description" {
+  description = "provide description of usage of this parameter group"
+  type = string
+}
 variable "parameter_value" {
   type = map(object({
     name = string
