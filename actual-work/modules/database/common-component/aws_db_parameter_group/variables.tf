@@ -2,7 +2,7 @@ variable "rds_parameter_group_name" {
   description = "name of rds/aurora parameter group"
   type = string
   validation {
-    condition = length(var.rds_parameter_group_name)
+    condition = length(var.rds_parameter_group_name) != 0
     error_message = "parameter group name can't be left blank"
   }
 }
