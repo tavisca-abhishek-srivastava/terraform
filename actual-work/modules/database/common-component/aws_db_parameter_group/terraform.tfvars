@@ -1,5 +1,6 @@
 rds_parameter_group_name = "rds-mysql"
 family = "mysql5.6"
+
 parameter_value = {
   setting1 = {
     name = "character_set_server"
@@ -7,6 +8,9 @@ parameter_value = {
   setting2 = {
     name = "character_set_server"
     value = "utf8"},
+  setting3 = {
+    name = "autocommit"
+    value = 1},
 }
 tags = {
   DataClassification : "restricted"
