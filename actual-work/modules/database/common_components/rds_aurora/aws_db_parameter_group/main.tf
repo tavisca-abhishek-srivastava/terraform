@@ -1,5 +1,5 @@
-resource "aws_db_option_group" "option_group_for_db" {
-  name   = var.rds_option_group_name
+resource "aws_db_parameter_group" "parameter_group_for_db" {
+  name   = var.rds_parameter_group_name
   family = var.family
   description = var.description
   
