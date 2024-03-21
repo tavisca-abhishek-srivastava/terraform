@@ -4,9 +4,14 @@ engine_name = "mysql"
 major_engine_version = "8.0"
 option_group_description = "This is for NRT RDS"
 option_settings = {
-    option_name           = "Timezone"
-    option_settings_name  = "TIME_ZONE"
-    option_settings_value = "UTC"
+  "setting1" = {
+    option_name           = "MEMCACHED"
+    option_settings_name  = "BACKLOG_QUEUE_LIMIT"
+    option_settings_value = "1025"
+    db_security_group_memberships = "default"
+    vpc_security_group_memberships = "default"
+    port = 11211
+  }
 }
 
 
