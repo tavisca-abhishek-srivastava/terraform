@@ -12,6 +12,10 @@ variable "family" {
   type = string
 }
 
+variable "description" {
+  description = "provide description of usage of this parameter group"
+  type = string
+}
 variable "parameter_value" {
   type = map(object({
     name = string
