@@ -1,6 +1,6 @@
 aws_region = "us-east-1"
 rds_parameter_group_name = "nrt-rds-mysql"
-family = "mysql8.0"
+family = "mysql5.7"
 description = "this is for NRT RDS"
 parameter_value = {
   setting1 = {
