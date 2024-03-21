@@ -32,8 +32,8 @@ variable "option_settings" {
     option_name           = string
     option_settings_name  = string
     option_settings_value = any
-    db_security_group_memberships   = string
-    vpc_security_group_memberships  = string
+    db_security_group_memberships   = list(string)
+    vpc_security_group_memberships  = list(string)
     port = string
   }))
 }
