@@ -11,6 +11,9 @@ parameter_value = {
   setting3 = {
     name = "autocommit"
     value = 1},
+  setting4 = {
+    name = "log_queries_not_using_indexes"
+    value = 1},
 }
 tags = {
   DataClassification : "restricted"
