@@ -9,7 +9,7 @@
 
 	module "rds_option_group" {
 		source = "../../common_components/rds_aurora/aws_db_option_group/"
-		for_each = (var.use_default_option_group == false) ? []:[1]
+		for_each = (var.use_default_option_group == false) ? toset([]):toset(["1"])
 			rds_option_group_name = var.rds_option_group_name
 			option_group_engine_name = var.option_group_engine_name
 			option_group_major_engine_version = var.option_group_major_engine_version
@@ -39,14 +39,14 @@
 		backup_retention_period 	= var.backup_retention_period
 	  	multi_az = var.multi_az
 		backup_window = ""
-		db_subnet_group_name = ""
+		db_subnet_group_name = "cxl-rds-subnet-group"
 		deletion_protection = var.deletion_protection
 		license_model = var.license_model
 		maintenance_window = ""
 		monitoring_role_arn = ""
 		performance_insights_enabled = var.performance_insights_enabled
 		performance_insights_kms_key_id = module.rds_storage_cmk.mrk_cms_arn
-		performance_insights_retention_period = var.performance_insights_enabled == ture? var.performance_insights_retention_period:null
+		performance_insights_retention_period = var.performance_insights_enabled == true? var.performance_insights_retention_period:null
 		parameter_group_name = "default.mysql5.7"
 		option_group_name = var.use_default_option_group == true ? var.rds_option_group_name: module.rds_option_group.option_group_name
 		port = var.port
@@ -55,7 +55,7 @@
 		}
 		skip_final_snapshot  		= true
 		snapshot_identifier = ""
-		vpc_security_group_ids = ""
+		vpc_security_group_ids = "sg-006dad075fbfed8e7"
 
 		timeouts {
 			create = var.terrform_operation_timeout
@@ -65,7 +65,7 @@
   lifecycle {
 	precondition {
 		# length of variable 'az_for_read_replica' must be equal to 'number_of_read_replica'
-	  	condition = length(var.az_for_read_replica) == number_of_read_replica ? true: false
+	  	condition = length(var.az_for_read_replica) == var.number_of_read_replica ? true: false
 	  	error_message = "number of az in list 'az_for_read_replica' must be equal to 'number_of_read_replica' "
 	}
 	precondition {
