@@ -270,16 +270,3 @@ variable "option_settings" {
     port = string
   }))
 }
-
-variable "tags" {
-  type = object({
-    DataClassification = string
-    Environment        = string
-    AppName            = string
-    InfraOwner         = string
-    BusinessUnit       = string
-    Backup             = string
-    Product            = string
-    Name               = string
-  })
-}
