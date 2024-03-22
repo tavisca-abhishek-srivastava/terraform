@@ -11,8 +11,8 @@ resource "aws_db_option_group" "option_group_for_db" {
         name  = option.value.option_settings_name
         value = option.value.option_settings_value
     }
-    db_security_group_memberships = option_name == "MEMCACHED"?option.value.db_security_group_memberships:null
-    vpc_security_group_memberships  = option_name == "MEMCACHED"?option.value.vpc_security_group_memberships:null
+    db_security_group_memberships = option.value.option_name == "MEMCACHED" ? option.value.db_security_group_memberships:null
+    vpc_security_group_memberships  = option.value.option_name == "MEMCACHED" ? option.value.vpc_security_group_memberships:null
 
 
     }
