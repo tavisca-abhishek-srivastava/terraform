@@ -13,7 +13,7 @@ variable "rds_option_group_name" {
   }
 }
 
-variable "engine_name" {
+variable "option_group_engine_name" {
   description = "The engine_name of the DB like "
   type        = string
 }
@@ -22,7 +22,7 @@ variable "option_group_description" {
   description = "provide description of usage of this option group"
   type        = string
 }
-variable "major_engine_version" {
+variable "option_group_major_engine_version" {
   description = "Specifies the major version of the engine that this option group should be associated with"
   type        = string
 }
@@ -32,6 +32,7 @@ variable "option_settings" {
     option_name           = string
     option_settings_name  = string
     option_settings_value = any
+    #  db_security_group_memberships , vpc_security_group_memberships and port will be used only for mysql MEMCACHED option name
     db_security_group_memberships   = list(string)
     vpc_security_group_memberships  = list(string)
     port = string

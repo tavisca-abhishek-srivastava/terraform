@@ -1,8 +1,8 @@
 resource "aws_db_option_group" "option_group_for_db" {
   name                     = var.rds_option_group_name
   option_group_description = var.option_group_description
-  engine_name              = var.engine_name
-  major_engine_version     = var.major_engine_version
+  engine_name              = var.option_group_engine_name
+  major_engine_version     = var.option_group_major_engine_version
   dynamic "option" {
     for_each = var.option_settings
     content {

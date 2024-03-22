@@ -1,7 +1,7 @@
 resource "aws_db_parameter_group" "parameter_group_for_db" {
   name   = var.rds_parameter_group_name
-  family = var.family
-  description = var.description
+  family = var.parameter_group_db_family
+  description = var.parameter_group_description
   
 
   dynamic "parameter" {
