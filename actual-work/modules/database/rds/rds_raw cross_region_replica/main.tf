@@ -21,7 +21,6 @@
 		kms_key_id 					= module.rds_storage_cmk.mrk_cms_arn
 	  	username             		= "dbadmin"
 	  	password             		= "welcome$123"
-	  	parameter_group_name 		= "default.mysql5.7"
 	  	skip_final_snapshot  		= true
 	    allow_major_version_upgrade = var.allow_major_version_upgrade
 		apply_immediately 			= var.apply_immediately
@@ -29,6 +28,21 @@
 		availability_zone = var.multi_az == false ? var.availability_zone: null
 		backup_retention_period 	= var.backup_retention_period
 	  	multi_az = var.multi_az
+		backup_window = ""
+		db_subnet_group_name = ""
+		deletion_protection = false
+		license_model = ""
+		maintenance_window = ""
+		monitoring_role_arn = ""
+		option_group_name = ""
+		performance_insights_enabled = false
+		performance_insights_kms_key_id = module.rds_storage_cmk.mrk_cms_arn
+		performance_insights_retention_period = 7
+		parameter_group_name 		= "default.mysql5.7"
+		port = 3306
+		restore_to_point_in_time {
+		  
+		}
 		
 		timeouts {
 			create = var.terrform_operation_timeout
