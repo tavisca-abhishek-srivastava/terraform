@@ -147,7 +147,7 @@ variable "port" {
   description = "port for client to connect to DB"
   type = number
   validation {
-    condition = length(var.port)
+    condition = var.port != 0 || var.port != null
     error_message = "port can't be left blank"
   }
 
