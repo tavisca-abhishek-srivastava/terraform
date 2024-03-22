@@ -20,6 +20,13 @@ variable "auto_minor_version_upgrade" {
   type = bool
   default = false
 }
+variable "restore_2_pitr" {
+  description = "true if table is restored from pitr"
+  type = bool
+  default = false
+  
+}
+
 
 ##############################
 variable "aws_region" {
