@@ -6,6 +6,6 @@ module "nrt_rds_parameter_group" {
     option_group_description = var.option_group_description
     option_settings = var.option_settings
     tags = var.tags
-
+    
     
 }
