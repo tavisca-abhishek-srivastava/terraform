@@ -7,12 +7,12 @@ variable "rds_parameter_group_name" {
   }
 }
 
-variable "family" {
+variable "parameter_group_db_family" {
   description = "The family of the DB parameter group"
   type = string
 }
 
-variable "description" {
+variable "parameter_group_description" {
   description = "provide description of usage of this parameter group"
   type = string
 }
