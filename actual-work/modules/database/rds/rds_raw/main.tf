@@ -48,14 +48,17 @@
 		performance_insights_kms_key_id = module.rds_storage_cmk.mrk_cms_arn
 		performance_insights_retention_period = var.performance_insights_enabled == true? var.performance_insights_retention_period:null
 		parameter_group_name = "default.mysql5.7"
-		option_group_name = var.use_default_option_group == true ? var.rds_option_group_name: module.rds_option_group.option_group_name
+		option_group_name = var.use_default_option_group == true ? var.rds_option_group_name:module.rds_option_group.option_group_name
 		port = var.port
-		restore_to_point_in_time {
-		  
+		dynamic "restore_to_point_in_time" {
+		  for_each = var.restore_2_pitr ==  false ? toset([]):toset(["1"])
+		  content {
+			
+		  }
 		}
 		skip_final_snapshot  		= true
-		snapshot_identifier = ""
-		vpc_security_group_ids = "sg-006dad075fbfed8e7"
+		snapshot_identifier = null
+		vpc_security_group_ids = toset["sg-006dad075fbfed8e7"]
 
 		timeouts {
 			create = var.terrform_operation_timeout
