@@ -58,7 +58,7 @@
 		}
 		skip_final_snapshot  		= true
 		snapshot_identifier = null
-		vpc_security_group_ids = toset["sg-006dad075fbfed8e7"]
+		vpc_security_group_ids = ["sg-006dad075fbfed8e7"]
 
 		timeouts {
 			create = var.terrform_operation_timeout
