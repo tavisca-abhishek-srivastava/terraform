@@ -15,7 +15,6 @@ option_settings = {
     option_name           = "MARIADB_AUDIT_PLUGIN"
     option_settings_name  = "SERVER_AUDIT_QUERY_LOG_LIMIT"
     option_settings_value = "1025"
-    db_security_group_memberships = null
     vpc_security_group_memberships = null
     port = null
   },

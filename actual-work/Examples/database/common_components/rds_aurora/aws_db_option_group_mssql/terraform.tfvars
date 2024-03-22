@@ -17,7 +17,6 @@ option_settings = {
 #         "Action": "sts:AssumeRole"
 #     }]
 # }
-    db_security_group_memberships = null
     vpc_security_group_memberships = null
     port = null
   }

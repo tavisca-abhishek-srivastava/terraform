@@ -10,7 +10,7 @@ max_allocated_storage = 601
 storage_iops = 1021
 backup_retention_period = 1
 multi_az = true
-number_of_read_replica = 3
+number_of_read_replica = 0
 
 tags = {
   DataClassification : "restricted"

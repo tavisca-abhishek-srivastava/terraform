@@ -36,6 +36,10 @@ variable "rds_engine" {
 
 variable "rds_engine_version" {
   type = string
+  validation {
+    condition = length(var.rds_engine_version) != 0
+    error_message = "database engine version must be specified "
+    }
 }
 variable "allocated_storage" {
   description = "value"
@@ -100,7 +104,7 @@ variable "availability_zone" {
   default = "us-east-1a"
 }
 variable "backup_retention_period" {
-  description = "The days to retain backups for. Must be between 0 and 35"
+  description = "The days to retain backups for. Must be between 0 and 35.Must be greater than 0 if the database is used as a source for a Read Replica"
   type = number
 }
 variable "multi_az" {
@@ -112,6 +116,63 @@ variable "number_of_read_replica" {
   type = number
   default = 0
 }
+variable "az_for_read_replica" {
+  description = "list of azs where read only replica will be placed. This can be different from az of primary instance"
+  type = list
+  default = ["us-east-1b","us-east-1c"]
+}
+variable "storage_throughput" {
+  description = <<EOF
+  The storage throughput value for the DB instance. Can only be set when storage_type is 'gp3'.
+  refer for more details: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage
+  EOF
+  type = number
+  default = 3000
+}
+
+variable "backup_window" {
+  description = <<EOF
+  The daily time range (in UTC) during which automated backups are created if they are enabled
+  Example: "09:46-10:16". Must not overlap with maintenance_window
+  EOF 
+  type = string
+  default = null
+}
+variable "license_model" {
+  description = "License model information for this DB instance"
+  type = string
+  default = "general-public-license"
+}
+variable "port" {
+  description = "port for client to connect to DB"
+  type = number
+  validation {
+    condition = length(var.port)
+    error_message = "port can't be left blank"
+  }
+
+}
+variable "deletion_protection" {
+  description = "The database can't be deleted when this value is set to true"
+  type = bool
+  default = false
+}
+
+variable "performance_insights_retention_period" {
+  description = <<EOF
+  Amount of time in days to retain Performance Insights data. 
+  Valid values are 7, 731 (2 years) or a multiple of 31. 
+  When specifying performance_insights_retention_period, performance_insights_enabled needs to be set to true.
+  EOF
+  type = number
+  default = 7
+}
+variable "performance_insights_enabled" {
+  description = "Specifies whether Performance Insights are enabled"
+  type = bool
+  default = false
+}
+
 variable "tags" {
   type = object({
     DataClassification = string
@@ -151,6 +212,66 @@ variable "key_policy_map" {
  
 }
 variable "kms_tags" {
+  type = object({
+    DataClassification = string
+    Environment        = string
+    AppName            = string
+    InfraOwner         = string
+    BusinessUnit       = string
+    Backup             = string
+    Product            = string
+    Name               = string
+  })
+}
+
+########################################################################################################
+##                                                                                                    ##
+##                     option group module related variables                                          ##
+##                                                                                                    ##
+########################################################################################################
+
+variable "use_default_option_group" {
+  description = "whether to use default option group for RDS/Aurora. if true -> provide name of 'default option group' in variable 'rds_option_group_name' if false -> custom name"
+  type = bool
+  default = true
+}
+
+# variables for option group module
+variable "rds_option_group_name" {
+  description = "name of rds/aurora option group"
+  type        = string
+  validation {
+    condition     = length(var.rds_option_group_name) != 0
+    error_message = "option group name can't be left blank"
+  }
+}
+
+variable "option_group_engine_name" {
+  description = "The engine_name of the DB like "
+  type        = string
+}
+
+variable "option_group_description" {
+  description = "provide description of usage of this option group"
+  type        = string
+}
+variable "option_group_major_engine_version" {
+  description = "Specifies the major version of the engine that this option group should be associated with"
+  type        = string
+}
+
+variable "option_settings" {
+  type = map(object({
+    option_name           = string
+    option_settings_name  = string
+    option_settings_value = any
+    #vpc_security_group_memberships and port will be used only for mysql MEMCACHED option name
+    vpc_security_group_memberships  = list(string)
+    port = string
+  }))
+}
+
+variable "tags" {
   type = object({
     DataClassification = string
     Environment        = string
