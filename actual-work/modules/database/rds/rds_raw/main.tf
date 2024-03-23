@@ -18,6 +18,7 @@
 			tags = var.tags
 	}
 	resource "aws_db_instance" "rds_instance" {
+		depends_on = [ module.rds_option_group ]
 		identifier  				= 	var.rds_instance_name
 		db_name              		= 	var.db_name
 		engine              	 	= 	var.rds_engine
@@ -48,7 +49,7 @@
 		performance_insights_kms_key_id = var.performance_insights_enabled == true? module.rds_storage_cmk.mrk_cms_arn:null
 		performance_insights_retention_period = var.performance_insights_enabled == true? var.performance_insights_retention_period:null
 		parameter_group_name = "default.mysql5.7"
-		option_group_name = var.use_default_option_group == true ? var.rds_option_group_name: module.rds_option_group.option_group_name_output
+		option_group_name = var.use_default_option_group == true ? var.rds_option_group_name:var.rds_option_group_name
 		port = var.port
 		dynamic "restore_to_point_in_time" {
 		  for_each = var.restore_2_pitr ==  false ? toset([]):toset(["1"])
