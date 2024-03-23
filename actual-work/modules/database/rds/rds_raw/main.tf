@@ -45,7 +45,7 @@
 		maintenance_window = ""
 		monitoring_role_arn = ""
 		performance_insights_enabled = var.performance_insights_enabled
-		performance_insights_kms_key_id = module.rds_storage_cmk.mrk_cms_arn
+		performance_insights_kms_key_id = var.performance_insights_enabled == true? module.rds_storage_cmk.mrk_cms_arn:null
 		performance_insights_retention_period = var.performance_insights_enabled == true? var.performance_insights_retention_period:null
 		parameter_group_name = "default.mysql5.7"
 		option_group_name = var.use_default_option_group == true ? var.rds_option_group_name:var.rds_option_group_name
