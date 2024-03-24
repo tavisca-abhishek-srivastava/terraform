@@ -30,7 +30,7 @@
 		iops 						=	((var.storage_type == "gp3" && var.allocated_storage > 400) || var.storage_type == "io1" || var.storage_type == "io2") ? var.storage_iops:null
 		storage_throughput			=	(var.storage_type == "gp3" && var.allocated_storage > 400) ? var.storage_throughput:null
 		max_allocated_storage 		= 	(var.enable_storage_autoscaling == true) ? var.max_allocated_storage:0
-		kms_key_id 					= module.rds_storage_cmk.mrk_cms_arn
+		kms_key_id 					= 	module.rds_storage_cmk.mrk_cms_arn
 	  	username             		= "dbadmin"
 	  	password             		= "welcome$123"
 	  	allow_major_version_upgrade = var.allow_major_version_upgrade
@@ -49,7 +49,7 @@
 		performance_insights_kms_key_id = var.performance_insights_enabled == true? module.rds_storage_cmk.mrk_cms_arn:null
 		performance_insights_retention_period = var.performance_insights_enabled == true? var.performance_insights_retention_period:null
 		parameter_group_name = "default.mysql5.7"
-		option_group_name = var.use_default_option_group == true ? var.rds_option_group_name:var.rds_option_group_name
+		option_group_name = var.use_default_option_group == true ? var.rds_option_group_name:module.rds_option_group.option_group_name_output
 		port = var.port
 		dynamic "restore_to_point_in_time" {
 		  for_each = var.restore_2_pitr ==  false ? toset([]):toset(["1"])
