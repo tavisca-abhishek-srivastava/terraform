@@ -9,7 +9,7 @@
 
 	module "rds_option_group" {
 		source = "../../common_components/rds_aurora/aws_db_option_group/"
-		# for_each = (var.use_default_option_group == false) ? toset([]):toset(["1"])
+		for_each = (var.use_default_option_group == false) ? toset(["1"]):toset([])
 			rds_option_group_name = var.rds_option_group_name
 			option_group_engine_name = var.option_group_engine_name
 			option_group_major_engine_version = var.option_group_major_engine_version
