@@ -3,5 +3,5 @@
 	description = "ARN of DB"
 	 }
 	 output "name_of_option_group" {
-		value = module.rds_option_group.option_group_name_output
+		value = module.rds_option_group.option_group_name_output.id
 	 }
