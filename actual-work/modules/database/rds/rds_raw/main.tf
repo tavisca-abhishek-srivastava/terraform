@@ -17,6 +17,7 @@
 			option_settings = var.option_settings
 			tags = var.tags
 	}
+
 	resource "aws_db_instance" "rds_instance" {
 		depends_on = [ module.rds_option_group ]
 		identifier  				= 	var.rds_instance_name
@@ -31,20 +32,20 @@
 		storage_throughput			=	(var.storage_type == "gp3" && var.allocated_storage > 400) ? var.storage_throughput:null
 		max_allocated_storage 		= 	(var.enable_storage_autoscaling == true) ? var.max_allocated_storage:0
 		kms_key_id 					= 	module.rds_storage_cmk.mrk_cms_arn
-	  	username             		= "dbadmin"
-	  	password             		= "welcome$123"
+	  	username             		= 	var.user_name
+	  	password             		= 	var.password
 	  	allow_major_version_upgrade = var.allow_major_version_upgrade
 		apply_immediately 			= var.apply_immediately
 		auto_minor_version_upgrade = var.auto_minor_version_upgrade
 		availability_zone = var.multi_az == false ? var.availability_zone: null
 		backup_retention_period 	= var.backup_retention_period
 	  	multi_az = var.multi_az
-		backup_window = ""
-		db_subnet_group_name = "cxl-rds-subnet-group"
+		backup_window = var.backup_window
+		db_subnet_group_name = var.db_subnet_group
 		deletion_protection = var.deletion_protection
 		license_model = var.license_model
-		maintenance_window = ""
-		monitoring_role_arn = ""
+		maintenance_window = var.maintenance_window
+		monitoring_role_arn =var.monitoring_role_arn
 		performance_insights_enabled = var.performance_insights_enabled
 		performance_insights_kms_key_id = var.performance_insights_enabled == true? module.rds_storage_cmk.mrk_cms_arn:null
 		performance_insights_retention_period = var.performance_insights_enabled == true? var.performance_insights_retention_period:null
@@ -59,7 +60,7 @@
 		}
 		skip_final_snapshot  		= true
 		snapshot_identifier = null
-		vpc_security_group_ids = ["sg-006dad075fbfed8e7"]
+		vpc_security_group_ids = var.vpc_security_group_ids
 
 		timeouts {
 			create = var.terrform_operation_timeout
