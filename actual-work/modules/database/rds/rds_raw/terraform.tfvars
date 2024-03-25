@@ -14,7 +14,7 @@ multi_az = true
 
 #### for read only replica
 number_of_read_replica = 4
-az_for_read_replica = ["us-east-1b","us-east-1c","us-east-1a",,"us-west-2a"]
+az_for_read_replica = ["us-east-1b","us-east-1c","us-east-1a","us-west-2a"]
 
 tags = {
   DataClassification : "restricted"
