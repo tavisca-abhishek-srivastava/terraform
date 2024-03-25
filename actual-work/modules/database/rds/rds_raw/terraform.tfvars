@@ -11,10 +11,15 @@ storage_iops = 1021
 backup_retention_period = 1
 port = 3306
 multi_az = true
+user_name = "dbadmin"
+password = "welcome$123"
+db_subnet_group = "cxl-rds-subnet-group"
+vpc_security_group_ids = ["sg-006dad075fbfed8e7"]
+
 
 #### for read only replica
-number_of_read_replica = 4
-az_for_read_replica = ["us-east-1b","us-east-1c","us-east-1a","us-west-2a"]
+number_of_read_replica = 2
+az_for_read_replica = ["us-east-1b","us-west-2a"]
 
 tags = {
   DataClassification : "restricted"

@@ -26,8 +26,29 @@ variable "restore_2_pitr" {
   default = false
   
 }
-
-
+variable "backup_window" {
+  description = <<EOF
+  The daily time range (in UTC) during which automated backups are created if they are enabled
+  Example: "09:46-10:16". Must not overlap with maintenance_window
+  EOF 
+  type = string
+  default = null
+}
+variable "monitoring_role_arn" {
+  description = "value"
+  type = string
+  default = null
+}
+variable "maintenance_window" {
+  description = "The window to perform maintenance in. Syntax: 'ddd:hh24:mi-ddd:hh24:mi'. Eg: 'Mon:00:00-Mon:03:00'"
+  type = string
+  default = null
+}
+variable "performance_insights_enabled" {
+  description = "Specifies whether Performance Insights are enabled"
+  type = bool
+  default = false
+}
 ##############################
 variable "aws_region" {
   default = "us-east-1"
@@ -137,14 +158,6 @@ variable "storage_throughput" {
   default = 3000
 }
 
-variable "backup_window" {
-  description = <<EOF
-  The daily time range (in UTC) during which automated backups are created if they are enabled
-  Example: "09:46-10:16". Must not overlap with maintenance_window
-  EOF 
-  type = string
-  default = null
-}
 variable "license_model" {
   description = "License model information for this DB instance"
   type = string
@@ -174,10 +187,32 @@ variable "performance_insights_retention_period" {
   type = number
   default = 7
 }
-variable "performance_insights_enabled" {
-  description = "Specifies whether Performance Insights are enabled"
-  type = bool
-  default = false
+
+variable "user_name" {
+  description = "username for rds instance"
+  type = string
+}
+variable "password" {
+  description = "password for rds instance"
+  type = string
+}
+variable "backup_window" {
+  description = "The daily time range (in UTC) during which automated backups are created if they are enabled. Example: '09:46-10:16'."
+  type = string
+  default = "null"
+}
+variable "db_subnet_group" {
+  description = <<EOF
+  "Name of DB subnet group. DB instance will be created in the VPC associated with the DB subnet group. 
+  If unspecified, will be created in the default VPC, or in EC2 Classic, if available. 
+  When working with read replicas, it should be specified only if the source database specifies an instance in another AWS Region"
+  EOF
+  type = list
+  default = null
+}
+variable "vpc_security_group_ids" {
+  description = "List of VPC security groups to associate"
+  type = list
 }
 
 variable "tags" {
