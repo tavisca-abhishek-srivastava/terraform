@@ -18,8 +18,20 @@
 			tags = var.tags
 	}
 
+	module "rds_parameter_group" {
+	  source = "../../common_components/rds_aurora/aws_db_parameter_group/"
+	  for_each = (var.use_default_parameter_group == false) ? toset(["1"]):toset([])
+	  	parameter_group_description = var.parameter_group_description
+		parameter_value = var.parameter_value
+		parameter_group_db_family = var.parameter_group_db_family
+		rds_parameter_group_name = var.rds_parameter_group_name
+		tags = var.tags
+
+
+	}
+
 	resource "aws_db_instance" "rds_instance" {
-		depends_on = [ module.rds_option_group ]
+		depends_on = [ module.rds_option_group,module.rds_parameter_group ]
 		identifier  				= 	var.rds_instance_name
 		db_name              		= 	var.db_name
 		engine              	 	= 	var.rds_engine
@@ -49,7 +61,7 @@
 		performance_insights_enabled = var.performance_insights_enabled
 		performance_insights_kms_key_id = var.performance_insights_enabled == true? module.rds_storage_cmk.mrk_cms_arn:null
 		performance_insights_retention_period = var.performance_insights_enabled == true? var.performance_insights_retention_period:null
-		parameter_group_name = "default.mysql5.7"
+		parameter_group_name = var.rds_parameter_group_name
 		option_group_name = var.use_default_option_group == true ? (var.rds_option_group_name) : var.rds_option_group_name
 		port = var.port
 		dynamic "restore_to_point_in_time" {
@@ -58,7 +70,7 @@
 			
 		  }
 		}
-		skip_final_snapshot  		= true
+		skip_final_snapshot  = var.skip_final_snapshot
 		snapshot_identifier = null
 		vpc_security_group_ids = var.vpc_security_group_ids
 

@@ -14,6 +14,7 @@ multi_az = true
 user_name = "dbadmin"
 password = "welcome$123"
 db_subnet_group = "cxl-rds-subnet-group"
+skip_final_snapshot = true
 vpc_security_group_ids = ["sg-006dad075fbfed8e7"]
 
 
@@ -53,6 +54,27 @@ option_settings = {
     port = null
   },
 }
+
+#### for parameter group of RDS
+use_default_parameter_group = false
+rds_parameter_group_name = "nrt-rds-mysql-app"
+parameter_group_db_family = "mysql5.7"
+parameter_group_description = "this is for NRT RDS"
+parameter_value = {
+  setting1 = {
+    name = "character_set_server"
+    value = "utf8"},
+  setting2 = {
+    name = "character_set_server"
+    value = "utf8"},
+  setting3 = {
+    name = "autocommit"
+    value = 1},
+  setting4 = {
+    name = "log_queries_not_using_indexes"
+    value = 1},
+}
+
 
 ############### KMS input
 kms_alias = "alias/nrt_rds_encryption_key"

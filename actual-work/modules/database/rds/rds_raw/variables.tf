@@ -214,6 +214,15 @@ variable "vpc_security_group_ids" {
   description = "List of VPC security groups to associate"
   type = list
 }
+variable "skip_final_snapshot" {
+  description = <<EOF
+ "Determines whether a final DB snapshot is created before the DB instance is deleted. 
+  If true is specified, no DBSnapshot is created. 
+  If false is specified, a DB snapshot is created before the DB instance is deleted, using the value from final_snapshot_identifier"
+  EOF
+  type = bool
+  default = false
+}
 
 variable "tags" {
   type = object({
@@ -310,5 +319,44 @@ variable "option_settings" {
     #vpc_security_group_memberships and port will be used only for mysql MEMCACHED option name
     vpc_security_group_memberships  = list(string)
     port = string
+  }))
+}
+
+########################################################################################################
+##                                                                                                    ##
+##                     parameter group module related variables                                       ##
+##                                                                                                    ##
+########################################################################################################
+variable "use_default_parameter_group" {
+   description = <<EOF
+  "whether to use default parameter group for RDS/Aurora. 
+   if true -> provide name of 'default parameter group' in variable 'rds_option_group_name' if false -> custom name"
+  EOF
+  
+  type = bool
+  default = true
+}
+variable "rds_parameter_group_name" {
+  description = "name of rds/aurora parameter group"
+  type = string
+  validation {
+    condition = length(var.rds_parameter_group_name) != 0
+    error_message = "parameter group name can't be left blank"
+  }
+}
+
+variable "parameter_group_db_family" {
+  description = "The family of the DB parameter group"
+  type = string
+}
+
+variable "parameter_group_description" {
+  description = "provide description of usage of this parameter group"
+  type = string
+}
+variable "parameter_value" {
+  type = map(object({
+    name = string
+    value = any
   }))
 }
