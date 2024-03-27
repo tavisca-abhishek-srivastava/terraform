@@ -196,11 +196,7 @@ variable "password" {
   description = "password for rds instance"
   type = string
 }
-variable "backup_window" {
-  description = "The daily time range (in UTC) during which automated backups are created if they are enabled. Example: '09:46-10:16'."
-  type = string
-  default = "null"
-}
+
 variable "db_subnet_group" {
   description = <<EOF
   "Name of DB subnet group. DB instance will be created in the VPC associated with the DB subnet group. 
