@@ -203,7 +203,7 @@ variable "db_subnet_group" {
   If unspecified, will be created in the default VPC, or in EC2 Classic, if available. 
   When working with read replicas, it should be specified only if the source database specifies an instance in another AWS Region"
   EOF
-  type = list
+  type = string
   default = null
 }
 variable "vpc_security_group_ids" {
