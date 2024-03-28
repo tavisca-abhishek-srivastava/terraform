@@ -149,6 +149,17 @@ variable "az_for_read_replica" {
   type = list
   default = ["us-east-1b","us-east-1c"]
 }
+variable "az_for_cross_account_read_replica" {
+  description = "list of azs where cross account read only replica will be placed. "
+  type = list
+  default = ["us-west-2a"]
+}
+variable "region_for_cross_account_read_replica" {
+  description = "list of azs where cross account read only replica will be placed. "
+  type = string
+  default = "us-west-2"
+}
+
 variable "storage_throughput" {
   description = <<EOF
   The storage throughput value for the DB instance. Can only be set when storage_type is 'gp3'.
