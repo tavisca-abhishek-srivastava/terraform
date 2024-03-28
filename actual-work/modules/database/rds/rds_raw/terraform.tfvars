@@ -25,7 +25,7 @@ az_for_read_replica = ["us-east-1b"]
 ## for cross account read only replica
 number_of_cross_region_read_replica = 1
 az_for_cross_region_read_replica =  ["us-west-2b"]
-region_for_cross_region_read_replica = "us-west-1"
+region_for_cross_region_read_replica = "us-west-2"
 
 tags = {
   DataClassification : "restricted"
