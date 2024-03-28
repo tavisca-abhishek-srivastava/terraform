@@ -19,10 +19,11 @@ vpc_security_group_ids = ["sg-006dad075fbfed8e7"]
 
 
 #### for read only replica
-number_of_read_replica = 2
+number_of_read_replica = 1
 az_for_read_replica = ["us-east-1b"]
 
 ## for cross account read only replica
+number_of_cross_region_read_replica = 1
 az_for_cross_account_read_replica =  ["us-west-2b"]
 region_for_cross_account_read_replica = "us-west-1"
 
