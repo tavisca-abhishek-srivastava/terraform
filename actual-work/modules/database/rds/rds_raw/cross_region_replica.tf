@@ -4,7 +4,7 @@ alias = "dr"
 }
 
 data "aws_kms_key" "cmk_forrds" {
-   key_id = "alias/${kms_alias}"
+   key_id = "alias/${var.kms_alias}"
 }
 
 resource "aws_db_instance" "cross_region_read-only-replica" {
