@@ -3,7 +3,7 @@ region= var.region_for_cross_account_read_replica
 }
 
 resource "aws_db_instance" "cross_account_read-only-replica" {
-  count = var.number_of_read_replica
+  count = var.number_of_cross_region_read_replica
   instance_class       = var.db_instance_class
   
   parameter_group_name = "default.mysql5.7"

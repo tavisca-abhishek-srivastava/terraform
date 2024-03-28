@@ -159,7 +159,11 @@ variable "region_for_cross_account_read_replica" {
   type = string
   default = "us-west-2"
 }
-
+variable "number_of_cross_region_read_replica" {
+  description = "number of read replica in another region for better read performance"
+  type = number
+  default = 0
+}
 variable "storage_throughput" {
   description = <<EOF
   The storage throughput value for the DB instance. Can only be set when storage_type is 'gp3'.
