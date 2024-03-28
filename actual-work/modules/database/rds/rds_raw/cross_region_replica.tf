@@ -1,5 +1,5 @@
 provider "aws" {
-region= var.region_for_cross_account_read_replica
+region= var.region_for_cross_region_read_replica
 alias = "dr"
 }
 
