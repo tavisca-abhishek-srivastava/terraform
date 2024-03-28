@@ -20,7 +20,11 @@ vpc_security_group_ids = ["sg-006dad075fbfed8e7"]
 
 #### for read only replica
 number_of_read_replica = 2
-az_for_read_replica = ["us-east-1b","us-west-2a"]
+az_for_read_replica = ["us-east-1b"]
+
+## for cross account read only replica
+az_for_cross_account_read_replica =  ["us-west-2b"]
+region_for_cross_account_read_replica = "us-west-1"
 
 tags = {
   DataClassification : "restricted"
