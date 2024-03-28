@@ -9,7 +9,7 @@ resource "aws_db_instance" "cross_account_read-only-replica" {
   
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
-  availability_zone = var.region_for_cross_account_read_replica[count.index]
+  availability_zone = var.var.az_for_cross_region_read_replica[count.index]
   identifier  = "jpmc-ro-${count.index}"
   apply_immediately = true
   replicate_source_db  = aws_db_instance.rds_instance.identifier
