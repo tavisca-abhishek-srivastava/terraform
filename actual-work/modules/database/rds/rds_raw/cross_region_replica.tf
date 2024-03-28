@@ -5,6 +5,7 @@ alias = "dr"
 
 data "aws_kms_key" "cmk_forrds" {
    key_id = "${var.kms_alias}"
+   provider = aws.dr
 }
 
 resource "aws_db_instance" "cross_region_read-only-replica" {
