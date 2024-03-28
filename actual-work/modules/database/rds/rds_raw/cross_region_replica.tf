@@ -1,5 +1,6 @@
 provider "aws" {
 region= var.region_for_cross_account_read_replica
+alias = "dr"
 }
 
 resource "aws_db_instance" "cross_account_read-only-replica" {
