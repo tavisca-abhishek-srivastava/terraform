@@ -66,7 +66,7 @@ option_settings_dr = {
     option_name           = "MEMCACHED"
     option_settings_name  = "BACKLOG_QUEUE_LIMIT"
     option_settings_value = "1025"
-    vpc_security_group_memberships = ["sg-006dad075fbfed8e7"]
+    vpc_security_group_memberships = ["sg-0a34246b7aaf3069d"]
     port = 11211
   },
   "setting2" = {
