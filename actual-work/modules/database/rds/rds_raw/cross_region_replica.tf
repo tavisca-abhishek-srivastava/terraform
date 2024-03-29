@@ -10,7 +10,7 @@ alias = "dr"
 			option_group_engine_name = var.option_group_engine_name
 			option_group_major_engine_version = var.option_group_major_engine_version
 			option_group_description = var.option_group_description
-			option_settings = var.option_settings
+			option_settings = var.option_settings_dr
 			tags = var.tags
        
       providers = {
