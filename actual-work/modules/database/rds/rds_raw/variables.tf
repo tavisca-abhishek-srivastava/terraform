@@ -286,11 +286,11 @@ variable "kms_tags" {
   })
 }
 
-########################################################################################################
-##                                                                                                    ##
-##                     option group module related variables                                          ##
-##                                                                                                    ##
-########################################################################################################
+#######################################################################################################################
+##                                                                                                                   ##
+##  option group module related variables (values will be common in primary and dr region except  "option_settings"  ##
+##                                                                                                                   ##
+#######################################################################################################################
 
 variable "use_default_option_group" {
   description = "whether to use default option group for RDS/Aurora. if true -> provide name of 'default option group' in variable 'rds_option_group_name' if false -> custom name"
@@ -332,6 +332,12 @@ variable "option_settings" {
     port = string
   }))
 }
+
+########################################################################################################
+##                                                                                                    ##
+##                     option group module related variables for dr read only replica                 ##
+##                                                                                                    ##
+########################################################################################################
 variable "option_settings_dr" {
   type = map(object({
     option_name           = string

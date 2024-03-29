@@ -1,7 +1,4 @@
-provider "aws" {
-region= var.region_for_cross_region_read_replica
-alias = "dr"
-}
+
 
 	module "rds_dr_option_group" {
 		source = "../../common_components/rds_aurora/aws_db_option_group/"
