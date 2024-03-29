@@ -332,7 +332,16 @@ variable "option_settings" {
     port = string
   }))
 }
-
+variable "option_settings_dr" {
+  type = map(object({
+    option_name           = string
+    option_settings_name  = string
+    option_settings_value = any
+    #vpc_security_group_memberships and port will be used only for mysql MEMCACHED option name
+    vpc_security_group_memberships  = list(string)
+    port = string
+  }))
+}
 ########################################################################################################
 ##                                                                                                    ##
 ##                     parameter group module related variables                                       ##

@@ -60,6 +60,24 @@ option_settings = {
   },
 }
 
+#### for option group of DR RDS
+option_settings_dr = {
+  "setting1" = {
+    option_name           = "MEMCACHED"
+    option_settings_name  = "BACKLOG_QUEUE_LIMIT"
+    option_settings_value = "1025"
+    vpc_security_group_memberships = ["sg-006dad075fbfed8e7"]
+    port = 11211
+  },
+  "setting2" = {
+    option_name           = "MARIADB_AUDIT_PLUGIN"
+    option_settings_name  = "SERVER_AUDIT_QUERY_LOG_LIMIT"
+    option_settings_value = "1025"
+    vpc_security_group_memberships = null
+    port = null
+  },
+}
+
 #### for parameter group of RDS
 use_default_parameter_group = false
 rds_parameter_group_name = "nrt-rds-mysql-app"
