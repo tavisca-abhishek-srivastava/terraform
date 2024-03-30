@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+    }
+  }
+}
+
 resource "aws_db_parameter_group" "parameter_group_for_db" {
   name   = var.rds_parameter_group_name
   family = var.parameter_group_db_family
