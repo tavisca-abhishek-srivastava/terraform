@@ -26,8 +26,6 @@
 		parameter_group_db_family = var.parameter_group_db_family
 		rds_parameter_group_name = var.rds_parameter_group_name
 		tags = var.tags
-
-
 	}
 
 	resource "aws_db_instance" "rds_instance" {
