@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+    }
+  }
+}
+
 resource "aws_db_option_group" "option_group_for_db" {
   name                     = var.rds_option_group_name
   option_group_description = var.option_group_description
