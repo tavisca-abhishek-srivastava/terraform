@@ -1,4 +1,4 @@
-rds_instance_name = "jpmc-master"
+rds_instance_name = "jpmc-master-mysql"
 db_name = "mysql_db"
 allocated_storage = 100
 storage_type = "io1"
