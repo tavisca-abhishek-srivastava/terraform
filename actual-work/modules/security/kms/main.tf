@@ -39,5 +39,5 @@ resource "aws_kms_alias" "replica" {
    for_each = var.need_kms_replica == true ? toset(["1"]):toset([])
   provider = aws.replica
   name          = var.kms_alias
-  target_key_id = aws_kms_replica_key.replica.key_id
+  target_key_id = aws_kms_replica_key.replica[1].key_id
 }
