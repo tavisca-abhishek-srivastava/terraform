@@ -1,5 +1,3 @@
-
-
 	module "rds_dr_option_group" {
 		source = "../../common_components/rds_aurora/aws_db_option_group/"
 		for_each = (var.use_default_option_group == false) ? toset(["1"]):toset([])
@@ -19,7 +17,7 @@
 	module "rds_dr_parameter_group" {
 	  source = "../../common_components/rds_aurora/aws_db_parameter_group/"
 	  for_each = (var.use_default_parameter_group == false) ? toset(["1"]):toset([])
-	  	parameter_group_description = var.parameter_group_description
+	  parameter_group_description = var.parameter_group_description
 		parameter_value = var.parameter_value
 		parameter_group_db_family = var.parameter_group_db_family
 		rds_parameter_group_name = var.rds_parameter_group_name
@@ -53,3 +51,4 @@ resource "aws_db_instance" "cross_region_read-only-replica" {
   tags = var.tags
   provider = aws.dr
 }
+
