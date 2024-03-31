@@ -46,7 +46,7 @@ resource "aws_db_instance" "cross_region_read-only-replica" {
   apply_immediately = true
   replicate_source_db  = aws_db_instance.rds_instance.arn
   storage_encrypted = true
-  kms_key_id = data.aws_kms_key.cmk_for_rds.arn
+  kms_key_id = module.rds_storage_cmk.replica_mrk_cms_arn #data.aws_kms_key.cmk_for_rds.arn
   max_allocated_storage = (var.enable_storage_autoscaling == true) ? var.max_allocated_storage:0
   tags = var.tags
   provider = aws.dr
