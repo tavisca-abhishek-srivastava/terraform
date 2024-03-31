@@ -30,7 +30,7 @@ resource "aws_kms_replica_key" "replica" {
   description             = var.key_description
   deletion_window_in_days = var.delete_after_days
   primary_key_arn         = aws_kms_key.dynamodb_encryption_key.arn
-  policy                  = var.replica_key_policy
+  policy                  = jsonencode(var.replica_key_policy)
 
   tags = var.kms_tags
 }
