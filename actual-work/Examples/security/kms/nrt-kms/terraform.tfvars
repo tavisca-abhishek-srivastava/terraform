@@ -1,6 +1,7 @@
 kms_alias = "alias/nrt_encryption_key_kms"
 delete_after_days = 8
 key_description = "key_for_kms"
+need_kms_replica = false
 replica_region = "us-west-2"
 key_policy_map = {
     "Id" : "key-consolepolicy-3",
