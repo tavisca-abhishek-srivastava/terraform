@@ -34,10 +34,10 @@ resource "aws_kms_replica_key" "replica" {
 
   tags = var.kms_tags
 }
-# Add an alias to the replica key
-resource "aws_kms_alias" "replica" {
-   for_each = var.need_kms_replica == true ? toset(["1"]):toset([])
-  provider = aws.replica
-  name          = var.kms_alias
-  target_key_id = aws_kms_replica_key.replica[1].key_id
-}
+##### Add an alias to the replica key
+# resource "aws_kms_alias" "replica" {
+#   for_each = var.need_kms_replica == true ? toset(["1"]):toset([])
+#   provider = aws.replica
+#   name          = var.kms_alias
+#   target_key_id = aws_kms_replica_key.replica[1].key_id
+# }
