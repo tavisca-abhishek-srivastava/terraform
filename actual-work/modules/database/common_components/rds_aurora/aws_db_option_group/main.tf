@@ -5,9 +5,14 @@ terraform {
     }
   }
 }
-
+resource "random_string" "option_greoup_name_postfix" {
+  length = 8
+  special = false
+  numeric = false
+  upper = false
+}
 resource "aws_db_option_group" "option_group_for_db" {
-  name                     = var.rds_option_group_name
+  name                     = "var.rds_option_group_name_${random_string.option_greoup_name_postfix.result}"
   option_group_description = var.option_group_description
   engine_name              = var.option_group_engine_name
   major_engine_version     = var.option_group_major_engine_version
@@ -26,5 +31,8 @@ resource "aws_db_option_group" "option_group_for_db" {
     }
   }
   tags = var.tags
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
