@@ -30,7 +30,7 @@ variable "replica_region" {
 variable "replica_key_policy" {
     description = "A valid policy JSON document"
     type = any
-    default = null
+    default = {}
 }
 variable "kms_tags" {
   type = object({
