@@ -25,6 +25,12 @@ variable "key_policy_map" {
     type = any
 }
 
+variable "replica_key_policy" {
+    description = "A valid policy JSON document"
+    type = any
+    default = null
+}
+
 variable "kms_tags" {
   type = object({
     DataClassification = string
