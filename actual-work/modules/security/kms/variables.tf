@@ -14,6 +14,11 @@ variable "key_policy_map" {
     description = "A valid policy JSON document"
     type = any
 }
+variable "need_kms_replica" {
+  description = "enable it when kms replica is needed in dr region"
+  type = bool
+  default = false
+}
 variable "replica_region" {
   description = "dr region for kms key replica "
   type = string
