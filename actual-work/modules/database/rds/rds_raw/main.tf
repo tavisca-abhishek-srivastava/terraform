@@ -97,7 +97,7 @@
 	  	error_message = "for disk type io1 , iops must be greater than 1000"
 	}
 	precondition {
-	  condition = var.number_of_read_replica > 0 ? var.backup_retention_period > 0 : false
+	  condition = var.number_of_read_replica > 0 ? (var.backup_retention_period > 0 ? true : false) : true
 	  error_message = "backup retention should be greater than 0 incase of read replica available"
 	}
 	
