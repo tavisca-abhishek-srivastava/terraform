@@ -29,6 +29,7 @@
 	}
 
 data "aws_kms_key" "cmk_for_rds" {
+  depends_on = [module.rds_storage_cmk]
    key_id = "${var.kms_alias}"
    provider = aws.dr
 }
