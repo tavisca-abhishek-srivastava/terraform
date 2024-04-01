@@ -63,7 +63,7 @@
 		performance_insights_kms_key_id = var.performance_insights_enabled == true? module.rds_storage_cmk.mrk_cms_arn:null
 		performance_insights_retention_period = var.performance_insights_enabled == true? var.performance_insights_retention_period:null
 		parameter_group_name = var.rds_parameter_group_name
-		option_group_name = var.use_default_option_group == true ? (var.rds_option_group_name) : var.rds_option_group_name
+		option_group_name = var.use_default_option_group == true ? (var.rds_option_group_name) : module.rds_option_group["1"].option_group_name_output
 		port = var.port
 		dynamic "restore_to_point_in_time" {
 		  for_each = var.restore_2_pitr ==  false ? toset([]):toset(["1"])
