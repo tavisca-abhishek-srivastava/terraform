@@ -23,7 +23,7 @@ number_of_read_replica = 0
 az_for_read_replica = []
 
 ## for cross account read only replica
-number_of_cross_region_read_replica = 1
+number_of_cross_region_read_replica = 0
 az_for_cross_region_read_replica =  ["us-west-2b"]
 region_for_cross_region_read_replica = "us-west-2"
 
