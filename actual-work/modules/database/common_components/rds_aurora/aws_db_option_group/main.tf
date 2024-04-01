@@ -34,7 +34,7 @@ resource "aws_db_option_group" "option_group_for_db" {
   }
   tags = var.tags
   lifecycle {
-    create_before_destroy = true
+    create_before_destroy = false
   }
 }
 
