@@ -16,6 +16,7 @@ password = "welcome$123"
 db_subnet_group = "cxl-rds-subnet-group"
 skip_final_snapshot = true
 vpc_security_group_ids = ["sg-006dad075fbfed8e7"]
+apply_immediately = true
 
 
 #### for read only replica
