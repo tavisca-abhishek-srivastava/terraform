@@ -11,9 +11,10 @@ resource "random_string" "option_group_name_postfix" {
   special = false
   numeric = false
   upper = false
+  lower = true
 }
 resource "aws_db_option_group" "option_group_for_db" {
-  name                     = "var.rds_option_group_name-${random_string.option_group_name_postfix.result}"
+  name                     = var.rds_option_group_name
   option_group_description = var.option_group_description
   engine_name              = var.option_group_engine_name
   major_engine_version     = var.option_group_major_engine_version
