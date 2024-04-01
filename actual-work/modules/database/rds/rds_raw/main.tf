@@ -12,6 +12,7 @@
 
 	module "rds_option_group" {
 		source = "../../common_components/rds_aurora/aws_db_option_group/"
+		# if var.use_default_option_group == false then it will create new option group else will use default option group provided by user
 		for_each = (var.use_default_option_group == false) ? toset(["1"]):toset([])
 			rds_option_group_name = var.rds_option_group_name
 			option_group_engine_name = var.option_group_engine_name
@@ -23,6 +24,7 @@
 
 	module "rds_parameter_group" {
 	  source = "../../common_components/rds_aurora/aws_db_parameter_group/"
+	  # if var.use_default_parameter_group == false then it will create new parameter group else will use default parameter group provided by user
 	  for_each = (var.use_default_parameter_group == false) ? toset(["1"]):toset([])
 	  	parameter_group_description = var.parameter_group_description
 		parameter_value = var.parameter_value
@@ -41,6 +43,7 @@
 	  	storage_encrypted 			= 	true
 		storage_type 				= 	var.storage_type
 		allocated_storage   	 	= 	var.allocated_storage
+		# if storage_type is gp3 and allocated storage is > 400 GB or storage type is io1 or io2 then iops must be specified else it will use default value
 		iops 						=	((var.storage_type == "gp3" && var.allocated_storage > 400) || var.storage_type == "io1" || var.storage_type == "io2") ? var.storage_iops:null
 		storage_throughput			=	(var.storage_type == "gp3" && var.allocated_storage > 400) ? var.storage_throughput:null
 		max_allocated_storage 		= 	(var.enable_storage_autoscaling == true) ? var.max_allocated_storage:0
