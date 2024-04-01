@@ -38,13 +38,13 @@ resource "aws_db_instance" "cross_region_read-only-replica" {
   depends_on = [ module.rds_dr_option_group,module.rds_dr_parameter_group ]
   count = var.number_of_cross_region_read_replica
   instance_class       = var.db_instance_class
-  option_group_name = var.rds_option_group_name
+  option_group_name = var.use_default_option_group == true ? (var.rds_option_group_name) : module.rds_dr_option_group["1"].option_group_name_output
   parameter_group_name = var.rds_parameter_group_name
   db_subnet_group_name = var.db_subnet_group
   skip_final_snapshot  = true
   availability_zone = var.az_for_cross_region_read_replica[count.index]
   identifier  = "jpmc-ro-${var.region_for_cross_region_read_replica}-${count.index}"
-  apply_immediately = true
+  apply_immediately = var.apply_immediately
   replicate_source_db  = aws_db_instance.rds_instance.arn
   storage_encrypted = true
   kms_key_id = module.rds_storage_cmk.replica_mrk_cms_arn #data.aws_kms_key.cmk_for_rds.arn
