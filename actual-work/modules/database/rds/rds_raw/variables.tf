@@ -369,7 +369,7 @@ variable "option_settings_dr" {
 variable "use_default_parameter_group" {
    description = <<EOF
   "whether to use default parameter group for RDS/Aurora. 
-   if true -> provide name of 'default parameter group' in variable 'rds_option_group_name' if false -> custom name"
+   if true -> provide name of 'default parameter group' in variable 'rds_parameter_group_name' if false -> custom name"
   EOF
   
   type = bool
@@ -398,4 +398,36 @@ variable "parameter_value" {
     name = string
     value = any
   }))
+}
+
+########################################################################################################
+##                                                                                                    ##
+##                     subnet group module related variables                                       ##
+##                                                                                                    ##
+########################################################################################################
+variable "use_default_subnet_group" {
+   description = <<EOF
+  "whether to use default subnet group for RDS/Aurora. 
+   if true -> provide name of 'default subnet group' in variable 'rds_subnet_group_name' if false -> custom name"
+  EOF
+  
+  type = bool
+  default = true
+}
+variable "rds_subnet_group_name" {
+  description = "name of rds/aurora subnet group"
+  type = string
+  validation {
+    condition = length(var.rds_subnet_group_name) != 0
+    error_message = "subnet group name can't be left blank"
+  }
+}
+
+variable "subnet_group_subnet_ids" {
+  description = "List of subnet group subnet ids"
+  type = list
+  validation {
+    condition = length(var.subnet_group_subnet_ids) >= 3
+    error_message = "number of subnets in subnet group name can't be left blank"
+  }
 }
