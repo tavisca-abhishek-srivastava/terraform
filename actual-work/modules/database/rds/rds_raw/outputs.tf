@@ -1,4 +1,4 @@
-	output "rds_arn" {
+	output "rds_primary_arn" {
 	value = aws_db_instance.rds_instance.arn
 	description = "ARN of primary instance"
 	 }
@@ -7,7 +7,7 @@
 	description = "ARN of read only replica"
 	 }
 
-	output "rds_endpoint" {
+	output "rds_primary_endpoint" {
 	value = aws_db_instance.rds_instance.endpoint
 	description = "ARN of primary instance"
 	 }
