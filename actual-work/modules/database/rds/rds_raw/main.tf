@@ -33,6 +33,15 @@
 		tags = var.tags
 	}
 
+	module "rds_subnet_group" {
+	  source = "../../common_components/rds_aurora/aws_db_subnet_group/"
+	  # if var.use_default_subnet_group == false then it will create new subnet group else will use default subnet group provided by user
+	  for_each = (var.use_default_subnet_group == false) ? toset(["1"]):toset([])
+	  subnet_group_name = var.db_subnet_group
+	  subnet_ids = var.subnet_group_subnet_ids
+	  tags = var.tags
+	}
+
 	resource "aws_db_instance" "rds_instance" {
 		depends_on = [ module.rds_option_group,module.rds_parameter_group ]
 		identifier  				= 	var.rds_instance_name
@@ -57,7 +66,7 @@
 		backup_retention_period 	= var.backup_retention_period
 	  	multi_az = var.multi_az
 		backup_window = var.backup_window
-		db_subnet_group_name = var.db_subnet_group
+		db_subnet_group_name = var.use_default_subnet_group == true ? (var.rds_subnet_group_name) : module.rds_subnet_group["1"].subnet_group_name_output
 		deletion_protection = var.deletion_protection
 		license_model = var.license_model
 		maintenance_window = var.maintenance_window

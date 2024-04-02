@@ -24,7 +24,7 @@ number_of_read_replica = 1
 az_for_read_replica = ["us-east-1b"]
 
 ## for cross region read only replica
-number_of_cross_region_read_replica = 1
+number_of_cross_region_read_replica = 0
 az_for_cross_region_read_replica =  ["us-west-2b"]
 region_for_cross_region_read_replica = "us-west-2"
 
@@ -98,6 +98,11 @@ parameter_value = {
     name = "log_queries_not_using_indexes"
     value = 1},
 }
+### for subnet group 
+
+use_default_subnet_group = false
+rds_subnet_group_name = "nrt-rds-subnet-group"
+subnet_group_subnet_ids = ["subnet-01d4d19deaa34db85","subnet-061e332b24aecd27b","subnet-060048463710e54c4"]
 
 
 ############### KMS input
