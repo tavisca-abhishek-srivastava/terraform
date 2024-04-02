@@ -20,8 +20,8 @@ apply_immediately = true
 
 
 #### for read only replica
-number_of_read_replica = 1
-az_for_read_replica = ["us-east-1b"]
+number_of_read_replica = 2
+az_for_read_replica = ["us-east-1b","us-east-1d"]
 
 ## for cross region read only replica
 number_of_cross_region_read_replica = 0
