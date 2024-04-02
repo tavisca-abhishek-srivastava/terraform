@@ -7,12 +7,13 @@ terraform {
   }
 }
 resource "random_string" "option_group_name_postfix" {
-  length = 8
-  special = false
-  numeric = false
-  upper = false
-  lower = true
+  length = local.random_string_option_group_name_postfix_length
+  special = local.random_string_option_group_name_postfix_special
+  numeric = local.random_string_option_group_name_postfix_numeric
+  upper = local.random_string_option_group_name_postfix_upper
+  lower = local.random_string_option_group_name_postfix_lower
 }
+
 resource "aws_db_option_group" "option_group_for_db" {
   name                     = "${var.rds_option_group_name}-${random_string.option_group_name_postfix.result}"
   option_group_description = var.option_group_description
