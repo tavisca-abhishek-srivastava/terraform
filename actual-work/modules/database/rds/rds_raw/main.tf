@@ -54,7 +54,9 @@
 		allocated_storage   	 	= 	var.allocated_storage
 		# if storage_type is gp3 and allocated storage is > 400 GB or storage type is io1 or io2 then iops must be specified else it will use default value
 		iops 						=	((var.storage_type == "gp3" && var.allocated_storage > 400) || var.storage_type == "io1" || var.storage_type == "io2") ? var.storage_iops:null
+		# if storage_type is gp3 and allocated storage is > 400 GB then throughput must be specified else it will use default value
 		storage_throughput			=	(var.storage_type == "gp3" && var.allocated_storage > 400) ? var.storage_throughput:null
+		# if autoscaling is true then max allocated storage will be specified or will be 0
 		max_allocated_storage 		= 	(var.enable_storage_autoscaling == true) ? var.max_allocated_storage:0
 		kms_key_id 					= 	module.rds_storage_cmk.mrk_cms_arn
 	  	username             		= 	var.user_name
@@ -62,10 +64,12 @@
 	  	allow_major_version_upgrade = var.allow_major_version_upgrade
 		apply_immediately 			= var.apply_immediately
 		auto_minor_version_upgrade = var.auto_minor_version_upgrade
+		# availability_zone will be specified only if multi_az is false
 		availability_zone = var.multi_az == false ? var.availability_zone: null
 		backup_retention_period 	= var.backup_retention_period
 	  	multi_az = var.multi_az
 		backup_window = var.backup_window
+		### if use_default_subnet_group is true then user provided default/existing subnet will be used or else it will create new one
 		db_subnet_group_name = var.use_default_subnet_group == true ? (var.rds_subnet_group_name) : module.rds_subnet_group["1"].subnet_group_name_output
 		deletion_protection = var.deletion_protection
 		license_model = var.license_model
@@ -75,6 +79,7 @@
 		performance_insights_kms_key_id = var.performance_insights_enabled == true? module.rds_storage_cmk.mrk_cms_arn:null
 		performance_insights_retention_period = var.performance_insights_enabled == true? var.performance_insights_retention_period:null
 		parameter_group_name = var.rds_parameter_group_name
+		### if use_default_option_group is true then user provided default/existing option group will be used or else it will create new one
 		option_group_name = var.use_default_option_group == true ? (var.rds_option_group_name) : module.rds_option_group["1"].option_group_name_output
 		port = var.port
 		dynamic "restore_to_point_in_time" {
@@ -94,12 +99,12 @@
   }
   lifecycle {
 	precondition {
-		# length of variable 'az_for_read_replica' must be equal to 'number_of_read_replica'
+		## length of variable 'az_for_read_replica' must be equal to 'number_of_read_replica'
 	  	condition = length(var.az_for_read_replica) == var.number_of_read_replica ? true: false
 	  	error_message = "number of az in list 'az_for_read_replica' must be equal to 'number_of_read_replica' "
 	}
 	precondition {
-		# if storage_type is gp3 and total storage is greater than 400 GB then iops must be greater than 12000
+		## if storage_type is gp3 and total storage is greater than 400 GB then iops must be greater than 12000
 	  	condition = (var.storage_type == "gp3" ? (var.allocated_storage > 400 ? (var.storage_iops >=12000 ? true :false ):true): true)
 	  	error_message = "for disk type GP3 and allocated_storage >400, iops must be greater than 12000 "
 	}
@@ -109,6 +114,7 @@
 	  	error_message = "for disk type io1 , iops must be greater than 1000"
 	}
 	precondition {
+		# # if read replica is present then backup retention must be grater then 1
 	  condition = var.number_of_read_replica > 0 ? (var.backup_retention_period > 0 ? true : false) : true
 	  error_message = "backup retention should be greater than 0 incase of read replica available"
 	}
