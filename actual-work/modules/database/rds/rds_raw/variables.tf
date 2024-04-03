@@ -149,6 +149,11 @@ variable "az_for_read_replica" {
   type = list
   default = ["us-east-1b","us-east-1c"]
 }
+variable "promoto_read_replica" {
+  description = "set this to true in case az of primary instance is down and you want to promote read replica to act as primary"
+  type = bool
+  default = false
+}
 variable "az_for_cross_region_read_replica" {
   description = "list of azs where cross region read only replica will be placed. "
   type = list

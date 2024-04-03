@@ -49,7 +49,7 @@
 		engine              	 	= 	var.rds_engine
 		engine_version      	 	= 	var.rds_engine_version
 	  	instance_class       		= 	var.db_instance_class
-	  	storage_encrypted 			= 	true
+	  	storage_encrypted 			= 	local.enable_storage_encryption
 		storage_type 				= 	var.storage_type
 		allocated_storage   	 	= 	var.allocated_storage
 		# if storage_type is gp3 and allocated storage is > 400 GB or storage type is io1 or io2 then iops must be specified else it will use default value
@@ -76,6 +76,7 @@
 		maintenance_window = var.maintenance_window
 		monitoring_role_arn =var.monitoring_role_arn
 		performance_insights_enabled = var.performance_insights_enabled
+		### if performance_insights is enabled then only set this attribute
 		performance_insights_kms_key_id = var.performance_insights_enabled == true? module.rds_storage_cmk.mrk_cms_arn:null
 		performance_insights_retention_period = var.performance_insights_enabled == true? var.performance_insights_retention_period:null
 		parameter_group_name = var.rds_parameter_group_name
