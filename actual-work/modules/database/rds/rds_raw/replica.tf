@@ -14,6 +14,9 @@ resource "aws_db_instance" "read-only-replica" {
     skip_final_snapshot  = true
     availability_zone = var.az_for_read_replica[count.index]
     identifier  = "jpmc-ro-${random_string.ro-replica_name_postfix.result}-${count.index}"
+    ## if read only replica will be promoted then they will have multi-az setup enabled
+    multi_az =  var.promoto_read_replica == false ? false:var.multi_az
+    ## to promote ro replica, set variable "promoto_read_replica" to true
     replicate_source_db  = var.promoto_read_replica == false ? aws_db_instance.rds_instance.identifier : null
     storage_encrypted = local.enable_storage_encryption
     kms_key_id = module.rds_storage_cmk.mrk_cms_arn
