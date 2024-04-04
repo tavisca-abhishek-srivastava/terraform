@@ -11,7 +11,7 @@
 		source = "../../common_components/rds_aurora/aws_db_option_group/"
 		# if var.use_default_option_group == false then it will create new option group else will use default option group provided by user
 		for_each = (var.use_default_option_group == false) ? toset(["1"]):toset([])
-			rds_option_group_name = "alias/${var.rds_instance_name}_option_group" #var.rds_option_group_name  change4
+			rds_option_group_name = "alias/replace(${replacevar.rds_instance_name}'-','_')_option_group" #var.rds_option_group_name  change4
 			option_group_engine_name = var.rds_engine # change5
 			option_group_major_engine_version = var.option_group_major_engine_version
 			option_group_description = "option group for ${var.rds_instance_name} RDS "    # var.option_group_description change6
