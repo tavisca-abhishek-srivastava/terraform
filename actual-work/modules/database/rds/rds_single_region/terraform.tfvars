@@ -1,4 +1,4 @@
-rds_instance_name = "jpmc-master-mysql"
+rds_instance_name = "jpmc-master-mysql-sr"   # single region
 db_name = "mysql_db"
 allocated_storage = 100
 storage_type = "io1"
@@ -27,16 +27,16 @@ promoto_read_replica = false
 tags = {
   DataClassification : "restricted"
   Environment : "poc"
-  AppName : "tf-nrt-nrt-iac-rds-1"
+  AppName : "tf-nrt-nrt-iac-rds-sr"
   InfraOwner : "sre-cloud-reliability@tavisca.com"
   BusinessUnit : "travel.app"
   Backup : "no"
   Product : "poap"
-  Name : "tf-nrt-iac-rds-1"
+  Name : "tf-nrt-iac-rds-sr-1"
 }
 #### for option group of RDS
 use_default_option_group = false
-rds_option_group_name = "nrt-rds-mysql-app"
+rds_option_group_name = "nrt-rds-mysql-app-sr"
 option_group_engine_name = "mysql"
 option_group_major_engine_version = "5.7"
 option_group_description = "This is for NRT RDS"
@@ -59,7 +59,7 @@ option_settings = {
 
 #### for parameter group of RDS
 use_default_parameter_group = false
-rds_parameter_group_name = "nrt-rds-mysql-app"
+rds_parameter_group_name = "nrt-rds-mysql-app-sr"
 parameter_group_db_family = "mysql5.7"
 parameter_group_description = "this is for NRT RDS"
 parameter_value = {
@@ -79,23 +79,23 @@ parameter_value = {
 ### for subnet group 
 
 use_default_subnet_group = false
-rds_subnet_group_name = "nrt-rds-subnet-group"
+rds_subnet_group_name = "nrt-rds-subnet-group-sr"
 subnet_group_subnet_ids = ["subnet-01d4d19deaa34db85","subnet-061e332b24aecd27b","subnet-060048463710e54c4"]
 
 
 ############### KMS input
-kms_alias = "alias/nrt_rds_encryption_key"
+kms_alias = "alias/nrt_rds_encryption_key-sr"
 delete_after_days = 10
-key_description = "key_for_rds_encryption"
+key_description = "key for rds encryption in single region"
 kms_tags = {
   DataClassification : "restricted"
   Environment : "poc"
-  AppName : "tf-nrt-nrt-iac-rds-kms"
+  AppName : "tf-nrt-nrt-iac-rds-kms-sr"
   InfraOwner : "sre-cloud-reliability@tavisca.com"
   BusinessUnit : "travel.app"
   Backup : "no"
   Product : "poap"
-  Name : "tf-nrt-iac-rds-kms"
+  Name : "tf-nrt-iac-rds-kms-sr"
   }
 key_policy_map = {
     "Id" : "key-consolepolicy-3",
