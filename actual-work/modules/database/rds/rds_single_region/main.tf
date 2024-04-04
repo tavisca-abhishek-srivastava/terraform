@@ -77,7 +77,7 @@
 		### if performance_insights is enabled then only set this attribute
 		performance_insights_kms_key_id = var.performance_insights_enabled == true? module.rds_storage_cmk.mrk_cms_arn:null
 		performance_insights_retention_period = var.performance_insights_enabled == true? var.performance_insights_retention_period:null
-		parameter_group_name = var.rds_parameter_group_name
+		parameter_group_name = var.use_default_parameter_group == true ? (var.rds_parameter_group_name) : module.rds_parameter_group["1"].parameter_group_name
 		### if use_default_option_group is true then user provided default/existing option group will be used or else it will create new one
 		option_group_name = var.use_default_option_group == true ? (var.rds_option_group_name) : module.rds_option_group["1"].option_group_name_output
 		port = var.port
