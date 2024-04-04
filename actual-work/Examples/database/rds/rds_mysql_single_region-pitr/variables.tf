@@ -276,7 +276,6 @@ variable "kms_alias" {
 variable "kms_delete_after_days" {
     description = " The waiting period, specified in number of days. After the waiting period ends, AWS KMS deletes the KMS key.it must be between 7 and 30, inclusive"
     type = number
-    default = 30
 }
 variable "kms_key_description" {
     description = "The description of the key as visible in AWS console"
@@ -395,7 +394,7 @@ variable "parameter_value" {
 variable "use_default_subnet_group" {
    description = <<EOF
   "whether to use default subnet group for RDS/Aurora. 
-  if true -> provide name of 'default subnet group' in variable 'rds_subnet_group_name' if false -> custom name"
+   if true -> provide name of 'default subnet group' in variable 'rds_subnet_group_name' if false -> custom name"
   EOF
   
   type = bool

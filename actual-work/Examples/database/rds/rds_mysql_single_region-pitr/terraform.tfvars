@@ -1,4 +1,4 @@
-rds_instance_name = "jpmc-master-mysql-sr"   # single region
+rds_instance_name = "jpmc-master-mysql-sr-pitr"   # single region
 db_name = "mysql_db"
 allocated_storage = 100
 storage_type = "io1"
@@ -13,22 +13,17 @@ port = 3306
 multi_az = true
 user_name = "dbadmin"
 password = "welcome$123"
-db_subnet_group = "cxl-rds-subnet-group"
 skip_final_snapshot = true
 vpc_security_group_ids = ["sg-006dad075fbfed8e7"]
 apply_immediately = true
-
 ### pitr section
 restore_2_pitr = true
 pitr_source_db_instance_identifier = "jpmc-master-mysql"
 use_latest_restorable_time = true
-
-
 #### for read only replica
 number_of_read_replica = 2
 az_for_read_replica = ["us-east-1b","us-east-1c"]
 promoto_read_replica = false
-
 tags = {
   DataClassification : "restricted"
   Environment : "poc"
@@ -61,7 +56,6 @@ option_settings = {
     port = null
   },
 }
-
 #### for parameter group of RDS
 use_default_parameter_group = false
 rds_parameter_group_name = "nrt-rds-mysql-app-sr"
@@ -82,16 +76,13 @@ parameter_value = {
     value = 1},
 }
 ### for subnet group 
-
 use_default_subnet_group = false
 rds_subnet_group_name = "nrt-rds-subnet-group-sr"
 subnet_group_subnet_ids = ["subnet-01d4d19deaa34db85","subnet-061e332b24aecd27b","subnet-060048463710e54c4"]
-
-
 ############### KMS input
 kms_alias = "alias/nrt_rds_encryption_key-sr"
-delete_after_days = 10
-key_description = "key for rds encryption in single region"
+kms_delete_after_days = 10
+kms_key_description = "key for rds encryption in single region"
 kms_tags = {
   DataClassification : "restricted"
   Environment : "poc"
