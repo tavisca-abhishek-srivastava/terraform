@@ -47,26 +47,26 @@ variable "domain_endpoint_options_enforce_https" {
   
 }
 
-variable "" {
+variable "ebs_enabled" {
   
 }
 
-variable "" {
+variable "ebs_volume_size" {
   
 }
 
-variable "" {
+variable "volume_type" {
   
 }
 
-variable "" {
+variable "throughput" {
   
 }
 
-variable "" {
+variable "security_group_ids" {
   
 }
 
-variable "" {
+variable "aws_region" {
   
 }
