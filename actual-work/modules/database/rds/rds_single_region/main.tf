@@ -26,7 +26,7 @@
 	  	parameter_group_description =  "parameter group for ${var.rds_instance_name} RDS "   #var.parameter_group_description change7
 		parameter_value = var.parameter_value
 		parameter_group_db_family = var.parameter_group_db_family
-		rds_parameter_group_name =  "${var.rds_instance_name}-parameter-group"    #var.rds_parameter_group_name change8v
+		rds_parameter_group_name =  "${var.rds_instance_name}-parameter-group"    #var.rds_parameter_group_name change8
 		tags = var.tags
 	}
 
@@ -34,7 +34,7 @@
 	  source = "../../common_components/rds_aurora/aws_db_subnet_group/"
 	  # if var.use_default_subnet_group == false then it will create new subnet group else will use default subnet group provided by user
 	  for_each = (var.use_default_subnet_group == false) ? toset(["1"]):toset([])
-	  subnet_group_name = var.rds_subnet_group_name
+	  subnet_group_name = "${var.rds_instance_name}-subnet-group"
 	  subnet_ids = var.subnet_group_subnet_ids
 	  tags = var.tags
 	}
