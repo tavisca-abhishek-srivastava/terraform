@@ -1,6 +1,6 @@
 	module "rds_storage_cmk" {
   	source            = "../../../security/kms"
-  	kms_alias         = var.kms_alias
+  	kms_alias         = "alias/${var.rds_instance_name}_key" #var.kms_alias
   	delete_after_days = var.kms_delete_after_days
   	key_description   = var.kms_key_description
   	key_policy_map    = var.key_policy_map
@@ -12,7 +12,7 @@
 		# if var.use_default_option_group == false then it will create new option group else will use default option group provided by user
 		for_each = (var.use_default_option_group == false) ? toset(["1"]):toset([])
 			rds_option_group_name = var.rds_option_group_name
-			option_group_engine_name = var.option_group_engine_name
+			option_group_engine_name = var.rds_engine
 			option_group_major_engine_version = var.option_group_major_engine_version
 			option_group_description = var.option_group_description
 			option_settings = var.option_settings

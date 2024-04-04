@@ -121,7 +121,7 @@ variable "db_instance_class" {
 }
 
 variable "availability_zone" {
-  description = "The AZ for the RDS instance"
+  description = "The AZ for the RDS instance.availability_zone will be specified only if multi_az is false"
   type = string
   default = "us-east-1a"
 }
@@ -276,6 +276,7 @@ variable "kms_alias" {
 variable "kms_delete_after_days" {
     description = " The waiting period, specified in number of days. After the waiting period ends, AWS KMS deletes the KMS key.it must be between 7 and 30, inclusive"
     type = number
+    default = 30
 }
 variable "kms_key_description" {
     description = "The description of the key as visible in AWS console"
@@ -320,11 +321,6 @@ variable "rds_option_group_name" {
     condition     = length(var.rds_option_group_name) != 0
     error_message = "option group name can't be left blank"
   }
-}
-
-variable "option_group_engine_name" {
-  description = "The engine_name of the DB like "
-  type        = string
 }
 
 variable "option_group_description" {
@@ -394,7 +390,7 @@ variable "parameter_value" {
 variable "use_default_subnet_group" {
    description = <<EOF
   "whether to use default subnet group for RDS/Aurora. 
-   if true -> provide name of 'default subnet group' in variable 'rds_subnet_group_name' if false -> custom name"
+  if true -> provide name of 'default subnet group' in variable 'rds_subnet_group_name' if false -> custom name"
   EOF
   
   type = bool
