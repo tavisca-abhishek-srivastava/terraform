@@ -10,7 +10,7 @@ resource "aws_db_instance" "read-only-replica" {
   count = var.number_of_read_replica
     instance_class       = var.db_instance_class
     parameter_group_name = var.rds_parameter_group_name
-    option_group_name = var.rds_option_group_name
+    option_group_name = var.use_default_option_group == true ? (var.rds_option_group_name) : module.rds_option_group["1"].option_group_name_output
     skip_final_snapshot  = true
     availability_zone = var.az_for_read_replica[count.index]
     identifier  = "jpmc-ro-${random_string.ro-replica_name_postfix.result}-${count.index}"
