@@ -40,7 +40,7 @@
 	}
 
 	resource "aws_db_instance" "rds_instance" {
-		depends_on = [ module.rds_option_group,module.rds_parameter_group ]
+		depends_on = [ module.rds_option_group,module.rds_parameter_group ,module.rds_subnet_group]
 		identifier  				=   var.rds_instance_name
 		## incase of PITR restore dbname must be null
 		db_name              		= 	(var.restore_2_pitr ==true && var.rds_engine == "mysql") ? null:  var.db_name
