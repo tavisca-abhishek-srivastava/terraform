@@ -23,10 +23,10 @@
 	  source = "../../common_components/rds_aurora/aws_db_parameter_group/"
 	  # if var.use_default_parameter_group == false then it will create new parameter group else will use default parameter group provided by user
 	  for_each = (var.use_default_parameter_group == false) ? toset(["1"]):toset([])
-	  	parameter_group_description = var.parameter_group_description
+	  	parameter_group_description =  "parameter group for ${var.rds_instance_name} RDS "   #var.parameter_group_description change7
 		parameter_value = var.parameter_value
 		parameter_group_db_family = var.parameter_group_db_family
-		rds_parameter_group_name = var.rds_parameter_group_name
+		rds_parameter_group_name =  "${var.rds_instance_name}-parameter-group"    #var.rds_parameter_group_name change8v
 		tags = var.tags
 	}
 
