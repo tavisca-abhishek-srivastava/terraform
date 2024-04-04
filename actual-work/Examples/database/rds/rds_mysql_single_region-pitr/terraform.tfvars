@@ -37,7 +37,6 @@ tags = {
 #### for option group of RDS
 use_default_option_group = false
 rds_option_group_name = "nrt-rds-mysql-app-sr"
-option_group_engine_name = "mysql"
 option_group_major_engine_version = "5.7"
 option_group_description = "This is for NRT RDS"
 option_settings = {

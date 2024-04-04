@@ -23,7 +23,6 @@ rds_option_group_name = var.rds_option_group_name
 use_default_option_group = var.use_default_option_group
 option_group_description = var.option_group_description
 option_group_major_engine_version = var.option_group_major_engine_version
-option_group_engine_name = var.option_group_engine_name
 option_settings = var.option_settings
 use_default_subnet_group = var.use_default_subnet_group
 rds_subnet_group_name = var.rds_subnet_group_name
