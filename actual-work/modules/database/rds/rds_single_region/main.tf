@@ -1,8 +1,8 @@
 	module "rds_storage_cmk" {
   	source            = "../../../security/kms"
-  	kms_alias         = "alias/${var.rds_instance_name}_key" #var.kms_alias
+  	kms_alias         = "alias/${var.rds_instance_name}_key" #var.kms_alias change1
   	delete_after_days = var.kms_delete_after_days
-  	key_description   = var.kms_key_description
+  	key_description   =  "Key for ${var.rds_instance_name} RDS " #var.kms_key_description change2
   	key_policy_map    = var.key_policy_map
 	kms_tags = var.kms_tags
 }
