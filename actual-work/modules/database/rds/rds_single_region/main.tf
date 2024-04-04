@@ -80,10 +80,13 @@
 		### if use_default_option_group is true then user provided default/existing option group will be used or else it will create new one
 		option_group_name = var.use_default_option_group == true ? (var.rds_option_group_name) : module.rds_option_group["1"].option_group_name_output
 		port = var.port
+		### PITR option will work with latest 
 		dynamic "restore_to_point_in_time" {
 		  for_each = var.restore_2_pitr ==  false ? toset([]):toset(["1"])
 		  content {
-			
+			source_db_instance_identifier = var.pitr_source_db_instance_identifier
+			use_latest_restorable_time = var.use_latest_restorable_time
+			restore_time = (var.use_latest_restorable_time ==false) ? var.restore_time:null
 		  }
 		}
 		skip_final_snapshot  = var.skip_final_snapshot

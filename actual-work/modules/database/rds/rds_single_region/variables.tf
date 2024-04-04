@@ -20,12 +20,6 @@ variable "auto_minor_version_upgrade" {
   type = bool
   default = false
 }
-variable "restore_2_pitr" {
-  description = "true if table is restored from pitr"
-  type = bool
-  default = false
-  
-}
 variable "backup_window" {
   description = <<EOF
   The daily time range (in UTC) during which automated backups are created if they are enabled
@@ -237,7 +231,46 @@ variable "tags" {
     Product            = string
     Name               = string
   })
+}
 
+### PITR section
+variable "restore_2_pitr" {
+  description = "true if table will be restored from pitr"
+  type = bool
+  default = false  
+}
+variable "restore_time" {
+  description = <<EOF
+  "(Optional) The date and time to restore from. Value must be a time in Universal Coordinated Time (UTC) format 
+  and must be before the latest restorable time for the DB instance. Cannot be specified with use_latest_restorable_time"
+  EOF
+  type = string
+  default = null
+}
+
+variable "pitr_source_db_instance_identifier" {
+  description = <<EOF
+  "(Optional) The identifier of the source DB instance from which to restore. Must match the identifier of an existing DB instance. 
+  Required if source_db_instance_automated_backups_arn or source_dbi_resource_id is not specified."
+  EOF
+  type = string
+  default = null
+}
+variable "source_db_instance_automated_backups_arn" {
+  description = <<EOF
+  "(Optional) The ARN of the automated backup from which to restore. 
+  Required if source_db_instance_identifier or source_dbi_resource_id is not specified."
+  EOF
+  type = string
+  default = null
+}
+variable "use_latest_restorable_time" {
+  description = <<EOF
+  "(Optional) A boolean value that indicates whether the DB instance is restored from the latest backup time. 
+  Defaults to false. Cannot be specified with restore_time"
+  EOF
+  type = bool
+  default = false
 }
 
 ########################################################################################################
