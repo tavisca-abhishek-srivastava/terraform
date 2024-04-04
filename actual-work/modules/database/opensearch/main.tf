@@ -1,6 +1,9 @@
+data "aws_caller_identity" "current" {}
+
 resource "aws_opensearch_domain" "opensearch" {
   domain_name    = var.open_search_domain
   engine_version = "OpenSearch_${var.open_search_engine_version}"
+  
 
   cluster_config {
     dedicated_master_count   = var.dedicated_master_count
@@ -31,10 +34,6 @@ resource "aws_opensearch_domain" "opensearch" {
   domain_endpoint_options {
     enforce_https       = var.domain_endpoint_options_enforce_https
     tls_security_policy = "Policy-Min-TLS-1-2-2019-07"
-
-    custom_endpoint_enabled         = true
-    custom_endpoint                 = local.custom_domain
-    custom_endpoint_certificate_arn = data.aws_acm_certificate.opensearch.arn
   }
 
   ebs_options {
@@ -62,9 +61,9 @@ resource "aws_opensearch_domain" "opensearch" {
   }
 
   vpc_options {
-    subnet_ids = local.subnet_ids
+    subnet_ids = var.subnet_ids
 
-    security_group_ids = [aws_security_group.opensearch_security_group.id]
+    security_group_ids = var.security_group_ids
   }
 
 
@@ -76,7 +75,7 @@ resource "aws_opensearch_domain" "opensearch" {
             "Action": "es:*",
             "Principal": "*",
             "Effect": "Allow",
-            "Resource": "arn:aws:es:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:domain/${local.domain}/*"
+            "Resource": "arn:aws:es:${aws_region}:${data.aws_caller_identity.current.account_id}:domain/${local.domain}/*"
         }
     ]
 }
