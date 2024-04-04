@@ -17,7 +17,7 @@ skip_final_snapshot = true
 vpc_security_group_ids = ["sg-006dad075fbfed8e7"]
 apply_immediately = true
 ### pitr section
-restore_2_pitr = true
+restore_2_pitr = false
 pitr_source_db_instance_identifier = "jpmc-master-mysql"
 use_latest_restorable_time = true
 #### for read only replica
