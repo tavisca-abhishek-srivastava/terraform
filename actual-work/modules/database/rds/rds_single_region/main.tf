@@ -1,8 +1,8 @@
 	module "rds_storage_cmk" {
   	source            = "../../../security/kms"
   	kms_alias         = var.kms_alias
-  	delete_after_days = var.delete_after_days
-  	key_description   = var.key_description
+  	delete_after_days = var.kms_delete_after_days
+  	key_description   = var.kms_key_description
   	key_policy_map    = var.key_policy_map
 	kms_tags = var.kms_tags
 }
@@ -41,8 +41,8 @@
 
 	resource "aws_db_instance" "rds_instance" {
 		depends_on = [ module.rds_option_group,module.rds_parameter_group ]
-		## incase of PITR restore dbname/identifier must be null
 		identifier  				=   var.rds_instance_name
+		## incase of PITR restore dbname must be null
 		db_name              		= 	(var.restore_2_pitr ==true && var.rds_engine == "mysql") ? null:  var.db_name
 		engine              	 	= 	var.rds_engine
 		engine_version      	 	= 	var.rds_engine_version
