@@ -1,5 +1,10 @@
 data "aws_caller_identity" "current" {}
 
+resource "random_password" "password" {
+  length  = 32
+  special = true
+}
+
 resource "aws_opensearch_domain" "opensearch" {
   domain_name    = var.open_search_domain_name
   engine_version = var.open_search_engine_version
@@ -77,7 +82,7 @@ resource "aws_opensearch_domain" "opensearch" {
             "Action": "es:*",
             "Principal": "*",
             "Effect": "Allow",
-            "Resource": "arn:aws:es:${aws_region}:${data.aws_caller_identity.current.account_id}:domain/${var.open_search_domain_name}/*"
+            "Resource": "arn:aws:es:${var.aws_region}:${data.aws_caller_identity.current.account_id}:domain/${var.open_search_domain_name}/*"
         }
     ]
 }
