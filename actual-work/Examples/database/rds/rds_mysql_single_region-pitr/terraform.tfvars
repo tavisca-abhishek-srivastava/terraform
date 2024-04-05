@@ -36,9 +36,9 @@ tags = {
 }
 #### for option group of RDS
 use_default_option_group = false
-rds_option_group_name = "nrt-rds-mysql-app-sr"
+# rds_option_group_name = "nrt-rds-mysql-app-sr"
 option_group_major_engine_version = "5.7"
-option_group_description = "This is for NRT RDS"
+# option_group_description = "This is for NRT RDS"
 option_settings = {
   "setting1" = {
     option_name           = "MEMCACHED"
@@ -57,9 +57,9 @@ option_settings = {
 }
 #### for parameter group of RDS
 use_default_parameter_group = false
-rds_parameter_group_name = "nrt-rds-mysql-app-sr"
+# rds_parameter_group_name = "nrt-rds-mysql-app-sr"
 parameter_group_db_family = "mysql5.7"
-parameter_group_description = "this is for NRT RDS"
+# parameter_group_description = "this is for NRT RDS"
 parameter_value = {
   setting1 = {
     name = "character_set_server"
@@ -79,9 +79,9 @@ use_default_subnet_group = false
 rds_subnet_group_name = "nrt-rds-subnet-group-sr"
 subnet_group_subnet_ids = ["subnet-01d4d19deaa34db85","subnet-061e332b24aecd27b","subnet-060048463710e54c4"]
 ############### KMS input
-kms_alias = "alias/nrt_rds_encryption_key-sr"
+# kms_alias = "alias/nrt_rds_encryption_key-sr"
 kms_delete_after_days = 10
-kms_key_description = "key for rds encryption in single region"
+# kms_key_description = "key for rds encryption in single region"
 kms_tags = {
   DataClassification : "restricted"
   Environment : "poc"
