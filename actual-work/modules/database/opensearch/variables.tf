@@ -129,11 +129,6 @@ variable "ebs_iops" {
   description = "(Optional) Baseline input/output (I/O) performance of EBS volumes attached to data nodes. Applicable only for the GP3 and Provisioned IOPS EBS volume types."
   type = number
 }
-variable "security_group_ids" {
-  description = " List of VPC Security Group IDs to be applied to the OpenSearch domain endpoints. If omitted, the default Security Group for the VPC will be used"
-  type = string
-}
-
 variable "aws_region" {
   description = "region where opensearch domain will be created"
   type = string
