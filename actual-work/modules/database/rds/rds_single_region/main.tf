@@ -9,8 +9,8 @@
 
 	module "rds_option_group" {
 		source = "../../common_components/rds_aurora/aws_db_option_group/"
-		# if var.use_default_option_group == false then it will create new option group else will use default option group provided by user
-		for_each = (var.use_default_option_group == false) ? toset(["1"]):toset([])
+		# # if var.use_default_option_group == false then it will create new option group else will use default option group provided by user
+		# for_each = (var.use_default_option_group == false) ? toset(["1"]):toset([])
 			rds_option_group_name = "${var.rds_instance_name}-option-group" #var.rds_option_group_name  change4
 			option_group_engine_name = var.rds_engine # change5
 			option_group_major_engine_version = var.option_group_major_engine_version
@@ -22,7 +22,7 @@
 	module "rds_parameter_group" {
 	  source = "../../common_components/rds_aurora/aws_db_parameter_group/"
 	  # if var.use_default_parameter_group == false then it will create new parameter group else will use default parameter group provided by user
-	  for_each = (var.use_default_parameter_group == false) ? toset(["1"]):toset([])
+	#   for_each = (var.use_default_parameter_group == false) ? toset(["1"]):toset([])
 	  	parameter_group_description =  "parameter group for ${var.rds_instance_name} RDS "   #var.parameter_group_description change7
 		parameter_value = var.parameter_value
 		parameter_group_db_family = var.parameter_group_db_family
@@ -77,9 +77,9 @@
 		### if performance_insights is enabled then only set this attribute
 		performance_insights_kms_key_id = var.performance_insights_enabled == true? module.rds_storage_cmk.mrk_cms_arn:null
 		performance_insights_retention_period = var.performance_insights_enabled == true? var.performance_insights_retention_period:null
-		parameter_group_name = var.use_default_parameter_group == true ? (var.rds_parameter_group_name) : module.rds_parameter_group["1"].parameter_group_name
+		parameter_group_name =  module.rds_parameter_group.parameter_group_name      #var.use_default_parameter_group == true ? (var.rds_parameter_group_name) : module.rds_parameter_group["1"].parameter_group_name change10
 		### if use_default_option_group is true then user provided default/existing option group will be used or else it will create new one
-		option_group_name = var.use_default_option_group == true ? (var.rds_option_group_name) : module.rds_option_group["1"].option_group_name_output
+		option_group_name = module.rds_option_group.option_group_name_output   #var.use_default_option_group == true ? (var.rds_option_group_name) : module.rds_option_group["1"].option_group_name_output change9
 		port = var.port
 		### PITR option will work with latest 
 		dynamic "restore_to_point_in_time" {
