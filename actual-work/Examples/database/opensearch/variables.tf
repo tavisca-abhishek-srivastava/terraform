@@ -149,3 +149,6 @@ variable "tags" {
 variable "kms_key" {
   type = string
 }
+variable "vpc_id" {
+  type = string
+}

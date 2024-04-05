@@ -23,6 +23,7 @@ ebs_iops = 3000
 anonymous_auth_enabled = true
 internal_user_database_enabled = true
 kms_key = "arn:aws:kms:us-east-1:928814396842:key/0812992e-897f-41cc-b4e2-e1a2d1b3b672"
+vpc_id = "vpc-07b12bcec12a4cd9b"
 tags = {
   DataClassification : "restricted"
   Environment : "poc"
