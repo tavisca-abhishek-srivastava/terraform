@@ -18,7 +18,6 @@ ebs_enabled                           = true
 ebs_volume_size                       = 45
 volume_type                           = "gp3"
 throughput                            = 250
-cloud_watch_log_retention_in_days     = 14
 aws_region                            = "us-east-1"
 ebs_iops = 3000
 anonymous_auth_enabled = true
