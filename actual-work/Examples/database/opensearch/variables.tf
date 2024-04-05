@@ -129,14 +129,16 @@ variable "ebs_iops" {
   description = "(Optional) Baseline input/output (I/O) performance of EBS volumes attached to data nodes. Applicable only for the GP3 and Provisioned IOPS EBS volume types."
   type = number
 }
-
 variable "aws_region" {
   description = "region where opensearch domain will be created"
   type = string
 }
 
 variable "cloud_watch_log_retention_in_days" {
-  description = "number of days cloud watch log will be retained "
+  description = <<EOF
+  "Number of days cloud watch log will be retained.
+  Expected retention_in_days to be one of [0 1 3 5 7 14 30 60 90 120 150 180 365 400 545 731 1096 1827 2192 2557 2922 3288 3653] "
+  EOF
   type = number
   default = 14
 }
