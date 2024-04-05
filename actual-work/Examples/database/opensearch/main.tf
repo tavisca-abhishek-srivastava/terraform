@@ -25,4 +25,5 @@ module "opensearch" {
   ebs_iops = var.ebs_iops
   internal_user_database_enabled = var.internal_user_database_enabled
   tags = var.tags
+  kms_key = var.kms_key
 }
