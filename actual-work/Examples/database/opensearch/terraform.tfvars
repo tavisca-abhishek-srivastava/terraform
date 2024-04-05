@@ -31,6 +31,7 @@ tags = {
   Backup : "no"
   Product : "poap"
   Name : "tf-nrt-iac-opensearch-sr-1"
+  cloud-nuke-first-seen = "2023-03-28T07:27:11Z"
 }
 
 
