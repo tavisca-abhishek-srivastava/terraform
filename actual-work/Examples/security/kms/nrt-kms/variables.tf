@@ -37,7 +37,7 @@ variable "replica_key_policy" {
     type = any
     default = null
 }
-variable "kms_tags" {
+variable "tags" {
   type = object({
     DataClassification = string
     Environment        = string
