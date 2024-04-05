@@ -1,4 +1,4 @@
-open_search_domain_name               = "iac-bnr-opensearch"
+open_search_domain_name               = "iacbnropensearch"
 open_search_engine_version            = "OpenSearch_2.3"
 dedicated_master_count                = 3
 dedicated_master_type                 = "m6g.large.search"
@@ -31,7 +31,7 @@ tags = {
   BusinessUnit : "travel.poc"
   Backup : "no"
   Product : "poap"
-  Name : "opensearch-sr-1"
+  Name : "opensearchsr"
 }
 
 
