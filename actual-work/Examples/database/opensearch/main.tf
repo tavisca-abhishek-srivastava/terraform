@@ -25,4 +25,5 @@ module "opensearch" {
   ebs_iops = var.ebs_iops
   internal_user_database_enabled = var.internal_user_database_enabled
   cloud_watch_log_retention_in_days = var.cloud_watch_log_retention_in_days
+  tags = var.tags
 }

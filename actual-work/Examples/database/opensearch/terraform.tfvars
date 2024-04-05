@@ -23,7 +23,16 @@ aws_region                            = "us-east-1"
 ebs_iops = 3000
 anonymous_auth_enabled = true
 internal_user_database_enabled = true
-
+tags = {
+  DataClassification : "restricted"
+  Environment : "poc"
+  AppName : "tf-nrt-iac-opensearch-sr"
+  InfraOwner : "sre-cloud-reliability@tavisca.com"
+  BusinessUnit : "travel.app"
+  Backup : "no"
+  Product : "poap"
+  Name : "tf-nrt-iac-opensearch-sr-1"
+}
 
 
 

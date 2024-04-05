@@ -142,3 +142,15 @@ variable "cloud_watch_log_retention_in_days" {
   type = number
   default = 14
 }
+variable "tags" {
+  type = object({
+    DataClassification = string
+    Environment        = string
+    AppName            = string
+    InfraOwner         = string
+    BusinessUnit       = string
+    Backup             = string
+    Product            = string
+    Name               = string
+  })
+}
