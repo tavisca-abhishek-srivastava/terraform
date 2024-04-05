@@ -1,12 +1,13 @@
 data "aws_caller_identity" "current" {}
 
 resource "aws_opensearch_domain" "opensearch" {
-  domain_name    = var.open_search_domain
+  domain_name    = var.open_search_domain_name
   engine_version = var.open_search_engine_version
   
 
   cluster_config {
     dedicated_master_count   = var.dedicated_master_count
+    multi_az_with_standby_enabled = var.multi_az_with_standby_enabled
     dedicated_master_type    = var.dedicated_master_type
     dedicated_master_enabled = var.dedicated_master_enabled
     instance_type            = var.instance_type
@@ -20,9 +21,9 @@ resource "aws_opensearch_domain" "opensearch" {
   advanced_security_options {
     enabled                        = var.security_options_enabled
     anonymous_auth_enabled         = true
-    internal_user_database_enabled = true
+    internal_user_database_enabled = var.internal_user_database_enabled
     master_user_options {
-      master_user_name     = var.master_user
+      master_user_name     = var.master_user_name
       master_user_password = random_password.password.result
     }
   }
@@ -75,7 +76,7 @@ resource "aws_opensearch_domain" "opensearch" {
             "Action": "es:*",
             "Principal": "*",
             "Effect": "Allow",
-            "Resource": "arn:aws:es:${aws_region}:${data.aws_caller_identity.current.account_id}:domain/${var.open_search_domain}/*"
+            "Resource": "arn:aws:es:${aws_region}:${data.aws_caller_identity.current.account_id}:domain/${var.open_search_domain_name}/*"
         }
     ]
 }
