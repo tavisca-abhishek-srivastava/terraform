@@ -21,7 +21,7 @@ restore_2_pitr = false
 pitr_source_db_instance_identifier = ""
 use_latest_restorable_time = false
 #### for read only replica
-number_of_read_replica = 3
+number_of_read_replica = 2
 az_for_read_replica = ["us-east-1b","us-east-1c"]
 promoto_read_replica = true
 tags = {
