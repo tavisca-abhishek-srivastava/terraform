@@ -26,5 +26,4 @@ module "opensearch" {
   internal_user_database_enabled = var.internal_user_database_enabled
   tags = var.tags
   kms_key = var.kms_key
-  vpc_id = var.vpc_id
 }
