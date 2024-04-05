@@ -35,12 +35,13 @@ resource "aws_opensearch_domain" "opensearch" {
 
   encrypt_at_rest {
     enabled = var.encrypt_at_rest_enabled
+    kms_key_id = var.kms_key
   }
 
-  domain_endpoint_options {
-    enforce_https       = var.domain_endpoint_options_enforce_https
-    tls_security_policy = "Policy-Min-TLS-1-2-2019-07"
-  }
+#   domain_endpoint_options {
+#     enforce_https       = var.domain_endpoint_options_enforce_https
+#     tls_security_policy = "Policy-Min-TLS-1-2-2019-07"
+#   }
 
   ebs_options {
     ebs_enabled = var.ebs_enabled

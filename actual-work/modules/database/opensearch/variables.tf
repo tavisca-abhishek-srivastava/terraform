@@ -146,3 +146,7 @@ variable "tags" {
     Name               = string
   })
 }
+
+variable "kms_key" {
+  type = string
+}
