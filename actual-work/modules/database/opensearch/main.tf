@@ -29,7 +29,7 @@ resource "aws_opensearch_domain" "opensearch" {
     internal_user_database_enabled = var.internal_user_database_enabled
     master_user_options {
       master_user_name     = var.master_user_name
-      master_user_password = random_password.password.result
+      master_user_password = var.master_user_password
     }
   }
 
