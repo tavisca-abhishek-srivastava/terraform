@@ -42,6 +42,7 @@ resource "aws_opensearch_domain" "opensearch" {
     volume_size = var.ebs_volume_size
     volume_type = var.volume_type
     throughput  = var.throughput
+    iops = var.ebs_iops
   }
 
   log_publishing_options {

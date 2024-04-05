@@ -87,34 +87,55 @@ variable "master_user_password" {
 }
 
 variable "encrypt_at_rest_enabled" {
+  description = <<EOF
+  "(Required) Whether to enable encryption at rest. If the encrypt_at_rest block is not provided then this defaults to false. 
+  Enabling encryption on new domains requires an engine_version of OpenSearch_X.Y or Elasticsearch_5.1 or greater"
+  EOF
   type = bool
+  default = false
 }
 
 variable "domain_endpoint_options_enforce_https" {
+  description = "Whether or not to require HTTPS for domain endpoint"
   type = bool
 }
 
 variable "ebs_enabled" {
+  description = "Whether EBS volumes are attached to data nodes in the domain"
   type = bool
+  default = true
 }
 
 variable "ebs_volume_size" {
+  description = "(Required if ebs_enabled is set to true.) Size of EBS volumes attached to data nodes (in GiB)"
   type = number
 }
 
 variable "volume_type" {
+  description = "(Optional) Type of EBS volumes attached to data nodes"
   type = string
+  default = "gp3"
 }
 
 variable "throughput" {
+  description = <<EOF
+  "(Required if volume_type is set to gp3) Specifies the throughput (in MiB/s) of the EBS volumes attached to data nodes. 
+  Applicable only for the gp3 volume type."
+  EOF
   type = number
 }
 
+variable "ebs_iops" {
+  description = "(Optional) Baseline input/output (I/O) performance of EBS volumes attached to data nodes. Applicable only for the GP3 and Provisioned IOPS EBS volume types."
+  type = number
+}
 variable "security_group_ids" {
+  description = " List of VPC Security Group IDs to be applied to the OpenSearch domain endpoints. If omitted, the default Security Group for the VPC will be used"
   type = string
 }
 
 variable "aws_region" {
+  description = "region where opensearch domain will be created"
   type = string
 }
 
