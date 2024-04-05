@@ -1,0 +1,22 @@
+module "opensearch" {
+  source                   = "../../../modules/database/opensearch"
+  open_search_domain_name =  var.open_search_domain_name
+  open_search_engine_version = var.open_search_engine_version
+  subnet_ids = var.subnet_ids
+  encrypt_at_rest_enabled = true
+  aws_region = var.aws_region
+  domain_endpoint_options_enforce_https = var.domain_endpoint_options_enforce_https
+  master_user = var.master_user
+  security_group_ids = var.security_group_ids
+  throughput = var.throughput
+  dedicated_master_enabled = var.dedicated_master_enabled
+  dedicated_master_count = var.dedicated_master_count
+  dedicated_master_type = var.dedicated_master_type
+  instance_count = var.instance_count
+  instance_type = var.instance_type
+  zone_awareness_enabled = var.zone_awareness_enabled
+  security_options_enabled = var.security_options_enabled
+  ebs_enabled = var.ebs_enabled
+  ebs_volume_size = var.ebs_volume_size
+  volume_type = var.volume_type
+}

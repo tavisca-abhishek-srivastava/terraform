@@ -1,4 +1,4 @@
-module "nrt_mysql_single_region_pitr" {
+module "mysql_single_region" {
 source = "../../../../modules/database/rds/rds_single_region"
 db_name = "mysql_nrt_pitr"
 allocated_storage = var.allocated_storage
@@ -19,22 +19,22 @@ user_name = var.user_name
 password = var.password
 skip_final_snapshot = var.skip_final_snapshot
 apply_immediately = var.apply_immediately
-# rds_option_group_name = var.rds_option_group_name
+## rds_option_group_name = var.rds_option_group_name
 use_default_option_group = var.use_default_option_group
-# option_group_description = var.option_group_description
+## option_group_description = var.option_group_description
 option_group_major_engine_version = var.option_group_major_engine_version
 option_settings = var.option_settings
 use_default_subnet_group = var.use_default_subnet_group
 rds_subnet_group_name = var.rds_subnet_group_name
 subnet_group_subnet_ids = var.subnet_group_subnet_ids
 use_default_parameter_group = var.use_default_parameter_group
-# rds_parameter_group_name = var.rds_parameter_group_name
+## rds_parameter_group_name = var.rds_parameter_group_name
 parameter_group_db_family = var.parameter_group_db_family
-# parameter_group_description = var.parameter_group_description
+## parameter_group_description = var.parameter_group_description
 parameter_value = var.parameter_value
 kms_delete_after_days = var.kms_delete_after_days
-# kms_key_description = var.kms_key_description
-# kms_alias = var.kms_alias
+## kms_key_description = var.kms_key_description
+## kms_alias = var.kms_alias
 key_policy_map = var.key_policy_map
 kms_tags = var.kms_tags
 restore_2_pitr = var.restore_2_pitr

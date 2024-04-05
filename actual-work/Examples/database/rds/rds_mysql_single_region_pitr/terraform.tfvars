@@ -18,12 +18,12 @@ vpc_security_group_ids = ["sg-006dad075fbfed8e7"]
 apply_immediately = true
 ### pitr section
 restore_2_pitr = false
-pitr_source_db_instance_identifier = "jpmc-master-mysql"
-use_latest_restorable_time = true
+pitr_source_db_instance_identifier = ""
+use_latest_restorable_time = false
 #### for read only replica
-number_of_read_replica = 2
+number_of_read_replica = 3
 az_for_read_replica = ["us-east-1b","us-east-1c"]
-promoto_read_replica = false
+promoto_read_replica = true
 tags = {
   DataClassification : "restricted"
   Environment : "poc"
