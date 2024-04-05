@@ -144,6 +144,5 @@ variable "tags" {
     Backup             = string
     Product            = string
     Name               = string
-    cloud-nuke-first-seen = string
   })
 }
