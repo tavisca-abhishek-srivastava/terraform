@@ -172,7 +172,7 @@ replica_key_policy = {
     ]
   }
 
-kms_tags = {
+tags = {
   DataClassification : "restricted"
   Environment : "poc"
   AppName : "tf-nrt-nrt-iac-kms"

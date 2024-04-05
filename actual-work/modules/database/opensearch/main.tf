@@ -2,7 +2,7 @@ data "aws_caller_identity" "current" {}
 
 resource "aws_opensearch_domain" "opensearch" {
   domain_name    = var.open_search_domain
-  engine_version = "OpenSearch_${var.open_search_engine_version}"
+  engine_version = var.open_search_engine_version
   
 
   cluster_config {
