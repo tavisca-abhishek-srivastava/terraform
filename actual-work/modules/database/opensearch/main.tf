@@ -1,15 +1,21 @@
 data "aws_caller_identity" "current" {}
 
 module "opensearch_encryption_at_rest_cmk" {
-  	source            = "../../../security/kms"
-  	kms_alias         = "alias/${var.open_search_domain_name}_key" #var.kms_alias change1
+  	source            = "../../security/kms"
+  	kms_alias         = "alias/${var.open_search_domain_name}_key"
   	delete_after_days = var.kms_delete_after_days
-  	key_description   =  "Key for ${var.open_search_domain_name} RDS " #var.kms_key_description change2
+  	key_description   =  "Key for ${var.open_search_domain_name} RDS "
   	key_policy_map    = var.key_policy_map
-	  kms_tags = var.tags #  change3
+	  kms_tags = var.tags
 }
 
-
+module "opensearch_security_group" {
+    source            = "../../networking/security_group"
+    vpc_id = var.vpc_id
+    name = "${var.open_search_domain_name}_sg"
+    egress_rules = var.egress_rules_sg1
+    ingress_rules = var.ingress_rules_sg1
+}
 
 resource "aws_opensearch_domain" "opensearch" {
   domain_name    = var.open_search_domain_name
@@ -64,7 +70,7 @@ resource "aws_opensearch_domain" "opensearch" {
   vpc_options {
     subnet_ids = var.subnet_ids
 
-    security_group_ids = var.security_group_ids
+    security_group_ids = [module.opensearch_security_group.security_group_id]
   }
 
 tags = var.tags

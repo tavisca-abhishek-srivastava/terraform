@@ -53,10 +53,10 @@ variable "security_options_enabled" {
   description = "Whether advanced security is enabled."
   type = bool
 }
-variable "security_group_ids" {
-  description = "List of VPC Security Group IDs to be applied to the OpenSearch domain endpoints. If omitted, the default Security Group for the VPC will be used"
-  type = list
-}
+# variable "security_group_ids" {
+#   description = "List of VPC Security Group IDs to be applied to the OpenSearch domain endpoints. If omitted, the default Security Group for the VPC will be used"
+#   type = list
+# }
 variable "internal_user_database_enabled" {
   description = "Whether the internal user database is enabled. Default is false"
   type = bool
@@ -147,7 +147,41 @@ variable "tags" {
     Name               = string
   })
 }
+########################################################################################################
+##                                                                                                    ##
+##                     KMS module related variables for opensearch encryption at rest                 ##
+##                                                                                                    ##
+########################################################################################################
 
-variable "kms_key" {
+variable "kms_delete_after_days" {
+    description = " The waiting period, specified in number of days. After the waiting period ends, AWS KMS deletes the KMS key.it must be between 7 and 30, inclusive"
+    type = number
+    default = 30
+}
+
+variable "key_policy_map" {
+    description = "A valid policy JSON document"
+    type = any
+}
+
+
+########################################################################################################
+##                                                                                                    ##
+##                     security group module related variables for opensearch                         ##
+##                                                                                                    ##
+########################################################################################################
+
+variable "vpc_id" {
+  description = "Enter VPC ID for Security group"
   type = string
+}
+
+variable "ingress_rules_sg1" {
+  description = "Enter ingress rule in the"
+  type = list
+}
+
+variable "egress_rules_sg1" {
+ description = "Enter engress rule in the"
+  type = list
 }
