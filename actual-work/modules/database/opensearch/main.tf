@@ -1,10 +1,5 @@
 data "aws_caller_identity" "current" {}
 
-resource "random_password" "password" {
-  length  = 32
-  special = true
-}
-
 resource "aws_opensearch_domain" "opensearch" {
   domain_name    = var.open_search_domain_name
   engine_version = var.open_search_engine_version
@@ -61,8 +56,9 @@ resource "aws_opensearch_domain" "opensearch" {
     security_group_ids = var.security_group_ids
   }
 
+tags = var.tags
 
-  access_policies = <<CONFIG
+access_policies = <<CONFIG
 {
     "Version": "2012-10-17",
     "Statement": [

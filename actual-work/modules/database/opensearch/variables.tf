@@ -9,7 +9,7 @@ variable "open_search_engine_version" {
 variable "dedicated_master_count" {
   description = "(Optional) Number of dedicated main nodes in the cluster"
   type = number
-  default = 0  
+  default = 3  
 }
 variable "dedicated_master_type" {
   description = "(Optional) Instance type of the dedicated main nodes in the cluster."
@@ -28,6 +28,7 @@ variable "instance_type" {
 variable "instance_count" {
   description = "Number of instances in the cluster"
   type = number
+  default = 3
 }
 
 variable "multi_az_with_standby_enabled" {
