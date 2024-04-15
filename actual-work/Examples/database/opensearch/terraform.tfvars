@@ -108,7 +108,7 @@ key_policy_map = {
   }
 
 ## security group
-vpc_id = "value"
+vpc_id = "vpc-07b12bcec12a4cd9b"
 ingress_rules_sg1 = [
     {
       description    = "default rule"
