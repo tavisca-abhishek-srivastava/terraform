@@ -12,7 +12,6 @@ module "opensearch" {
   domain_endpoint_options_enforce_https = var.domain_endpoint_options_enforce_https
   master_user_name = var.master_user_name
   master_user_password = var.master_user_password
-  security_group_ids = var.security_group_ids
   throughput = var.throughput
   instance_count = var.instance_count
   zone_awareness_enabled = var.zone_awareness_enabled
@@ -25,5 +24,9 @@ module "opensearch" {
   ebs_iops = var.ebs_iops
   internal_user_database_enabled = var.internal_user_database_enabled
   tags = var.tags
-  kms_key = var.kms_key
+  kms_delete_after_days = var.kms_delete_after_days
+  key_policy_map = var.key_policy_map
+  vpc_id = var.vpc_id
+  egress_rules_sg1 = var.egress_rules_sg1
+  ingress_rules_sg1 = var.ingress_rules_sg1
 }
