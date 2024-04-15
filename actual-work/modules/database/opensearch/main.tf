@@ -1,5 +1,16 @@
 data "aws_caller_identity" "current" {}
 
+module "opensearch_encryption_at_rest_cmk" {
+  	source            = "../../../security/kms"
+  	kms_alias         = "alias/${var.open_search_domain_name}_key" #var.kms_alias change1
+  	delete_after_days = var.kms_delete_after_days
+  	key_description   =  "Key for ${var.open_search_domain_name} RDS " #var.kms_key_description change2
+  	key_policy_map    = var.key_policy_map
+	  kms_tags = var.tags #  change3
+}
+
+
+
 resource "aws_opensearch_domain" "opensearch" {
   domain_name    = var.open_search_domain_name
   engine_version = var.open_search_engine_version
@@ -30,7 +41,7 @@ resource "aws_opensearch_domain" "opensearch" {
 
   encrypt_at_rest {
     enabled = var.encrypt_at_rest_enabled
-    kms_key_id = var.kms_key
+    kms_key_id = module.opensearch_encryption_at_rest_cmk.mrk_cms_arn
   }
 
   domain_endpoint_options {
