@@ -4,7 +4,7 @@ module "opensearch_encryption_at_rest_cmk" {
   	source            = "../../security/kms"
   	kms_alias         = "alias/${var.open_search_domain_name}_key"
   	delete_after_days = var.kms_delete_after_days
-  	key_description   =  "Key for ${var.open_search_domain_name} RDS "
+  	key_description   =  "Key for ${var.open_search_domain_name} opensearch domain "
   	key_policy_map    = var.key_policy_map
 	  kms_tags = var.tags
 }
@@ -13,6 +13,7 @@ module "opensearch_security_group" {
     source            = "../../networking/security_group"
     vpc_id = var.vpc_id
     name = "${var.open_search_domain_name}_sg"
+    description = "Security Group for ${var.open_search_domain_name} opensearch domain "
     egress_rules = var.egress_rules_sg1
     ingress_rules = var.ingress_rules_sg1
 }
