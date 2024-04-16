@@ -29,5 +29,4 @@ module "opensearch" {
   vpc_id = var.vpc_id
   egress_rules_sg1 = var.egress_rules_sg1
   ingress_rules_sg1 = var.ingress_rules_sg1
-  opensearch_access_policy = var.opensearch_access_policy
 }
