@@ -40,8 +40,9 @@ variable "instance_count" {
 }
 
 variable "multi_az_with_standby_enabled" {
-  description = "Whether a multi-AZ domain is turned on with a standby AZ"
+  description = "Whether a multi-AZ domain is turned on with a standby AZ. put null if creating opensearch based elasticsearch"
   type = bool
+  default = null
 }
 
 variable "zone_awareness_enabled" {
