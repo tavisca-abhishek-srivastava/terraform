@@ -77,5 +77,25 @@ resource "aws_opensearch_domain" "opensearch" {
 tags = var.tags
 
 access_policies = data.aws_iam_policy_document.opensearch_access_policy.json
+
+
+log_publishing_options {
+    cloudwatch_log_group_arn = aws_cloudwatch_log_group.opensearch_log_group_index_slow_logs.arn
+    log_type                 = "INDEX_SLOW_LOGS"
+    enabled = true
+  }
+  log_publishing_options {
+    cloudwatch_log_group_arn = aws_cloudwatch_log_group.opensearch_log_group_search_slow_logs.arn
+    log_type                 = "SEARCH_SLOW_LOGS"
+    enabled = true
+  }
+  log_publishing_options {
+    cloudwatch_log_group_arn = aws_cloudwatch_log_group.opensearch_log_group_es_application_logs.arn
+    log_type                 = "ES_APPLICATION_LOGS"
+    enabled = true
+  }
+
+
+
 }
 
