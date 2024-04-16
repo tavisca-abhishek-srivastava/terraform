@@ -3,11 +3,11 @@ data "aws_iam_policy_document" "opensearch_access_policy" {
     effect = "Allow"
 
     principals {
-      type        = "Service"
+      type        = "*"
       identifiers = ["*"]
     }
 
-    actions = ["es.*"]
+    actions = ["es:*"]
 
     resources = ["arn:aws:es:${var.aws_region}:${data.aws_caller_identity.current.account_id}:domain/${var.open_search_domain_name}/*"]
   }
