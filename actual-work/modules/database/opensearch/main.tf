@@ -76,6 +76,6 @@ resource "aws_opensearch_domain" "opensearch" {
 
 tags = var.tags
 
-access_policies = var.opensearch_access_policy
+access_policies = data.aws_iam_policy_document.opensearch_access_policy.json
 }
 

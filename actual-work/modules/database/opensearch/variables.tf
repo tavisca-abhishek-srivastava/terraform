@@ -206,7 +206,3 @@ variable "cloud_watch_log_group_retention_days" {
   type = number
   default = 14
 }
-variable "opensearch_access_policy" {
-  description = "access policy for opensearch"
-  
-}
