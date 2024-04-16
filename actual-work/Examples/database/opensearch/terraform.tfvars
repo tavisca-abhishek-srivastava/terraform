@@ -124,8 +124,8 @@ ingress_rules_sg1 = [
   egress_rules_sg1 = [
     {
       description    = "default rule"
-      from_port       = -1
-      to_port         = -1
+      from_port       = 0
+      to_port         = 0
       protocol        = "ALL"
       cidr_blocks     = ["0.0.0.0/0"]
       source_sg_id    = ""
