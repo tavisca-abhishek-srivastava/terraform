@@ -198,3 +198,16 @@ variable "egress_rules_sg1" {
  description = "Enter engress rule in the"
   type = list
 }
+
+#### Cloud watch Log group
+
+variable "cloud_watch_log_group_retention_days" {
+  description = "number of days cloud watch log group will be retained"
+  type = number
+  default = 14
+}
+
+variable "opensearch_access_policy" {
+  description = "access policy for opensearch"
+  
+}

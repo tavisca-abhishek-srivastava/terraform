@@ -76,17 +76,6 @@ resource "aws_opensearch_domain" "opensearch" {
 
 tags = var.tags
 
-access_policies = <<CONFIG
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Action": "es:*",
-            "Principal": "*",
-            "Effect": "Allow",
-            "Resource": "arn:aws:es:${var.aws_region}:${data.aws_caller_identity.current.account_id}:domain/${var.open_search_domain_name}/*"
-        }
-    ]
+access_policies = var.opensearch_access_policy
 }
-CONFIG
-}
+
