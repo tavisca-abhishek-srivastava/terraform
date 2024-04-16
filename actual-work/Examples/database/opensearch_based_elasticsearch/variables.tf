@@ -40,8 +40,9 @@ variable "instance_count" {
 }
 
 variable "multi_az_with_standby_enabled" {
-  description = "Whether a multi-AZ domain is turned on with a standby AZ"
+  description = "Whether a multi-AZ domain is turned on with a standby AZ. put null if creating opensearch based elasticsearch"
   type = bool
+  default = null
 }
 
 variable "zone_awareness_enabled" {
@@ -72,13 +73,13 @@ variable "internal_user_database_enabled" {
   default = false
 }
 
-variable "anonymous_auth_enabled" {
-  description = <<EOF
-  "Whether Anonymous auth is enabled. Enables fine-grained access control on an existing domain. 
-  Ignored unless advanced_security_options are enabled. Can only be enabled on an existing domain."
-  EOF
-  type = bool
-}
+# variable "anonymous_auth_enabled" {
+#   description = <<EOF
+#   "Whether Anonymous auth is enabled. Enables fine-grained access control on an existing domain. 
+#   Ignored unless advanced_security_options are enabled. Can only be enabled on an existing domain."
+#   EOF
+#   type = bool
+# }
 
 variable "master_user_name" {
    description = <<EOF
