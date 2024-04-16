@@ -2,9 +2,9 @@ data "aws_caller_identity" "current" {}
 
 module "opensearch_encryption_at_rest_cmk" {
   	source            = "../../security/kms"
-  	kms_alias         = "alias/${var.open_search_domain_name}_key"
+  	kms_alias         = "alias/${var.elastic_search_domain_name}_key"
   	delete_after_days = var.kms_delete_after_days
-  	key_description   =  "Key for ${var.open_search_domain_name} opensearch domain "
+  	key_description   =  "Key for ${var.elastic_search_domain_name} opensearch domain "
   	key_policy_map    = var.key_policy_map
 	  kms_tags = var.tags
 }
@@ -12,20 +12,19 @@ module "opensearch_encryption_at_rest_cmk" {
 module "opensearch_security_group" {
     source            = "../../networking/security_group"
     vpc_id = var.vpc_id
-    name = "${var.open_search_domain_name}_sg"
-    description = "Security Group for ${var.open_search_domain_name} opensearch domain "
+    name = "${var.elastic_search_domain_name}_sg"
+    description = "Security Group for ${var.elastic_search_domain_name} opensearch domain "
     egress_rules = var.egress_rules_sg1
     ingress_rules = var.ingress_rules_sg1
 }
 
-resource "aws_opensearch_domain" "opensearch" {
-  domain_name    = var.open_search_domain_name
-  engine_version = var.open_search_engine_version
+resource "aws_elasticsearch_domain" "elasticsearch" {
+  domain_name    = var.elastic_search_domain_name
+  elasticsearch_version = var.elastic_search_engine_version
   
 
   cluster_config {
     dedicated_master_count   = var.dedicated_master_count
-    multi_az_with_standby_enabled = var.multi_az_with_standby_enabled
     dedicated_master_type    = var.dedicated_master_type
     dedicated_master_enabled = var.dedicated_master_enabled
     instance_type            = var.instance_type
@@ -38,7 +37,6 @@ resource "aws_opensearch_domain" "opensearch" {
 
   advanced_security_options {
     enabled                        = var.security_options_enabled
-    anonymous_auth_enabled         = local.anonymous_auth_enabled
     internal_user_database_enabled = var.internal_user_database_enabled
     master_user_options {
       master_user_name     = var.master_user_name
