@@ -9,7 +9,11 @@ variable "open_search_engine_version" {
 variable "dedicated_master_count" {
   description = "(Optional) Number of dedicated main nodes in the cluster"
   type = number
-  default = 3  
+  default = 3
+  validation {
+    condition = var.dedicated_master_count >= 3
+    error_message = "dedicated master count should be 3 or more"
+    }  
 }
 variable "dedicated_master_type" {
   description = "(Optional) Instance type of the dedicated main nodes in the cluster."
@@ -29,6 +33,10 @@ variable "instance_count" {
   description = "Number of instances in the cluster"
   type = number
   default = 3
+    validation {
+    condition = var.instance_count >= 3
+    error_message = "data node count should be 3 or more"
+    }  
 }
 
 variable "multi_az_with_standby_enabled" {
@@ -47,16 +55,17 @@ variable "zone_awareness_enabled" {
 variable "subnet_ids" {
   description = "List of VPC Subnet IDs for the OpenSearch domain endpoints to be created in"
   type = list
+    validation {
+    condition = length(var.subnet_ids) >= 3
+    error_message = "Minimum 3 subnet ids must be specified"
+    }  
 }
 
 variable "security_options_enabled" {
   description = "Whether advanced security is enabled."
   type = bool
 }
-# variable "security_group_ids" {
-#   description = "List of VPC Security Group IDs to be applied to the OpenSearch domain endpoints. If omitted, the default Security Group for the VPC will be used"
-#   type = list
-# }
+
 variable "internal_user_database_enabled" {
   description = "Whether the internal user database is enabled. Default is false"
   type = bool
@@ -89,11 +98,11 @@ variable "master_user_password" {
 
 variable "encrypt_at_rest_enabled" {
   description = <<EOF
-  "(Required) Whether to enable encryption at rest. If the encrypt_at_rest block is not provided then this defaults to false. 
+  "(Required) Whether to enable encryption at rest. If the encrypt_at_rest block is not provided then this defaults to true. 
   Enabling encryption on new domains requires an engine_version of OpenSearch_X.Y or Elasticsearch_5.1 or greater"
   EOF
   type = bool
-  default = false
+  default = true
 }
 
 variable "domain_endpoint_options_enforce_https" {
@@ -110,6 +119,10 @@ variable "ebs_enabled" {
 variable "ebs_volume_size" {
   description = "(Required if ebs_enabled is set to true.) Size of EBS volumes attached to data nodes (in GiB)"
   type = number
+  validation {
+    condition = var.ebs_volume_size > 30
+    error_message = "ebs volume size must be greater than 30 GB"
+  }
 }
 
 variable "volume_type" {
@@ -183,5 +196,5 @@ variable "ingress_rules_sg1" {
 
 variable "egress_rules_sg1" {
  description = "Enter engress rule in the"
-  type = list 
+  type = list
 }
