@@ -11,7 +11,7 @@ variable "dedicated_master_count" {
   type = number
   default = 3
   validation {
-    condition = length(var.dedicated_master_count) >= 3
+    condition = var.dedicated_master_count >= 3
     error_message = "dedicated master count should be 3 or more"
     }  
 }
@@ -34,7 +34,7 @@ variable "instance_count" {
   type = number
   default = 3
     validation {
-    condition = length(var.instance_count) >= 3
+    condition = var.instance_count >= 3
     error_message = "data node count should be 3 or more"
     }  
 }
