@@ -1,17 +1,3 @@
-terraform {
-   required_providers {
-     aws = {
-      source = "hashicorp/aws"
-       version = "5.32.0"
-     }
-   }
- }
-
- provider "aws" {
-   region = "us-east-1"
- }
-
-
 resource "aws_dms_replication_subnet_group" "example" {
   replication_subnet_group_description = "dms-subnet-group-iac"
   replication_subnet_group_id          = "dms-subnet-group-iac"
