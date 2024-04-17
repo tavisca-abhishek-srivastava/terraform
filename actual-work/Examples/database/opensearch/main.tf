@@ -20,7 +20,6 @@ module "opensearch" {
   ebs_enabled = var.ebs_enabled
   ebs_volume_size = var.ebs_volume_size
   volume_type = var.volume_type
-  anonymous_auth_enabled = var.anonymous_auth_enabled
   ebs_iops = var.ebs_iops
   internal_user_database_enabled = var.internal_user_database_enabled
   tags = var.tags

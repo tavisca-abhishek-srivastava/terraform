@@ -73,14 +73,6 @@ variable "internal_user_database_enabled" {
   default = false
 }
 
-variable "anonymous_auth_enabled" {
-  description = <<EOF
-  "Whether Anonymous auth is enabled. Enables fine-grained access control on an existing domain. 
-  Ignored unless advanced_security_options are enabled. Can only be enabled on an existing domain."
-  EOF
-  type = bool
-}
-
 variable "master_user_name" {
    description = <<EOF
   "Main user's username, which is stored in the Amazon OpenSearch Service domain's internal database. 
