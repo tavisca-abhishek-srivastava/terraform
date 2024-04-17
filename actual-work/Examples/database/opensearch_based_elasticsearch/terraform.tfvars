@@ -121,7 +121,7 @@ ingress_rules_sg1 = [
     },
   ]
 
-  egress_rules_sg1 = [
+egress_rules_sg1 = [
     {
       description    = "default rule"
       from_port       = 0

@@ -19,7 +19,6 @@ volume_type                           = "gp3"
 throughput                            = 250
 aws_region                            = "us-east-1"
 ebs_iops = 3000
-anonymous_auth_enabled = true
 internal_user_database_enabled = true
 ### kms 
 kms_delete_after_days = 30
@@ -121,7 +120,7 @@ ingress_rules_sg1 = [
     },
   ]
 
-  egress_rules_sg1 = [
+egress_rules_sg1 = [
     {
       description    = "default rule"
       from_port       = 0
