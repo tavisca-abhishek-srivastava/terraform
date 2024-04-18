@@ -269,37 +269,16 @@ variable "use_latest_restorable_time" {
 ##                     KMS module related variables for rds ebs encryption                            ##
 ##                                                                                                    ##
 ########################################################################################################
-# variable "kms_alias" {
-#     description = "define in the form of 'alias/unique_key_name'"
-#     type = string
-# }
 variable "kms_delete_after_days" {
     description = " The waiting period, specified in number of days. After the waiting period ends, AWS KMS deletes the KMS key.it must be between 7 and 30, inclusive"
     type = number
     default = 30
 }
-# variable "kms_key_description" {
-#     description = "The description of the key as visible in AWS console"
-#     type = string
-# }
 variable "key_policy_map" {
     description = "A valid policy JSON document"
     type = any
 }
 
-# variable "kms_tags" {
-#   type = object({
-#     DataClassification = string
-#     Environment        = string
-#     AppName            = string
-#     InfraOwner         = string
-#     BusinessUnit       = string
-#     Backup             = string
-#     Product            = string
-#     Name               = string
-#   })
-
-# }
 
 #######################################################################################################################
 ##                                                                                                                   ##
@@ -314,19 +293,7 @@ variable "use_default_option_group" {
 }
 
 ### variables for option group module
-# variable "rds_option_group_name" {
-#   description = "name of rds/aurora option group"
-#   type        = string
-#   validation {
-#     condition     = length(var.rds_option_group_name) != 0
-#     error_message = "option group name can't be left blank"
-#   }
-# }
 
-# variable "option_group_description" {
-#   description = "provide description of usage of this option group"
-#   type        = string
-# }
 variable "option_group_major_engine_version" {
   description = "Specifies the major version of the engine that this option group should be associated with"
   type        = string
@@ -357,14 +324,6 @@ variable "use_default_parameter_group" {
   type = bool
   default = true
 }
-# variable "rds_parameter_group_name" {
-#   description = "name of rds/aurora parameter group"
-#   type = string
-#   validation {
-#     condition = length(var.rds_parameter_group_name) != 0
-#     error_message = "parameter group name can't be left blank"
-#   }
-# }
 
 variable "parameter_group_db_family" {
   description = "The family of the DB parameter group"
@@ -372,9 +331,6 @@ variable "parameter_group_db_family" {
 }
 
 # variable "parameter_group_description" {
-#   description = "provide description of usage of this parameter group"
-#   type = string
-# }
 variable "parameter_value" {
   type = map(object({
     name = string
