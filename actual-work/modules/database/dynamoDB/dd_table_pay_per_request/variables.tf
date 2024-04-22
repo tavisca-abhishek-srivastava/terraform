@@ -66,7 +66,7 @@ variable "gsi_indices" {
     hash_key       = string
 
   }))
-  default = {}   ## change1
+  default = null  ## change1
 }
 
 variable "lsi_indices" {
