@@ -53,7 +53,7 @@ variable "attributes" {
     type = string
   }))
   validation {
-    condition     = length(var.attributes) > 2
+    condition     = length(var.attributes) > 0
     error_message = "Attribute should have hash key and range key at minimum"
   }
 }
