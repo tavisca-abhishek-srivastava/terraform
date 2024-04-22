@@ -18,7 +18,7 @@ attributes = {
     "attr2" = { name = "product_id", type = "S" },
     # "attr3" = { name = "product_name", type = "S" },
     # "attr4" = { name = "product_desc", type = "S" },
-    # "attr5" = { name = "age", type = "N" },
+    "attr5" = { name = "age", type = "N" },
   }
 # gsi_indices = {
 #     # in key-value pair, key will be GSI index name
