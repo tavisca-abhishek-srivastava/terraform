@@ -14,7 +14,7 @@ module "nrt-dynamoDB" {
     table_autoscaling_min_write_capacity_unit = var.table_autoscaling_min_write_capacity_unit
     table_autoscaling_max_write_capacity_unit = var.table_autoscaling_max_write_capacity_unit
     attributes = var.attributes
-    gsi_indices = var.gsi_indices
+    # gsi_indices = var.gsi_indices
     lsi_indices = var.lsi_indices
     ttl_enabled = var.ttl_enabled
     attribute_for_ttl = var.attribute_for_ttl
