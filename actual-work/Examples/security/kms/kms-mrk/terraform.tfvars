@@ -1,4 +1,4 @@
-kms_alias = "alias/nrt_encryption_key_kms"
+kms_alias = "alias/iac_encryption_key_kms_mrk"
 delete_after_days = 8
 key_description = "key_for_kms"
 need_kms_replica = false
