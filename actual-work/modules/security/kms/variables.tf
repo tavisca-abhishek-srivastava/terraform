@@ -10,10 +10,25 @@ variable "key_description" {
     description = "The description of the key as visible in AWS console"
     type = string
 }
-variable "key_policy_map" {
-    description = "A valid policy JSON document"
-    type = any
+
+variable "key_policy_statements" {
+  description = "All the statements for the key policy"
+  type = map(object({
+    sid = string
+    actions = any
+    resources = any
+    effect = string
+    principals = map(object({
+      identifiers = list
+    }))
+  }))
+default = {}
 }
+
+# variable "key_policy_map" {
+#     description = "A valid policy JSON document"
+#     type = any
+# }
 variable "need_kms_replica" {
   description = "enable it when kms replica is needed in dr region"
   type = bool
@@ -29,7 +44,7 @@ variable "replica_key_policy" {
     type = any
     default = null
 }
-variable "kms_tags" {
+variable "tags" {
   type = object({
     DataClassification = string
     Environment        = string
