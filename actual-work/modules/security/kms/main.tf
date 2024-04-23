@@ -26,7 +26,7 @@ data "aws_iam_policy_document" "kms_policy" {
         for_each = var.key_policy_statements.value.principal
         content {
           type = "AWS"
-          identifiers = var.key_policy_statements.value.principal.identifiers
+          identifiers = var.key_policy_statements.value.principals.identifiers
         }
       }
 

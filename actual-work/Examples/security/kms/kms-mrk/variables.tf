@@ -27,7 +27,7 @@ variable "key_policy_statements" {
     resources = any
     effect = string
     principals = map(object({
-      identifiers = list
+      identifiers = list(any)
     }))
 
   }))
