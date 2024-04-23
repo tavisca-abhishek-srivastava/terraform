@@ -23,7 +23,7 @@ data "aws_iam_policy_document" "kms_policy" {
       resources = statement.resource
       effect = statement.effect
       dynamic "principals" {
-        for_each = var.key_policy_statements.value.principal
+        for_each = var.key_policy_statements.value.principals
         content {
           type = "AWS"
           identifiers = var.key_policy_statements.value.principals.identifiers
