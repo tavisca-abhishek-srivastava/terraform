@@ -1,5 +1,5 @@
 module "nrt-dax" {
-    source = "../../../modules/dynamoDB/DD_DAX"
+    source = "../../../modules/dynamodb/dd_dax"
     cluster_name = var.cluster_name
     cluster_description = var.cluster_description
     replication_factor = var.replication_factor
