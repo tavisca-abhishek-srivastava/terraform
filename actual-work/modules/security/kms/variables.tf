@@ -16,7 +16,7 @@ variable "key_policy_statements" {
   type = map(object({
     sid = string
     actions = list(string)
-    resources = string
+    resources = list[string]
     effect = string
     # principals = object({
     #   identifiers = list(string)
