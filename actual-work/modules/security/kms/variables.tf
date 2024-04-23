@@ -18,9 +18,9 @@ variable "key_policy_statements" {
     actions = any
     resources = any
     effect = string
-    principals = object({
-      identifiers = list(string)
-    })
+    # principals = object({
+    #   identifiers = list(string)
+    # })
   }))
 default = {}
 }
