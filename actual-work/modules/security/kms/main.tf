@@ -22,13 +22,13 @@ data "aws_iam_policy_document" "kms_policy" {
       actions = statement.value.actions
       resources = statement.value.resources
       effect = statement.value.effect
-      # dynamic "principals" {
-      #   for_each = var.key_policy_statements.value.principals
-      #   content {
-      #     type = "AWS"
-      #     identifiers = var.key_policy_statements.value.principals.identifiers
-      #   }
-      # }
+      dynamic "principals" {
+        for_each = var.key_policy_statements.value.principals
+        content {
+          type = "AWS"
+          identifiers = var.key_policy_statements.value.principals.identifiers
+        }
+      }
 
     }
   }
