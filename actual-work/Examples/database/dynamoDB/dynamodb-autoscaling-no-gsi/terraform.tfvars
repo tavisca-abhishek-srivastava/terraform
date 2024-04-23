@@ -28,7 +28,7 @@ attributes = {
 #     "product_id_gsi" = { write_capacity = 60, read_capacity = 60, range_key = "user_id" ,hash_key = "product_id" },
 #   }
   lsi_indices = { 
-    # in key-value pair, key will be LSI index name
+    ##### in key-value pair, key will be LSI index name
    "by_age_LSI" = {range_key = "age"},
    "by_product_id_LSI" = {range_key = "product_id"},
   }
