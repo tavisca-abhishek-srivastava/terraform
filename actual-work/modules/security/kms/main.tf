@@ -18,10 +18,10 @@ data "aws_iam_policy_document" "kms_policy" {
   dynamic "statement" {
     for_each = var.key_policy_statements
     content {
-      sid = statement.sid
-      actions = statement.actions
-      resources = statement.resource
-      effect = statement.effect
+      sid = statement.value.sid
+      actions = statement.value.actions
+      resources = statement.value.resource
+      effect = statement.value.effect
       # dynamic "principals" {
       #   for_each = var.key_policy_statements.value.principals
       #   content {
