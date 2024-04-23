@@ -15,7 +15,7 @@ variable "key_policy_statements" {
   description = "All the statements for the key policy"
   type = map(object({
     sid = string
-    actions = any
+    actions = list(string)
     resources = string
     effect = string
     # principals = object({
