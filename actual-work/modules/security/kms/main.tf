@@ -3,7 +3,7 @@ provider "aws" {
   region = var.replica_region
 }
 
-resource "aws_kms_key" "dynamodb_encryption_key" {
+resource "aws_kms_key" "encryption_key" {
   key_usage                = "ENCRYPT_DECRYPT"
   description              = var.key_description
   deletion_window_in_days  = var.delete_after_days
@@ -36,14 +36,14 @@ data "aws_iam_policy_document" "kms_policy" {
 
 
 
-resource "aws_kms_key_policy" "dd_table_key_policy" {
-  key_id = aws_kms_key.dynamodb_encryption_key.key_id
+resource "aws_kms_key_policy" "key_policy" {
+  key_id = aws_kms_key.encryption_key.key_id
   policy = data.aws_iam_policy_document.kms_policy.json   ###jsonencode(var.key_policy_map)
 }
 resource "aws_kms_alias" "key_alias" {
 #   name          = "alias/nrt_encryption_key"
     name = var.kms_alias
-    target_key_id = aws_kms_key.dynamodb_encryption_key.key_id
+    target_key_id = aws_kms_key.encryption_key.key_id
 }
 
 # setting for replica cmk in another region
@@ -52,7 +52,7 @@ resource "aws_kms_replica_key" "replica" {
   provider = aws.replica
   description             = var.key_description
   deletion_window_in_days = var.delete_after_days
-  primary_key_arn         = aws_kms_key.dynamodb_encryption_key.arn
+  primary_key_arn         = aws_kms_key.encryption_key.arn
   policy                  = jsonencode(var.replica_key_policy)
 
   tags = var.tags
