@@ -33,10 +33,6 @@ variable "key_policy_statements" {
 default = {}
 }
 
-# variable "key_policy_map" {
-#     description = "A valid policy JSON document"
-#     type = any
-# }
 variable "need_kms_replica" {
   description = "enable it when kms replica is needed in dr region"
   type = bool
@@ -47,11 +43,26 @@ variable "replica_region" {
   type = string
   default = null
 }
-variable "replica_key_policy" {
-    description = "A valid policy JSON document"
-    type = any
-    default = null
+
+variable "replica_key_policy_statements" {
+  description = "All the statements for the key policy"
+  type = map(object({
+    sid = string
+    actions = list(string)
+    resources = list(string)
+    effect = string
+    principals = object({
+      identifiers = list(string)
+    })
+  }))
+default = {}
 }
+
+# variable "replica_key_policy" {
+#     description = "A valid policy JSON document"
+#     type = any
+#     default = null
+# }
 variable "tags" {
   type = object({
     DataClassification = string
