@@ -29,11 +29,9 @@ data "aws_iam_policy_document" "kms_policy" {
           identifiers = principals.value
         }
       }
-
     }
   }
 }
-
 
 
 resource "aws_kms_key_policy" "key_policy" {
@@ -47,13 +45,32 @@ resource "aws_kms_alias" "key_alias" {
 }
 
 # setting for replica cmk in another region
+data "aws_iam_policy_document" "replica_kms_policy" {
+  dynamic "statement" {
+    for_each = var.key_policy_statements
+    content {
+      sid = statement.value.sid
+      actions = statement.value.actions
+      resources = statement.value.resources
+      effect = statement.value.effect
+      dynamic "principals" {
+        for_each = statement.value.principals
+        content {
+          type = "AWS"
+          identifiers = principals.value
+        }
+      }
+    }
+  }
+}
+
 resource "aws_kms_replica_key" "replica" {
   for_each = var.need_kms_replica == true ? toset(["1"]):toset([])
   provider = aws.replica
   description             = var.key_description
   deletion_window_in_days = var.delete_after_days
   primary_key_arn         = aws_kms_key.encryption_key.arn
-  policy                  = jsonencode(var.replica_key_policy)
+  policy                  =  data.aws_iam_policy_document.replica_kms_policy.json                           ###jsonencode(var.replica_key_policy)
 
   tags = var.tags
 }
