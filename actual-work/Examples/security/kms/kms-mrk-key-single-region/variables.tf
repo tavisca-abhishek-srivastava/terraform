@@ -34,12 +34,12 @@ default = {}
 }
 
 variable "need_kms_replica" {
-  description = "enable it when kms replica is needed in dr region"
+  description = "enable it when kms replica is needed in another region"
   type = bool
   default = false
 }
 variable "replica_region" {
-  description = "dr region for kms key replica. "
+  description = "another region for kms key replica. "
   type = string
   default = null
 }
