@@ -1,5 +1,5 @@
 module "iam_policy_document_example" {
-  source           = "../iam_policy_document/iam_resource_based__aws_policy_document/"
+  source           = "../iam_policy_document/iam_identity_based_policy_document/"
   key_policy_statements = var.key_policy_statements
 }
 
