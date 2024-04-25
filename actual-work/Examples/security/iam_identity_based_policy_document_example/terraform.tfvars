@@ -1,4 +1,4 @@
-policy_name = "iam-iac-policy-common"
+policy_name = "iam-iac-policy"
 policy_description = "this is for testing iac common"
 
 
