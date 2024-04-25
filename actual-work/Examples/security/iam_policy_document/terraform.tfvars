@@ -4,7 +4,7 @@ policy_description = "this is for testing iac"
 
 key_policy_statements = {
   "statement1" = { 
-    sid = "Enable IAM User Permissions",
+    sid = "1",
     actions = ["kms:*"],
     resources = ["*"],
     effect = "Allow",
@@ -13,7 +13,7 @@ key_policy_statements = {
                   }, 
     },
   "statement2" = {
-    sid = "Allow access for Key Administrators",
+    sid = "2",
     actions = [
            "kms:Create*",
            "kms:Describe*",
@@ -37,7 +37,7 @@ key_policy_statements = {
                   },
     }, 
   "statement3" = {
-    sid = "Allow use of the key",
+    sid = "3",
     actions = [
            "kms:Encrypt",
            "kms:Decrypt",
