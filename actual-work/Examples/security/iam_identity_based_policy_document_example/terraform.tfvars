@@ -1,5 +1,5 @@
-policy_name = "iam-iac-policy"
-policy_description = "this is for testing iac"
+policy_name = "iam-iac-policy-common"
+policy_description = "this is for testing iac common"
 
 
 key_policy_statements = {

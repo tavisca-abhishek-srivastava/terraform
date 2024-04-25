@@ -20,9 +20,6 @@ variable "key_policy_statements" {
     actions = list(string)
     resources = list(string)
     effect = string
-    # principals = object({
-    #   identifiers = list(string)
-    # })
   }))
 default = {}
 }
