@@ -25,3 +25,16 @@ variable "key_policy_statements" {
   }))
 default = {}
 }
+
+variable "tags" {
+  type = object({
+    DataClassification = string
+    Environment        = string
+    AppName            = string
+    InfraOwner         = string
+    BusinessUnit       = string
+    Backup             = string
+    Product            = string
+    Name               = string
+  })
+}
