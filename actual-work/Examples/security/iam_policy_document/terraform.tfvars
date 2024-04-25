@@ -53,3 +53,13 @@ key_policy_statements = {
   }
 }
 
+tags = {
+  DataClassification : "restricted"
+  Environment : "poc"
+  AppName : "tf-iac-"
+  InfraOwner : "sre-cloud-reliability@tavisca.com"
+  BusinessUnit : "travel.app"
+  Backup : "no"
+  Product : "poap"
+  Name : "tf-iac-kms-key-replicated"
+}
