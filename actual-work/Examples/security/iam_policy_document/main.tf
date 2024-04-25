@@ -7,7 +7,7 @@ module "iam_policy_document_example" {
 
 module "policy1" {
     source           = "../../../modules/security/iam_policies"
-    policy_name   = "iac-test-policy"
-    policy_description = "This is a test policy for IAC"
+    policy_name   = var.policy_name
+    policy_description = var.policy_description
     policy_document = module.iam_policy_document_example.policy_document_json  #### took json as input from "iam_policy_document" imported above
 }
