@@ -1,3 +1,7 @@
+policy_name = "iam-iac-policy"
+policy_description = "this is for testing iac"
+
+
 key_policy_statements = {
   "statement1" = { 
     sid = "Enable IAM User Permissions",
