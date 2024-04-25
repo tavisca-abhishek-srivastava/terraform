@@ -8,9 +8,7 @@ key_policy_statements = {
     actions = ["kms:*"],
     resources = ["*"],
     effect = "Allow",
-    principals =     {
-          identifiers  = ["arn:aws:iam::928814396842:root"]
-                  }, 
+   
     },
   "statement2" = {
     sid = "2",
@@ -32,9 +30,7 @@ key_policy_statements = {
           ],
     resources = ["*"],
     effect = "Allow",
-    principals =     {
-        identifiers  = ["arn:aws:iam::928814396842:role/adfs-devops","arn:aws:iam::928814396842:role/adfs-governance"]
-                  },
+    
     }, 
   "statement3" = {
     sid = "3",
@@ -47,9 +43,7 @@ key_policy_statements = {
          ],
     resources = ["*"],
     effect = "Allow",
-    principals =     {
-          identifiers  = ["arn:aws:iam::928814396842:role/adfs-devops","arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka","arn:aws:iam::928814396842:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_Travel-NonProd-DevOps_58cf51ef9bc19c74"]
-                  },
+
   }
 }
 

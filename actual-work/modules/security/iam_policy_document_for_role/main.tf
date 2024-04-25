@@ -6,13 +6,13 @@ data "aws_iam_policy_document" "policy_document" {
       actions = statement.value.actions
       resources = statement.value.resources
       effect = statement.value.effect
-      dynamic "principals" {
-        for_each = statement.value.principals
-        content {
-          type = "AWS"
-          identifiers = principals.value
-        }
-      }
+      # dynamic "principals" {
+      #   for_each = statement.value.principals
+      #   content {
+      #     type = "AWS"
+      #     identifiers = principals.value
+      #   }
+      # }
     }
   }
 }
