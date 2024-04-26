@@ -5,10 +5,10 @@ variable "key_policy_statements" {
     actions = list(string)
     resources = list(string)
     effect = string
-    principals = optional(object({
-      type = optional(string)
-      identifiers = optional(list(string))
-    }))
+    principals = object({
+      type = string
+      identifiers = list(string)
+    })
   }))
 default = {}
 }
