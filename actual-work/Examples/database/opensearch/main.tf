@@ -24,7 +24,7 @@ module "opensearch" {
   internal_user_database_enabled = var.internal_user_database_enabled
   tags = var.tags
   kms_delete_after_days = var.kms_delete_after_days
-  key_policy_map = var.key_policy_map
+  key_policy_statements = var.key_policy_statements
   vpc_id = var.vpc_id
   egress_rules_sg1 = var.egress_rules_sg1
   ingress_rules_sg1 = var.ingress_rules_sg1

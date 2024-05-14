@@ -50,7 +50,7 @@ key_policy_statements = {
 tags = {
   DataClassification : "restricted"
   Environment : "poc"
-  AppName : "tf-iac-"
+  AppName : "tf-iac-kms-key"
   InfraOwner : "sre-cloud-reliability@tavisca.com"
   BusinessUnit : "travel.app"
   Backup : "no"
