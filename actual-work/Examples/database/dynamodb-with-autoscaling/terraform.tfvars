@@ -1,6 +1,6 @@
 table_hash_key = "user_id"
 table_range_key = "product_id"
-table_name = "DynamoDB-no-GSI-yes-LSI"
+table_name = "DynamoDB-GSI-LSI"
 table_class = "STANDARD"
 enable_deletion_protection = false
 table_read_capacity_unit = 200
@@ -16,19 +16,19 @@ attribute_for_ttl = "otpttl"
 attributes = {
     "attr1" = { name = "user_id", type = "S" },
     "attr2" = { name = "product_id", type = "S" },
-    # "attr3" = { name = "product_name", type = "S" },
-    # "attr4" = { name = "product_desc", type = "S" },
+    "attr3" = { name = "product_name", type = "S" },
+    "attr4" = { name = "product_desc", type = "S" },
     "attr5" = { name = "age", type = "N" },
   }
-# gsi_indices = {
-#     # in key-value pair, key will be GSI index name
-#     "product_name_gsi" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" ,hash_key = "product_name"},
-#     "product_desc_gsi" = { write_capacity = 60, read_capacity = 60, range_key = "product_id",hash_key = "product_desc" },
-#     "age_gsi"          = { write_capacity = 65, read_capacity = 65, range_key = "user_id" ,hash_key = "age"},
-#     "product_id_gsi" = { write_capacity = 60, read_capacity = 60, range_key = "user_id" ,hash_key = "product_id" },
-#   }
+gsi_indices = {
+    # in key-value pair, key will be GSI index name
+    "product_name_gsi" = { write_capacity = 60, read_capacity = 60, range_key = "product_id" ,hash_key = "product_name"},
+    "product_desc_gsi" = { write_capacity = 60, read_capacity = 60, range_key = "product_id",hash_key = "product_desc" },
+    "age_gsi"          = { write_capacity = 65, read_capacity = 65, range_key = "user_id" ,hash_key = "age"},
+    "product_id_gsi" = { write_capacity = 60, read_capacity = 60, range_key = "user_id" ,hash_key = "product_id" },
+  }
   lsi_indices = { 
-    ##### in key-value pair, key will be LSI index name
+    # in key-value pair, key will be LSI index name
    "by_age_LSI" = {range_key = "age"},
    "by_product_id_LSI" = {range_key = "product_id"},
   }
@@ -36,16 +36,6 @@ attributes = {
   kms_alias = "alias/nrt_encryption_key"
   delete_after_days = 10
   key_description = "key_for_dynamoDB"
-  kms_tags = {
-    DataClassification : "restricted"
-    Environment : "poc"
-    AppName : "tf-nrt-nrt-iac-dd-autoscaling-kms"
-    InfraOwner : "sre-cloud-reliability@tavisca.com"
-    BusinessUnit : "travel.app"
-    Backup : "no"
-    Product : "poap"
-    Name : "tf-nrt-iac-dd-autoscaling-kms"
-  }
   key_policy_map = {
     "Id" : "key-consolepolicy-3",
     "Version" : "2012-10-17",
