@@ -11,9 +11,7 @@ module "kms-example-primary" {
     # replica_region = var.replica_region
     replica_key_policy_statements = var.replica_key_policy_statements
     tags = var.tags
-    providers = {
-      aws= aws.primary
-     }
+
 }
 
 module "kms-example-replica" {
@@ -25,7 +23,7 @@ module "kms-example-replica" {
     key_description   = var.key_description
     replica_key_policy_statements = var.replica_key_policy_statements
     tags = var.tags
-    primary_key_arn = module.kms-example-primary.mrk_cms_arn
+    primary_key_arn = module.kms-example-primary.mrk_cms_arn[1]
     providers = {
       aws= aws.replica
      }
