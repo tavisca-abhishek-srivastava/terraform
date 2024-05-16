@@ -18,12 +18,12 @@ module "kms-example-replica" {
     source = "../../../../modules/security/kms"
     is_kms_replica = true
     kms_alias         = var.kms_alias
-    # replica_region = var.replica_region
+    need_kms_replica = var.need_kms_replica
     delete_after_days = var.delete_after_days
     key_description   = var.key_description
     replica_key_policy_statements = var.replica_key_policy_statements
     tags = var.tags
-    primary_key_arn = module.kms-example-primary.mrk_cms_arn[1]
+    primary_key_arn = module.kms-example-primary.mrk_cms_arn[0]
     providers = {
       aws= aws.replica
      }
