@@ -24,7 +24,7 @@ module "kms-example-replica" {
     key_description   = var.key_description
     replica_key_policy_statements = var.replica_key_policy_statements
     tags = var.tags
-    primary_key_arn = module.kms-example-replica.mrk_cms_arn
+    primary_key_arn = module.kms-example-primary.mrk_cms_arn
     providers = {
       aws= aws.replica
      }
