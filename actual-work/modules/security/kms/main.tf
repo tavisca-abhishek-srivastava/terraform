@@ -69,7 +69,7 @@ resource "aws_kms_replica_key" "replica" {
   # provider = aws.replica
   description             = var.key_description
   deletion_window_in_days = var.delete_after_days
-  primary_key_arn         = aws_kms_key.encryption_key.arn
+  primary_key_arn         = var.primary_key_arn  ##aws_kms_key.encryption_key.arn
   policy                  =  data.aws_iam_policy_document.replica_kms_policy.json                           ###jsonencode(var.replica_key_policy)
 
   tags = var.tags
