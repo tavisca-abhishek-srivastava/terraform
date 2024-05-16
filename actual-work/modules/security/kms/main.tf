@@ -1,3 +1,8 @@
+ provider "aws" {
+  alias  = "replica"
+  region = var.replica_region
+}
+
 resource "aws_kms_key" "encryption_key" {
   key_usage                = "ENCRYPT_DECRYPT"
   description              = var.key_description

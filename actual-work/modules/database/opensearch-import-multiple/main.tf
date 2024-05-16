@@ -32,10 +32,17 @@ resource "aws_opensearch_domain" "opensearch" {
     dedicated_master_enabled = var.dedicated_master_enabled
     instance_type            = var.instance_type
     instance_count           = var.instance_count
-    zone_awareness_enabled   = var.zone_awareness_enabled
+    zone_awareness_enabled   = var.zone_awareness_enabled   ## Standard attribute
     zone_awareness_config {
       availability_zone_count = var.zone_awareness_enabled ? length(var.subnet_ids) : null
     }
+    cold_storage_options {                      #### newly added
+      enabled = var.cold_storage_options
+    }
+    warm_enabled = var.warm_enabled     #### newly added
+    warm_count = var.warm_count                 #### newly added
+    warm_type = var.warm_type   #### newly added
+
   }
 
   advanced_security_options {
@@ -43,11 +50,25 @@ resource "aws_opensearch_domain" "opensearch" {
     anonymous_auth_enabled         = local.anonymous_auth_enabled
     internal_user_database_enabled = var.internal_user_database_enabled
     master_user_options {
+      master_user_arn     = var.master_user_arn   #### newly added
       master_user_name     = var.master_user_name
       master_user_password = var.master_user_password
     }
   }
 
+
+
+  auto_tune_options {               #### newly added
+  desired_state = var.desired_state   #### newly added
+  dynamic "maintenance_schedule" {
+    
+  }
+   {
+
+  }
+  cron_expression_for_recurrence = 
+  }
+}
   encrypt_at_rest {
     enabled = var.encrypt_at_rest_enabled
     kms_key_id = module.opensearch_encryption_at_rest_cmk.mrk_cms_arn
