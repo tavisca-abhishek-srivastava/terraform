@@ -1,16 +1,16 @@
 table_hash_key = "user_id"
 table_range_key = "product_id"
-table_name = "DynamoDB-GSI-LSI"
+table_name = "DynamoDB-GSI-LSI-dest"
 table_class = "STANDARD"
 enable_deletion_protection = false
-table_read_capacity_unit = 200
-table_write_capacity_unit = 500
+table_read_capacity_unit = 900
+table_write_capacity_unit = 20000
 table_autoscaling_min_read_capacity_unit = 900
 table_autoscaling_max_read_capacity_unit = 3000
 table_read_target_percent = 80
 table_write_target_percent = 80
-table_autoscaling_max_write_capacity_unit = 3000
-table_autoscaling_min_write_capacity_unit = 500
+table_autoscaling_min_write_capacity_unit = 20000
+table_autoscaling_max_write_capacity_unit = 50000
 ttl_enabled = true
 attribute_for_ttl = "otpttl"
 attributes = {
@@ -33,19 +33,9 @@ gsi_indices = {
    "by_product_id_LSI" = {range_key = "product_id"},
   }
   
-  kms_alias = "alias/nrt_encryption_key"
+  kms_alias = "alias/nrt_encryption_key-import"
   delete_after_days = 10
-  key_description = "key_for_dynamoDB"
-  kms_tags = {
-    DataClassification : "restricted"
-    Environment : "poc"
-    AppName : "tf-nrt-nrt-iac-dd-autoscaling-kms"
-    InfraOwner : "sre-cloud-reliability@tavisca.com"
-    BusinessUnit : "travel.app"
-    Backup : "no"
-    Product : "poap"
-    Name : "tf-nrt-iac-dd-autoscaling-kms"
-  }
+  key_description = "key_for_dynamoDB-import"
   key_policy_map = {
     "Id" : "key-consolepolicy-3",
     "Version" : "2012-10-17",
@@ -129,8 +119,15 @@ gsi_indices = {
       }
     ]
   }
-encryption_key_details = {
-  key_type = "aws_managed"
+  encryption_key_details = {
+  key_type = "customer_managed"
 }
+
+is_data_imported = true
+bucket_name_to_import_data = "dynamodb-export-bnr"
+import_data_key_prefix = "AWSDynamoDB/01709576156860-fd8a7a0c/data"
+
+is_stream_enabled = true
+stream_view_type = "NEW_IMAGE"
 
 terrform_operation_timeout = "420m"
