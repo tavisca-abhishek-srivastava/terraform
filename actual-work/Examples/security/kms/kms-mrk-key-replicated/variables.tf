@@ -40,7 +40,8 @@ variable "key_policy_statements" {
 default = {}
 }
 
-######### replica key variables
+######### replica key variables ##############################################
+
 variable "is_kms_replica" {
   description = "enable it is replica key needed in another region"
   type = bool
