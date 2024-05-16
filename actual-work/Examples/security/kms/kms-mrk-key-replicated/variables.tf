@@ -1,15 +1,16 @@
-variable "aws_region" {
+variable "key_primary_region" {
+  description = "primary region for key"
+  type = string
   default = "us-east-1"
 }
-########################################################################################################
-##                                                                                                    ##
-##                     KMS module related variables                                                   ##
-##                                                                                                    ##
-########################################################################################################
 variable "kms_alias" {
     description = "define in the form of 'alias/unique_key_name'"
     type = string
-    
+}
+variable "is_this_primary" {
+  description = "To define if a key is primary or replica"
+  type = bool
+  default = false
 }
 variable "primary_key_arn" {
   description = "The primary key arn of a multi-region replica key"
@@ -39,13 +40,19 @@ variable "key_policy_statements" {
 default = {}
 }
 
+######### replica key variables
+variable "is_kms_replica" {
+  description = "enable it is replica key needed in another region"
+  type = bool
+  default = false
+}
 variable "need_kms_replica" {
   description = "enable it when kms replica is needed in another region"
   type = bool
   default = false
 }
 variable "replica_region" {
-  description = "another region for kms key replica. "
+  description = "another region for kms key replica "
   type = string
   default = null
 }
@@ -63,12 +70,6 @@ variable "replica_key_policy_statements" {
   }))
 default = {}
 }
-
-# variable "replica_key_policy" {
-#     description = "A valid policy JSON document"
-#     type = any
-#     default = null
-# }
 variable "tags" {
   type = object({
     DataClassification = string

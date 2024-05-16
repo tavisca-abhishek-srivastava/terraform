@@ -7,7 +7,7 @@ terraform {
  }
 
  provider "aws" {
-   region = var.aws_region
+   region = var.key_primary_region
    alias = "primary"
  }
 
