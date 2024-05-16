@@ -1,3 +1,8 @@
+provider "aws" {
+  region = "us-west-2"
+  alias  = "replica"
+}
+
 module "kms-example" {
     source = "../../../../modules/security/kms"
     kms_alias         = var.kms_alias
@@ -8,5 +13,8 @@ module "kms-example" {
     replica_region = var.replica_region
     replica_key_policy_statements = var.replica_key_policy_statements
     tags = var.tags
+    providers = {
+      aws= aws.replica
+     }
      
 }

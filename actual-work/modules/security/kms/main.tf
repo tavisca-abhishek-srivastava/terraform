@@ -66,7 +66,7 @@ data "aws_iam_policy_document" "replica_kms_policy" {
 
 resource "aws_kms_replica_key" "replica" {
   for_each = var.need_kms_replica == true ? toset(["1"]):toset([])
-  provider = aws.replica
+  # provider = aws.replica
   description             = var.key_description
   deletion_window_in_days = var.delete_after_days
   primary_key_arn         = aws_kms_key.encryption_key.arn
@@ -77,7 +77,7 @@ resource "aws_kms_replica_key" "replica" {
 ##### Add an alias to the replica key
 resource "aws_kms_alias" "replica" {
   for_each = var.need_kms_replica == true ? toset(["1"]):toset([])
-  provider = aws.replica
+  # provider = aws.replica
   name          = var.kms_alias
   target_key_id = aws_kms_replica_key.replica[1].key_id
 }
