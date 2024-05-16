@@ -3,6 +3,7 @@
 module "kms-example-primary" {
     source = "../../../../modules/security/kms"
     kms_alias         = var.kms_alias
+    is_this_primary = true
     delete_after_days = var.delete_after_days
     key_description   = var.key_description
     key_policy_statements = var.key_policy_statements
@@ -13,11 +14,11 @@ module "kms-example-primary" {
     providers = {
       aws= aws.primary
      }
-     
 }
 
 module "kms-example-replica" {
     source = "../../../../modules/security/kms"
+    is_kms_replica = true
     kms_alias         = var.kms_alias
     # replica_region = var.replica_region
     delete_after_days = var.delete_after_days
