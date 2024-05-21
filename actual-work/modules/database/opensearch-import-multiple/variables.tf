@@ -165,7 +165,7 @@ variable "warm_type" {
                 warm_type can be only and must be set when warm_enabled is set to true"
                 EOF
   type        = string
-  default     = ""
+  default     = "ultrawarm1.medium.search"
 }
 variable "warm_count" {
   description = <<EOF
