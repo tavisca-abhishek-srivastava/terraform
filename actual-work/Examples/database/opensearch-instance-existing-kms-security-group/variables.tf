@@ -305,30 +305,6 @@ variable "tags" {
   })
 }
 
-########################################################################################################
-##                                                                                                    ##
-##                     security group module related variables for opensearch                         ##
-##                                                                                                    ##
-########################################################################################################
-
-variable "vpc_id" {
-  description = "Enter VPC ID for Security group"
-  type        = string
-  default = ""
-}
-
-variable "ingress_rules_sg1" {
-  description = "Enter ingress rule in the"
-  type        = list(any)
-  default = []
-}
-
-variable "egress_rules_sg1" {
-  description = "Enter engress rule in the"
-  type        = list(any)
-  default = []
-}
-
 #### Cloud watch Log group
 
 variable "cloud_watch_log_group_retention_days" {
