@@ -1,6 +1,9 @@
 variable "open_search_domain_name" {
   description = "Name of Opensearch domain"
   type        = string
+  validation {
+    
+  }
 }
 variable "open_search_engine_version" {
   description = "(Optional) Either Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine version for the Amazon OpenSearch Service domain. For example, OpenSearch_1.0 or Elasticsearch_7.9"
@@ -169,7 +172,7 @@ variable "warm_count" {
                   warm_count can be only and must be set when "warm_enabled" is set to true"
                   EOF
   type        = number
-  default = 0
+  default = 2
 
 }
 ##### domain_endpoint_options variable
