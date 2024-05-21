@@ -1,10 +1,6 @@
 variable "open_search_domain_name" {
-  description = "Name of Opensearch domain"
+  description = "value"
   type        = string
-  validation {
-    condition = length(var.open_search_domain_name) <=28
-    error_message = "Domain name must be in small and less than 28 characters"
-  }
 }
 variable "open_search_engine_version" {
   description = "(Optional) Either Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine version for the Amazon OpenSearch Service domain. For example, OpenSearch_1.0 or Elasticsearch_7.9"
@@ -165,7 +161,7 @@ variable "warm_type" {
                 warm_type can be only and must be set when warm_enabled is set to true"
                 EOF
   type        = string
-  default     = "ultrawarm1.medium.search"
+  default     = ""
 }
 variable "warm_count" {
   description = <<EOF
@@ -173,7 +169,7 @@ variable "warm_count" {
                   warm_count can be only and must be set when "warm_enabled" is set to true"
                   EOF
   type        = number
-  default = 2
+  default = 0
 
 }
 ##### domain_endpoint_options variable
@@ -231,7 +227,7 @@ variable "auto_software_update_enabled" {
 variable "rollback_on_disable" {
   description = "(Optional) Whether to roll back to default Auto-Tune settings when disabling Auto-Tune. Valid values: DEFAULT_ROLLBACK or NO_ROLLBACK"
   type        = string
-  default = "NO_ROLLBACK"
+  default = "DEFAULT_ROLLBACK"
 }
 
 ########## variables for ebs_options
@@ -308,6 +304,50 @@ variable "tags" {
     Name               = string
   })
 }
+
+########################################################################################################
+##                                                                                                    ##
+##                     KMS module related variables for opensearch encryption at rest                 ##
+##                                                                                                    ##
+########################################################################################################
+
+variable "kms_delete_after_days" {
+    description = " The waiting period, specified in number of days. After the waiting period ends, AWS KMS deletes the KMS key.it must be between 7 and 30, inclusive"
+    type = number
+    default = 30
+}
+
+variable "key_policy_statements" {
+    description = "A valid policy JSON document"
+    type = any
+    default = {}
+}
+
+########################################################################################################
+##                                                                                                    ##
+##                     security group module related variables for opensearch                         ##
+##                                                                                                    ##
+########################################################################################################
+
+variable "vpc_id" {
+  description = "Enter VPC ID for Security group"
+  type        = string
+  default = ""
+}
+
+variable "ingress_rules_sg1" {
+  description = "Enter ingress rule in the"
+  type        = list(any)
+  default = []
+}
+
+variable "egress_rules_sg1" {
+  description = "Enter engress rule in the"
+  type        = list(any)
+  default = []
+}
+
+
 
 #### Cloud watch Log group
 

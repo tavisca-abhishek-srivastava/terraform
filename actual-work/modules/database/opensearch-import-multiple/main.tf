@@ -18,8 +18,6 @@ data "aws_caller_identity" "current" {}
 #   ingress_rules = var.ingress_rules_sg1
 # }
 
-
-
 resource "aws_opensearch_domain" "opensearch" {
   domain_name    = var.open_search_domain_name
   engine_version = var.open_search_engine_version
