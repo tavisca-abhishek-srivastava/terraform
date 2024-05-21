@@ -14,6 +14,7 @@ variable "open_search_engine_version" {
 variable "subnet_ids" {
   description = "List of VPC Subnet IDs for the OpenSearch domain endpoints to be created in"
   type        = list(any)
+  default = []
   validation {
     condition     = length(var.subnet_ids) >= 2
     error_message = "Minimum 2 subnet ids must be specified"

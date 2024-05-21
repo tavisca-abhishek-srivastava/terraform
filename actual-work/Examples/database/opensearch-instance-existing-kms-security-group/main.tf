@@ -24,7 +24,5 @@ module "opensearch" {
   tags = var.tags
   encrypt_at_rest_enabled = var.encrypt_at_rest_enabled
   kms_key_id = var.kms_key_id
-  vpc_id = var.vpc_id
-  egress_rules_sg1 = var.egress_rules_sg1
-  ingress_rules_sg1 = var.ingress_rules_sg1
+  security_group_ids = var.security_group_ids
 }
