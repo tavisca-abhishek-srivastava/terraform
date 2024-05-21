@@ -1,5 +1,5 @@
 variable "open_search_domain_name" {
-  description = "value"
+  description = "Name of Opensearch domain"
   type        = string
 }
 variable "open_search_engine_version" {
@@ -227,7 +227,7 @@ variable "auto_software_update_enabled" {
 variable "rollback_on_disable" {
   description = "(Optional) Whether to roll back to default Auto-Tune settings when disabling Auto-Tune. Valid values: DEFAULT_ROLLBACK or NO_ROLLBACK"
   type        = string
-  default = "DEFAULT_ROLLBACK"
+  default = "NO_ROLLBACK"
 }
 
 ########## variables for ebs_options
