@@ -155,6 +155,7 @@ variable "warm_enabled" {
   type        = bool
   default     = false
 }
+
 variable "warm_type" {
   description = <<EOF
                 "(Optional) Instance type for the OpenSearch cluster's warm nodes. 
@@ -162,7 +163,7 @@ variable "warm_type" {
                 warm_type can be only and must be set when warm_enabled is set to true"
                 EOF
   type        = string
-  default     = ""
+  default     = "ultrawarm1.medium.search"
 }
 variable "warm_count" {
   description = <<EOF
@@ -170,9 +171,9 @@ variable "warm_count" {
                   warm_count can be only and must be set when "warm_enabled" is set to true"
                   EOF
   type        = number
-  default = 0
-
+  default = 2
 }
+
 ##### domain_endpoint_options variable
 variable custom_endpoint_certificate_arn {
   description = "(Optional) ACM certificate ARN for your custom endpoint."
@@ -312,4 +313,10 @@ variable "cloud_watch_log_group_retention_days" {
   description = "number of days cloud watch log group will be retained"
   type        = number
   default     = 14
+}
+
+variable "terrform_operation_timeout" {
+  description = "Timeout value for terraform operations"
+  type = string
+  default = "360m"
 }
