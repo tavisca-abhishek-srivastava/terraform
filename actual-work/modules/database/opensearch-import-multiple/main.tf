@@ -40,8 +40,8 @@ resource "aws_opensearch_domain" "opensearch" {
       enabled = var.cold_storage_options_enabled
     }
     warm_enabled = var.warm_enabled #### newly added
-    warm_count   = var.warm_count   #### newly added
-    warm_type    = var.warm_type    #### newly added
+    warm_count   = var.warm_enabled == true? var.warm_count:null   #### newly added
+    warm_type    = var.warm_enabled == true? var.warm_type:""    #### newly added
 
   }
 
