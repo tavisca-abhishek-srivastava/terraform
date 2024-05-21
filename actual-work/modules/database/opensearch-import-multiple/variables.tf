@@ -317,3 +317,9 @@ variable "cloud_watch_log_group_retention_days" {
   type        = number
   default     = 14
 }
+
+variable "terrform_operation_timeout" {
+  description = "Timeout value for terraform operations"
+  type = string
+  default = "360m"
+}
