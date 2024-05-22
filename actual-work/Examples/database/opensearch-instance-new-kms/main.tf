@@ -3,6 +3,7 @@
 module "opensearch_encryption_at_rest_cmk" {
   source                = "../../../modules/security/kms"
   kms_alias             = "alias/${var.open_search_domain_name}_key"
+  is_this_primary = var.is_this_primary
   delete_after_days     = var.kms_delete_after_days
   key_description       = "Key for ${var.open_search_domain_name} opensearch domain "
   key_policy_statements = var.key_policy_statements
@@ -43,6 +44,6 @@ module "opensearch" {
   internal_user_database_enabled = var.internal_user_database_enabled
   tags = var.tags
   encrypt_at_rest_enabled = var.encrypt_at_rest_enabled
-  kms_key_id = module.opensearch_encryption_at_rest_cmk.mrk_cms_arn
+  kms_key_id = module.opensearch_encryption_at_rest_cmk.mrk_cms_arn[1]
   security_group_ids = [module.opensearch_security_group.security_group_id]
 }
