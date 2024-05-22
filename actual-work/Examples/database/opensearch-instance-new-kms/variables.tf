@@ -339,6 +339,11 @@ variable "key_policy_statements" {
     type = any
     default = {}
 }
+variable "is_this_primary" {
+  description = "To define if a key is primary or replica"
+  type = bool
+  default = false
+}
 
 ########################################################################################################
 ##                                                                                                    ##
