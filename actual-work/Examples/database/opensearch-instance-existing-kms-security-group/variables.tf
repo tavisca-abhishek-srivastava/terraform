@@ -171,7 +171,7 @@ variable "warm_count" {
                   warm_count can be only and must be set when "warm_enabled" is set to true"
                   EOF
   type        = number
-  default = 2
+  default = null
 }
 
 ##### domain_endpoint_options variable

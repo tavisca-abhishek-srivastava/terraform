@@ -1,6 +1,6 @@
 #### new opensearch ddomain using existing KMS
 
-open_search_domain_name               = "iac-os-enhanced-existing-kms"
+open_search_domain_name               = "iac-os-en-existing-kms-1"
 open_search_engine_version            = "OpenSearch_2.3"
 dedicated_master_count                = 3
 dedicated_master_type                 = "m6g.large.search"
