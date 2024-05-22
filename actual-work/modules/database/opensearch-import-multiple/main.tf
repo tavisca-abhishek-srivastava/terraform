@@ -57,7 +57,7 @@ resource "aws_opensearch_domain" "opensearch" {
   auto_tune_options {                 #### newly added
     desired_state = var.desired_state #### newly added
     rollback_on_disable = var.rollback_on_disable
-    use_off_peak_window = var.use_off_peak_window
+    # use_off_peak_window = var.use_off_peak_window
     dynamic "maintenance_schedule" {
       for_each = var.rollback_on_disable == "DEFAULT_ROLLBACK" ? [1] : []
       content {
