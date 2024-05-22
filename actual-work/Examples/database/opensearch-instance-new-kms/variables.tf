@@ -1,6 +1,10 @@
 variable "open_search_domain_name" {
-  description = "value"
+  description = "Name of Opensearch domain"
   type        = string
+  validation {
+    condition = length(var.open_search_domain_name) <=28
+    error_message = "Domain name must be in small and less than 28 characters"
+  }
 }
 variable "open_search_engine_version" {
   description = "(Optional) Either Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine version for the Amazon OpenSearch Service domain. For example, OpenSearch_1.0 or Elasticsearch_7.9"
@@ -10,6 +14,7 @@ variable "open_search_engine_version" {
 variable "subnet_ids" {
   description = "List of VPC Subnet IDs for the OpenSearch domain endpoints to be created in"
   type        = list(any)
+  default = []
   validation {
     condition     = length(var.subnet_ids) >= 2
     error_message = "Minimum 2 subnet ids must be specified"
@@ -98,6 +103,11 @@ variable "use_off_peak_window" {
   type = bool
   default = false
 }
+variable "rollback_on_disable" {
+  description = "(Optional) Whether to roll back to default Auto-Tune settings when disabling Auto-Tune. Valid values: DEFAULT_ROLLBACK or NO_ROLLBACK"
+  type        = string
+  default = "NO_ROLLBACK"
+}
 ########################## variables for "cluster_config"
 variable "dedicated_master_count" {
   description = "(Optional) Number of dedicated main nodes in the cluster"
@@ -161,7 +171,7 @@ variable "warm_type" {
                 warm_type can be only and must be set when warm_enabled is set to true"
                 EOF
   type        = string
-  default     = ""
+  default     = "ultrawarm1.medium.search"
 }
 variable "warm_count" {
   description = <<EOF
@@ -169,7 +179,7 @@ variable "warm_count" {
                   warm_count can be only and must be set when "warm_enabled" is set to true"
                   EOF
   type        = number
-  default = 0
+  default = null
 
 }
 ##### domain_endpoint_options variable
@@ -223,11 +233,6 @@ variable "auto_software_update_enabled" {
   description = "(Optional) Whether automatic service software updates are enabled for the domain. Defaults to false"
   type = bool
   default = false
-}
-variable "rollback_on_disable" {
-  description = "(Optional) Whether to roll back to default Auto-Tune settings when disabling Auto-Tune. Valid values: DEFAULT_ROLLBACK or NO_ROLLBACK"
-  type        = string
-  default = "DEFAULT_ROLLBACK"
 }
 
 ########## variables for ebs_options
@@ -305,12 +310,24 @@ variable "tags" {
   })
 }
 
+#### Cloud watch Log group
+
+variable "cloud_watch_log_group_retention_days" {
+  description = "number of days cloud watch log group will be retained"
+  type        = number
+  default     = 14
+}
+
+variable "terrform_operation_timeout" {
+  description = "Timeout value for terraform operations"
+  type = string
+  default = "360m"
+}
 ########################################################################################################
 ##                                                                                                    ##
 ##                     KMS module related variables for opensearch encryption at rest                 ##
 ##                                                                                                    ##
 ########################################################################################################
-
 variable "kms_delete_after_days" {
     description = " The waiting period, specified in number of days. After the waiting period ends, AWS KMS deletes the KMS key.it must be between 7 and 30, inclusive"
     type = number
@@ -318,7 +335,7 @@ variable "kms_delete_after_days" {
 }
 
 variable "key_policy_statements" {
-    description = "A valid policy JSON document"
+    description = "All the statements for the key policy"
     type = any
     default = {}
 }
@@ -345,14 +362,4 @@ variable "egress_rules_sg1" {
   description = "Enter engress rule in the"
   type        = list(any)
   default = []
-}
-
-
-
-#### Cloud watch Log group
-
-variable "cloud_watch_log_group_retention_days" {
-  description = "number of days cloud watch log group will be retained"
-  type        = number
-  default     = 14
 }
