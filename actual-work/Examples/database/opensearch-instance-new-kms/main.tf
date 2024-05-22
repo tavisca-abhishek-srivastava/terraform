@@ -3,7 +3,8 @@
 module "opensearch_encryption_at_rest_cmk" {
   source                = "../../../modules/security/kms"
   kms_alias             = "alias/${var.open_search_domain_name}_key"
-  is_this_primary = var.is_this_primary
+  # is_this_primary       = var.is_this_primary
+  is_this_primary       = var.is_this_primary
   delete_after_days     = var.kms_delete_after_days
   key_description       = "Key for ${var.open_search_domain_name} opensearch domain "
   key_policy_statements = var.key_policy_statements
