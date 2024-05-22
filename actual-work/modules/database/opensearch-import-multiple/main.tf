@@ -70,6 +70,8 @@ resource "aws_opensearch_domain" "opensearch" {
         cron_expression_for_recurrence = var.cron_expression_for_recurrence
       }
     }
+    rollback_on_disable = var.rollback_on_disable
+    use_off_peak_window = var.use_off_peak_window
   }
   encrypt_at_rest {
     enabled    = var.encrypt_at_rest_enabled
@@ -136,7 +138,11 @@ resource "aws_opensearch_domain" "opensearch" {
     log_type                 = "ES_APPLICATION_LOGS"
     enabled                  = local.log_publishing_options_enabled
   }
-
+  timeouts {
+			create = var.terrform_operation_timeout
+			delete = var.terrform_operation_timeout
+			update = var.terrform_operation_timeout
+  }
 
 
 }

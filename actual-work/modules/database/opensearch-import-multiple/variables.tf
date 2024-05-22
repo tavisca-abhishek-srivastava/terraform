@@ -103,6 +103,11 @@ variable "use_off_peak_window" {
   type = bool
   default = false
 }
+variable "rollback_on_disable" {
+  description = "(Optional) Whether to roll back to default Auto-Tune settings when disabling Auto-Tune. Valid values: DEFAULT_ROLLBACK or NO_ROLLBACK"
+  type        = string
+  default = "NO_ROLLBACK"
+}
 ########################## variables for "cluster_config"
 variable "dedicated_master_count" {
   description = "(Optional) Number of dedicated main nodes in the cluster"
@@ -228,11 +233,6 @@ variable "auto_software_update_enabled" {
   description = "(Optional) Whether automatic service software updates are enabled for the domain. Defaults to false"
   type = bool
   default = false
-}
-variable "rollback_on_disable" {
-  description = "(Optional) Whether to roll back to default Auto-Tune settings when disabling Auto-Tune. Valid values: DEFAULT_ROLLBACK or NO_ROLLBACK"
-  type        = string
-  default = "NO_ROLLBACK"
 }
 
 ########## variables for ebs_options
