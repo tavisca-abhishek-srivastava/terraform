@@ -1,6 +1,10 @@
 variable "open_search_domain_name" {
-  description = "value"
+  description = "Name of Opensearch domain"
   type        = string
+  validation {
+    condition = length(var.open_search_domain_name) <=28
+    error_message = "Domain name must be in small and less than 28 characters"
+  }
 }
 variable "open_search_engine_version" {
   description = "(Optional) Either Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine version for the Amazon OpenSearch Service domain. For example, OpenSearch_1.0 or Elasticsearch_7.9"
@@ -102,7 +106,7 @@ variable "use_off_peak_window" {
 variable "rollback_on_disable" {
   description = "(Optional) Whether to roll back to default Auto-Tune settings when disabling Auto-Tune. Valid values: DEFAULT_ROLLBACK or NO_ROLLBACK"
   type        = string
-  default = "DEFAULT_ROLLBACK"
+  default = "NO_ROLLBACK"
 }
 ########################## variables for "cluster_config"
 variable "dedicated_master_count" {
@@ -160,7 +164,6 @@ variable "warm_enabled" {
   type        = bool
   default     = false
 }
-
 variable "warm_type" {
   description = <<EOF
                 "(Optional) Instance type for the OpenSearch cluster's warm nodes. 
@@ -177,8 +180,8 @@ variable "warm_count" {
                   EOF
   type        = number
   default = null
-}
 
+}
 ##### domain_endpoint_options variable
 variable custom_endpoint_certificate_arn {
   description = "(Optional) ACM certificate ARN for your custom endpoint."
