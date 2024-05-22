@@ -18,9 +18,6 @@ module "opensearch_security_group" {
   ingress_rules = var.ingress_rules_sg1
 }
 
-
-
-
 module "opensearch" {
   source                   = "../../../modules/database/opensearch-import-multiple"
   open_search_domain_name =  var.open_search_domain_name
@@ -46,8 +43,6 @@ module "opensearch" {
   internal_user_database_enabled = var.internal_user_database_enabled
   tags = var.tags
   encrypt_at_rest_enabled = var.encrypt_at_rest_enabled
-  kms_key_id = var.kms_key_id
-  vpc_id = var.vpc_id
-  egress_rules_sg1 = var.egress_rules_sg1
-  ingress_rules_sg1 = var.ingress_rules_sg1
+  kms_key_id = module.opensearch_encryption_at_rest_cmk.mrk_cms_arn
+  security_group_ids = [module.opensearch_security_group.security_group_id]
 }
