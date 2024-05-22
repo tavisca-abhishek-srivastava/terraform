@@ -45,6 +45,6 @@ module "opensearch" {
   internal_user_database_enabled = var.internal_user_database_enabled
   tags = var.tags
   encrypt_at_rest_enabled = var.encrypt_at_rest_enabled
-  kms_key_id = module.opensearch_encryption_at_rest_cmk.mrk_cms_arn[1]
+  kms_key_id = module.opensearch_encryption_at_rest_cmk.mrk_cms_arn[0]
   security_group_ids = [module.opensearch_security_group.security_group_id]
 }
