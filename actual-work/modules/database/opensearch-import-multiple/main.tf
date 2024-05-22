@@ -39,7 +39,7 @@ resource "aws_opensearch_domain" "opensearch" {
     }
     warm_enabled = var.warm_enabled #### newly added
     warm_count   = var.warm_enabled == true? var.warm_count:null   #### newly added
-    warm_type    = var.warm_type    #### newly added
+    warm_type    = var.warm_enabled == true?var.warm_type:null    #### newly added
 
   }
 
