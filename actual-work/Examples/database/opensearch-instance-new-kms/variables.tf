@@ -3,6 +3,14 @@ variable "aws_region" {
   type        = string
   default = "us-east-1"
 }
+variable "open_search_domain_name" {
+  description = "Name of Opensearch domain"
+  type        = string
+  validation {
+    condition = length(var.open_search_domain_name) <=28
+    error_message = "Domain name must be in small and less than 28 characters"
+  }
+}
 variable "opensearch_domains_config" {
   
 }
