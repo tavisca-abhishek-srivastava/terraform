@@ -1,23 +1,5 @@
 data "aws_caller_identity" "current" {}
 
-# module "opensearch_encryption_at_rest_cmk" {
-#   source                = "../../security/kms"
-#   kms_alias             = "alias/${var.open_search_domain_name}_key"
-#   delete_after_days     = var.kms_delete_after_days
-#   key_description       = "Key for ${var.open_search_domain_name} opensearch domain "
-#   key_policy_statements = var.key_policy_statements
-#   tags                  = var.tags
-# }
-
-# module "opensearch_security_group" {
-#   source        = "../../networking/security_group"
-#   vpc_id        = var.vpc_id
-#   name          = "${var.open_search_domain_name}_sg"
-#   description   = "Security Group for ${var.open_search_domain_name} opensearch domain "
-#   egress_rules  = var.egress_rules_sg1
-#   ingress_rules = var.ingress_rules_sg1
-# }
-
 resource "aws_opensearch_domain" "opensearch" {
   domain_name    = var.open_search_domain_name
   engine_version = var.open_search_engine_version
@@ -39,10 +21,10 @@ resource "aws_opensearch_domain" "opensearch" {
     }
     warm_enabled = var.warm_enabled #### newly added
     warm_count   = var.warm_enabled == true? var.warm_count:null   #### newly added
-    warm_type    = var.warm_enabled == true?var.warm_type:null    #### newly added
+    warm_type    = var.warm_enabled == true?var.warm_type:null     #### newly added
 
   }
-
+  
   advanced_security_options {
     enabled                        = var.advanced_security_options_enabled
     anonymous_auth_enabled         = var.anonymous_auth_enabled
