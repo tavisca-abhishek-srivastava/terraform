@@ -1,14 +1,15 @@
 ##### new KMS and new security group ###########
 
 module "opensearch_encryption_at_rest_cmk" {
-  source                = "../../../modules/security/kms"
-  kms_alias             = "alias/${var.open_search_domain_name}_key"
-  # is_this_primary       = var.is_this_primary
-  is_this_primary       = var.is_this_primary
-  delete_after_days     = var.kms_delete_after_days
-  key_description       = "Key for ${var.open_search_domain_name} opensearch domain "
-  key_policy_statements = var.key_policy_statements
-  tags                  = var.tags
+  for_each = var.opensearch_domains_config
+    source                = "../../../modules/security/kms"
+    kms_alias             = "alias/${each.value.open_search_domain_name}_key"
+    # is_this_primary       = var.is_this_primary
+    is_this_primary       = each.value.is_this_primary
+    delete_after_days     = each.value.kms_delete_after_days
+    key_description       = "Key for ${each.value.open_search_domain_name} opensearch domain "
+    key_policy_statements = each.value.key_policy_statements
+    tags                  = each.value.tags
 }
 
 module "opensearch_security_group" {
