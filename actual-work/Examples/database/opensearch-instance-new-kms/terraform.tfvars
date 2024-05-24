@@ -119,6 +119,7 @@ opensearch_domains_config = {
     ### kms 
     encrypt_at_rest_enabled = true
     is_this_primary = true
+    kms_delete_after_days = 31
     key_policy_statements = {
       "statement1" = { 
           sid = "Enable IAM User Permissions",
@@ -203,7 +204,9 @@ opensearch_domains_config = {
     ebs_iops = 3000
     internal_user_database_enabled = true
     ### kms 
+    encrypt_at_rest_enabled = true
     is_this_primary = true
+    kms_delete_after_days = 31
     key_policy_statements = {
       "statement1" = { 
           sid = "Enable IAM User Permissions",
