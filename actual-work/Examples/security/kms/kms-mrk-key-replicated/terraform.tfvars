@@ -2,7 +2,7 @@
 
 kms_alias = "alias/iac_encryption_key_kms_mrk_key_replicated"
 is_this_primary = true
-delete_after_days = 8
+deletion_window_in_days = 8
 key_description = "key_for_kms"
 need_kms_replica = true
 is_kms_replica = true
