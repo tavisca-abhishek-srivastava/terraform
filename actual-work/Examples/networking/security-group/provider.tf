@@ -2,7 +2,7 @@ terraform {
     cloud {
         organization = "cxloyalty"
         workspaces {
-            name = "TaviscaChaseTravel1"
+            name = "TaviscaChaseTravel5"
         }
     }
 }
