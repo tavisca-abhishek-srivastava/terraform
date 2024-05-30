@@ -2,7 +2,7 @@ resource "aws_kms_key" "encryption_key" {
   for_each = var.is_this_primary == true ? toset(["1"]):toset([])
     key_usage                = "ENCRYPT_DECRYPT"
     description              = var.key_description
-    deletion_window_in_days  = var.delete_after_days
+    deletion_window_in_days  = var.deletion_window_in_days
     customer_master_key_spec = "SYMMETRIC_DEFAULT"
     enable_key_rotation      = true
     multi_region             = true 
@@ -65,7 +65,7 @@ data "aws_iam_policy_document" "replica_kms_policy" {
 resource "aws_kms_replica_key" "replica" {
   for_each = (var.need_kms_replica == true && var.is_kms_replica == true ) ? toset(["1"]):toset([])
   description             =   var.key_description
-  deletion_window_in_days =   var.delete_after_days
+  deletion_window_in_days =   var.deletion_window_in_days
   primary_key_arn         =   var.primary_key_arn  ##aws_kms_key.encryption_key.arn
   policy                  =   data.aws_iam_policy_document.replica_kms_policy.json                          ###jsonencode(var.replica_key_policy)
   tags = var.tags
