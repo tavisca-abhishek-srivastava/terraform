@@ -17,7 +17,7 @@ variable "primary_key_arn" {
   type        = string
   default     = null
 }
-variable "delete_after_days" {
+variable "deletion_window_in_days" {
     description = " The waiting period, specified in number of days. After the waiting period ends, AWS KMS deletes the KMS key.it must be between 7 and 30, inclusive"
     type = number
 }

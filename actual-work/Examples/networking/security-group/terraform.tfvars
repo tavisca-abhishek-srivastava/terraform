@@ -6,7 +6,7 @@ sg_configs = {
     ingress_rules = [
       {
         from_port       = 8091
-        to_port         = 8099
+        to_port         = 9099
         protocol        = "tcp"
         cidr_blocks     = []
         security_groups    = ["sg-02dfd3936c47a6a7c"]
