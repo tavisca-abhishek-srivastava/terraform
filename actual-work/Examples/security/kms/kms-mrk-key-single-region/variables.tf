@@ -19,6 +19,12 @@ variable "key_description" {
     type = string
 }
 
+variable "is_this_primary" {
+  description = "To define if a key is primary or replica "
+  type = bool
+  default = false
+}
+
 variable "key_policy_statements" {
   description = "All the statements for the key policy"
   type = map(object({
