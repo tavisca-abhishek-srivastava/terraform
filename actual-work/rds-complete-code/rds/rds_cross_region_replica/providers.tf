@@ -1,5 +1,4 @@
 terraform {
-  
    required_providers {
      aws = {
       source = "hashicorp/aws"
@@ -9,10 +8,11 @@ terraform {
  }
 
  provider "aws" {
-   region = var.key_primary_region
+   region = var.aws_region
+   alias = "default"
  }
 
- provider "aws" {
-  region = var.replica_region
-  alias  = "replica"
+provider "aws" {
+region= var.region_for_cross_region_read_replica
+alias = "dr"
 }

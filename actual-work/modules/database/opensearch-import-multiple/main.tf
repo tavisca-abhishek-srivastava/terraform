@@ -126,7 +126,4 @@ resource "aws_opensearch_domain" "opensearch" {
 			delete = var.terrform_operation_timeout
 			update = var.terrform_operation_timeout
   }
-
-
 }
-
