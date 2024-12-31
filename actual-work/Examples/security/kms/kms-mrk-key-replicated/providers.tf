@@ -16,3 +16,7 @@ terraform {
   region = var.replica_region
   alias  = "replica"
 }
+
+provider "aws" {
+      alias = "instancemaker"
+}
