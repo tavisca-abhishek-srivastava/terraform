@@ -6,5 +6,8 @@ module "kms-example" {
     key_description   = var.key_description
     key_policy_statements = var.key_policy_statements
     tags = var.tags
+    providers = {
+      aws.instancemaker = aws.primary
+     }
      
 }
