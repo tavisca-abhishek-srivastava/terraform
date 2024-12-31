@@ -8,7 +8,10 @@ module "kms-example-primary" {
     key_description   = var.key_description
     key_policy_statements = var.key_policy_statements
     tags = var.tags
-
+    providers = {
+      aws.instancemaker = aws.primary
+     }
+     
 }
 
 module "kms-example-replica" {
@@ -22,7 +25,7 @@ module "kms-example-replica" {
     tags = var.tags
     primary_key_arn = module.kms-example-primary.mrk_cms_arn[0]
     providers = {
-      aws= aws.replica
+      aws.instancemaker = aws.replica
      }
      
 }
