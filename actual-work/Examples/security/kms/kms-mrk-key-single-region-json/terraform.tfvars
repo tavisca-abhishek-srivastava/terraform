@@ -2,9 +2,6 @@
 kms_alias = "alias/iac_encryption_key_kms_mrk_key_not_replicated_json"
 delete_after_days = 8
 key_description = "key_for_kms"
-encryption_key_details = {
-  key_type = "customer_managed"
-}
 key_policy_map = {
     "Id" : "key-consolepolicy-3",
     "Version" : "2012-10-17",

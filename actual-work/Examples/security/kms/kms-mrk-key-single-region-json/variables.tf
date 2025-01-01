@@ -1,13 +1,7 @@
 variable "key_primary_region" {
   default = "us-east-1"
 }
-variable "encryption_key_details" {
-  type = object({
-  key_type = optional(string,"dynamoDB_managed")  
-  })
-  description = "for key_type possible value is 'customer_managed' "
-  
-}
+
 variable "kms_alias" {
   description = "define in the form of 'alias/unique_key_name'"
   type    = string
