@@ -12,6 +12,7 @@ module "dd_cmk" {
   delete_after_days = var.delete_after_days
   key_description   = var.key_description
   key_policy_map    = var.key_policy_map
+  
   kms_tags = {
     DataClassification : "restricted"
     Environment : "poc"
