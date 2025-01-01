@@ -119,5 +119,7 @@ gsi_indices = {
       }
     ]
   }
-
+ encryption_key_details = {
+  key_type = "customer_managed"
+}
 terrform_operation_timeout = "420m"
