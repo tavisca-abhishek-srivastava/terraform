@@ -22,7 +22,6 @@ module "nrt-dynamoDB" {
     key_policy_map = var.key_policy_map
     key_description = var.key_description
     delete_after_days = var.delete_after_days
-    encryption_key_details = var.encryption_key_details
     terrform_operation_timeout = var.terrform_operation_timeout
 
 }
