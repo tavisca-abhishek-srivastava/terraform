@@ -1,3 +1,6 @@
+variable "key_primary_region" {
+  default = "us-east-1"
+}
 variable "kms_alias" {
   description = "define in the form of 'alias/unique_key_name'"
   type    = string
