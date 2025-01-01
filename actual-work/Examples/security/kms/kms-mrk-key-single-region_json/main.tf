@@ -1,5 +1,5 @@
 module "kms-example" {
-    source = "../../../modules/security/kms_policy_json"
+    source = "../../../../modules/security/kms_policy_json"
     #
     kms_alias = var.kms_alias
     key_description = var.key_description
