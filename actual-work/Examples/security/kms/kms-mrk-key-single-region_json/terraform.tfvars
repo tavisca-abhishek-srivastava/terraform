@@ -1,5 +1,5 @@
 #### key is mrk and but not replicated in any other region
-kms_alias = "alias/iac_encryption_key_kms_mrk_key_not_replicated"
+kms_alias = "alias/iac_encryption_key_kms_mrk_key_not_replicated_json"
 delete_after_days = 8
 key_description = "key_for_kms"
 key_policy_map = {
