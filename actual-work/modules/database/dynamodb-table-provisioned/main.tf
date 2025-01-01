@@ -12,7 +12,16 @@ module "dd_cmk" {
   delete_after_days = var.delete_after_days
   key_description   = var.key_description
   key_policy_map    = var.key_policy_map
-  kms_tags = var.kms_tags
+  kms_tags = {
+    DataClassification : "restricted"
+    Environment : "poc"
+    AppName : "tf-nrt-${var.table_name}"
+    InfraOwner : "sre-cloud-reliability@tavisca.com"
+    BusinessUnit : "travel.app"
+    Backup : "no"
+    Product : "poap"
+    Name : "tf-${var.table_name}-kms"
+  }
   # need_cmk = (var.encryption_key_details.key_type == "customer_managed" ? true : false)
 }
 
