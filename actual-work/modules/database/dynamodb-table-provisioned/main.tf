@@ -6,7 +6,8 @@
 # This module will take user input and will create CMK which will be used by DynamoDB module
 
 module "dd_cmk" {
-  source            = "../../../security/kms"
+  source            = "../../security/kms_policy_json"
+  encryption_key_details = var.encryption_key_details
   kms_alias         = var.kms_alias
   delete_after_days = var.delete_after_days
   key_description   = var.key_description
