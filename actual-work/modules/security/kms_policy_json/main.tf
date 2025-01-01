@@ -10,13 +10,13 @@ resource "aws_kms_key" "encryption_key" {
 
 
 resource "aws_kms_key_policy" "key_policy" {
-    key_id =  aws_kms_key.encryption_key[1].key_id
+    key_id =  aws_kms_key.encryption_key.key_id
     policy =  jsonencode(var.key_policy_map)
 }
 resource "aws_kms_alias" "key_alias" {
 #   name          = "alias/nrt_encryption_key"
     name = var.kms_alias
-    target_key_id = aws_kms_key.encryption_key[1].key_id   
+    target_key_id = aws_kms_key.encryption_key.key_id   
 }
 
 
