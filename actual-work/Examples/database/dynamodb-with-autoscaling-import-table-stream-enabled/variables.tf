@@ -151,12 +151,6 @@ variable "table_read_target_percent" {
   }
 }
 
-########################################################################################################
-##                                                                                                    ##
-##                     KMS module related variables                                                   ##
-##                                                                                                    ##
-########################################################################################################
-
 variable "encryption_key_details" {
   type = object({
     key_type = optional(string,"dynamoDB_managed")  
@@ -164,6 +158,13 @@ variable "encryption_key_details" {
   description = "for key_type possible value is 'customer_managed' "
   
 }
+########################################################################################################
+##                                                                                                    ##
+##                     KMS module related variables                                                   ##
+##                                                                                                    ##
+########################################################################################################
+
+
 
 variable "kms_alias" {
     description = "define in the form of 'alias/unique_key_name'"

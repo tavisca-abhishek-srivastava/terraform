@@ -82,8 +82,8 @@ gsi_indices = {
         "Principal" : {
           "AWS" : [
             "arn:aws:iam::928814396842:role/adfs-devops",
-            "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka",
-            "arn:aws:iam::928814396842:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_Travel-NonProd-DevOps_58cf51ef9bc19c74"
+            "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka"
+            
           ]
         },
         "Action" : [
@@ -101,8 +101,8 @@ gsi_indices = {
         "Principal" : {
           "AWS" : [
             "arn:aws:iam::928814396842:role/adfs-devops",
-            "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka",
-            "arn:aws:iam::928814396842:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_Travel-NonProd-DevOps_58cf51ef9bc19c74"
+            "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka"
+           
           ]
         },
         "Action" : [
