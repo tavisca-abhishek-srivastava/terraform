@@ -7,7 +7,7 @@
 
 module "dd_cmk" {
   source            = "../../security/kms_policy_json"
-  kms_alias         = var.kms_alias
+  kms_alias         = "var.kms_alias-${var.table_name}"
   delete_after_days = var.delete_after_days
   key_description   = var.key_description
   key_policy_map    = var.key_policy_map
