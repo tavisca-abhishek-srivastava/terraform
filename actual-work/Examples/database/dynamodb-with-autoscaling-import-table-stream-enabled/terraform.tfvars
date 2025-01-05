@@ -33,7 +33,7 @@ gsi_indices = {
    "by_product_id_LSI" = {range_key = "product_id"},
   }
   
-  kms_alias = "alias/nrt_encryption_key-import"
+  kms_alias = "alias/nrt_encryption_key-import-DynamoDB-GSI-LSI-dest"
   delete_after_days = 10
   key_description = "key_for_dynamoDB-import"
   key_policy_map = {
