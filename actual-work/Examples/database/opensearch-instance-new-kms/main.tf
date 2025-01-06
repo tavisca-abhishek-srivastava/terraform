@@ -10,6 +10,9 @@ module "opensearch_encryption_at_rest_cmk" {
   key_description         = "Key for ${each.value.open_search_domain_name} opensearch domain "
   key_policy_statements   = each.value.key_policy_statements
   tags                    = each.value.tags
+  providers = {
+      aws.instancemaker = aws.primary
+     }
 }
 
 module "opensearch_security_group" {
