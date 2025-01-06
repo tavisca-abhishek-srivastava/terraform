@@ -1,13 +1,13 @@
 data "aws_caller_identity" "current" {}
 
 module "opensearch_encryption_at_rest_cmk" {
-  	source            = "../../security/kms"
+  	source            = "../../security/kms_policy_json"
   	kms_alias         = "alias/${var.open_search_domain_name}_key"
-  	#delete_after_days = var.kms_delete_after_days
+  	delete_after_days = var.kms_delete_after_days
   	key_description   =  "Key for ${var.open_search_domain_name} opensearch domain "
-  	key_policy_statements = var.key_policy_statements
-	  tags = var.tags
-    deletion_window_in_days = var.kms_delete_after_days
+  	key_policy_map = var.key_policy_map
+	  kms_tags = var.tags
+    
 }
 
 module "opensearch_security_group" {

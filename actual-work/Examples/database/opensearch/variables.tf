@@ -165,18 +165,10 @@ variable "kms_delete_after_days" {
     default = 30
 }
 
-variable "key_policy_statements" {
-  description = "All the statements for the key policy"
-  type = map(object({
-    sid = string
-    actions = list(string)
-    resources = list(string)
-    effect = string
-    principals = object({
-      identifiers = list(string)
-    })
-  }))
-default = {}
+variable "key_policy_map" {
+    description = "A valid policy JSON document"
+    type = any
+ 
 }
 
 
