@@ -1,5 +1,5 @@
 open_search_domain_name               = "iacbnropensearch"
-open_search_engine_version            = "OpenSearch_2.3"
+open_search_engine_version            = "OpenSearch_2.11"
 dedicated_master_count                = 3
 dedicated_master_type                 = "m6g.large.search"
 dedicated_master_enabled              = true
