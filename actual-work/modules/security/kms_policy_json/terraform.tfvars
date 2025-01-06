@@ -1,28 +1,7 @@
-open_search_domain_name               = "iacbnrelasticsearch"
-open_search_engine_version            = "Elasticsearch_7.10"
-dedicated_master_count                = 3
-dedicated_master_type                 = "m6g.large.search"
-dedicated_master_enabled              = true
-instance_type                         = "m6g.large.search"
-instance_count                        = 3
-zone_awareness_enabled                = true
-subnet_ids                            = ["subnet-01d4d19deaa34db85","subnet-061e332b24aecd27b","subnet-060048463710e54c4"]
-security_options_enabled              = true
-master_user_name                      = "opensearch_dbadmin"
-master_user_password                  = "Welcome$123"
-multi_az_with_standby_enabled         = null
-encrypt_at_rest_enabled               = true
-domain_endpoint_options_enforce_https = true
-ebs_enabled                           = true
-ebs_volume_size                       = 45
-volume_type                           = "gp3"
-throughput                            = 250
-aws_region                            = "us-east-1"
-ebs_iops = 3000
-# anonymous_auth_enabled = true
-internal_user_database_enabled = true
-### kms 
-kms_delete_after_days = 30
+#### key is mrk and but not replicated in any other region
+kms_alias = "alias/iac_encryption_key_kms_mrk_key_not_replicated_json"
+delete_after_days = 8
+key_description = "key_for_kms"
 key_policy_map = {
     "Id" : "key-consolepolicy-3",
     "Version" : "2012-10-17",
@@ -69,7 +48,8 @@ key_policy_map = {
         "Principal" : {
           "AWS" : [
             "arn:aws:iam::928814396842:role/adfs-devops",
-            "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka"
+            "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka",
+            "arn:aws:iam::928814396842:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_Travel-NonProd-DevOps_58cf51ef9bc19c74"
           ]
         },
         "Action" : [
@@ -87,7 +67,8 @@ key_policy_map = {
         "Principal" : {
           "AWS" : [
             "arn:aws:iam::928814396842:role/adfs-devops",
-            "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka"
+            "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka",
+            "arn:aws:iam::928814396842:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_Travel-NonProd-DevOps_58cf51ef9bc19c74"
           ]
         },
         "Action" : [
@@ -105,41 +86,13 @@ key_policy_map = {
     ]
   }
 
-## security group
-vpc_id = "vpc-07b12bcec12a4cd9b"
-ingress_rules_sg1 = [
-    {
-      description    = "default rule"
-      from_port       = 22
-      to_port         = 22
-      protocol        = "tcp"
-      cidr_blocks     = ["10.0.0.0/8"]
-      source_sg_id    = ""
-      self_referencing = false
-    },
-  ]
-
-egress_rules_sg1 = [
-    {
-      description    = "default rule"
-      from_port       = 0
-      to_port         = 0
-      protocol        = "ALL"
-      cidr_blocks     = ["0.0.0.0/0"]
-      source_sg_id    = ""
-      self_referencing = false
-    },
-  ]
-tags = {
+kms_tags = {
   DataClassification : "restricted"
   Environment : "poc"
-  AppName : "opensearch-sr"
+  AppName : "tf-iac-kms-key-not-replicated"
   InfraOwner : "sre-cloud-reliability@tavisca.com"
-  BusinessUnit : "travel.poc"
+  BusinessUnit : "travel.app"
   Backup : "no"
   Product : "poap"
-  Name : "opensearchsr"
+  Name : "tf-iac-kms-key-not-replicated"
 }
-
-
-
