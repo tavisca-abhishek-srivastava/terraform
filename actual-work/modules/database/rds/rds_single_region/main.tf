@@ -5,6 +5,9 @@
   	key_description   =  "Key for ${var.rds_instance_name} RDS "
   	key_policy_map    = var.key_policy_map
 	kms_tags = var.tags 
+	providers = {
+      aws.instancemaker = aws.primary
+     }
 }
 
 	module "rds_option_group" {
