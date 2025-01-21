@@ -20,7 +20,7 @@ key_policy_statements = {
     resources = ["*"],
     effect    = "Allow",
     principals = {
-      identifiers = ["arn:aws:iam::928814396842:root"]
+      identifiers = ["arn:aws:iam::928814396842:root" ]
     },
   },
   "statement2" = {
