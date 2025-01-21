@@ -5,8 +5,7 @@ resource "aws_kms_key" "encryption_key" {
     customer_master_key_spec = "SYMMETRIC_DEFAULT"
     enable_key_rotation      = true
     multi_region             = true 
-    tags = var.kms_tags   
-    provider = aws.instancemaker 
+    tags = var.kms_tags    
 }
 
 
