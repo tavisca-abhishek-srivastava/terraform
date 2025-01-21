@@ -59,7 +59,7 @@ key_policy_statements = {
     resources = ["*"],
     effect    = "Allow",
     principals = {
-      identifiers = ["arn:aws:iam::928814396842:role/adfs-devops", "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka", "arn:aws:iam::928814396842:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_Travel-NonProd-DevOps_58cf51ef9bc19c74"]
+      identifiers = ["arn:aws:iam::928814396842:role/adfs-devops", "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka"]
     },
   }
 }
@@ -253,7 +253,7 @@ opensearch_domains_config = {
         resources = ["*"],
         effect    = "Allow",
         principals = {
-          identifiers = ["arn:aws:iam::928814396842:role/adfs-devops", "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka", "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka"]
+          identifiers = ["arn:aws:iam::928814396842:role/adfs-devops", "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka"]
         },
       }
     }
