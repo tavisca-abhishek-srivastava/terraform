@@ -278,11 +278,11 @@ variable "key_policy_map" {
     description = "A valid policy JSON document"
     type = any
 }
-variable "key_primary_region" {
-  description = "primary region for key"
-  type = string
-  default = "us-east-1"
-}
+# variable "key_primary_region" {
+#   description = "primary region for key"
+#   type = string
+#   default = "us-east-1"
+# }
 
 #######################################################################################################################
 ##                                                                                                                   ##

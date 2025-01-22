@@ -4,10 +4,7 @@
   	delete_after_days = var.kms_delete_after_days
   	key_description   =  "Key for ${var.rds_instance_name} RDS "
   	key_policy_map    = var.key_policy_map
-	kms_tags = var.tags 
-	providers = {
-      aws.instancemaker = aws.primary
-     }
+	kms_tags = var.tags
 }
 
 	module "rds_option_group" {
