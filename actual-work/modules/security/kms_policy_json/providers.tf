@@ -11,6 +11,3 @@ terraform {
    alias = "primary"
  }
 
-# provider "aws" {
-#       alias = "instancemaker"
-# }
