@@ -1,4 +1,4 @@
-rds_instance_name = "jpmc-master-mysql-sr-example"   # single region
+rds_instance_name = "jpmc-master-mysql-sr-maz-example"   # single region but multi az
 db_name = "mysql_db"
 allocated_storage = 100
 storage_type = "io1"
