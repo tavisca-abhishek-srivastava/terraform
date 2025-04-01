@@ -11,7 +11,7 @@ resource "aws_msk_cluster" "tf-s3-to-pg" {
         volume_size = 30
       }
     }
-    security_groups = ["sg-07c3c80e71d4b954e"]
+    security_groups = var.security_groups
   }
 
   encryption_info {
