@@ -1,6 +1,6 @@
 resource "aws_msk_cluster" "tf-s3-to-pg" {
   number_of_broker_nodes = var.number_of_broker_nodes
-  cluster_name = "tf-s3-to-pg"
+  cluster_name = var.cluster_name
   kafka_version = "3.6.0"
 
  broker_node_group_info {
