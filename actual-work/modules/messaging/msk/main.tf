@@ -27,7 +27,7 @@ resource "aws_msk_cluster" "tf_s3_to_pg" {
 
 
 tags = {
-"AppName" = "tf_s3_to_pg"
+"AppName" = "tf-s3-to-pg"
 "Backup" = "false"
 "BusinessUnit" = "Travel.poc"
 "DataClassification" = "internal"
