@@ -1,4 +1,4 @@
-resource "aws_msk_cluster" "tf_s3_to_pg" {
+resource "aws_msk_cluster" "tf-s3-to-pg" {
   number_of_broker_nodes = var.number_of_broker_nodes
   cluster_name = var.cluster_name
   kafka_version = var.kafka_version
