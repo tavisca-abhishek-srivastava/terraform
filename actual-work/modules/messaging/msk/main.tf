@@ -1,10 +1,10 @@
 resource "aws_msk_cluster" "tf-s3-to-pg" {
   number_of_broker_nodes = var.number_of_broker_nodes
   cluster_name = var.cluster_name
-  kafka_version = "3.6.0"
+  kafka_version = var.kafka_version
 
  broker_node_group_info {
-    instance_type = "kafka.m5.large"
+    instance_type = var.instance_type
     client_subnets = [
         "subnet-060048463710e54c4",
         "subnet-01d4d19deaa34db85",
