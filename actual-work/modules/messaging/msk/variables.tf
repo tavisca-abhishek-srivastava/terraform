@@ -5,8 +5,8 @@ variable "cluster_name" {
 }
 variable "kafka_version" {
     description = "Kafka Version"
-    type = number
-    default = 3.6
+    type = string
+    default = "3.6.0"
 }
 variable "client_subnets" {
     description = "Subnet for brokers"
