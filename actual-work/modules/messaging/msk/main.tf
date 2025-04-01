@@ -5,11 +5,7 @@ resource "aws_msk_cluster" "tf-s3-to-pg" {
 
  broker_node_group_info {
     instance_type = var.instance_type
-    client_subnets = [
-        "subnet-060048463710e54c4",
-        "subnet-01d4d19deaa34db85",
-        "subnet-061e332b24aecd27b",
-    ]
+    client_subnets = var.client_subnets
     storage_info {
       ebs_storage_info {
         volume_size = 30
