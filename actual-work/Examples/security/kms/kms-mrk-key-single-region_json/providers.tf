@@ -10,7 +10,3 @@ terraform {
    region = var.key_primary_region
    alias = "primary"
  }
-
-provider "aws" {
-      alias = "instancemaker"
-}
