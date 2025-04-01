@@ -1,7 +1,7 @@
 variable "cluster_name" {
     description = "Name of MSK Cluster"
     type = string
-    default = "tf_s3_to_pg"
+    default = "tf-s3-to-pg"
 }
 variable "kafka_version" {
     description = "Kafka Version"
@@ -19,6 +19,7 @@ variable "client_subnets" {
 }                                                                                                                                                              
 variable "number_of_broker_nodes" {
     description = "number of brokers in cluster"
+    type = number
     default =   3
 }
 variable "instance_type" {

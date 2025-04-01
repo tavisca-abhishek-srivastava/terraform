@@ -1,17 +1,21 @@
 resource "aws_msk_cluster" "tf-s3-to-pg" {
-  number_of_broker_nodes = var.number_of_broker_nodes
-  cluster_name = var.cluster_name
-  kafka_version = var.kafka_version
+  number_of_broker_nodes = 3
+  cluster_name = "tf-s3-to-pg"
+  kafka_version = "3.6.0"
 
  broker_node_group_info {
-    instance_type = var.instance_type
-    client_subnets = var.client_subnets
+    instance_type = "kafka.m5.large"
+    client_subnets = [
+        "subnet-060048463710e54c4",
+        "subnet-01d4d19deaa34db85",
+        "subnet-061e332b24aecd27b",
+    ]
     storage_info {
       ebs_storage_info {
         volume_size = 30
       }
     }
-    security_groups = var.security_groups
+    security_groups = ["sg-07c3c80e71d4b954e"]
   }
 
   encryption_info {
