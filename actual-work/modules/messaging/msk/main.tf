@@ -17,7 +17,7 @@ resource "aws_msk_cluster" "tf_s3_to_pg" {
   encryption_info {
     encryption_at_rest_kms_key_arn = "arn:aws:kms:us-east-1:928814396842:key/0812992e-897f-41cc-b4e2-e1a2d1b3b672"
     encryption_in_transit {
-      client_broker = PLAINTEXT
+      client_broker = "PLAINTEXT"
       in_cluster = true
     }
   }
