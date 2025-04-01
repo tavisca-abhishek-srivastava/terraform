@@ -26,3 +26,8 @@ variable "instance_type" {
     type = string
     default = "kafka.m5.large"
 }
+variable "security_groups" {
+  description = "Security group"
+  type = list(string)
+  default = ["sg-07c3c80e71d4b954e"]
+}
