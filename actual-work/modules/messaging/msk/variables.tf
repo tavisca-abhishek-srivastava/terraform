@@ -12,9 +12,9 @@ variable "client_subnets" {
   description = "Subnet for brokers"
   type        = list(string)
   default = [
-    "subnet-060048463710e54c4",
-    "subnet-01d4d19deaa34db85",
-    "subnet-061e332b24aecd27b",
+    "subnet-04c8a1cce0a80f526",
+    "subnet-001023c820ce7e35c",
+    "subnet-08792a1a703950fe7",
   ]
 }
 variable "number_of_broker_nodes" {
