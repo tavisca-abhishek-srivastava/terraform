@@ -39,7 +39,7 @@ variable "encryption_in_transit_client_broker" {
 }
 variable "cloud_watch_log_group_retention_days" {
   type = number
-  default = 10
+  default = 14
 }
 variable "tags" {
   type = object({
