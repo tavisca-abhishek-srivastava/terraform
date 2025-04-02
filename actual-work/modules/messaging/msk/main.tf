@@ -24,20 +24,15 @@ resource "aws_msk_cluster" "tf-s3-to-pg" {
   client_authentication {
     unauthenticated = true
   }
+    logging_info {
+      broker_logs {
+        cloudwatch_logs {
+          enabled = true
+          log_group = aws_cloudwatch_log_group.kms_log_group.name
+        }
+      }
+    }
 
-
-  tags = {
-    "AppName"            = "tf-s3-to-pg"
-    "Backup"             = "false"
-    "BusinessUnit"       = "Travel.poc"
-    "DataClassification" = "internal"
-    "Environment"        = "poc"
-    "InfraOwner"         = "sre-cloud-reliability@tavisca.com"
-    "Name"               = "msk-pg"
-    "Product"            = "poap"
-    "Squad"              = "Travel.poc"
-
-
-  }
+  tags = var.tags
 
 }

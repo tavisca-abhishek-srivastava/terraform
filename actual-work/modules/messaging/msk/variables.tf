@@ -37,3 +37,20 @@ variable "encryption_in_transit_client_broker" {
   type = string
   default = "TLS_PLAINTEXT"
 }
+variable "cloud_watch_log_group_retention_days" {
+  type = number
+  default = 10
+}
+variable "tags" {
+  type = object({
+    AppName             =   string
+    Backup              =   string
+    BusinessUnit        =   string
+    DataClassification  =   string
+    Environment         =   string
+    InfraOwner          =   string
+    Name                =   string    
+    Product             =   string
+    Squad               =   string
+  })
+}
