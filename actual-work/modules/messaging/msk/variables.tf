@@ -32,3 +32,8 @@ variable "security_groups" {
   type        = list(string)
   default     = ["sg-07c3c80e71d4b954e"]
 }
+variable "encryption_in_transit_client_broker" {
+  description = "(Optional) Encryption setting for data in transit between clients and brokers. Valid values: TLS, TLS_PLAINTEXT, and PLAINTEXT. Default value is TLS"
+  type = string
+  default = "TLS_PLAINTEXT"
+}

@@ -1,3 +1,3 @@
 variable "masterarn" {
-   defualt = null
+   default = null
 }
