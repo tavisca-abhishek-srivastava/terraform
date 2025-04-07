@@ -1,6 +1,6 @@
 cluster_name = "tf-s3-to-pg"
 kafka_version = "3.6.0"
-
+client_subnets = [    "subnet-04c8a1cce0a80f526",    "subnet-001023c820ce7e35c",    "subnet-08792a1a703950fe7",  ]
 
 tags = {
     "AppName"            = "tf-s3-to-pg"

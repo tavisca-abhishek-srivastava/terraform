@@ -11,11 +11,7 @@ variable "kafka_version" {
 variable "client_subnets" {
   description = "Subnet for brokers"
   type        = list(string)
-  default = [
-    "subnet-04c8a1cce0a80f526",
-    "subnet-001023c820ce7e35c",
-    "subnet-08792a1a703950fe7",
-  ]
+  #default = [    "subnet-04c8a1cce0a80f526",    "subnet-001023c820ce7e35c",    "subnet-08792a1a703950fe7"  ]
     validation {
       condition = length(var.client_subnets) >= 3
       error_message = "pls define atleast 3 subnets"
