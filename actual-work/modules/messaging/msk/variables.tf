@@ -1,12 +1,12 @@
 variable "cluster_name" {
   description = "Name of MSK Cluster"
   type        = string
-  default     = "tf-s3-to-pg"
+  #default     = "tf-s3-to-pg"
 }
 variable "kafka_version" {
   description = "Kafka Version"
   type        = string
-  default     = "3.6.0"
+  #default     = "3.6.0"
 }
 variable "client_subnets" {
   description = "Subnet for brokers"
