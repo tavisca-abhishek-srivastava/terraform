@@ -56,6 +56,17 @@ variable "cloud_watch_log_group_retention_days" {
   type = number
   default = 14
 }
+########## KMS variables
+variable "key_policy_map" {
+  description = "A valid policy JSON document"
+  type = any
+}
+variable "delete_after_days" {
+    description = " The waiting period, specified in number of days. After the waiting period ends, AWS KMS deletes the KMS key.it must be between 7 and 30, inclusive"
+    type = number
+    default = 30
+}
+
 variable "tags" {
   type = object({
     AppName             =   string
