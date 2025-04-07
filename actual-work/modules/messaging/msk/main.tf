@@ -47,10 +47,5 @@ resource "aws_msk_cluster" "tf-s3-to-pg" {
 
   tags = var.tags
 
-  lifecycle {
-    precondition {
-      
-    }
-  }
 
 }

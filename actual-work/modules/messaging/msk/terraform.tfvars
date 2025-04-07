@@ -1,4 +1,4 @@
-cluster_name = "tf-s3-to-pg_3.6.0"
+cluster_name = "tf-s3-to-pg"
 kafka_version = "3.6.0"
 
 
