@@ -1,8 +1,10 @@
+data "aws_caller_identity" "current" {}
+
 module "msk_encryption_at_rest_cmk" {
   	source            = "../../security/kms_policy_json"
   	kms_alias         = "alias/${var.cluster_name}_key"
     delete_after_days = var.delete_after_days
-  	key_description   =  "Key for ${var.cluster_name} opensearch domain "
+  	key_description   =  "Key for ${var.cluster_name} KMS Cluster "
   	key_policy_map = var.key_policy_map
 	kms_tags = var.tags  
 }
