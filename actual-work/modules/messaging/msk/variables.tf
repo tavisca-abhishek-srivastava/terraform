@@ -16,11 +16,21 @@ variable "client_subnets" {
     "subnet-001023c820ce7e35c",
     "subnet-08792a1a703950fe7",
   ]
+    validation {
+      condition = length(var.client_subnets) >= 3
+      error_message = "pls define atleast 3 subnets"
+    }
+
 }
 variable "number_of_broker_nodes" {
   description = "number of brokers in cluster"
   type        = number
   default     = 3
+
+  validation {
+      condition = var.number_of_broker_nodes >= 3
+      error_message = "pls define atleast 3 brokers in different subnet"
+    }
 }
 variable "instance_type" {
   description = "type of instance of broker"
@@ -31,6 +41,11 @@ variable "security_groups" {
   description = "Security group"
   type        = list(string)
   default     = ["sg-07c3c80e71d4b954e"]
+
+   validation {
+      condition = length(var.client_subnets) >= 1
+      error_message = "pls define atleast 1 Security Group"
+    }
 }
 variable "encryption_in_transit_client_broker" {
   description = "(Optional) Encryption setting for data in transit between clients and brokers. Valid values: TLS, TLS_PLAINTEXT, and PLAINTEXT. Default value is TLS"
