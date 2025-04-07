@@ -43,7 +43,7 @@ variable "security_groups" {
   default     = ["sg-07c3c80e71d4b954e"]
 
    validation {
-      condition = length(var.client_subnets) >= 1
+      condition = var.security_groups >= 1
       error_message = "pls define atleast 1 Security Group"
     }
 }
