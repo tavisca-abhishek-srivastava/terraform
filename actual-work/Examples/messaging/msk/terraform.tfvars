@@ -1,6 +1,12 @@
 cluster_name = "tf-s3-to-pg"
 kafka_version = "3.6.0"
-#client_subnets = [    "subnet-04c8a1cce0a80f526",    "subnet-001023c820ce7e35c",    "subnet-08792a1a703950fe7"  ]
+client_subnets = [    "subnet-04c8a1cce0a80f526",    "subnet-001023c820ce7e35c",    "subnet-08792a1a703950fe7"  ]
+number_of_broker_nodes = 3
+instance_type = "kafka.m5.large"
+security_groups = ["sg-07c3c80e71d4b954e"]
+encryption_in_transit_client_broker = "TLS_PLAINTEXT"
+cloud_watch_log_group_retention_days = 14
+delete_after_days = 30
 tags = {
     "AppName"            = "tf-s3-to-pg"
     "Backup"             = "false"
