@@ -9,6 +9,7 @@ module "nrt_msk" {
   instance_type =var.instance_type
   security_groups = var.security_groups
   number_of_broker_nodes = var.number_of_broker_nodes
+  key_policy_map = var.key_policy_map
   tags = var.tags
 }
 
