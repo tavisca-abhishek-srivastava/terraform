@@ -1,7 +1,7 @@
 variable "cluster_identifier" {
   type = string
   description = "Cluster name"
-  default = "nrt-compliance"
+  default = "nrt_compliance"
 }
 
 
