@@ -1,7 +1,7 @@
 variable "cluster_identifier" {
   type = string
   description = "Cluster name"
-  default = "nrt_compliance"
+  default = "nrt-compliance"
 }
 
 
@@ -13,7 +13,7 @@ variable "key_policy_map" {
   type = any
 }
 variable "delete_after_days" {
-    description = " The waiting period, specified in number of days. After the waiting period ends, AWS KMS deletes the KMS key.it must be between 7 and 30, inclusive"
+    description = " The waiting period, specified in number of days. After the waiting period ends,  AWS KMS deletes the KMS key.it must be between 7 and 30, inclusive"
     type = number
     default = 30
 }
