@@ -1,5 +1,5 @@
 resource "aws_rds_cluster" "name" {
-    engine = "postgresql"
+    engine = "postgres"
     availability_zones = ["us-east-1a","us-east-1b","us-east-1c"]
     database_name = "nrt-ui"
     cluster_identifier = var.cluster_identifier
