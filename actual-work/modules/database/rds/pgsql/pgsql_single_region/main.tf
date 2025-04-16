@@ -10,7 +10,17 @@ resource "aws_rds_cluster" "name" {
     storage_type              = "io1"
     allocated_storage         = 100
     iops                      = 1000
-    tags = var.tags
+    tags = {
+    "AppName"            = "nrt-compliance"
+    "Backup"             = "false"
+    "BusinessUnit"       = "Travel.poc"
+    "DataClassification" = "internal"
+    "Environment"        = "poc"
+    "InfraOwner"         = "sre-cloud-reliability@tavisca.com"
+    "Name"               = "nrt-compliance"
+    "Product"            = "poap"
+    "Squad"              = "Travel.poc"
+  }
 
 
 
