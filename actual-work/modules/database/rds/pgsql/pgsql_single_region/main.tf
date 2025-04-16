@@ -15,11 +15,13 @@ resource "aws_rds_cluster" "name" {
     "Backup"             = "false"
     "BusinessUnit"       = "Travel.poc"
     "DataClassification" = "internal"
-    "Environment"        = "poc"
-    "InfraOwner"         = "sre-cloud-reliability@tavisca.com"
-    "Name"               = "nrt-compliance"
-    "Product"            = "poap"
-    "Squad"              = "Travel.poc"
+    "Environment"       = "poc"
+    "InfraOwner"    = "sre-cloud-reliability@tavisca.com"
+    "Name"          = "nrt-compliance"
+    "Product"       = "poap"
+    "Squad"         = "Travel.poc"
+    "Restricted"    =   "yes"
+
   }
 
 
