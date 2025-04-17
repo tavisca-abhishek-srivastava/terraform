@@ -12,7 +12,7 @@ resource "aws_rds_cluster" "name" {
     iops                      = 1000
     tags = {
     "AppName"            = "nrt-compliance"
-    "Backup"             = "false"
+    "Backup"             = "yes"
     "BusinessUnit"       = "Travel.poc"
     "DataClassification" = "internal"
     "Environment"       = "poc"
