@@ -1,3 +1,4 @@
+### https://www.instaclustr.com/support/documentation/opensearch/using-opensearch/connect-to-opensearch-with-python/
 from opensearchpy import OpenSearch, RequestsHttpConnection, AWSV4SignerAuth
 import boto3
 
