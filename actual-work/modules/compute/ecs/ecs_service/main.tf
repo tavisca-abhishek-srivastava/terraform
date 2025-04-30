@@ -1,4 +1,4 @@
-resource "aws_ecr_service" "pgsql_node" {
+resource "aws_ecs_service" "pgsql_node" {
   name            = "pgsql_node_service"
   cluster         = "iac-ecs-testing-tf-sl"
   task_definition = "arn:aws:ecs:us-east-1:928814396842:task-definition/pgsql-app-task-definition:1"
@@ -12,13 +12,6 @@ resource "aws_ecr_service" "pgsql_node" {
    assign_public_ip = false
  }
  force_new_deployment = true
-  tag_specifications {
-    resource_type = "volume"
-    propagate_tags = true
-    tags = {
-      Name = "ecs-instance"
-    }
-  }
 tags = {
     "AppName"            = "pgsql_node_service"
     "Backup"             = "false"
