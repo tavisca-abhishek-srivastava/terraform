@@ -7,8 +7,8 @@ resource "aws_ecs_service" "pgsql_node" {
   launch_type = "FARGATE"
   propagate_tags = "TASK_DEFINITION"
   network_configuration {
-   subnets         = ["subnet-001023c820ce7e35c,subnet-04c8a1cce0a80f526,subnet-08792a1a703950fe7"]
-   security_groups = ["sg-0529be6bea90f8657,sg-02dfd3936c47a6a7c"]
+   subnets         = ["subnet-001023c820ce7e35c","subnet-04c8a1cce0a80f526","subnet-08792a1a703950fe7"]
+   security_groups = ["sg-0529be6bea90f8657","sg-02dfd3936c47a6a7c"]
    assign_public_ip = false
  }
  force_new_deployment = true
