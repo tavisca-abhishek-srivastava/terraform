@@ -96,14 +96,12 @@ lifecycle {
     condition = length(var.az_for_read_replica) == length(var.number_of_read_replica) ? true : false
     error_message = "number of az in list 'az_for_read_replica' must be equal to 'number_of_read_replica' "
   }
-
-
+	## if storage_type is gp3 and total storage is greater than 400 GB then iops must be greater than 12000
+	precondition {
+	  condition = true
+	  error_message = "hello"
+	}
 }
-
-
-
-
-
 
 
     tags = {

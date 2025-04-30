@@ -1,4 +1,8 @@
 ### https://www.instaclustr.com/support/documentation/opensearch/using-opensearch/connect-to-opensearch-with-python/
+
+### pip install opensearch-py
+### Python
+pip install certifi
 from opensearchpy import OpenSearch, RequestsHttpConnection, AWSV4SignerAuth
 import boto3
 
