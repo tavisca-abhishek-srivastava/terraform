@@ -15,14 +15,14 @@ resource "aws_ecs_service" "pgsql_node" {
 tags = {
     "AppName"            = "pgsql_node_service"
     "Backup"             = "false"
-    "BusinessUnit"       = "Travel.poc"
+    "BusinessUnit"       = "travel.poc"
     "DataClassification" = "internal"
     "Environment"        = "poc"
     "InfraOwner"         = "sre-cloud-reliability@tavisca.com"
     "Name"               = "pgsql_node_service"
     "ProductOwner"       = "sre-cloud-reliability@tavisca.com"
     "Product"            = "poap"
-    "Squad"              = "Travel.poc"
+    "Squad"              = "travel.poc"
   } 
 
 }
