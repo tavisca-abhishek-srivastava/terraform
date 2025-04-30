@@ -2,7 +2,7 @@ resource "aws_ecs_service" "pgsql_node" {
   name            = "pgsql_node_service"
   cluster         = "iac-ecs-testing-tf-sl"
   task_definition = "arn:aws:ecs:us-east-1:928814396842:task-definition/pgsql-app-task-definition:1"
-  desired_count   = 1
+  desired_count   = 2
   enable_ecs_managed_tags = true
   launch_type = "FARGATE"
   propagate_tags = "TASK_DEFINITION"
