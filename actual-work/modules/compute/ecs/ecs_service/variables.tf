@@ -29,7 +29,8 @@ variable "subnets" {
   default = ["subnet-001023c820ce7e35c","subnet-04c8a1cce0a80f526","subnet-08792a1a703950fe7"]
 }
 
-variable "subnet" {
+variable "security_groups" {
   type = list(string)
+  description = "security group in list"
   default = ["sg-0529be6bea90f8657","sg-02dfd3936c47a6a7c"]
 }
