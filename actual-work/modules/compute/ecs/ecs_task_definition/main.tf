@@ -4,6 +4,7 @@ resource "aws_ecs_task_definition" "name" {
   network_mode = "awsvpc"
   cpu = 1024
   memory = 3072
+  execution_role_arn = "arn:aws:iam::928814396842:role/ecsTaskExecutionRole"
   container_definitions = jsonencode([
     {
       "name": "app-pgsql-task-definition-tf",
