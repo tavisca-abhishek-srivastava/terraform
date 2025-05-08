@@ -2,6 +2,8 @@ resource "aws_ecs_task_definition" "name" {
   family = "pgsql-app-task-definition-tf"
   requires_compatibilities = ["FARGATE"]
   network_mode = "awsvpc"
+  cpu = 1024
+  memory = 2048
   container_definitions = jsonencode([
     {
       "name": "app-pgsql-task-definition-tf",
