@@ -1,3 +1,10 @@
+module "name" {
+  source = "../ecs_task_definition"
+  
+
+}
+
+
 resource "aws_ecs_service" "pgsql_node" {
     name            =   var.ecs_service_name_pgsql  #"pgsql_node_service"
     cluster         =   var.ecs_cluster_name   #"iac-ecs-testing-tf-sl"

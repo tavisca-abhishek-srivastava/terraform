@@ -20,5 +20,26 @@ variable "cpu" {
 
 }
 
-  memory = 3072
-  execution_role_arn = "arn:aws:iam::928814396842:role/ecsTaskExecutionRole"
+variable "memory" {
+  default = 3072
+  type = number
+
+}
+
+variable "execution_role_arn" {
+  default = "arn:aws:iam::928814396842:role/ecsTaskExecutionRole"
+  type = string
+
+}
+
+variable "cpu" {
+  default = 1024
+  type = number
+
+}
+variable "operating_system_family" {
+  default = "LINUX"
+}
+variable "cpu_architecture" {
+  default = "X86_64"
+}

@@ -90,11 +90,11 @@
 		snapshot_identifier = null
 		vpc_security_group_ids = var.vpc_security_group_ids
 
-		timeouts {
+		timeouts 	{
 			create = var.terrform_operation_timeout
 			delete = var.terrform_operation_timeout
 			update = var.terrform_operation_timeout
-  }
+  					}
   lifecycle {
 	precondition {
 		## length of variable 'az_for_read_replica' must be equal to 'number_of_read_replica'

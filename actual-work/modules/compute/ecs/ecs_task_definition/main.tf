@@ -1,13 +1,13 @@
-resource "aws_ecs_task_definition" "name" {
-  family = "pgsql-app-task-definition-tf"
-  requires_compatibilities = ["FARGATE"]
-  network_mode = "awsvpc"
-  cpu = 1024
-  memory = 3072
-  execution_role_arn = "arn:aws:iam::928814396842:role/ecsTaskExecutionRole"
+resource "aws_ecs_task_definition" "aws_ecs_task_definition_tf" {
+  family = var.family
+  requires_compatibilities = var.requires_compatibilities
+  network_mode = var.network_mode
+  cpu = var.cpu
+  memory = var.memory
+  execution_role_arn = var.execution_role_arn
   container_definitions = jsonencode([
     {
-      "name": "app-pgsql-task-definition-tf",
+      name = "app-pgsql-task-definition-tf",
       image     = "928814396842.dkr.ecr.us-east-1.amazonaws.com/atlas/pg:latest",
       cpu       = 1024,
       memory    = 3072,
@@ -24,8 +24,8 @@ resource "aws_ecs_task_definition" "name" {
     },
      ])
      runtime_platform {
-        operating_system_family = "LINUX"
-        cpu_architecture        = "X86_64"
+        operating_system_family = var.operating_system_family #"LINUX"
+        cpu_architecture        = var.cpu_architecture  #"X86_64"
      }
      tags = {
         "AppName"            = "app-pgsql-task-definition-tf"
