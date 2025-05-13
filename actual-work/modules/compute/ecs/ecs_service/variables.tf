@@ -8,10 +8,10 @@ variable "ecs_service_name_pgsql" {
   default = "pgsql_node_service"
 }
 
-variable "pgsql_task_definition" {
-  type    = string
-  default = "arn:aws:ecs:us-east-1:928814396842:task-definition/pgsql-app-task-definition:1"
-}
+# variable "pgsql_task_definition" {
+#   type    = string
+#   default = "arn:aws:ecs:us-east-1:928814396842:task-definition/pgsql-app-task-definition:1"
+# }
 
 variable "desired_count_tasks" {
   type        = number
@@ -44,7 +44,7 @@ variable "security_groups" {
 ##                                                                    #
 ######################################################################
 variable "family" {
-  default = "pgsql-app-task-definition-tf"
+  default = "pgsql-app-task-definition-tf_family"
   type    = string
 }
 

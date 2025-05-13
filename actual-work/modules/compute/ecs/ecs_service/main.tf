@@ -1,4 +1,4 @@
-module "name" {
+module "ecs_task_definition" {
   source                   = "../ecs_task_definition"
   memory                   = var.memory
   cpu                      = var.cpu
@@ -16,7 +16,7 @@ module "name" {
 resource "aws_ecs_service" "pgsql_node" {
   name                    = var.ecs_service_name_pgsql #"pgsql_node_service"
   cluster                 = var.ecs_cluster_name       #"iac-ecs-testing-tf-sl"
-  task_definition         = var.pgsql_task_definition
+  task_definition         = module.ecs_task_definition.task_definition_arn
   desired_count           = var.desired_count_tasks
   enable_ecs_managed_tags = true
   launch_type             = var.launch_type
