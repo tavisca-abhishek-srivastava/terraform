@@ -44,7 +44,7 @@ variable "security_groups" {
 ##                                                                    #
 ######################################################################
 variable "family" {
-  default = "pgsql-app-task-definition-tf_family"
+  default = "pgsql-app-task-definition-tf"
   type    = string
 }
 
