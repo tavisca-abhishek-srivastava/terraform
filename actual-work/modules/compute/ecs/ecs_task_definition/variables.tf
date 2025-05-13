@@ -43,7 +43,7 @@ variable "cpu_architecture" {
 variable "container_definitions" {
   description = "A valid JSON container definition for task"
   type = any
-  default = {
+  default = [{
       "name" = "app-pgsql-task-definition-tf",
       "image"     = "928814396842.dkr.ecr.us-east-1.amazonaws.com/atlas/pg:latest",
       "cpu"      = 1024,
@@ -58,5 +58,5 @@ variable "container_definitions" {
 
 
       
-    }
-}
+    },
+]
