@@ -60,3 +60,4 @@ variable "container_definitions" {
       
     },
 ]
+}
