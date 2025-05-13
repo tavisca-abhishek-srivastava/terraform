@@ -32,11 +32,7 @@ variable "execution_role_arn" {
 
 }
 
-variable "cpu" {
-  default = 1024
-  type = number
 
-}
 variable "operating_system_family" {
   default = "LINUX"
 }
@@ -45,24 +41,22 @@ variable "cpu_architecture" {
 }
 
 variable "container_definitions" {
-  description = "A valid JSON container definition"
+  description = "A valid JSON container definition for task"
   type = any
-  default = jsonencode([
-    {
-      name = "app-pgsql-task-definition-tf",
-      image     = "928814396842.dkr.ecr.us-east-1.amazonaws.com/atlas/pg:latest",
-      cpu       = 1024,
-      memory    = 3072,
-      essential = true,
-      portMappings = [
+  default = {
+      "name" = "app-pgsql-task-definition-tf",
+      "image"     = "928814396842.dkr.ecr.us-east-1.amazonaws.com/atlas/pg:latest",
+      "cpu"      = 1024,
+      "memory"    = 3072,
+      "essential" = true,
+      "portMappings" = [
         {
-          containerPort = 8000
-          hostPort      = 8000
+          "containerPort" = 8000
+          "hostPort"      = 8000
         }
       ],
 
 
       
-    },
-     ])
+    }
 }
