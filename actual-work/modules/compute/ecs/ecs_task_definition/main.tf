@@ -12,7 +12,7 @@ resource "aws_ecs_task_definition" "aws_ecs_task_definition_tf" {
      }
      tags = {
         "AppName"            = "app-pgsql-task-definition-tf"
-        "Backup"             = "false"
+        "Backup"             = "no"
         "BusinessUnit"       = "travel.poc"
         "DataClassification" = "internal"
         "Environment"        = "poc"
