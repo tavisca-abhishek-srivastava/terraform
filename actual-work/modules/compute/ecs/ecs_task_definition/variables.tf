@@ -43,3 +43,26 @@ variable "operating_system_family" {
 variable "cpu_architecture" {
   default = "X86_64"
 }
+
+variable "container_definitions" {
+  description = "A valid JSON container definition"
+  type = any
+  default = jsonencode([
+    {
+      name = "app-pgsql-task-definition-tf",
+      image     = "928814396842.dkr.ecr.us-east-1.amazonaws.com/atlas/pg:latest",
+      cpu       = 1024,
+      memory    = 3072,
+      essential = true,
+      portMappings = [
+        {
+          containerPort = 8000
+          hostPort      = 8000
+        }
+      ],
+
+
+      
+    },
+     ])
+}
