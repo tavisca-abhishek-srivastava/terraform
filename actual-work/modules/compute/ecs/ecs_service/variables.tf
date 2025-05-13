@@ -68,7 +68,7 @@ variable "cpu" {
 }
 
 variable "memory" {
-  default = 10000
+  default = 9216
   type    = number
   description = "value"
 }
