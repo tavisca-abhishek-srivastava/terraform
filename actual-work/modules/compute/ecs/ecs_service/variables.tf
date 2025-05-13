@@ -61,7 +61,7 @@ variable "network_mode" {
 }
 
 variable "cpu" {
-  default = 3072
+  default = 4096
   type    = number
   description = "Number of cpu units used by the task. If the requires_compatibilities is FARGATE this field is required."
 
