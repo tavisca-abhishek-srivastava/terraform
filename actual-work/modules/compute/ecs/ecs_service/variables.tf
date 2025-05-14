@@ -8,11 +8,6 @@ variable "ecs_service_name_pgsql" {
   default = "pgsql_node_service"
 }
 
-# variable "pgsql_task_definition" {
-#   type    = string
-#   default = "arn:aws:ecs:us-east-1:928814396842:task-definition/pgsql-app-task-definition:1"
-# }
-
 variable "desired_count_tasks" {
   type        = number
   description = "desired_count for tasks"
@@ -37,10 +32,7 @@ variable "security_groups" {
 
 #######################################################################
 ##                                                                    #
-##                                                                    #
-##                                                                    #
 ######## variable for task definition   ###############################
-##                                                                    #
 ##                                                                    #
 ######################################################################
 variable "family" {
@@ -52,19 +44,16 @@ variable "family" {
 variable "requires_compatibilities" {
   default = ["FARGATE"]
   type    = list(string)
-
 }
 variable "network_mode" {
   default = "awsvpc"
   type    = string
-
 }
 
 variable "cpu" {
   default = 4096
   type    = number
   description = "Number of cpu units used by the task. If the requires_compatibilities is FARGATE this field is required."
-
 }
 
 variable "memory" {
@@ -76,9 +65,7 @@ variable "memory" {
 variable "execution_role_arn" {
   default = "arn:aws:iam::928814396842:role/ecsTaskExecutionRole"
   type    = string
-
 }
-
 
 variable "operating_system_family" {
   default = "LINUX"

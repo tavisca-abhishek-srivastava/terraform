@@ -7,8 +7,8 @@ resource "aws_ecs_task_definition" "aws_ecs_task_definition_tf" {
   execution_role_arn = var.execution_role_arn
   container_definitions = jsonencode(var.container_definitions)
      runtime_platform {
-        operating_system_family = var.operating_system_family #"LINUX"
-        cpu_architecture        = var.cpu_architecture  #"X86_64"
+        operating_system_family = var.operating_system_family
+        cpu_architecture        = var.cpu_architecture
      }
      tags = {
         "AppName"            = "app-pgsql-task-definition-tf"
