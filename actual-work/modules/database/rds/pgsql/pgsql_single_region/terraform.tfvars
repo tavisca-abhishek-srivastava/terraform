@@ -1,9 +1,9 @@
-rds_instance_name = "jpmc-master-mysql-sr-maz-example"   # single region but multi az
-db_name = "mysql_db"
+rds_instance_name = "jpmc-master-pgsql-sr-maz-example"   # single region but multi az
+db_name = "pgsql_db"
 allocated_storage = 100
 storage_type = "io1"
 db_instance_class = "db.t3.micro"
-rds_engine = "mysql"
+rds_engine = "pgsql"
 rds_engine_version = "5.7"
 enable_storage_autoscaling = true
 max_allocated_storage = 601
