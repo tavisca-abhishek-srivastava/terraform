@@ -54,5 +54,10 @@ container_definitions = [
           value = "password"
         }
       ],
+      volume  =  {
+                    name      = "mongo-db"
+                    host_path = "/data/db"
+                },
     },
+    
 ]
