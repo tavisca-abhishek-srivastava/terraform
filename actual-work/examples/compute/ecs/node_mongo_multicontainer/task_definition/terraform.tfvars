@@ -36,10 +36,7 @@ container_definitions = [
           "containerPort" = 3000
           "hostPort"      = 3000
         }
-      ],
-
-
-      
+      ],      
     },
     {
       "name" = "app-mongo-container",
@@ -57,6 +54,5 @@ container_definitions = [
           value = "password"
         }
       ],
-      
     },
 ]
