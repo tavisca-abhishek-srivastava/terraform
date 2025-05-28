@@ -10,7 +10,7 @@ container_definitions = [
     {
       "name" = "app-node-container",
       "image"     = "928814396842.dkr.ecr.us-east-1.amazonaws.com/atlas/node-mongo-app:latest",
-      "cpu"      = 1024,
+      "cpu"      = 4096,
       "memory"    = 3072,
       "essential" = true,
       environment = [
