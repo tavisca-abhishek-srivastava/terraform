@@ -92,7 +92,7 @@ resource "aws_db_instance" "pgsql_rds_instance" {
 lifecycle {
   precondition {
     #### length of variable 'az_for_read_replica' must be equal to 'number_of_read_replica'
-    condition = length(var.az_for_read_replica) == length(var.number_of_read_replica) ? true : false
+    condition = length(var.az_for_read_replica) == var.number_of_read_replica ? true : false
     error_message = "number of az in list 'az_for_read_replica' must be equal to 'number_of_read_replica' "
   }
 	## if storage_type is gp3 and total storage is greater than 400 GB then iops must be greater than 12000
@@ -108,7 +108,7 @@ lifecycle {
 
 	precondition {
 	  # # if read replica is present then backup retention must be grater then 1
-	  condition = var.number_of_read_replica
+	  condition = 
 	  error_message = "hello"
 	}
 }
