@@ -8,3 +8,14 @@ tags = {
     "Name"               = "nrt-compliance-pgsql-cluster"
     "Product"            = "poap"
   }
+  instance_type = {
+    "writer" = {
+      name = writer,
+      az = "us-east-1a"
+    },
+    "reader" = {
+        name = reader-1,
+        az = "us-east-1b"
+
+    }
+  }
