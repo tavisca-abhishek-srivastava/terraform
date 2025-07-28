@@ -17,6 +17,11 @@ tags = {
         name = "reader-1",
         az = "us-east-1b"
 
+    },
+        reader1 = {
+        name = "reader-2",
+        az = "us-east-1b"
+
     }
   }
 
