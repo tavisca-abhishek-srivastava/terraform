@@ -20,8 +20,8 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   availability_zone     =   each.value.az
   cluster_identifier    =   aws_rds_cluster.postgresql.id
   instance_class        =   "db.r4.large"
-  engine                =   aws_rds_cluster.default.engine
-  engine_version        =   aws_rds_cluster.default.engine_version
+  engine                =   aws_rds_cluster.postgresql.engine
+  engine_version        =   aws_rds_cluster.postgresql.engine_version
   db_subnet_group_name = "bnr-data-subnet-grp"
   tags = var.tags
 }
