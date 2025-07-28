@@ -1,6 +1,6 @@
 tags = {
     "AppName"            = "nrt-compliance-pgsql-cluster"
-    "Backup"             = "Yes"
+    "Backup"             = "yes"
     "BusinessUnit"       = "travel.app"
     "DataClassification" = "internal"
     "Environment"        = "qa"
