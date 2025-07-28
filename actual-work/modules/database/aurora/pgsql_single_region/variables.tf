@@ -14,7 +14,7 @@ variable "tags" {
 variable "instance_type" {
   type = map(object({
     name = string,
-    region = string
+    az = string
   }))
   
 }
