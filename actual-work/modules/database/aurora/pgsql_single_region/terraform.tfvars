@@ -19,3 +19,14 @@ tags = {
 
     }
   }
+
+aws_region = "us-east-1"
+rds_parameter_group_name = "nrt-compliance-pgsql-cluster-pg"
+parameter_group_db_family = "aurora-postgresql16"
+parameter_group_description = "this is for nrt-compliance-pgsql-cluster"
+parameter_value = {
+  setting1 = {
+    name = "rds.force_ssl"
+    value = true},
+  
+}

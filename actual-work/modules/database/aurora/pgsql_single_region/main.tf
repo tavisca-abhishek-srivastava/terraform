@@ -1,3 +1,14 @@
+module "nrt_rds_parameter_group" {
+    source = "../common_components/rds_aurora/aws_db_parameter_group"
+    rds_parameter_group_name = var.rds_parameter_group_name
+    parameter_group_db_family = var.parameter_group_db_family
+    tags = var.tags
+    parameter_value = var.parameter_value
+    parameter_group_description = var.parameter_group_description
+
+    
+}
+
 resource "aws_rds_cluster" "postgresql" {
   cluster_identifier      = "nrt-compliance-pgsql-cluster"
   engine                  = "aurora-postgresql"
@@ -23,5 +34,6 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   engine                =   aws_rds_cluster.postgresql.engine
   engine_version        =   aws_rds_cluster.postgresql.engine_version
   db_subnet_group_name = "bnr-data-subnet-grp"
+  db_parameter_group_name = module.nrt_rds_parameter_group
   tags = var.tags
 }
