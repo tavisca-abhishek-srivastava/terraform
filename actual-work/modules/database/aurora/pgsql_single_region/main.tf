@@ -18,7 +18,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   for_each              =   var.instance_type
   identifier            =   "aurora-cluster-demo-${each.value.name}"
   availability_zone     =   each.value.az
-  cluster_identifier    =   aws_rds_cluster.default.id
+  cluster_identifier    =   aws_rds_cluster.postgresql.id
   instance_class        =   "db.r4.large"
   engine                =   aws_rds_cluster.default.engine
   engine_version        =   aws_rds_cluster.default.engine_version
