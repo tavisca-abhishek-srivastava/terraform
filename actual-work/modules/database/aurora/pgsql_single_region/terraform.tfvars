@@ -9,12 +9,12 @@ tags = {
     "Product"            = "poap"
   }
   instance_type = {
-    "writer" = {
-      name = writer,
+    writer = {
+      name = "writer",
       az = "us-east-1a"
     },
-    "reader" = {
-        name = reader-1,
+    reader = {
+        name = "reader-1",
         az = "us-east-1b"
 
     }
