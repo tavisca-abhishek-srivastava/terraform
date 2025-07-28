@@ -7,6 +7,8 @@ resource "aws_rds_cluster" "postgresql" {
   master_password         = "Welcome$1234"
   backup_retention_period = 1
   preferred_backup_window = "07:00-09:00"
+  kms_key_id = "arn:aws:kms:us-east-1:346319152574:key/mrk-aa1f71c6ae8a4e12b663c137a77f72ba"
+  storage_encrypted = true
   tags = var.tags
 
 }
