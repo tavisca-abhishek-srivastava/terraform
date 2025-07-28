@@ -8,6 +8,6 @@ variable "tags" {
     InfraOwner          =   string
     Name                =   string
     Product             =   string
-    Squad               =   string
+    #Squad               =   string
   })
 }
