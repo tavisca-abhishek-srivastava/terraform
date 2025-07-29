@@ -14,7 +14,8 @@ variable "tags" {
 variable "instance_type" {
   type = map(object({
     name = string,
-    az = string
+    az = string,
+    promotion_tier = number
   }))
   
 }

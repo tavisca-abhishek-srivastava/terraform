@@ -11,16 +11,19 @@ tags = {
   instance_type = {
     writer = {
       name = "writer",
-      az = "us-east-1a"
+      az = "us-east-1a",
+      promotion_tier = 0
     },
     reader = {
         name = "reader-1",
-        az = "us-east-1b"
+        az = "us-east-1b",
+        promotion_tier = 1
 
     },
         reader1 = {
         name = "reader-2",
-        az = "us-east-1b"
+        az = "us-east-1b",
+        promotion_tier = 2
 
     }
   }

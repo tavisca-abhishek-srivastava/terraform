@@ -22,6 +22,7 @@ resource "aws_rds_cluster" "postgresql" {
   storage_encrypted = true
   db_subnet_group_name = "bnr-data-subnet-grp"
   tags = var.tags
+  
 
 }
 
@@ -36,4 +37,5 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   db_subnet_group_name = "bnr-data-subnet-grp"
   db_parameter_group_name = module.nrt_rds_parameter_group.parameter_group_name
   tags = var.tags
+  
 }
