@@ -36,6 +36,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   engine_version        =   aws_rds_cluster.postgresql.engine_version
   db_subnet_group_name = "bnr-data-subnet-grp"
   db_parameter_group_name = module.nrt_rds_parameter_group.parameter_group_name
+  promotion_tier = each.value.promotion_tier
   tags = var.tags
   
 }
