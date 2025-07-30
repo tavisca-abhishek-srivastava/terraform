@@ -1,3 +1,11 @@
+variable "cluster_identifier" {
+  type = string
+}
+variable "key_policy_map" {
+    description = "A valid policy JSON document"
+    type = any
+  
+}
 variable "tags" {
   type = object({
     AppName             =   string
