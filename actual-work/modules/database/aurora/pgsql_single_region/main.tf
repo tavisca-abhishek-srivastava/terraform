@@ -18,7 +18,7 @@ resource "aws_rds_cluster" "postgresql" {
   master_password         = "Welcome$1234"
   backup_retention_period = 1
   preferred_backup_window = "07:00-09:00"
-  kms_key_id = "arn:aws:kms:us-east-1:346319152574:key/mrk-aa1f71c6ae8a4e12b663c137a77f72ba"
+  kms_key_id = module.rds_encryption_at_rest_cmk.mrk_cms_arn
   storage_encrypted = true
   db_subnet_group_name = "bnr-data-subnet-grp"
   tags = var.tags
@@ -38,7 +38,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   db_parameter_group_name = module.nrt_rds_parameter_group.parameter_group_name
   promotion_tier = each.value.promotion_tier
   performance_insights_enabled = true
-  performance_insights_kms_key_id = "arn:aws:kms:us-east-1:346319152574:key/mrk-aa1f71c6ae8a4e12b663c137a77f72ba"
+  performance_insights_kms_key_id = module.rds_encryption_at_rest_cmk.mrk_cms_arn
   performance_insights_retention_period = 7
   tags = var.tags
   
