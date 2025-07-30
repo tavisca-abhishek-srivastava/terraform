@@ -4,7 +4,10 @@ variable "cluster_identifier" {
 variable "key_policy_map" {
     description = "A valid policy JSON document"
     type = any
-  
+}
+variable "kms_delete_after_days" {
+  type = number
+  default = 0
 }
 variable "tags" {
   type = object({

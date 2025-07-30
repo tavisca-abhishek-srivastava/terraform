@@ -1,4 +1,5 @@
 cluster_identifier  = "nrt-compliance-pgsql-cluster"
+kms_delete_after_days = 30
 
 tags = {
     "AppName"            = "nrt-compliance-pgsql-cluster"
