@@ -33,7 +33,7 @@ tags = {
 
 aws_region = "us-east-1"
 rds_parameter_group_name = "nrt-compliance-mysql-cluster-mysql"
-parameter_group_db_family = "aurora-mysql8"
+parameter_group_db_family = "aurora-mysql8.0"
 parameter_group_description = "this is for nrt-compliance-mysql-cluster"
 parameter_value = {
   setting1 = {
