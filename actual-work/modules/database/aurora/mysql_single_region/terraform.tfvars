@@ -59,8 +59,8 @@ key_policy_map = {
         "Effect" : "Allow",
         "Principal" : {
           "AWS" : [
-            "arn:aws:iam::928814396842:role/adfs-devops",
-            "arn:aws:iam::928814396842:role/adfs-governance"
+            "arn:aws:iam::346319152574:role/adfs-devops",
+            "arn:aws:iam::346319152574:role/adfs-governance"
           ]
         },
         "Action" : [
@@ -86,8 +86,7 @@ key_policy_map = {
         "Effect" : "Allow",
         "Principal" : {
           "AWS" : [
-            "arn:aws:iam::928814396842:role/adfs-devops",
-            "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka"
+            "arn:aws:iam::346319152574:role/adfs-devops"
             
           ]
         },
@@ -105,8 +104,7 @@ key_policy_map = {
         "Effect" : "Allow",
         "Principal" : {
           "AWS" : [
-            "arn:aws:iam::928814396842:role/adfs-devops",
-            "arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka"
+            "arn:aws:iam::346319152574:role/adfs-devops"
            
           ]
         },
@@ -121,6 +119,21 @@ key_policy_map = {
             "kms:GrantIsForAWSResource" : "true"
           }
         }
-      }
+      },
+      {
+        "Sid" : "Allow use of the key",
+        "Effect" : "Allow",
+        "Principal" :  {
+        "Service": "rds.amazonaws.com"
+        },
+        "Action" : [
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:ReEncrypt*",
+          "kms:GenerateDataKey*",
+          "kms:DescribeKey"
+        ],
+        "Resource" : "*"
+      },
     ]
   }
