@@ -39,6 +39,10 @@ parameter_value = {
   setting1 = {
     name = "autocommit"
     value = true},
+    setting2 = {
+      name= "optimizer_switch"
+      value = "block_nested_loop=on"
+    }
   
 }
 key_policy_map = {
