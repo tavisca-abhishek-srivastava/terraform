@@ -28,7 +28,7 @@ resource "aws_rds_cluster" "mysql" {
 
 resource "aws_rds_cluster_instance" "cluster_instances" {
   for_each              =   var.instance_type
-  identifier            =   "nrt-aurora-cluster-poc-${each.value.name}"
+  identifier            =   "nrt-aurora-mysql-cluster-poc-${each.value.name}"
   availability_zone     =   each.value.az
   cluster_identifier    =   aws_rds_cluster.mysql.id
   instance_class        =   "db.t3.medium"
