@@ -31,7 +31,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   identifier            =   "nrt-aurora-mysql-cluster-poc-${each.value.name}"
   availability_zone     =   each.value.az
   cluster_identifier    =   aws_rds_cluster.mysql.id
-  instance_class        =   "db.t3.medium"
+  instance_class        =   "db.r8g.large"
   engine                =   aws_rds_cluster.mysql.engine
   engine_version        =   aws_rds_cluster.mysql.engine_version
   db_subnet_group_name = "bnr-data-subnet-grp"
