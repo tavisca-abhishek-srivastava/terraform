@@ -25,7 +25,7 @@ tags = {
     },
         reader1 = {
         name = "reader-2",
-        az = "us-east-1b",
+        az = "us-east-1c",
         promotion_tier = 2
 
     }
