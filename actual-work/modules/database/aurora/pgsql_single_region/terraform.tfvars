@@ -30,7 +30,7 @@ tags = {
 
     }
   }
-allocated_storage = 31
+allocated_storage = 50
 storage_type = "gp3"
 storage_iops = 1000
 backup_retention_period = 1
