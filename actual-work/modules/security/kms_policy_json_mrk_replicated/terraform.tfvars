@@ -8,55 +8,35 @@ need_kms_replica = true
 is_kms_replica = true
 replica_region = "us-west-2"
 key_policy_map = {
-  "statement1" = { 
-    sid = "Enable IAM User Permissions",
-    actions = ["kms:*"],
-    resources = ["*"],
-    effect = "Allow",
-    principals =     {
-          identifiers  = ["arn:aws:iam::928814396842:root"]
-                  },
-    },
-  "statement2" = {
-    sid = "Allow access for Key Administrators",
-    actions = [
-           "kms:Create*",
-           "kms:Describe*",
-           "kms:Enable*",
-           "kms:List*",
-           "kms:Put*",
-           "kms:Update*",
-           "kms:Revoke*",
-           "kms:Disable*",
-           "kms:Get*",
-           "kms:Delete*",
-           "kms:TagResource",
-           "kms:UntagResource",
-           "kms:ScheduleKeyDeletion",
-           "kms:CancelKeyDeletion"
-          ],
-    resources = ["*"],
-    effect = "Allow",
-    principals =     {
-        identifiers  = ["arn:aws:iam::928814396842:role/adfs-devops","arn:aws:iam::928814396842:role/adfs-governance"]
-                  },
-    }, 
-  "statement3" = {
-    sid = "Allow use of the key",
-    actions = [
-           "kms:Encrypt",
-           "kms:Decrypt",
-           "kms:ReEncrypt*",
-           "kms:GenerateDataKey*",
-           "kms:DescribeKey"
-         ],
-    resources = ["*"],
-    effect = "Allow",
-    principals =     {
-          identifiers  = ["arn:aws:iam::928814396842:role/adfs-devops","arn:aws:iam::928814396842:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka"]
-                  },
+    "Id" : "key-consolepolicy-3",
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Sid" : "Enable IAM User Permissions",
+        "Effect" : "Allow",
+        "Principal" : {
+          "AWS" : "arn:aws:iam::346319152574:root"
+        },
+        "Action" : "kms:*",
+        "Resource" : "*"
+      },
+      {
+        "Sid" : "Allow use of the key",
+        "Effect" : "Allow",
+        "Principal" :  {
+        "Service": "rds.amazonaws.com"
+        },
+        "Action" : [
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:ReEncrypt*",
+          "kms:GenerateDataKey*",
+          "kms:DescribeKey"
+        ],
+        "Resource" : "*"
+      },
+    ]
   }
-}
 
 
 tags = {
