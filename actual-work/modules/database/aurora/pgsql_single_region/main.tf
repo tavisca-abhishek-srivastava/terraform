@@ -17,8 +17,9 @@ resource "aws_rds_cluster" "postgresql" {
   master_username         = "dbadmin"
   master_password         = "Welcome$1234"
   backup_retention_period = 0
-  preferred_backup_window = "07:00-09:00"
+  #preferred_backup_window = "07:00-09:00"
   skip_final_snapshot = true
+  apply_immediately = true
   kms_key_id = module.rds_encryption_at_rest_cmk.mrk_cms_arn
   storage_encrypted = true
   db_subnet_group_name = "bnr-data-subnet-grp"
