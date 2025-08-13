@@ -26,9 +26,9 @@ resource "aws_rds_cluster" "postgresql" {
   tags = var.tags
   
   		timeouts{
-			create = var.terrform_operation_timeout
-			delete = var.terrform_operation_timeout
-			update = var.terrform_operation_timeout
+			create = local.terrform_operation_timeout
+			delete = local.terrform_operation_timeout
+			update = local.terrform_operation_timeout
   					}
 
 }
