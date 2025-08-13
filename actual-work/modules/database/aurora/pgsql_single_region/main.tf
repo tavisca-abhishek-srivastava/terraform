@@ -13,10 +13,10 @@ resource "aws_rds_cluster" "postgresql" {
   cluster_identifier      = var.cluster_identifier
   engine                  = "aurora-postgresql"
   availability_zones      = ["us-east-1a", "us-east-1b", "us-east-1c"]
-  database_name           = "mydb"
+  database_name           = "nrt-compliance"
   master_username         = "dbadmin"
   master_password         = "Welcome$1234"
-  backup_retention_period = 0
+  backup_retention_period = 1
   #preferred_backup_window = "07:00-09:00"
   skip_final_snapshot = true
   apply_immediately = true
@@ -25,6 +25,11 @@ resource "aws_rds_cluster" "postgresql" {
   db_subnet_group_name = "bnr-data-subnet-grp"
   tags = var.tags
   
+  		timeouts{
+			create = var.terrform_operation_timeout
+			delete = var.terrform_operation_timeout
+			update = var.terrform_operation_timeout
+  					}
 
 }
 
@@ -43,5 +48,11 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   performance_insights_kms_key_id = module.rds_encryption_at_rest_cmk.mrk_cms_arn
   performance_insights_retention_period = 7
   tags = var.tags
+
+  		timeouts{
+			create = local.terrform_operation_timeout
+			delete = local.terrform_operation_timeout
+			update = local.terrform_operation_timeout
+  					}
   
 }
