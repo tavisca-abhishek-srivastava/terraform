@@ -40,7 +40,7 @@ resource "aws_kms_replica_key" "replica" {
   provider = aws.replica
 }
 resource "aws_kms_key_policy" "replica_key_policy" {
-    key_id =  aws_kms_replica_key.replica.key_id
+    key_id =  aws_kms_replica_key.replica[1].key_id
     policy =  jsonencode(var.key_policy_map)
     provider = aws.replica
 }
