@@ -34,7 +34,7 @@ resource "aws_kms_replica_key" "replica" {
   for_each = (var.need_kms_replica == true && var.is_kms_replica == true ) ? toset(["1"]):toset([])
   description             =   var.key_description
   deletion_window_in_days =   var.deletion_window_in_days
-  primary_key_arn         =   aws_kms_key.encryption_key.arn
+  primary_key_arn         =   aws_kms_key.encryption_key[0].arn
   policy                  =   jsonencode(var.key_policy_map)
   tags = var.tags
   provider = aws.replica
