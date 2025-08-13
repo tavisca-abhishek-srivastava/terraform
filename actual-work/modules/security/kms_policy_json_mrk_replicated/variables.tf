@@ -47,11 +47,6 @@ variable "replica_region" {
   type = string
   default = null
 }
-
-variable "replica_key_policy_statements" {
-  description = "A valid policy JSON document"
-  type = any
-}
 variable "tags" {
   type = object({
     DataClassification = string
