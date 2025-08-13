@@ -22,9 +22,7 @@ resource "aws_rds_cluster" "postgresql" {
   apply_immediately = true
   kms_key_id = module.rds_encryption_at_rest_cmk.mrk_cms_arn
   storage_encrypted = true
-  allocated_storage = var.allocated_storage
-  storage_type = var.storage_type
-  iops = var.storage_iops
+
   db_subnet_group_name = "bnr-data-subnet-grp"
   tags = var.tags
   
@@ -53,17 +51,6 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   
   tags = var.tags
   lifecycle {
-    	## if storage_type is gp3 and total storage is greater than 400 GB then iops must be greater than 12000
-	precondition {
-	  condition = ((var.storage_type == "gp3" && var.allocated_storage > 400) && var.storage_iops >=12000) ? true : ((var.storage_type == "gp3" && var.allocated_storage > 30) ? true : false)
-	  error_message = "for disk type GP3 and allocated_storage >400, iops must be greater than 12000 "
-	}
-	precondition {
-		# # if storage_type is io1 or io2 then iops must be greater than 1000
-		condition = ((var.storage_type == "io1" || var.storage_type == "io2" ) && var.storage_iops >=1000) ? true : ( var.storage_type == "gp3" ? true : false)
-		error_message = "for disk type io1/iops must be greater than 1000"
-	}
-
 	precondition {
 	  # # if read replica is present then backup retention must be grater than 1
 	  condition = ((length(var.instance_role) > 1) && (var.backup_retention_period > 0) ) ? true : (length(var.instance_role) == 1 ? true : false)
