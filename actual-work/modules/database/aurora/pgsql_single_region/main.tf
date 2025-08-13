@@ -22,6 +22,9 @@ resource "aws_rds_cluster" "postgresql" {
   apply_immediately = true
   kms_key_id = module.rds_encryption_at_rest_cmk.mrk_cms_arn
   storage_encrypted = true
+  allocated_storage = var.allocated_storage
+  storage_type = var.storage_type
+  iops = var.storage_iops
   db_subnet_group_name = "bnr-data-subnet-grp"
   tags = var.tags
   
@@ -47,6 +50,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   performance_insights_enabled = true
   performance_insights_kms_key_id = module.rds_encryption_at_rest_cmk.mrk_cms_arn
   performance_insights_retention_period = 7
+  
   tags = var.tags
   lifecycle {
     	## if storage_type is gp3 and total storage is greater than 400 GB then iops must be greater than 12000
@@ -62,7 +66,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
 
 	precondition {
 	  # # if read replica is present then backup retention must be grater than 1
-	  condition = ((length(var.instance_role) > 1) && (var.backup_retention_period > 0) ) ? true : (length(var.instance_role) == 1?true : false)
+	  condition = ((length(var.instance_role) > 1) && (var.backup_retention_period > 0) ) ? true : (length(var.instance_role) == 1 ? true : false)
 	  error_message = "if read replica is present then backup retention must be grater than 0"
 	}
   }
