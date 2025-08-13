@@ -46,7 +46,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   db_parameter_group_name = module.nrt_rds_parameter_group.parameter_group_name
   promotion_tier = each.value.promotion_tier
   performance_insights_enabled = true
-  performance_insights_kms_key_id = module.rds_encryption_at_rest_cmk.mrk_cms_arn
+  performance_insights_kms_key_id = module.rds_encryption_at_rest_cmk.mrk_cms_arn[1].arn
   performance_insights_retention_period = 7
   
   tags = var.tags
