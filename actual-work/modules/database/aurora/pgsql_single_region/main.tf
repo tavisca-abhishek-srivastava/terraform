@@ -16,7 +16,7 @@ resource "aws_rds_cluster" "postgresql" {
   database_name           = "nrt_compliance"
   master_username         = "dbadmin"
   master_password         = "Welcome$1234"
-  backup_retention_period = 1
+  backup_retention_period = var.backup_retention_period
   #preferred_backup_window = "07:00-09:00"
   skip_final_snapshot = true
   apply_immediately = true
@@ -34,7 +34,7 @@ resource "aws_rds_cluster" "postgresql" {
 }
 
 resource "aws_rds_cluster_instance" "cluster_instances" {
-  for_each              =   var.instance_type
+  for_each              =   var.instance_role
   identifier            =   "nrt-aurora-cluster-poc-${each.value.name}"
   availability_zone     =   each.value.az
   cluster_identifier    =   aws_rds_cluster.postgresql.id
@@ -48,6 +48,24 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   performance_insights_kms_key_id = module.rds_encryption_at_rest_cmk.mrk_cms_arn
   performance_insights_retention_period = 7
   tags = var.tags
+  lifecycle {
+    	## if storage_type is gp3 and total storage is greater than 400 GB then iops must be greater than 12000
+	precondition {
+	  condition = ((var.storage_type == "gp3" && var.allocated_storage > 400) && var.storage_iops >=12000) ? true : false
+	  error_message = "for disk type GP3 and allocated_storage >400, iops must be greater than 12000 "
+	}
+	precondition {
+		# # if storage_type is io1 or io2 then iops must be greater than 1000
+		condition = ((var.storage_type == "io1" || var.storage_type == "io2" ) && var.storage_iops >=1000) ? true : false
+		error_message = "for disk type io1/iops must be greater than 1000"
+	}
+
+	precondition {
+	  # # if read replica is present then backup retention must be grater then 1
+	  condition = 
+	  error_message = "hello"
+	}
+  }
 
   		timeouts{
 			create = local.terrform_operation_timeout

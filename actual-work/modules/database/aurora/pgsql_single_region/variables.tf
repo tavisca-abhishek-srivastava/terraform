@@ -21,7 +21,7 @@ variable "tags" {
     #Squad               =   string
   })
 }
-variable "instance_type" {
+variable "instance_role" {
   type = map(object({
     name = string,
     az = string,
@@ -29,7 +29,21 @@ variable "instance_type" {
   }))
   
 }
+variable "storage_type" {
+  type = string
+}
 
+variable "allocated_storage" {
+  type = number
+
+}
+variable "storage_iops" {
+  type = number
+}
+
+variable "backup_retention_period" {
+  type = number
+}
 
 # this is for provider
 variable "aws_region" {

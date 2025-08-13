@@ -11,7 +11,7 @@ tags = {
     "Name"               = "nrt-compliance-pgsql-cluster"
     "Product"            = "poap"
   }
-  instance_type = {
+  instance_role = {
     writer = {
       name = "writer",
       az = "us-east-1a",
@@ -30,7 +30,10 @@ tags = {
 
     }
   }
-
+allocated_storage = 30
+storage_type = "gp3"
+storage_iops = 1000
+backup_retention_period = 1
 aws_region = "us-east-1"
 rds_parameter_group_name = "nrt-compliance-pgsql-cluster-pg"
 parameter_group_db_family = "aurora-postgresql16"
