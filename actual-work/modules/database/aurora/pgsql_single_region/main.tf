@@ -13,7 +13,7 @@ resource "aws_rds_cluster" "postgresql" {
   cluster_identifier      = var.cluster_identifier
   engine                  = "aurora-postgresql"
   availability_zones      = ["us-east-1a", "us-east-1b", "us-east-1c"]
-  database_name           = "nrt-compliance"
+  database_name           = "nrt_compliance"
   master_username         = "dbadmin"
   master_password         = "Welcome$1234"
   backup_retention_period = 1
