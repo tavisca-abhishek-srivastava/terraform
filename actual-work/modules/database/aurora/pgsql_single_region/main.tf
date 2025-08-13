@@ -62,7 +62,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
 
 	precondition {
 	  # # if read replica is present then backup retention must be grater than 1
-	  condition = ((length(var.instance_role) > 1) && (var.backup_retention_period > 0) ) ? true : false
+	  condition = ((length(var.instance_role) > 1) && (var.backup_retention_period > 0) ) ? true : (length(var.instance_role) == 1?true : false)
 	  error_message = "if read replica is present then backup retention must be grater than 0"
 	}
   }
