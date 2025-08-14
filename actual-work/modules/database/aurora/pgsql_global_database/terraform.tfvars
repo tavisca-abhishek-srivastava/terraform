@@ -75,11 +75,16 @@ key_policy_map = {
 
   #key is mrk and also replicaed in us-west-2 region
 
+key_primary_region = "us-east-1"
+
+
+
 is_this_primary = true
 deletion_window_in_days = 8
 key_description = "key_for_kms_nrt"
 need_kms_replica = true
 is_kms_replica = true
+
 replica_region = "us-west-2"
 kms_alias = "dummy"
 
