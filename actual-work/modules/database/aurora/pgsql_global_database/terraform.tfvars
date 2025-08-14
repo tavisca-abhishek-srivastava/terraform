@@ -1,4 +1,4 @@
-cluster_identifier  = "nrt-compliance-pgsql-cluster_gd"
+cluster_identifier  = "nrt-compliance-pgsql-cluster-gd"
 
 tags = {
     "AppName"            = "nrt-compliance-pgsql-cluster_gd"
