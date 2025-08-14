@@ -50,7 +50,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   identifier            =   "nrt-aurora-gd-cluster-poc-${each.value.name}"
   availability_zone     =   each.value.az
   cluster_identifier    =   aws_rds_cluster.postgresql.id
-  instance_class        =   "db.t3.medium"
+  instance_class        =   "db.r6g.large"
   engine                =   aws_rds_cluster.postgresql.engine
   engine_version        =   aws_rds_cluster.postgresql.engine_version
   db_subnet_group_name = "bnr-data-subnet-grp"
