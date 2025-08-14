@@ -9,6 +9,12 @@ module "nrt_rds_parameter_group" {
     
 }
 
+resource "aws_rds_global_cluster" "nrt_gdc" {
+  provider = "aws.primary"
+
+  global_cluster_identifier = "nrt-compliance-pgsql-global-cluster"
+}
+
 resource "aws_rds_cluster" "postgresql" {
   cluster_identifier      = var.cluster_identifier
   engine                  = "aurora-postgresql"
@@ -22,6 +28,7 @@ resource "aws_rds_cluster" "postgresql" {
   apply_immediately = true
   kms_key_id = module.rds_encryption_at_rest_cmk.mrk_cms_arn[1].arn
   storage_encrypted = true
+  global_cluster_identifier = "${aws_rds_global_cluster.nrt_gdc.id}"
 
   db_subnet_group_name = "bnr-data-subnet-grp"
   tags = var.tags
