@@ -9,3 +9,6 @@ module "rds_encryption_at_rest_cmk" {
   	key_policy_map = var.key_policy_map
 	tags = var.tags 
 }
+output "kms" {
+  value = module.rds_encryption_at_rest_cmk
+}
