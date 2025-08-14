@@ -17,6 +17,6 @@ terraform {
   alias  = "replica"
 }
 
-provider "aws" {
-      alias = "instancemaker"
-}
+# provider "aws" {
+#       alias = "instancemaker"
+# }
