@@ -11,6 +11,7 @@ module "rds_encryption_at_rest_cmk" {
 	is_this_primary = var.is_this_primary
 	is_kms_replica = var.is_kms_replica
 	need_kms_replica = var.need_kms_replica
+	replica_region = var.replica_region
 
 	tags = var.tags 
 }
