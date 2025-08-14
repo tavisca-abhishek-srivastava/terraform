@@ -36,7 +36,7 @@ resource "aws_rds_cluster" "postgresql" {
 
 resource "aws_rds_cluster_instance" "cluster_instances" {
   for_each              =   var.instance_role
-  identifier            =   "nrt-aurora-cluster-poc-${each.value.name}"
+  identifier            =   "nrt-aurora-gd-cluster-poc-${each.value.name}"
   availability_zone     =   each.value.az
   cluster_identifier    =   aws_rds_cluster.postgresql.id
   instance_class        =   "db.t3.medium"
