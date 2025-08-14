@@ -1,13 +1,13 @@
-cluster_identifier  = "nrt-compliance-pgsql-cluster"
+cluster_identifier  = "nrt-compliance-pgsql-cluster_gd"
 
 tags = {
-    "AppName"            = "nrt-compliance-pgsql-cluster"
+    "AppName"            = "nrt-compliance-pgsql-cluster_gd"
     "Backup"             = "yes"
     "BusinessUnit"       = "travel.app"
     "DataClassification" = "internal"
     "Environment"        = "qa"
     "InfraOwner"         = "sre-cloud-reliability@tavisca.com"
-    "Name"               = "nrt-compliance-pgsql-cluster"
+    "Name"               = "nrt-compliance-pgsql-cluster_gd"
     "Product"            = "poap"
   }
   instance_role = {
@@ -31,9 +31,9 @@ tags = {
   }
 backup_retention_period = 1
 aws_region = "us-east-1"
-rds_parameter_group_name = "nrt-compliance-pgsql-cluster-pg"
+rds_parameter_group_name = "nrt-compliance-pgsql-cluster-pg_gd"
 parameter_group_db_family = "aurora-postgresql16"
-parameter_group_description = "this is for nrt-compliance-pgsql-cluster"
+parameter_group_description = "this is for nrt-compliance-pgsql-cluster_gd"
 parameter_value = {
   setting1 = {
     name = "log_min_duration_statement"
@@ -76,17 +76,16 @@ key_policy_map = {
   #key is mrk and also replicaed in us-west-2 region
 
 key_primary_region = "us-east-1"
-
-
-
+kms_alias = "dummy"
 is_this_primary = true
 deletion_window_in_days = 8
-key_description = "key_for_kms_nrt"
-need_kms_replica = true
+key_description = "key_for_kms_nrt__gd"
 is_kms_replica = true
+need_kms_replica = true
+
 
 replica_region = "us-west-2"
-kms_alias = "dummy"
+
 
 
 
