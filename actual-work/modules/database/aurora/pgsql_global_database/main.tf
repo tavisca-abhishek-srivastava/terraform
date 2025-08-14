@@ -11,6 +11,8 @@ module "nrt_rds_parameter_group" {
 
 resource "aws_rds_global_cluster" "nrt_gdc" {
   provider = aws.primary
+  engine_version          =  16.1
+  engine                  = "aurora-postgresql"
 
   global_cluster_identifier = "nrt-compliance-pgsql-global-cluster"
 }
@@ -18,7 +20,6 @@ resource "aws_rds_global_cluster" "nrt_gdc" {
 resource "aws_rds_cluster" "postgresql" {
   cluster_identifier      = var.cluster_identifier
   engine                  = "aurora-postgresql"
-  engine_version          =  16.1
   availability_zones      = ["us-east-1a", "us-east-1b", "us-east-1c"]
   database_name           = "nrt_compliance"
   master_username         = "dbadmin"
