@@ -1,13 +1,7 @@
 variable "cluster_identifier" {
   type = string
 }
-variable "key_policy_map" {
-    description = "A valid policy JSON document"
-    type = any
-}
-variable "kms_delete_after_days" {
-  type = number
-}
+
 variable "tags" {
   type = object({
     AppName             =   string
@@ -87,6 +81,10 @@ variable "deletion_window_in_days" {
 variable "key_description" {
     description = "The description of the key as visible in AWS console"
     type = string
+}
+variable "key_policy_map" {
+    description = "A valid policy JSON document"
+    type = any
 }
 ######### replica key variables
 variable "is_kms_replica" {

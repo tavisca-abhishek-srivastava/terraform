@@ -1,5 +1,4 @@
 cluster_identifier  = "nrt-compliance-pgsql-cluster"
-kms_delete_after_days = 30
 
 tags = {
     "AppName"            = "nrt-compliance-pgsql-cluster"
@@ -30,9 +29,6 @@ tags = {
 
     }
   }
-allocated_storage = 50
-storage_type = "gp3"
-storage_iops = 1000
 backup_retention_period = 1
 aws_region = "us-east-1"
 rds_parameter_group_name = "nrt-compliance-pgsql-cluster-pg"
@@ -44,6 +40,8 @@ parameter_value = {
     value = 500},
   
 }
+
+
 key_policy_map = {
     "Id" : "key-consolepolicy-3",
     "Version" : "2012-10-17",
@@ -74,3 +72,17 @@ key_policy_map = {
       },
     ]
   }
+
+  #key is mrk and also replicaed in us-west-2 region
+
+is_this_primary = true
+deletion_window_in_days = 8
+key_description = "key_for_kms_nrt"
+need_kms_replica = true
+is_kms_replica = true
+replica_region = "us-west-2"
+kms_alias = "dummy"
+
+
+
+
