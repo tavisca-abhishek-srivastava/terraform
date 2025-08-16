@@ -144,7 +144,7 @@ variable "subnet_group_subnet_ids" {
 }
 
 variable "subnet_group_subnet_ids_or" {
-  description = "List of subnet group subnet ids"
+  description = "List of subnet group subnet ids for replica region"
   type = list
   validation {
     condition = length(var.subnet_group_subnet_ids_or) >= 3

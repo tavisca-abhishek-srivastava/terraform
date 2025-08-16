@@ -9,19 +9,19 @@ resource "aws_db_subnet_group" "subnet_group_for_db" {
   name = "${var.subnet_group_name}-${random_string.subnet_group_name_postfix.result}"
   subnet_ids = var.subnet_group_subnet_ids
   tags = var.tags
-  provider = aws.primary
+  provider = aws.instancemaker
   
   lifecycle {
       create_before_destroy = true
   }
 }
 
-resource "aws_db_subnet_group" "subnet_group_for_db_or" {
-  name = "${var.subnet_group_name}-${random_string.subnet_group_name_postfix.result}"
-  subnet_ids = var.subnet_group_subnet_ids_or
-  tags = var.tags
-  provider = aws.replica
-  lifecycle {
-      create_before_destroy = true
-  }
-}
+# resource "aws_db_subnet_group" "subnet_group_for_db_or" {
+#   name = "${var.subnet_group_name}-${random_string.subnet_group_name_postfix.result}"
+#   subnet_ids = var.subnet_group_subnet_ids_or
+#   tags = var.tags
+#   provider = aws.replica
+#   lifecycle {
+#       create_before_destroy = true
+#   }
+# }
