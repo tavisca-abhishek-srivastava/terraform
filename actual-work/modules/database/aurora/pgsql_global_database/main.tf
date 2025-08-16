@@ -23,7 +23,7 @@ resource "aws_rds_cluster" "postgresql" {
   storage_encrypted = true
   global_cluster_identifier = "${aws_rds_global_cluster.nrt_gdc.id}"
 
-  db_subnet_group_name = "bnr-data-subnet-grp"
+  db_subnet_group_name = module.nrt_rds_subnet_group["1"].subnet_name
   tags = var.tags
   
   		timeouts{
@@ -42,7 +42,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   instance_class        =   "db.r6g.large"
   engine                =   aws_rds_cluster.postgresql.engine
   engine_version        =   aws_rds_cluster.postgresql.engine_version
-  db_subnet_group_name = "bnr-data-subnet-grp"
+  db_subnet_group_name = module.nrt_rds_subnet_group["1"].subnet_name
   db_parameter_group_name = module.nrt_rds_parameter_group.parameter_group_name
   promotion_tier = each.value.promotion_tier
   performance_insights_enabled = true
