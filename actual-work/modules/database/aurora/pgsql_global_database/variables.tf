@@ -23,6 +23,14 @@ variable "instance_role" {
   }))
   
 }
+variable "instance_role_or" {
+  type = map(object({
+    name = string,
+    az = string,
+    promotion_tier = number
+  }))
+  
+}
 variable "backup_retention_period" {
   type = number
 }
@@ -101,4 +109,45 @@ variable "replica_region" {
   description = "another region for kms key replica "
   type = string
   default = null
+}
+
+########################################################################################################
+##                                                                                                    ##
+##                     subnet group module related variables                                          ##
+##                                                                                                    ##
+########################################################################################################
+variable "use_default_subnet_group" {
+   description = <<EOF
+  "whether to use default subnet group for RDS/Aurora. 
+  if true -> provide name of 'default subnet group' in variable 'rds_subnet_group_name' if false -> custom name"
+  EOF
+  
+  type = bool
+  default = true
+}
+variable "rds_subnet_group_name" {
+  description = "name of rds/aurora subnet group existing or new"
+  type = string
+  validation {
+    condition = length(var.rds_subnet_group_name) != 0
+    error_message = "subnet group name can't be left blank"
+  }
+}
+
+variable "subnet_group_subnet_ids" {
+  description = "List of subnet group subnet ids"
+  type = list
+  validation {
+    condition = length(var.subnet_group_subnet_ids) >= 3
+    error_message = "number of subnets in subnet group name can't be left blank"
+  }
+}
+
+variable "subnet_group_subnet_ids_or" {
+  description = "List of subnet group subnet ids"
+  type = list
+  validation {
+    condition = length(var.subnet_group_subnet_ids) >= 3
+    error_message = "number of subnets in subnet group name can't be left blank"
+  }
 }

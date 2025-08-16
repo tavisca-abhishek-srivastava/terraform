@@ -1,4 +1,4 @@
-cluster_identifier  = "nrt-compliance-pgsql-cluster-nv"
+cluster_identifier  = "nrt-compliance-pgsql-cluster"
 
 tags = {
     "AppName"            = "nrt-compliance-pgsql-cluster-nv"
@@ -29,8 +29,28 @@ tags = {
 
     }
   }
+  instance_role_or = {
+    writer = {
+      name = "writer",
+      az = "us-west-2a",
+      promotion_tier = 0
+    },
+    reader = {
+        name = "reader-1",
+        az = "us-west-2b",
+        promotion_tier = 1
+
+    },
+        reader1 = {
+        name = "reader-2",
+        az = "us-west-2c",
+        promotion_tier = 2
+
+    }
+  }
 backup_retention_period = 1
 aws_region = "us-east-1"
+replica_region = "us-west-2"
 rds_parameter_group_name = "nrt-compliance-pgsql-cluster-pg-nv"
 parameter_group_db_family = "aurora-postgresql16"
 parameter_group_description = "this is for nrt-compliance-pgsql-cluster-nv"
@@ -83,10 +103,9 @@ key_description = "key for kms nrt nv"
 is_kms_replica = true
 need_kms_replica = true
 
+### subnet group
 
-replica_region = "us-west-2"
-
-
-
-
-
+use_default_subnet_group = true
+rds_subnet_group_name = ""
+subnet_group_subnet_ids = ["subnet-081d38d112d9b87db","subnet-0a270dcfe55895f61","subnet-0a7393d9a81b5dd51"]
+subnet_group_subnet_ids_or = ["subnet-0c1dac091a3c3129a","subnet-050b02e5f412e6ac4","subnet-027b75ea35a74119a"]

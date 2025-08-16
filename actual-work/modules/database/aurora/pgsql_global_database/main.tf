@@ -1,14 +1,3 @@
-module "nrt_rds_parameter_group" {
-    source = "../../common_components/rds_aurora/aws_db_parameter_group"
-    rds_parameter_group_name = var.rds_parameter_group_name
-    parameter_group_db_family = var.parameter_group_db_family
-    tags = var.tags
-    parameter_value = var.parameter_value
-    parameter_group_description = var.parameter_group_description
-
-    
-}
-
 resource "aws_rds_global_cluster" "nrt_gdc" {
   provider = aws.primary
   engine_version          =  16.4
@@ -19,7 +8,7 @@ resource "aws_rds_global_cluster" "nrt_gdc" {
 }
 
 resource "aws_rds_cluster" "postgresql" {
-  cluster_identifier      = var.cluster_identifier
+  cluster_identifier      = "${var.cluster_identifier}-nv"
   engine                  = "aurora-postgresql"
   engine_version          =  16.4
   availability_zones      = ["us-east-1a", "us-east-1b", "us-east-1c"]

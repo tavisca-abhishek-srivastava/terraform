@@ -1,3 +1,9 @@
+variable "replica_region" {
+  
+}
+
+
+
 variable "rds_parameter_group_name" {
   description = "name of rds/aurora parameter group"
   type = string
