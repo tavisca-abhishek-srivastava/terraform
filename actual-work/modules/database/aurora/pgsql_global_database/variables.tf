@@ -111,11 +111,6 @@ variable "need_kms_replica" {
   type = bool
   default = false
 }
-variable "replica_region" {
-  description = "another region for kms key replica "
-  type = string
-  default = null
-}
 
 ########################################################################################################
 ##                                                                                                    ##
