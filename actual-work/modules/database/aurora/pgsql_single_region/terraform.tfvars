@@ -1,6 +1,6 @@
 cluster_identifier  = "nrt-compliance-pgsql-cluster"
 kms_delete_after_days = 30
-
+primary_region = "us-east-1"
 tags = {
     "AppName"            = "nrt-compliance-pgsql-cluster"
     "Backup"             = "yes"
@@ -30,11 +30,8 @@ tags = {
 
     }
   }
-allocated_storage = 50
-storage_type = "gp3"
-storage_iops = 1000
+
 backup_retention_period = 1
-aws_region = "us-east-1"
 rds_parameter_group_name = "nrt-compliance-pgsql-cluster-pg"
 parameter_group_db_family = "aurora-postgresql16"
 parameter_group_description = "this is for nrt-compliance-pgsql-cluster"

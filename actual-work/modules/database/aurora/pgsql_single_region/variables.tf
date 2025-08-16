@@ -29,25 +29,13 @@ variable "instance_role" {
   }))
   
 }
-variable "storage_type" {
-  type = string
-}
-
-variable "allocated_storage" {
-  type = number
-
-}
-variable "storage_iops" {
-  type = number
-}
-
 variable "backup_retention_period" {
   type = number
 }
 
 # this is for provider
-variable "aws_region" {
-  type = string
+variable "primary_region" {
+  description = "value"
 }
 
 # variables for parameter group module

@@ -5,6 +5,9 @@ module "nrt_rds_parameter_group" {
     tags = var.tags
     parameter_value = var.parameter_value
     parameter_group_description = var.parameter_group_description
+    providers = {
+                    aws.instancemaker = aws.primary
+                    }
 
     
 }
