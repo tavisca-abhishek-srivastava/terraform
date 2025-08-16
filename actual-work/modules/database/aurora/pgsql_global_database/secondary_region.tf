@@ -26,7 +26,7 @@ resource "aws_rds_cluster" "postgresql_or" {
 }
 
 resource "aws_rds_cluster_instance" "cluster_instances_or" {
-  for_each              =   var.instance_role
+  for_each              =   var.instance_role_or
   identifier            =   "nrt-aurora-gd-cluster-poc-${each.value.name}"
   availability_zone     =   each.value.az
   cluster_identifier    =   aws_rds_cluster.postgresql_or.id
