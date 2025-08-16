@@ -29,10 +29,10 @@ resource "aws_rds_cluster_instance" "cluster_instances_or" {
   for_each              =   var.instance_role
   identifier            =   "nrt-aurora-gd-cluster-poc-${each.value.name}"
   availability_zone     =   each.value.az
-  cluster_identifier    =   aws_rds_cluster.postgresql.id
+  cluster_identifier    =   aws_rds_cluster.postgresql_or.id
   instance_class        =   "db.r6g.large"
-  engine                =   aws_rds_cluster.postgresql.engine
-  engine_version        =   aws_rds_cluster.postgresql.engine_version
+  engine                =   aws_rds_cluster.postgresql_or.engine
+  engine_version        =   aws_rds_cluster.postgresql_or.engine_version
   db_subnet_group_name =    module.nrt_rds_subnet_group_or["1"].subnet_name
   db_parameter_group_name = module.nrt_rds_parameter_group.parameter_group_name_or
   promotion_tier = each.value.promotion_tier
