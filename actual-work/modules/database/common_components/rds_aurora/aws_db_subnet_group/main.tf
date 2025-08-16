@@ -1,11 +1,11 @@
 ## added provider here to create resources in dr region as well
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-    }
-  }
-}
+# terraform {
+#   required_providers {
+#     aws = {
+#       source = "hashicorp/aws"
+#     }
+#   }
+# }
 
 resource "random_string" "subnet_group_name_postfix" {
   length = local.random_string_subnet_group_name_postfix_length
