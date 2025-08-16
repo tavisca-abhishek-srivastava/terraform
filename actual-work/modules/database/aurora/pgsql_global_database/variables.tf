@@ -147,7 +147,7 @@ variable "subnet_group_subnet_ids_or" {
   description = "List of subnet group subnet ids"
   type = list
   validation {
-    condition = length(var.subnet_group_subnet_ids) >= 3
+    condition = length(var.subnet_group_subnet_ids_or) >= 3
     error_message = "number of subnets in subnet group name can't be left blank"
   }
 }
