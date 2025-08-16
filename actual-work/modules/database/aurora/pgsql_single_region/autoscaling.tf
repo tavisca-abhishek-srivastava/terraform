@@ -17,7 +17,7 @@ resource "aws_appautoscaling_policy" "aurora_read_replica_policy" {
     predefined_metric_specification {
       predefined_metric_type = "RDSReaderAverageCPUUtilization"
     }
-    target_value = 10.0 // Target 50% average CPU utilization
+    target_value = 20.0 // Target 50% average CPU utilization
     scale_in_cooldown  = 300 // Seconds
     scale_out_cooldown = 300 // Seconds
   }
