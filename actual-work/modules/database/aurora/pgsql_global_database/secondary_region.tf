@@ -1,7 +1,7 @@
 
 
 resource "aws_rds_cluster" "postgresql_or" {
-  cluster_identifier      = "${var.cluster_identifier}_or"
+  cluster_identifier      = "${var.cluster_identifier}-or"
   engine                  = "aurora-postgresql"
   engine_version          =  16.4
   availability_zones      = ["us-west-2a", "us-west-2b", "us-west-2c"]

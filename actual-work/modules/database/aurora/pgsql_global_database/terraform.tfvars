@@ -107,6 +107,6 @@ need_kms_replica = true
 ### subnet group
 
 use_default_subnet_group = true
-rds_subnet_group_name = ""
+rds_subnet_group_name = "dummy"
 subnet_group_subnet_ids = ["subnet-081d38d112d9b87db","subnet-0a270dcfe55895f61","subnet-0a7393d9a81b5dd51"]
 subnet_group_subnet_ids_or = ["subnet-0c1dac091a3c3129a","subnet-050b02e5f412e6ac4","subnet-027b75ea35a74119a"]
