@@ -1,7 +1,9 @@
 variable "replica_region" {
-  
+  description = "value"
 }
-
+variable "primary_region" {
+  description = "value"
+}
 
 
 variable "rds_parameter_group_name" {

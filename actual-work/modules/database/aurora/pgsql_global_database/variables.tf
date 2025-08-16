@@ -41,6 +41,12 @@ variable "aws_region" {
 }
 
 # variables for parameter group module
+variable "replica_region" {
+  description = "value"
+}
+variable "primary_region" {
+  description = "value"
+}
 variable "rds_parameter_group_name" {
   description = "name of rds/aurora parameter group"
   type = string
