@@ -50,8 +50,9 @@ tags = {
   }
 backup_retention_period = 1
 aws_region = "us-east-1"
-replica_region = "us-west-2"
 rds_parameter_group_name = "nrt-compliance-pgsql-cluster-pg-nv"
+replica_region = "us-west-2"
+primary_region = "us-east-1"
 parameter_group_db_family = "aurora-postgresql16"
 parameter_group_description = "this is for nrt-compliance-pgsql-cluster-nv"
 parameter_value = {
