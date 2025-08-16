@@ -18,7 +18,6 @@ resource "aws_db_subnet_group" "subnet_group_for_db" {
   name = "${var.subnet_group_name}-${random_string.subnet_group_name_postfix.result}"
   subnet_ids = var.subnet_ids
   tags = var.tags
-  provider = aws.primary
   
   lifecycle {
       create_before_destroy = true
