@@ -1,10 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-    }
-  }
-}
 resource "random_string" "parameter_group_name_postfix" {
   length = local.random_string_parameter_group_name_postfix_length
   special = local.random_string_parameter_group_name_postfix_special
