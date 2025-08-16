@@ -7,6 +7,7 @@ module "nrt_rds_subnet_group" {
       subnet_group_subnet_ids_or = var.subnet_group_subnet_ids_or
       primary_region = var.aws_region
       replica_region = var.replica_region
+      
 
 	  tags = var.tags
 }
