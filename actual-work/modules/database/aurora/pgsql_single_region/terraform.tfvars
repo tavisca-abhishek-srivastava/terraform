@@ -54,9 +54,6 @@ parameter_value = {
   setting7 = {
     name = "log_error_verbosity"
     value = "default"}, 
-  setting8 = {
-    name = "rds.force_autovacuum_logging_level"
-    value = "log"}, 
 }
 key_policy_map = {
     "Id" : "key-consolepolicy-3",
