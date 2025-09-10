@@ -39,7 +39,27 @@ parameter_value = {
   setting1 = {
     name = "log_min_duration_statement"
     value = 500},
-  
+  setting2 = {
+    name = "log_checkpoints"
+    value = "on"},
+  setting3 = {
+    name = "log_connections"
+    value = "on"},
+  setting4 = {
+    name = "log_disconnections"
+    value = "on"},
+  setting5 = {
+    name = "log_lock_waits"
+    value = "on"},
+  setting6 = {
+    name = "log_temp_files"
+    value = 0},
+  setting7 = {
+    name = "log_error_verbosity"
+    value = default}, 
+  setting8 = {
+    name = "rds.force_autovacuum_logging_level"
+    value = "log"}, 
 }
 key_policy_map = {
     "Id" : "key-consolepolicy-3",
